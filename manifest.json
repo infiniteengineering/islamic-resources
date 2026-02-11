@@ -1,0 +1,21 @@
+{
+    "name": "Ramadan Adhkar",
+    "short_name": "Adhkar",
+    "description": "Authentic duas and adhkar for Ramadan sourced from the Quran and Sunnah.",
+    "start_url": "/ramadan-adhkar/",
+    "display": "standalone",
+    "background_color": "#f7f3eb",
+    "theme_color": "#f7f3eb",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
