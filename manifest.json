@@ -1,7 +1,7 @@
 {
-    "name": "Ramadan Adhkar",
-    "short_name": "Adhkar",
-    "description": "Authentic duas and adhkar for Ramadan sourced from the Quran and Sunnah.",
+    "name": "Islamic Resources",
+    "short_name": "Islamic",
+    "description": "Authentic Islamic resources — duas, adhkar, and guides from the Quran and Sunnah.",
     "start_url": "/ramadan-adhkar/",
     "display": "standalone",
     "background_color": "#f7f3eb",
