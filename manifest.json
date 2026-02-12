@@ -2,7 +2,7 @@
     "name": "Islamic Resources",
     "short_name": "Islamic",
     "description": "Authentic Islamic resources — duas, adhkar, and guides from the Quran and Sunnah.",
-    "start_url": "/ramadan-adhkar/",
+    "start_url": "/islamic-resources/",
     "display": "standalone",
     "background_color": "#f7f3eb",
     "theme_color": "#f7f3eb",
