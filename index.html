@@ -1,47 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" style="color-scheme: light only;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#f7f3eb">
     <meta name="color-scheme" content="light only">
-    <meta name="supported-color-schemes" content="light only">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
     <title>Ramadan Adhkar</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* KFGQPC Uthmanic Script - Same as Quran.com */
-        /* Kindle: TTF listed first for better e-ink compatibility */
         @font-face {
             font-family: 'Uthmanic';
-            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'),
-                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2');
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
             font-display: swap;
         }
-        :root {
-            color-scheme: light only;
-            --bg-primary: #f7f3eb;
-            --bg-card: #efe9dd;
-            --bg-card-hover: #e8e0d0;
-            --gold: #8b5a2b;
-            --gold-light: #a0522d;
-            --gold-dim: #6b4423;
-            --text-primary: #3d2e1f;
-            --text-secondary: #5c4b37;
-            --text-arabic: #2c1810;
-            --accent-teal: #4a7c6f;
-            --accent-rose: #9e6b6b;
-            --accent-purple: #6b5b7a;
-            --accent-red: #a04040;
-        }
 
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -49,24 +27,22 @@
 
         html {
             scroll-behavior: smooth;
+            color-scheme: light only;
         }
 
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background-color: #f7f3eb !important;
+            color: #3d2e1f !important;
             min-height: 100vh;
             line-height: 1.7;
-            background-image: 
-                radial-gradient(ellipse at 50% 0%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 100%, rgba(74, 124, 111, 0.04) 0%, transparent 40%);
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 3rem 1.5rem 1.5rem;
             position: relative;
+            background-color: #f7f3eb;
         }
 
         .revision-stamp {
@@ -74,7 +50,7 @@
             top: 1rem;
             right: 1rem;
             font-size: 0.7rem;
-            color: var(--text-secondary);
+            color: #5c4b37;
             text-align: right;
             opacity: 0.7;
             line-height: 1.4;
@@ -85,9 +61,9 @@
         }
 
         .title-arabic {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
+            font-family: 'Uthmanic', 'Amiri', serif;
             font-size: 2.8rem;
-            color: var(--gold);
+            color: #8b5a2b !important;
             margin-bottom: 0.5rem;
             font-weight: 400;
             letter-spacing: 0.05em;
@@ -95,44 +71,43 @@
 
         .title-english {
             font-size: 1.1rem;
-            color: var(--text-secondary);
+            color: #5c4b37 !important;
             font-weight: 400;
             letter-spacing: 0.2em;
             text-transform: uppercase;
         }
 
-        /* Creator Section */
         .creator-section {
             max-width: 600px;
             margin: 1.5rem auto 0;
             padding: 1.5rem;
             text-align: center;
-            border-top: 1px solid rgba(139, 90, 43, 0.15);
-            border-bottom: 1px solid rgba(139, 90, 43, 0.15);
+            border-top: 1px solid #c9a96e;
+            border-bottom: 1px solid #c9a96e;
         }
 
         .creator-name {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #5c4b37;
             margin-bottom: 0.75rem;
         }
 
         .creator-name strong {
-            color: var(--gold-light);
+            color: #a0522d;
         }
 
         .disclaimer {
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: #5c4b37;
             font-style: italic;
             margin-bottom: 1rem;
             line-height: 1.6;
         }
 
         .ummah-dua {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
+            font-family: 'Uthmanic', 'Amiri', serif;
             font-size: 1.4rem;
-            color: var(--gold);
+            color: #8b5a2b !important;
             direction: rtl;
             margin-bottom: 0.5rem;
             line-height: 2;
@@ -140,24 +115,23 @@
 
         .ummah-dua-trans {
             font-size: 0.9rem;
-            color: var(--accent-teal);
+            color: #4a7c6f;
             font-style: italic;
         }
 
         .barakah {
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: #5c4b37;
             margin-top: 1rem;
         }
 
         .star-divider {
-            color: var(--gold);
+            color: #8b5a2b;
             font-size: 1.2rem;
             margin: 1rem 0;
             opacity: 0.7;
         }
 
-        /* Navigation */
         .nav {
             display: flex;
             flex-wrap: wrap;
@@ -166,14 +140,15 @@
             padding: 1.5rem 1rem 2rem;
             position: sticky;
             top: 0;
-            background: linear-gradient(to bottom, var(--bg-primary) 70%, transparent);
+            background-color: #f7f3eb;
+            background-image: linear-gradient(to bottom, #f7f3eb 70%, rgba(247, 243, 235, 0));
             z-index: 100;
         }
 
         .nav-btn {
-            background: var(--bg-card);
-            border: 1px solid rgba(139, 90, 43, 0.2);
-            color: var(--text-secondary);
+            background-color: #efe9dd !important;
+            border: 1px solid #c9a96e;
+            color: #5c4b37 !important;
             padding: 0.5rem 0.9rem;
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.85rem;
@@ -183,28 +158,27 @@
         }
 
         .nav-btn:hover, .nav-btn.active {
-            background: var(--bg-card-hover);
-            color: var(--gold);
-            border-color: var(--gold-dim);
+            background-color: #e8e0d0 !important;
+            color: #8b5a2b !important;
+            border-color: #6b4423;
         }
 
         .nav-btn.errors {
-            border-color: rgba(160, 64, 64, 0.3);
+            border-color: #c08080;
         }
 
         .nav-btn.errors:hover, .nav-btn.errors.active {
-            border-color: var(--accent-red);
-            color: var(--accent-red);
+            border-color: #a04040;
+            color: #a04040 !important;
         }
 
-        /* Main Content */
         .container {
             max-width: 700px;
             margin: 0 auto;
             padding: 0 1rem 4rem;
+            background-color: #f7f3eb;
         }
 
-        /* Section */
         .section {
             margin-bottom: 3rem;
             animation: fadeIn 0.6s ease-out;
@@ -221,7 +195,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+            border-bottom: 1px solid #c9a96e;
         }
 
         .section-icon {
@@ -231,14 +205,13 @@
         .section-title {
             font-size: 1.4rem;
             font-weight: 500;
-            color: var(--gold);
+            color: #8b5a2b !important;
             letter-spacing: 0.05em;
         }
 
-        /* Dua Card */
         .dua-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(139, 90, 43, 0.1);
+            background-color: #efe9dd !important;
+            border: 1px solid #d4c4a8;
             padding: 1.5rem;
             margin-bottom: 1rem;
             position: relative;
@@ -246,8 +219,8 @@
         }
 
         .dua-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(139, 90, 43, 0.25);
+            background-color: #e8e0d0 !important;
+            border-color: #c9a96e;
         }
 
         .dua-card::before {
@@ -257,12 +230,12 @@
             left: 0;
             width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--gold), var(--gold-dim));
+            background: linear-gradient(to bottom, #8b5a2b, #6b4423);
         }
 
         .dua-label {
             font-size: 0.85rem;
-            color: var(--accent-teal);
+            color: #4a7c6f !important;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             margin-bottom: 1rem;
@@ -270,10 +243,10 @@
         }
 
         .dua-arabic {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
+            font-family: 'Uthmanic', 'Amiri', serif;
             font-size: 1.8rem;
             line-height: 2.4;
-            color: var(--text-arabic);
+            color: #2c1810 !important;
             text-align: right;
             direction: rtl;
             margin-bottom: 1rem;
@@ -282,13 +255,13 @@
 
         .dua-transliteration {
             font-style: italic;
-            color: var(--gold-light);
+            color: #a0522d !important;
             margin-bottom: 0.75rem;
             font-size: 1.05rem;
         }
 
         .dua-translation {
-            color: var(--text-secondary);
+            color: #5c4b37 !important;
             font-size: 1rem;
             margin-bottom: 1rem;
             line-height: 1.8;
@@ -296,34 +269,31 @@
 
         .dua-source {
             font-size: 0.8rem;
-            color: var(--gold-dim);
+            color: #6b4423 !important;
             text-align: right;
             font-style: italic;
         }
 
-        /* Special highlight card */
         .dua-card.highlight {
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(139, 90, 43, 0.08) 100%);
-            border-color: rgba(139, 90, 43, 0.3);
+            background-color: #e8dcc8 !important;
+            border-color: #c9a96e;
         }
 
         .dua-card.highlight::before {
-            background: var(--gold);
+            background: #8b5a2b;
         }
 
-        /* Salah step card */
         .dua-card.salah-step::before {
-            background: linear-gradient(to bottom, var(--accent-purple), #6b5b95);
+            background: linear-gradient(to bottom, #6b5b7a, #554a63);
         }
 
         .dua-card.salah-step .dua-label {
-            color: var(--accent-purple);
+            color: #6b5b7a !important;
         }
 
-        /* Error card */
         .error-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(160, 64, 64, 0.2);
+            background-color: #efe9dd !important;
+            border: 1px solid #d4a0a0;
             padding: 1.5rem;
             margin-bottom: 1rem;
             position: relative;
@@ -336,18 +306,18 @@
             left: 0;
             width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--accent-red), #8b4444);
+            background: linear-gradient(to bottom, #a04040, #7a3030);
         }
 
         .error-title {
             font-size: 1.1rem;
-            color: var(--accent-red);
+            color: #a04040 !important;
             margin-bottom: 0.75rem;
             font-weight: 600;
         }
 
         .error-wrong {
-            color: var(--accent-red);
+            color: #a04040 !important;
             margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
@@ -360,7 +330,7 @@
         }
 
         .error-correct {
-            color: var(--accent-teal);
+            color: #4a7c6f !important;
             margin-bottom: 0.75rem;
             padding-left: 1.5rem;
             position: relative;
@@ -374,16 +344,15 @@
 
         .error-source {
             font-size: 0.8rem;
-            color: var(--gold-dim);
+            color: #6b4423 !important;
             font-style: italic;
             margin-top: 0.5rem;
         }
 
-        /* Position indicator */
         .position-tag {
             display: inline-block;
-            background: rgba(107, 91, 122, 0.2);
-            color: var(--accent-purple);
+            background-color: #d8d0e0;
+            color: #6b5b7a !important;
             font-size: 0.75rem;
             padding: 0.25rem 0.6rem;
             border-radius: 2px;
@@ -392,79 +361,76 @@
             text-transform: uppercase;
         }
 
-        /* Notes */
         .note {
-            background: rgba(74, 124, 111, 0.1);
-            border-left: 3px solid var(--accent-teal);
+            background-color: #dceae6;
+            border-left: 3px solid #4a7c6f;
             padding: 1rem 1.25rem;
             margin: 1rem 0;
             font-size: 0.95rem;
-            color: var(--text-secondary);
+            color: #5c4b37 !important;
         }
 
         .note strong {
-            color: var(--accent-teal);
+            color: #4a7c6f !important;
         }
 
         .note.purple {
-            background: rgba(107, 91, 122, 0.1);
-            border-left-color: var(--accent-purple);
+            background-color: #e4dfe8;
+            border-left-color: #6b5b7a;
         }
 
         .note.purple strong {
-            color: var(--accent-purple);
+            color: #6b5b7a !important;
         }
 
         .note.warning {
-            background: rgba(160, 64, 64, 0.1);
-            border-left-color: var(--accent-red);
+            background-color: #f0dede;
+            border-left-color: #a04040;
         }
 
         .note.warning strong {
-            color: var(--accent-red);
+            color: #a04040 !important;
         }
 
-        /* Repeat indicator */
         .repeat {
             display: inline-block;
-            background: rgba(139, 90, 43, 0.15);
-            color: var(--gold);
+            background-color: #e8dcc8;
+            color: #8b5a2b !important;
             font-size: 0.75rem;
             padding: 0.2rem 0.5rem;
             border-radius: 2px;
             margin-left: 0.5rem;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 2rem 1rem;
-            border-top: 1px solid rgba(139, 90, 43, 0.1);
+            border-top: 1px solid #c9a96e;
             margin-top: 2rem;
+            background-color: #f7f3eb;
         }
 
         .footer-text {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #5c4b37 !important;
         }
 
         .footer-dua {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
+            font-family: 'Uthmanic', 'Amiri', serif;
             font-size: 1.5rem;
-            color: var(--gold);
+            color: #8b5a2b !important;
             margin-top: 1rem;
             direction: rtl;
         }
 
-        /* Share Button */
         .share-section {
             text-align: center;
             padding: 2rem;
         }
 
         .share-btn {
-            background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
-            color: var(--bg-primary);
+            background: linear-gradient(135deg, #6b4423 0%, #8b5a2b 100%);
+            color: #f7f3eb !important;
             border: none;
             padding: 0.9rem 2rem;
             font-family: 'Cormorant Garamond', serif;
@@ -480,58 +446,50 @@
             box-shadow: 0 4px 20px rgba(139, 90, 43, 0.3);
         }
 
-        /* Responsive */
+        .download-btn {
+            background: linear-gradient(135deg, #4a7c6f 0%, #3d6b5f 100%);
+            color: #f7f3eb;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(74, 124, 111, 0.3);
+        }
+
+        .download-note {
+            font-size: 0.8rem;
+            color: #5c4b37;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
         @media (max-width: 480px) {
-            .title-arabic {
-                font-size: 2.2rem;
-            }
-
-            .dua-arabic {
-                font-size: 1.5rem;
-                line-height: 2.2;
-            }
-
-            .section-title {
-                font-size: 1.2rem;
-            }
-
-            .nav-btn {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.6rem;
-            }
-
-            .ummah-dua {
-                font-size: 1.2rem;
-            }
-
-            .revision-stamp {
-                font-size: 0.6rem;
-                top: 0.5rem;
-                right: 0.5rem;
-            }
+            .title-arabic { font-size: 2.2rem; }
+            .dua-arabic { font-size: 1.5rem; line-height: 2.2; }
+            .section-title { font-size: 1.2rem; }
+            .nav-btn { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+            .ummah-dua { font-size: 1.2rem; }
+            .revision-stamp { font-size: 0.6rem; top: 0.5rem; right: 0.5rem; }
         }
 
-        /* Kindle e-ink & reduced motion: disable animations for performance */
-        @media (prefers-reduced-motion: reduce), (monochrome) {
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important;
-            }
-
-            .dua-card, .error-card {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-
-        /* Fancy horizontal divider */
         .geometric {
             width: 100%;
             max-width: 300px;
             height: 1px;
             margin: 2.5rem auto;
             position: relative;
-            background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+            background: linear-gradient(to right, transparent, #6b4423, transparent);
         }
 
         .geometric::before {
@@ -540,17 +498,16 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background: var(--bg-primary);
+            background-color: #f7f3eb;
             padding: 0 1rem;
-            color: var(--gold);
+            color: #8b5a2b;
             font-size: 0.8rem;
         }
 
-        /* Sub-section divider */
         .sub-divider {
             text-align: center;
             margin: 2rem 0 1.5rem;
-            color: var(--text-secondary);
+            color: #5c4b37 !important;
             font-size: 0.9rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -560,200 +517,21 @@
         .sub-divider::after {
             content: '—';
             margin: 0 1rem;
-            color: var(--gold-dim);
+            color: #6b4423;
         }
 
-        /* 99 Names Grid */
-        .names-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.6rem;
-        }
-
-        .name-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(139, 90, 43, 0.15);
-            padding: 0.8rem 0.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .name-box:hover, .name-box:active {
-            background: var(--bg-card-hover);
-            border-color: var(--gold);
-        }
-
-        .name-box .name-num {
-            font-size: 0.65rem;
-            color: var(--gold-dim);
-            position: absolute;
-            top: 0.3rem;
-            left: 0.4rem;
-            opacity: 0.7;
-        }
-
-        .name-box .name-ar {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-            direction: rtl;
-            line-height: 1.8;
-            margin-bottom: 0.2rem;
-        }
-
-        .name-box .name-translit {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 480px) {
-            .names-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #f7f3eb !important;
+                color: #3d2e1f !important;
             }
-
-            .name-box .name-ar {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-primary);
-            border: 1px solid rgba(139, 90, 43, 0.3);
-            max-width: 500px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 2rem 1.5rem;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 0.8rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.3rem;
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: var(--gold);
-        }
-
-        .modal-num {
-            font-size: 0.8rem;
-            color: var(--gold-dim);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.1em;
-        }
-
-        .modal-arabic {
-            font-family: 'Uthmanic', 'Noto Naskh Arabic', 'Amiri', serif;
-            font-size: 2.4rem;
-            color: var(--gold);
-            text-align: center;
-            direction: rtl;
-            line-height: 2;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-translit {
-            text-align: center;
-            font-style: italic;
-            color: var(--gold-light);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .modal-meaning {
-            text-align: center;
-            color: var(--accent-teal);
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.05em;
-        }
-
-        .modal-divider {
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
-            margin: 1rem auto;
-        }
-
-        .modal-explanation {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        /* Farewell Sermon */
-        .sermon-text {
-            font-size: 1rem;
-            line-height: 2;
-            color: var(--text-primary);
-            margin-bottom: 1.2rem;
-        }
-
-        .sermon-address {
-            font-weight: 600;
-            color: var(--gold);
-            font-size: 1.05rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .sermon-closing {
-            text-align: center;
-            font-style: italic;
-            color: var(--gold-light);
-            font-size: 1.05rem;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(139, 90, 43, 0.15);
-        }
-
-        .sermon-ref {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: 0.8rem;
-            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="revision-stamp">
-            <span>Rev 1.3 — Kindle</span>
+            <span>Rev 1.0</span>
             <span>11 Feb 2026</span>
         </div>
         <h1 class="title-arabic" lang="ar">أَذْكَارُ رَمَضَان</h1>
@@ -783,16 +561,11 @@
         <button type="button" class="nav-btn" onclick="showSection('after-salah', this)">After Salah</button>
         <button type="button" class="nav-btn" onclick="showSection('laylatul-qadr', this)">Laylatul Qadr</button>
         <button type="button" class="nav-btn" onclick="showSection('general', this)">General</button>
-        <button type="button" class="nav-btn" onclick="showSection('names', this)">99 Names</button>
-        <button type="button" class="nav-btn" onclick="showSection('sermon', this)">Farewell Sermon</button>
         <button type="button" class="nav-btn errors" onclick="showSection('errors', this)">Common Errors</button>
     </nav>
 
     <main class="container">
         
-        <!-- ========================================
-             SUHOOR SECTION
-             ======================================== -->
         <section class="section" data-section="suhoor">
             <div class="section-header">
                 <span class="section-icon">🌙</span>
@@ -838,9 +611,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             IFTAR SECTION
-             ======================================== -->
         <section class="section" data-section="iftar">
             <div class="section-header">
                 <span class="section-icon">🌅</span>
@@ -878,9 +648,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             IN SALAH SECTION
-             ======================================== -->
         <section class="section" data-section="salah">
             <div class="section-header">
                 <span class="section-icon">🕌</span>
@@ -891,7 +658,6 @@
                 <strong>Purpose:</strong> Understanding what we recite helps us focus and develop khushu' (humility) in prayer, especially during the long Taraweeh prayers.
             </div>
 
-            <!-- STANDING - BEFORE FATIHA -->
             <div class="dua-card salah-step">
                 <div class="position-tag">Standing</div>
                 <div class="dua-label">Opening Takbeer</div>
@@ -1070,9 +836,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             AFTER SALAH SECTION
-             ======================================== -->
         <section class="section" data-section="after-salah">
             <div class="section-header">
                 <span class="section-icon">📿</span>
@@ -1197,9 +960,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             LAYLATUL QADR SECTION
-             ======================================== -->
         <section class="section" data-section="laylatul-qadr">
             <div class="section-header">
                 <span class="section-icon">✨</span>
@@ -1225,9 +985,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             GENERAL RAMADAN SECTION
-             ======================================== -->
         <section class="section" data-section="general">
             <div class="section-header">
                 <span class="section-icon">🤲</span>
@@ -1285,31 +1042,6 @@
 
         <div class="geometric"></div>
 
-        <!-- ========================================
-             99 NAMES OF ALLAH SECTION
-             ======================================== -->
-        <section class="section" data-section="names">
-            <div class="section-header">
-                <span class="section-icon">✨</span>
-                <h2 class="section-title">The 99 Names of Allah</h2>
-            </div>
-
-            <div class="note">
-                <strong>Virtue:</strong> The Prophet ﷺ said: "Allah has ninety-nine names — one hundred minus one. Whoever preserves them will enter Paradise." (Bukhari 7392 & Muslim 2677)
-            </div>
-
-            <div class="note purple">
-                <strong>What does 'preserve' mean?</strong> Scholars explain it means: (1) memorising them, (2) understanding their meanings, (3) worshipping Allah by them, and (4) calling upon Him through them in supplication.
-            </div>
-
-            <div id="names-grid" class="names-grid"></div>
-        </section>
-
-        <div class="geometric"></div>
-
-        <!-- ========================================
-             COMMON ERRORS SECTION
-             ======================================== -->
         <section class="section" data-section="errors">
             <div class="section-header">
                 <span class="section-icon">⚠️</span>
@@ -1442,82 +1174,14 @@
             </div>
         </section>
 
-        <div class="geometric"></div>
-
-        <!-- ========================================
-             THE FAREWELL SERMON
-             ======================================== -->
-        <section class="section" data-section="sermon">
-            <div class="section-header">
-                <span class="section-icon">📜</span>
-                <h2 class="section-title">The Farewell Sermon</h2>
-            </div>
-
-            <div class="note">
-                <strong>Khutbat al-Wada'</strong> — Delivered by the Prophet ﷺ on the 9th of Dhul Hijjah, 10 AH (6th March 632 CE), in the valley of Uranah at Mount Arafat, during his first and final Hajj, before more than 120,000 Companions.
-            </div>
-
-            <div class="dua-card">
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Lend me an attentive ear, for I know not whether after this year, I shall ever be amongst you again. Therefore listen to what I am saying to you very carefully and take these words to those who could not be present here today.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Just as you regard this month, this day, this city as sacred, so regard the life and property of every Muslim as a sacred trust. Return the goods entrusted to you to their rightful owners. Hurt no one so that no one may hurt you. Remember that you will indeed meet your Lord, and that He will indeed reckon your deeds. Allah has forbidden you to take usury (interest); therefore all interest obligations shall henceforth be waived. Your capital, however, is yours to keep. You will neither inflict nor suffer any inequity.</p>
-
-                <p class="sermon-text">Beware of Satan for the safety of your religion. He has lost all hope that he will ever be able to lead you astray in big things, so beware of following him in small things.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">It is true that you have certain rights in regard to your women, but they also have rights over you. Remember that you have taken them as your wives only under Allah's trust and with His permission. Do treat your women well and be kind to them, for they are your partners and committed helpers.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Listen to me in earnest. Worship Allah, say your five daily prayers, fast during the month of Ramadan, and give your wealth in Zakat. Perform Hajj if you can afford to.</p>
-
-                <p class="sermon-text">All mankind is from Adam and Eve. An Arab has no superiority over a non-Arab, nor a non-Arab has any superiority over an Arab; also a white has no superiority over a black, nor a black has any superiority over a white — except by piety and good action.</p>
-
-                <p class="sermon-text">Learn that every Muslim is a brother to every Muslim and that the Muslims constitute one brotherhood. Nothing shall be legitimate to a Muslim which belongs to a fellow Muslim unless it was given freely and willingly. Do not, therefore, do injustice to yourselves.</p>
-
-                <p class="sermon-text">Remember, one day you will appear before Allah and answer for your deeds. So beware, do not stray from the path of righteousness after I am gone.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">No prophet or apostle will come after me, and no new faith will be born. Reason well therefore, O people, and understand words which I convey to you. I leave behind me two things, the Quran and my Sunnah, and if you follow these you will never go astray.</p>
-
-                <p class="sermon-text" style="font-weight: 600; color: var(--gold);">All those who listen to me shall pass on my words to others and those to others again; and may the last ones understand my words better than those who listened to me directly.</p>
-
-                <p class="sermon-closing">"Be my witness, O Allah, that I have conveyed Your message to Your people."</p>
-
-                <div class="sermon-ref">
-                    Sources include narrations found in Bukhari, Muslim, Tirmidhi and Musnad Ahmad (wording varies across narrations).
-                </div>
-            </div>
-
-            <div class="note purple">
-                <strong>Note:</strong> The exact wording of the Farewell Sermon varies across authentic sources, as it was narrated by many Companions who each reported the portions they personally heard. Imam Ahmad ibn Hanbal's Musnad contains the most complete version. Scholars have carefully compiled this composite from multiple authentic narrations.
-            </div>
-
-            <div class="note">
-                After concluding the sermon, the following verse was revealed: <em>"This day I have perfected for you your religion, and completed My favour upon you, and have chosen for you Islam as your religion."</em> (Quran 5:3)
-            </div>
-        </section>
-
-        <!-- SHARE SECTION -->
         <section class="share-section">
             <button type="button" class="share-btn" onclick="shareAdkhar()">Share with Family & Friends</button>
+            <br>
+            <a href="RamadanAdhkar-Offline.html" download="RamadanAdhkar-Offline.html" class="download-btn">📥 Download for Offline Use</a>
+            <p class="download-note">Open the downloaded file once with internet to cache fonts, then it works offline.</p>
         </section>
 
     </main>
-
-    <!-- Modal for 99 Names -->
-    <div class="modal-overlay" id="nameModal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button type="button" class="modal-close" onclick="closeModal()">&times;</button>
-            <div class="modal-num" id="modalNum"></div>
-            <div class="modal-arabic" id="modalArabic" lang="ar"></div>
-            <div class="modal-translit" id="modalTranslit"></div>
-            <div class="modal-meaning" id="modalMeaning"></div>
-            <div class="modal-divider"></div>
-            <div class="modal-explanation" id="modalExplanation"></div>
-        </div>
-    </div>
 
     <footer class="footer">
         <p class="footer-text">May Allah accept our fasting and prayers</p>
@@ -1530,7 +1194,6 @@
             const allBtns = document.querySelectorAll('.nav-btn');
             const geometrics = document.querySelectorAll('.geometric');
             
-            // Update active button
             allBtns.forEach(btn => btn.classList.remove('active'));
             btnEl.classList.add('active');
             
@@ -1541,22 +1204,16 @@
                 allSections.forEach(s => {
                     s.style.display = s.dataset.section === section ? 'block' : 'none';
                 });
-                // Keep dividers visible for visual rhythm
                 geometrics.forEach(g => g.style.display = 'block');
             }
             
-            // Scroll to content (below nav), not back to header
-            document.querySelector('.container').scrollIntoView({ block: 'start' });
+            window.scrollTo({ top: 0 });
         }
 
         async function shareAdkhar() {
-            if (window.location.protocol === "file:") {
-                alert("For proper sharing, please upload this file to a website first. Local files cannot generate shareable links.");
-            }
-
             const shareData = {
                 title: 'Ramadan Adhkar',
-                text: 'Authenticated duas and adhkar for Ramadan - Suhoor, Iftar, Salah, Laylatul Qadr, 99 Names of Allah, the Farewell Sermon and more. Created by Farhan Shaikh.',
+                text: 'Authenticated duas and adhkar for Ramadan - Suhoor, Iftar, Salah, Laylatul Qadr and more. Created by Farhan Shaikh.',
                 url: window.location.href
             };
 
@@ -1564,7 +1221,6 @@
                 if (navigator.share) {
                     await navigator.share(shareData);
                 } else {
-                    // Fallback: show prompt to copy URL
                     prompt("Copy this link:", window.location.href);
                 }
             } catch (err) {
@@ -1572,164 +1228,20 @@
             }
         }
 
-        // Add smooth fade-in on scroll (skip on Kindle / reduced-motion devices)
-        if ('IntersectionObserver' in window) {
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 
-                !window.matchMedia('(monochrome)').matches) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                    });
-                }, { threshold: 0.1 });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
 
-                document.querySelectorAll('.dua-card, .error-card').forEach(card => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    observer.observe(card);
-                });
-            }
-        }
-        var namesOfAllah = [
-            {n:1, ar:"الرَّحْمَنُ", tr:"Ar-Rahmaan", en:"The Beneficent", ex:"He who wills goodness and mercy for all His creatures. His mercy encompasses everything in existence."},
-            {n:2, ar:"الرَّحِيمُ", tr:"Ar-Raheem", en:"The Merciful", ex:"He who acts with extreme kindness. While Ar-Rahmaan refers to the vastness of mercy, Ar-Raheem refers to mercy in action towards the believers."},
-            {n:3, ar:"الْمَلِكُ", tr:"Al-Malik", en:"The Eternal Lord", ex:"The Sovereign Lord, the One with complete Dominion, free from imperfection. All authority belongs to Him alone."},
-            {n:4, ar:"الْقُدُّوسُ", tr:"Al-Quddus", en:"The Most Sacred", ex:"The One who is pure from any imperfection and clear from any deficiency. He is exalted above anything that does not befit His Majesty."},
-            {n:5, ar:"السَّلاَمُ", tr:"As-Salam", en:"The Embodiment of Peace", ex:"The One who is free from every imperfection. He is the source of peace and safety, and He greets the people of Paradise with peace."},
-            {n:6, ar:"الْمُؤْمِنُ", tr:"Al-Mu'min", en:"The Infuser of Faith", ex:"The One who witnessed for Himself that no one is God but Him, and who grants security to His creation."},
-            {n:7, ar:"الْمُهَيْمِنُ", tr:"Al-Muhaymin", en:"The Preserver of Safety", ex:"The One who witnesses the sayings and deeds of His creatures. He watches over and protects all things."},
-            {n:8, ar:"الْعَزِيزُ", tr:"Al-Azeez", en:"The Mighty One", ex:"The Strong, the Defeater who is not defeated. He possesses all honour and power, and none can overcome Him."},
-            {n:9, ar:"الْجَبَّارُ", tr:"Al-Jabbar", en:"The Omnipotent One", ex:"The Compeller — nothing happens in His Dominion except that which He willed. He also mends the broken and compels the creation to His will."},
-            {n:10, ar:"الْمُتَكَبِّرُ", tr:"Al-Mutakabbir", en:"The Dominant One", ex:"The One who is clear from the attributes of the creatures. Greatness and grandeur belong only to Him."},
-            {n:11, ar:"الْخَالِقُ", tr:"Al-Khaaliq", en:"The Creator", ex:"The One who brings everything from non-existence to existence. He determines and plans all of creation."},
-            {n:12, ar:"الْبَارِئُ", tr:"Al-Baari", en:"The Evolver", ex:"The Maker who creates from nothing and fashions each creature distinctly."},
-            {n:13, ar:"الْمُصَوِّرُ", tr:"Al-Musawwir", en:"The Flawless Shaper", ex:"The One who forms His creatures in different pictures and shapes. He gives each creation its unique form."},
-            {n:14, ar:"الْغَفَّارُ", tr:"Al-Ghaffaar", en:"The Great Forgiver", ex:"The Forgiver who forgives the sins of His slaves time and time again. His forgiveness is abundant and recurring."},
-            {n:15, ar:"الْقَهَّارُ", tr:"Al-Qahhaar", en:"The All-Prevailing One", ex:"The Dominant One who has perfect Power and is not unable over anything."},
-            {n:16, ar:"الْوَهَّابُ", tr:"Al-Wahhaab", en:"The Supreme Bestower", ex:"The One who is Generous in giving plenty without any return. He gives freely without being asked."},
-            {n:17, ar:"الرَّزَّاقُ", tr:"Ar-Razzaaq", en:"The Total Provider", ex:"The Sustainer who provides for all His creatures. Every provision — physical and spiritual — comes from Him alone."},
-            {n:18, ar:"الْفَتَّاحُ", tr:"Al-Fattaah", en:"The Supreme Solver", ex:"The Opener, the Reliever. He opens for His slaves the closed worldly and religious matters."},
-            {n:19, ar:"اَلْعَلِيْمُ", tr:"Al-'Aleem", en:"The All-Knowing One", ex:"The Knowledgeable — nothing is absent from His knowledge. He knows what was, what is, and what will be."},
-            {n:20, ar:"الْقَابِضُ", tr:"Al-Qaabid", en:"The Restricting One", ex:"The Withholder who constricts the sustenance by His wisdom and expands it with His Generosity."},
-            {n:21, ar:"الْبَاسِطُ", tr:"Al-Baasit", en:"The Extender", ex:"The Englarger who expands and widens provision with His Generosity and Mercy."},
-            {n:22, ar:"الْخَافِضُ", tr:"Al-Khaafid", en:"The Reducer", ex:"The Abaser who lowers whoever He wills by His wisdom. He humbles the arrogant."},
-            {n:23, ar:"الرَّافِعُ", tr:"Ar-Raafi", en:"The Elevating One", ex:"The Exalter who raises whoever He wills. He elevates the believers in rank and honour."},
-            {n:24, ar:"الْمُعِزُّ", tr:"Al-Mu'izz", en:"The Honourer-Bestower", ex:"He gives esteem to whoever He wills, and there is no one to degrade whom He honours."},
-            {n:25, ar:"المُذِلُّ", tr:"Al-Muzil", en:"The Abaser", ex:"The Dishonourer who degrades whoever He wills in His perfect justice and wisdom."},
-            {n:26, ar:"السَّمِيعُ", tr:"As-Samee'", en:"The All-Hearer", ex:"The One who hears all things — the open and the secret — by His Eternal Hearing."},
-            {n:27, ar:"الْبَصِيرُ", tr:"Al-Baseer", en:"The All-Seeing", ex:"The One who sees all things by His Eternal Seeing. Nothing is hidden from His sight."},
-            {n:28, ar:"الْحَكَمُ", tr:"Al-Hakam", en:"The Impartial Judge", ex:"The Judge who rules between His servants with justice and equity."},
-            {n:29, ar:"الْعَدْلُ", tr:"Al-'Adl", en:"The Embodiment of Justice", ex:"The Just, the One entitled to do what He does. His justice is perfect and absolute."},
-            {n:30, ar:"اللَّطِيفُ", tr:"Al-Lateef", en:"The Knower of Subtleties", ex:"The Subtle One, the Gracious. He is kind to His slaves in ways they do not perceive."},
-            {n:31, ar:"الْخَبِيرُ", tr:"Al-Khabeer", en:"The All-Aware One", ex:"The One who knows the truth of things, their inner realities."},
-            {n:32, ar:"الْحَلِيمُ", tr:"Al-Haleem", en:"The Clement One", ex:"The Forbearing who delays the punishment for those who deserve it. He is not hasty in punishing."},
-            {n:33, ar:"الْعَظِيمُ", tr:"Al-'Azeem", en:"The Magnificent One", ex:"The Great One deserving Exaltment, Glory, and Purity from all imperfection."},
-            {n:34, ar:"الْغَفُورُ", tr:"Al-Ghafoor", en:"The Great Forgiver", ex:"The All-Forgiving who covers the sins of His servants and pardons them."},
-            {n:35, ar:"الشَّكُورُ", tr:"Ash-Shakoor", en:"The Acknowledging One", ex:"The Grateful, the Appreciative. He gives immense reward for even a little obedience."},
-            {n:36, ar:"الْعَلِيُّ", tr:"Al-'Aliyy", en:"The Sublime One", ex:"The Most High, above all creation in His Essence, Attributes, and Power."},
-            {n:37, ar:"الْكَبِيرُ", tr:"Al-Kabeer", en:"The Great One", ex:"The Most Great, greater than everything in status. All greatness belongs to Him."},
-            {n:38, ar:"الْحَفِيظُ", tr:"Al-Hafeedh", en:"The Guarding One", ex:"The Preserver, the Protector who protects whatever and whoever He wills."},
-            {n:39, ar:"المُقيِت", tr:"Al-Muqeet", en:"The Sustaining One", ex:"The Maintainer, the Guardian. He has the Power to sustain and nourish all that exists."},
-            {n:40, ar:"الْحسِيبُ", tr:"Al-Haseeb", en:"The Reckoning One", ex:"The Reckoner. He is sufficient for whoever puts their trust in Him."},
-            {n:41, ar:"الْجَلِيلُ", tr:"Al-Jaleel", en:"The Majestic One", ex:"The Sublime One attributed with greatness of Power and Glory of status."},
-            {n:42, ar:"الْكَرِيمُ", tr:"Al-Kareem", en:"The Bountiful One", ex:"The Generous One who gives without being asked. His generosity has no limits."},
-            {n:43, ar:"الرَّقِيبُ", tr:"Ar-Raqeeb", en:"The Watchful One", ex:"The Watcher from whom nothing is absent. He observes all things."},
-            {n:44, ar:"الْمُجِيبُ", tr:"Al-Mujeeb", en:"The Responding One", ex:"The Responsive who answers the one in need if he asks Him."},
-            {n:45, ar:"الْوَاسِعُ", tr:"Al-Waasi'", en:"The All-Pervading One", ex:"The Vast, the All-Embracing. His knowledge, mercy, and power encompass all things."},
-            {n:46, ar:"الْحَكِيمُ", tr:"Al-Hakeem", en:"The Wise One", ex:"The Wise who places everything in its rightful position with perfect wisdom."},
-            {n:47, ar:"الْوَدُودُ", tr:"Al-Wadood", en:"The Loving One", ex:"The One who loves His believing slaves and His believing slaves love Him."},
-            {n:48, ar:"الْمَجِيدُ", tr:"Al-Majeed", en:"The Glorious One", ex:"The Most Glorious One with perfect Power, High Status, Compassion, and Kindness."},
-            {n:49, ar:"الْبَاعِثُ", tr:"Al-Ba'ith", en:"The Infuser of New Life", ex:"The Resurrector who resurrects His slaves after death for reward and punishment."},
-            {n:50, ar:"الشَّهِيدُ", tr:"Ash-Shaheed", en:"The All-Observing Witness", ex:"The Witness from whom nothing is absent. He witnesses all events, open and hidden."},
-            {n:51, ar:"الْحَقُّ", tr:"Al-Haqq", en:"The Embodiment of Truth", ex:"The Truth. His Existence is the only true existence, and all that comes from Him is truth."},
-            {n:52, ar:"الْوَكِيلُ", tr:"Al-Wakeel", en:"The Universal Trustee", ex:"The Disposer of Affairs. He is sufficient for those who put their trust in Him."},
-            {n:53, ar:"الْقَوِيُّ", tr:"Al-Qawwiyy", en:"The Strong One", ex:"The Most Strong with complete Power. His strength never diminishes."},
-            {n:54, ar:"الْمَتِينُ", tr:"Al-Mateen", en:"The Firm One", ex:"The One with extreme Power which is uninterrupted. He does not get tired."},
-            {n:55, ar:"الْوَلِيُّ", tr:"Al-Waliyy", en:"The Protecting Associate", ex:"The Protecting Friend, the Supporter of the believers."},
-            {n:56, ar:"الْحَمِيدُ", tr:"Al-Hameed", en:"The Sole-Laudable One", ex:"The Praiseworthy who deserves all praise for His Attributes and Actions."},
-            {n:57, ar:"الْمُحْصِي", tr:"Al-Muhsee", en:"The All-Enumerating One", ex:"The Counter. The count of all things is known to Him."},
-            {n:58, ar:"الْمُبْدِئُ", tr:"Al-Mubdi", en:"The Originator", ex:"The One who started all creation, bringing it into being from nothing."},
-            {n:59, ar:"الْمُعِيدُ", tr:"Al-Mueed", en:"The Restorer", ex:"The Reproducer who brings back the creatures after death on the Day of Resurrection."},
-            {n:60, ar:"الْمُحْيِي", tr:"Al-Muhyee", en:"The Maintainer of Life", ex:"The Giver of Life who gives life to whom He wills."},
-            {n:61, ar:"اَلْمُمِيتُ", tr:"Al-Mumeet", en:"The Inflictor of Death", ex:"The Creator of Death. Every soul shall taste death by His decree."},
-            {n:62, ar:"الْحَيُّ", tr:"Al-Hayy", en:"The Eternally Living One", ex:"The Ever-Living who never dies, while all else is mortal."},
-            {n:63, ar:"الْقَيُّومُ", tr:"Al-Qayyoom", en:"The Self-Subsisting One", ex:"The Self-Sustaining who maintains all of creation. Everything depends on Him."},
-            {n:64, ar:"الْوَاجِدُ", tr:"Al-Waajid", en:"The Pointing One", ex:"The Perceiver, the Finder, the Rich who is never poor."},
-            {n:65, ar:"الْمَاجِدُ", tr:"Al-Maajid", en:"The All-Noble One", ex:"The Glorious One whose nobility and generosity are without parallel."},
-            {n:66, ar:"الْواحِدُ", tr:"Al-Waahid", en:"The Only One", ex:"The Unique, the One without a partner, no equal, no rival."},
-            {n:67, ar:"اَلاَحَدُ", tr:"Al-Ahad", en:"The Sole One", ex:"The One and Only, indivisible. Unique in His Essence, Attributes, and Actions."},
-            {n:68, ar:"الصَّمَدُ", tr:"As-Samad", en:"The Supreme Provider", ex:"The Eternal, the Independent. The Master who is relied upon in all matters."},
-            {n:69, ar:"الْقَادِرُ", tr:"Al-Qadeer", en:"The Omnipotent One", ex:"The Able, the Capable. Nothing is beyond His ability."},
-            {n:70, ar:"الْمُقْتَدِرُ", tr:"Al-Muqtadir", en:"The All-Authoritative One", ex:"The Powerful, the Dominant with perfect Power from which nothing is withheld."},
-            {n:71, ar:"الْمُقَدِّمُ", tr:"Al-Muqaddim", en:"The Expediting One", ex:"The Promoter who puts things in their right places. He brings forward what He wills."},
-            {n:72, ar:"الْمُؤَخِّرُ", tr:"Al-Mu'akhkhir", en:"The Delayer", ex:"The Retarder who delays what He wills according to His knowledge."},
-            {n:73, ar:"الأوَّلُ", tr:"Al-Awwal", en:"The Very First", ex:"The First whose Existence is without a beginning. There was nothing before Him."},
-            {n:74, ar:"الآخِرُ", tr:"Al-Aakhir", en:"The Infinite Last One", ex:"The Last whose Existence is without an end. He remains after all things perish."},
-            {n:75, ar:"الظَّاهِرُ", tr:"Az-Zaahir", en:"The Perceptible", ex:"The Manifest whose existence is evident by proofs and signs. Nothing is above Him."},
-            {n:76, ar:"الْبَاطِنُ", tr:"Al-Baatin", en:"The Imperceptible", ex:"The Hidden. Nothing is beneath Him. He knows the secrets and hidden matters."},
-            {n:77, ar:"الْوَالِي", tr:"Al-Waali", en:"The Holder of Supreme Authority", ex:"The Governor who owns all things and manages them."},
-            {n:78, ar:"الْمُتَعَالِي", tr:"Al-Muta'ali", en:"The Extremely Exalted One", ex:"The Most Exalted who is clear from the attributes of creation."},
-            {n:79, ar:"الْبَرُّ", tr:"Al-Barr", en:"The Fountain-Head of Truth", ex:"The Source of All Goodness. He is kind to His creatures and covers them with His sustenance."},
-            {n:80, ar:"التَّوَابُ", tr:"At-Tawwaab", en:"The Ever-Acceptor of Repentance", ex:"The Relenting who grants repentance and accepts it. He turns to His servant when they turn to Him."},
-            {n:81, ar:"الْمُنْتَقِمُ", tr:"Al-Muntaqim", en:"The Retaliator", ex:"The Avenger who prevails over His enemies and punishes them for their sins."},
-            {n:82, ar:"العَفُوُّ", tr:"Al-'Afuww", en:"The Supreme Pardoner", ex:"The Forgiver with wide forgiveness. He erases sins completely as though they never occurred."},
-            {n:83, ar:"الرَّؤُوفُ", tr:"Ar-Ra'oof", en:"The Benign One", ex:"The Compassionate with extreme Mercy towards His creatures."},
-            {n:84, ar:"مَالِكُ الْمُلْكِ", tr:"Maalik-ul-Mulk", en:"The Eternal Possessor of Sovereignty", ex:"The One who controls the Dominion and gives dominion to whoever He wills."},
-            {n:85, ar:"ذُوالْجَلاَلِ وَالإكْرَامِ", tr:"Dhul-Jalaali wal-Ikraam", en:"The Possessor of Majesty and Honour", ex:"The Lord of Majesty and Bounty who deserves to be Exalted and not denied."},
-            {n:86, ar:"الْمُقْسِطُ", tr:"Al-Muqsit", en:"The Just One", ex:"The Equitable who is Just in His judgement. He never wrongs anyone."},
-            {n:87, ar:"الْجَامِعُ", tr:"Al-Jaami'", en:"The Assembler of Scattered Creations", ex:"The Gatherer who will gather all creatures on the Day of Judgement."},
-            {n:88, ar:"الْغَنِيُّ", tr:"Al-Ghaniyy", en:"The Self-Sufficient One", ex:"The One who does not need the creation. All creation is in need of Him."},
-            {n:89, ar:"الْمُغْنِي", tr:"Al-Mughni", en:"The Bestower of Sufficiency", ex:"The Enricher who satisfies the necessities of the creatures."},
-            {n:90, ar:"اَلْمَانِعُ", tr:"Al-Maani'", en:"The Preventer", ex:"The Withholder who prevents harm. What He withholds, none can give."},
-            {n:91, ar:"الضَّارَّ", tr:"Ad-Daarr", en:"The Distressor", ex:"The One who makes harm reach whoever He wills as a test or punishment, always with wisdom."},
-            {n:92, ar:"النَّافِعُ", tr:"An-Naafi'", en:"The Bestower of Benefits", ex:"The Propitious who makes benefit reach whoever He wills. True benefit comes only from Him."},
-            {n:93, ar:"النُّورُ", tr:"An-Noor", en:"The Prime Light", ex:"The Light of the heavens and the earth. He guides to His light whom He wills. (Quran 24:35)"},
-            {n:94, ar:"الْهَادِي", tr:"Al-Haadi", en:"The Provider of Guidance", ex:"The Guide who guides His believers to what is beneficial and protects them from what is harmful."},
-            {n:95, ar:"الْبَدِيعُ", tr:"Al-Badee'", en:"The Unique One", ex:"The Incomparable Originator who created without any preceding example."},
-            {n:96, ar:"اَلْبَاقِي", tr:"Al-Baaqi", en:"The Ever-Surviving One", ex:"The Everlasting for whom non-existence is impossible. Everything will perish except His Face. (Quran 28:88)"},
-            {n:97, ar:"الْوَارِثُ", tr:"Al-Waarith", en:"The Eternal Inheritor", ex:"The Heir whose Existence remains after all creation has perished."},
-            {n:98, ar:"الرَّشِيدُ", tr:"Ar-Rasheed", en:"The Guide to Path of Rectitude", ex:"The Guide to the Right Path. All His decrees are based on perfect wisdom."},
-            {n:99, ar:"الصَّبُورُ", tr:"As-Saboor", en:"The Extensively Enduring One", ex:"The Patient One who does not quickly punish the sinners. He gives time for repentance."}
-        ];
-
-        // Render the 99 Names grid
-        (function() {
-            var grid = document.getElementById('names-grid');
-            if (!grid) return;
-            var html = '';
-            for (var i = 0; i < namesOfAllah.length; i++) {
-                var name = namesOfAllah[i];
-                html += '<div class="name-box" onclick="openNameModal(' + i + ')">' +
-                    '<span class="name-num">' + name.n + '</span>' +
-                    '<div class="name-ar" lang="ar">' + name.ar + '</div>' +
-                    '<div class="name-translit">' + name.tr + '</div>' +
-                '</div>';
-            }
-            grid.innerHTML = html;
-        })();
-
-        function openNameModal(index) {
-            var name = namesOfAllah[index];
-            document.getElementById('modalNum').textContent = 'Name ' + name.n + ' of 99';
-            document.getElementById('modalArabic').textContent = name.ar;
-            document.getElementById('modalTranslit').textContent = name.tr;
-            document.getElementById('modalMeaning').textContent = name.en;
-            document.getElementById('modalExplanation').textContent = name.ex;
-            document.getElementById('nameModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event) {
-            if (event && event.target !== document.getElementById('nameModal') && event.type === 'click') return;
-            document.getElementById('nameModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+        document.querySelectorAll('.dua-card, .error-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
         });
     </script>
 </body>
