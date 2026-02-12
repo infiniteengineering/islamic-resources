@@ -1525,7 +1525,7 @@
         <section class="share-section">
             <button type="button" class="share-btn" onclick="shareAdkhar()">Share with Family & Friends</button>
             <br>
-            <a href="RamadanAdhkar-Offline.html" download class="download-btn">📥 Download for Offline Use</a>
+            <button type="button" class="download-btn" onclick="downloadOffline()">📥 Download for Offline Use</button>
         </section>
 
     </main>
@@ -1571,6 +1571,36 @@
             
             // Scroll to content (below nav), not back to header
             document.querySelector('.container').scrollIntoView({ block: 'start' });
+        }
+
+        async function downloadOffline() {
+            try {
+                var response = await fetch('RamadanAdhkar-Offline.html');
+                var html = await response.text();
+                var blob = new Blob([html], { type: 'text/html' });
+
+                // iOS detection
+                var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+                if (isIOS && navigator.share) {
+                    // iOS: use Share Sheet → "Save to Files"
+                    var file = new File([blob], 'RamadanAdhkar-Offline.html', { type: 'text/html' });
+                    await navigator.share({ files: [file] });
+                } else {
+                    // Android / Desktop: direct blob download
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'RamadanAdhkar-Offline.html';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+            } catch (err) {
+                // Final fallback: open in new tab
+                window.open('RamadanAdhkar-Offline.html', '_blank');
+            }
         }
 
         async function shareAdkhar() {
