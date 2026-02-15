@@ -157,6 +157,29 @@
             opacity: 0.7;
         }
 
+        /* ═══════════════ BACK BUTTON ═══════════════ */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            color: var(--gold-light);
+            background: var(--bg-card);
+        }
+
         /* Navigation */
         .nav {
             display: flex;
@@ -224,6 +247,14 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(139, 90, 43, 0.15);
+            touch-action: manipulation;
+        }
+
+        .section-header:hover {
+            border-bottom-color: var(--gold);
         }
 
         .section-icon {
@@ -235,6 +266,29 @@
             font-weight: 500;
             color: var(--gold);
             letter-spacing: 0.05em;
+            flex: 1;
+        }
+
+        .section-chevron {
+            font-size: 1.1rem;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .section-header.collapsed .section-chevron {
+            transform: rotate(-90deg);
+        }
+
+        .section-body {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+        }
+
+        .section-body.collapsed {
+            max-height: 0 !important;
+            opacity: 0;
+            overflow: hidden;
         }
 
         /* Dua Card */
@@ -504,19 +558,38 @@
             transform: translateY(-2px);
         }
 
-        /* Back link */
-        .back-link {
-            display: inline-block;
-            font-size: 0.85rem;
+        /* ═══════════════ BACK TO TOP ═══════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 90, 43, 0.3);
             color: var(--gold);
-            text-decoration: none;
-            padding: 0.3rem 0;
-            margin: 0.5rem 0 0 1.2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(61, 46, 31, 0.12);
+            transition: all 0.3s ease;
+            z-index: 90;
             -webkit-tap-highlight-color: rgba(139, 90, 43, 0.15);
             touch-action: manipulation;
         }
 
-        .back-link:hover { text-decoration: underline; }
+        .back-to-top:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
 
         /* Responsive */
         @media (max-width: 480px) {
@@ -547,6 +620,21 @@
                 top: 0.5rem;
                 right: 0.5rem;
             }
+
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                display: block;
+                padding: 10px 14px;
+            }
+
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 38px;
+                height: 38px;
+            }
         }
 
         /* Kindle e-ink & reduced motion: disable animations for performance */
@@ -559,6 +647,10 @@
             .dua-card, .error-card {
                 opacity: 1 !important;
                 transform: none !important;
+            }
+
+            .section-body.collapsed {
+                display: none;
             }
         }
 
@@ -791,11 +883,12 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← Back to Islamic Resources</a>
+    <a href="index.html" class="back-btn">← Home</a>
+
     <header class="header">
         <div class="revision-stamp">
-            <span>Rev 1.2</span>
-            <span>12 Feb 2026</span>
+            <span>Rev 1.3</span>
+            <span>15 Feb 2026</span>
         </div>
         <h1 class="title-arabic" lang="ar">أَذْكَارُ رَمَضَان</h1>
         <p class="title-english">Ramadan Adhkar</p>
@@ -804,7 +897,7 @@
             <p class="creator-name">Created by <strong>Farhan Shaikh</strong> — A simple reminder, with the help of AI</p>
             
             <p class="disclaimer">
-                Every effort has been made to ensure accuracy and authenticity from the Quran and Sunnah. If you find any errors, please forgive me and bring them to my attention so they can be corrected. May Allah reward you.
+                Every effort has been made to ensure accuracy and authenticity from the Quran and Sunnah. This guide reflects mainstream Sunni scholarship (Ahl al-Sunnah wa'l-Jamāʿah). If you find any errors, please forgive me and bring them to my attention so they can be corrected. May Allah reward you.
             </p>
             
             <div class="star-divider">✧</div>
@@ -835,45 +928,48 @@
              SUHOOR SECTION
              ======================================== -->
         <section class="section" data-section="suhoor">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">🌙</span>
                 <h2 class="section-title">Suhoor (Pre-Dawn Meal)</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>Virtue:</strong> The Prophet ﷺ said: "Eat suhoor, for in suhoor there is blessing." (Bukhari & Muslim)
-            </div>
+            <div class="section-body">
+                <div class="note">
+                    <strong>Virtue:</strong> The Prophet ﷺ said: "Eat suhoor, for in suhoor there is blessing." (Bukhari & Muslim)
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Before Eating</div>
-                <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ</div>
-                <div class="dua-transliteration">Bismillah</div>
-                <div class="dua-translation">"In the name of Allah."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Before Eating</div>
+                    <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ</div>
+                    <div class="dua-transliteration">Bismillah</div>
+                    <div class="dua-translation">"In the name of Allah."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">If You Forget to Say Bismillah</div>
-                <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ أَوَّلَهُ وَآخِرَهُ</div>
-                <div class="dua-transliteration">Bismillahi awwalahu wa aakhirahu</div>
-                <div class="dua-translation">"In the name of Allah at the beginning and at the end."</div>
-                <div class="dua-source">Abu Dawud & Tirmidhi — Sahih</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">If You Forget to Say Bismillah</div>
+                    <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ أَوَّلَهُ وَآخِرَهُ</div>
+                    <div class="dua-transliteration">Bismillahi awwalahu wa aakhirahu</div>
+                    <div class="dua-translation">"In the name of Allah at the beginning and at the end."</div>
+                    <div class="dua-source">Abu Dawud & Tirmidhi — Sahih</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">After Eating</div>
-                <div class="dua-arabic" lang="ar">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ</div>
-                <div class="dua-transliteration">Alhamdu lillahil-ladhi at'amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah</div>
-                <div class="dua-translation">"Praise be to Allah Who has fed me this and provided it for me without any strength or power on my part."</div>
-                <div class="dua-source">Abu Dawud & Tirmidhi — Hasan</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">After Eating</div>
+                    <div class="dua-arabic" lang="ar">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ</div>
+                    <div class="dua-transliteration">Alhamdu lillahil-ladhi at'amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah</div>
+                    <div class="dua-translation">"Praise be to Allah Who has fed me this and provided it for me without any strength or power on my part."</div>
+                    <div class="dua-source">Abu Dawud & Tirmidhi — Hasan</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Intention for Fasting</div>
-                <div class="dua-arabic" lang="ar">نَوَيْتُ أَنْ أَصُومَ غَدًا مِنْ شَهْرِ رَمَضَانَ</div>
-                <div class="dua-transliteration">Nawaytu an asuma ghadan min shahri Ramadan</div>
-                <div class="dua-translation">"I intend to fast tomorrow for the month of Ramadan."</div>
-                <div class="dua-source">Note: The intention is made in the heart. Verbalising is permissible but not required or from the Sunnah.</div>
+                <div class="dua-card">
+                    <div class="dua-label">Intention for Fasting</div>
+                    <div class="dua-arabic" lang="ar">نَوَيْتُ أَنْ أَصُومَ غَدًا مِنْ شَهْرِ رَمَضَانَ</div>
+                    <div class="dua-transliteration">Nawaytu an asuma ghadan min shahri Ramadan</div>
+                    <div class="dua-translation">"I intend to fast tomorrow for the month of Ramadan."</div>
+                    <div class="dua-source">Note: The intention is made in the heart. Verbalising is permissible but not required or from the Sunnah. Forming intention at night is required for obligatory fasts according to many scholars.</div>
+                </div>
             </div>
         </section>
 
@@ -883,37 +979,40 @@
              IFTAR SECTION
              ======================================== -->
         <section class="section" data-section="iftar">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">🌅</span>
                 <h2 class="section-title">Iftar (Breaking the Fast)</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>Virtue:</strong> The Prophet ﷺ said: "The fasting person has a supplication that is answered when he breaks his fast." (Ibn Majah — Hasan)
-            </div>
+            <div class="section-body">
+                <div class="note">
+                    <strong>Virtue:</strong> The Prophet ﷺ said: "The fasting person has a supplication that is answered when he breaks his fast." (Ibn Majah — Hasan)
+                </div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">When Breaking the Fast</div>
-                <div class="dua-arabic" lang="ar">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ</div>
-                <div class="dua-transliteration">Dhahaba adh-dhama'u wabtallatil-'urooqu wa thabatal-ajru in sha Allah</div>
-                <div class="dua-translation">"The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills."</div>
-                <div class="dua-source">Abu Dawud — Hasan</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">When Breaking the Fast</div>
+                    <div class="dua-arabic" lang="ar">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ</div>
+                    <div class="dua-transliteration">Dhahaba adh-dhama'u wabtallatil-'urooqu wa thabatal-ajru in sha Allah</div>
+                    <div class="dua-translation">"The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills."</div>
+                    <div class="dua-source">Abu Dawud — Hasan</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">General Dua at Iftar</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ</div>
-                <div class="dua-transliteration">Allahumma laka sumtu wa 'ala rizqika aftartu</div>
-                <div class="dua-translation">"O Allah, for You I have fasted and upon Your provision I have broken my fast."</div>
-                <div class="dua-source">Abu Dawud — Mursal (weak chain, but widely practised)</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">General Dua at Iftar</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ</div>
+                    <div class="dua-transliteration">Allahumma laka sumtu wa 'ala rizqika aftartu</div>
+                    <div class="dua-translation">"O Allah, for You I have fasted and upon Your provision I have broken my fast."</div>
+                    <div class="dua-source">Abu Dawud — Mursal (weak chain, but widely practised). Some scholars permit acting upon weak hadith in virtues of deeds when they are not fabricated and do not establish rulings.</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Dua When Invited for Iftar</div>
-                <div class="dua-arabic" lang="ar">أَفْطَرَ عِنْدَكُمُ الصَّائِمُونَ وَأَكَلَ طَعَامَكُمُ الْأَبْرَارُ وَصَلَّتْ عَلَيْكُمُ الْمَلَائِكَةُ</div>
-                <div class="dua-transliteration">Aftara 'indakumus-saa'imoon, wa akala ta'aamakumul-abraar, wa sallat 'alaykumul-malaa'ikah</div>
-                <div class="dua-translation">"May the fasting break their fast with you, may the righteous eat your food, and may the angels send blessings upon you."</div>
-                <div class="dua-source">Abu Dawud — Sahih</div>
+                <div class="dua-card">
+                    <div class="dua-label">Dua When Invited for Iftar</div>
+                    <div class="dua-arabic" lang="ar">أَفْطَرَ عِنْدَكُمُ الصَّائِمُونَ وَأَكَلَ طَعَامَكُمُ الْأَبْرَارُ وَصَلَّتْ عَلَيْكُمُ الْمَلَائِكَةُ</div>
+                    <div class="dua-transliteration">Aftara 'indakumus-saa'imoon, wa akala ta'aamakumul-abraar, wa sallat 'alaykumul-malaa'ikah</div>
+                    <div class="dua-translation">"May the fasting break their fast with you, may the righteous eat your food, and may the angels send blessings upon you."</div>
+                    <div class="dua-source">Abu Dawud — Sahih</div>
+                </div>
             </div>
         </section>
 
@@ -923,189 +1022,196 @@
              IN SALAH SECTION
              ======================================== -->
         <section class="section" data-section="salah">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">🕌</span>
                 <h2 class="section-title">What We Say in Salah</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note purple">
-                <strong>Purpose:</strong> Understanding what we recite helps us focus and develop khushu' (humility) in prayer, especially during the long Taraweeh prayers.
-            </div>
+            <div class="section-body">
+                <div class="note purple">
+                    <strong>Purpose:</strong> Understanding what we recite helps us focus and develop khushu' (humility) in prayer, especially during the long Taraweeh prayers.
+                </div>
 
-            <!-- STANDING - BEFORE FATIHA -->
-            <div class="dua-card salah-step">
-                <div class="position-tag">Standing</div>
-                <div class="dua-label">Opening Takbeer</div>
-                <div class="dua-arabic" lang="ar">اللَّهُ أَكْبَرُ</div>
-                <div class="dua-transliteration">Allahu Akbar</div>
-                <div class="dua-translation">"Allah is the Greatest."</div>
-            </div>
+                <div class="note">
+                    <strong>Note:</strong> The Prophet ﷺ recited different supplications at times. All authentically reported forms are valid.
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Standing</div>
-                <div class="dua-label">Opening Supplication (Dua al-Istiftah)</div>
-                <div class="dua-arabic" lang="ar">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَىٰ جَدُّكَ، وَلَا إِلَٰهَ غَيْرُكَ</div>
-                <div class="dua-transliteration">Subhanakallahumma wa bihamdika, wa tabarakasmuka, wa ta'ala jadduka, wa la ilaha ghayruk</div>
-                <div class="dua-translation">"Glory be to You, O Allah, and praise. Blessed is Your Name and exalted is Your Majesty. There is no god but You."</div>
-                <div class="dua-source">Abu Dawud, Tirmidhi, Nasa'i — Sahih</div>
-            </div>
+                <!-- STANDING - BEFORE FATIHA -->
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Standing</div>
+                    <div class="dua-label">Opening Takbeer</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُ أَكْبَرُ</div>
+                    <div class="dua-transliteration">Allahu Akbar</div>
+                    <div class="dua-translation">"Allah is the Greatest."</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Standing</div>
-                <div class="dua-label">Seeking Refuge</div>
-                <div class="dua-arabic" lang="ar">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
-                <div class="dua-transliteration">A'udhu billahi minash-shaytanir-rajeem</div>
-                <div class="dua-translation">"I seek refuge in Allah from the accursed Shaytan."</div>
-                <div class="dua-source">Quran 16:98</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Standing</div>
+                    <div class="dua-label">Opening Supplication (Dua al-Istiftah)</div>
+                    <div class="dua-arabic" lang="ar">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَىٰ جَدُّكَ، وَلَا إِلَٰهَ غَيْرُكَ</div>
+                    <div class="dua-transliteration">Subhanakallahumma wa bihamdika, wa tabarakasmuka, wa ta'ala jadduka, wa la ilaha ghayruk</div>
+                    <div class="dua-translation">"Glory be to You, O Allah, and praise. Blessed is Your Name and exalted is Your Majesty. There is no god but You."</div>
+                    <div class="dua-source">Reported by Abu Dawud, Tirmidhi and Nasa'i — authenticated by scholars</div>
+                </div>
 
-            <div class="dua-card salah-step highlight">
-                <div class="position-tag">Standing</div>
-                <div class="dua-label">Surah Al-Fatiha</div>
-                <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</div>
-                <div class="dua-transliteration">Bismillahir-Rahmanir-Raheem. Alhamdu lillahi Rabbil-'aalameen. Ar-Rahmanir-Raheem. Maliki yawmid-deen. Iyyaka na'budu wa iyyaka nasta'een. Ihdinas-siratal-mustaqeem. Siratal-ladheena an'amta 'alayhim, ghayril-maghdubi 'alayhim wa lad-daalleen.</div>
-                <div class="dua-translation">"In the name of Allah, the Most Gracious, the Most Merciful. All praise is due to Allah, Lord of all the worlds. The Most Gracious, the Most Merciful. Master of the Day of Judgement. You alone we worship, and You alone we ask for help. Guide us to the straight path. The path of those upon whom You have bestowed favour, not of those who have earned anger nor of those who have gone astray."</div>
-                <div class="dua-source">Quran 1:1-7</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Standing</div>
+                    <div class="dua-label">Seeking Refuge</div>
+                    <div class="dua-arabic" lang="ar">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+                    <div class="dua-transliteration">A'udhu billahi minash-shaytanir-rajeem</div>
+                    <div class="dua-translation">"I seek refuge in Allah from the accursed Shaytan."</div>
+                    <div class="dua-source">Quran 16:98</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Standing</div>
-                <div class="dua-label">After Fatiha</div>
-                <div class="dua-arabic" lang="ar">آمِينَ</div>
-                <div class="dua-transliteration">Aameen</div>
-                <div class="dua-translation">"O Allah, accept our prayer."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card salah-step highlight">
+                    <div class="position-tag">Standing</div>
+                    <div class="dua-label">Surah Al-Fatiha</div>
+                    <div class="dua-arabic" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</div>
+                    <div class="dua-transliteration">Bismillahir-Rahmanir-Raheem. Alhamdu lillahi Rabbil-'aalameen. Ar-Rahmanir-Raheem. Maliki yawmid-deen. Iyyaka na'budu wa iyyaka nasta'een. Ihdinas-siratal-mustaqeem. Siratal-ladheena an'amta 'alayhim, ghayril-maghdubi 'alayhim wa lad-daalleen.</div>
+                    <div class="dua-translation">"In the name of Allah, the Most Gracious, the Most Merciful. All praise is due to Allah, Lord of all the worlds. The Most Gracious, the Most Merciful. Master of the Day of Judgement. You alone we worship, and You alone we ask for help. Guide us to the straight path. The path of those upon whom You have bestowed favour, not of those who have earned anger nor of those who have gone astray."</div>
+                    <div class="dua-source">Quran 1:1-7</div>
+                </div>
 
-            <div class="sub-divider">Ruku (Bowing)</div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Standing</div>
+                    <div class="dua-label">After Fatiha</div>
+                    <div class="dua-arabic" lang="ar">آمِينَ</div>
+                    <div class="dua-transliteration">Aameen</div>
+                    <div class="dua-translation">"O Allah, accept our prayer."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Bowing</div>
-                <div class="dua-label">In Ruku <span class="repeat">× 3</span></div>
-                <div class="dua-arabic" lang="ar">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
-                <div class="dua-transliteration">Subhana Rabbiyal-'Adheem</div>
-                <div class="dua-translation">"Glory be to my Lord, the Almighty."</div>
-                <div class="dua-source">Muslim, Abu Dawud, Tirmidhi</div>
-            </div>
+                <div class="sub-divider">Ruku (Bowing)</div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Rising from Ruku</div>
-                <div class="dua-label">When Rising</div>
-                <div class="dua-arabic" lang="ar">سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ</div>
-                <div class="dua-transliteration">Sami'Allahu liman hamidah</div>
-                <div class="dua-translation">"Allah hears whoever praises Him."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Bowing</div>
+                    <div class="dua-label">In Ruku <span class="repeat">× 3</span></div>
+                    <div class="dua-arabic" lang="ar">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+                    <div class="dua-transliteration">Subhana Rabbiyal-'Adheem</div>
+                    <div class="dua-translation">"Glory be to my Lord, the Almighty."</div>
+                    <div class="dua-source">Muslim, Abu Dawud, Tirmidhi</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Standing after Ruku</div>
-                <div class="dua-label">After Standing Upright</div>
-                <div class="dua-arabic" lang="ar">رَبَّنَا وَلَكَ الْحَمْدُ</div>
-                <div class="dua-transliteration">Rabbana wa lakal-hamd</div>
-                <div class="dua-translation">"Our Lord, and to You belongs all praise."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Rising from Ruku</div>
+                    <div class="dua-label">When Rising</div>
+                    <div class="dua-arabic" lang="ar">سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ</div>
+                    <div class="dua-transliteration">Sami'Allahu liman hamidah</div>
+                    <div class="dua-translation">"Allah hears whoever praises Him."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="sub-divider">Sujood (Prostration)</div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Standing after Ruku</div>
+                    <div class="dua-label">After Standing Upright</div>
+                    <div class="dua-arabic" lang="ar">رَبَّنَا وَلَكَ الْحَمْدُ</div>
+                    <div class="dua-transliteration">Rabbana wa lakal-hamd</div>
+                    <div class="dua-translation">"Our Lord, and to You belongs all praise."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Prostrating</div>
-                <div class="dua-label">In Sujood <span class="repeat">× 3</span></div>
-                <div class="dua-arabic" lang="ar">سُبْحَانَ رَبِّيَ الْأَعْلَىٰ</div>
-                <div class="dua-transliteration">Subhana Rabbiyal-A'la</div>
-                <div class="dua-translation">"Glory be to my Lord, the Most High."</div>
-                <div class="dua-source">Muslim, Abu Dawud, Tirmidhi</div>
-            </div>
+                <div class="sub-divider">Sujood (Prostration)</div>
 
-            <div class="note purple">
-                <strong>Tip:</strong> The Prophet ﷺ said: "The closest a servant is to his Lord is when he is in prostration, so increase your supplications therein." (Muslim)
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Prostrating</div>
+                    <div class="dua-label">In Sujood <span class="repeat">× 3</span></div>
+                    <div class="dua-arabic" lang="ar">سُبْحَانَ رَبِّيَ الْأَعْلَىٰ</div>
+                    <div class="dua-transliteration">Subhana Rabbiyal-A'la</div>
+                    <div class="dua-translation">"Glory be to my Lord, the Most High."</div>
+                    <div class="dua-source">Muslim, Abu Dawud, Tirmidhi</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Sitting between Prostrations</div>
-                <div class="dua-label">Between the Two Sujood</div>
-                <div class="dua-arabic" lang="ar">رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي</div>
-                <div class="dua-transliteration">Rabbighfir li, Rabbighfir li</div>
-                <div class="dua-translation">"My Lord, forgive me. My Lord, forgive me."</div>
-                <div class="dua-source">Abu Dawud, Ibn Majah — Sahih</div>
-            </div>
+                <div class="note purple">
+                    <strong>Tip:</strong> The Prophet ﷺ said: "The closest a servant is to his Lord is when he is in prostration, so increase your supplications therein." (Muslim)
+                </div>
 
-            <div class="sub-divider">Tashahhud (Sitting)</div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Sitting between Prostrations</div>
+                    <div class="dua-label">Between the Two Sujood</div>
+                    <div class="dua-arabic" lang="ar">رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي</div>
+                    <div class="dua-transliteration">Rabbighfir li, Rabbighfir li</div>
+                    <div class="dua-translation">"My Lord, forgive me. My Lord, forgive me."</div>
+                    <div class="dua-source">Abu Dawud, Ibn Majah — Sahih</div>
+                </div>
 
-            <div class="dua-card salah-step highlight">
-                <div class="position-tag">Sitting</div>
-                <div class="dua-label">At-Tashahhud</div>
-                <div class="dua-arabic" lang="ar">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
-                <div class="dua-transliteration">At-tahiyyatu lillahi was-salawatu wat-tayyibat. As-salamu 'alayka ayyuhan-Nabiyyu wa rahmatullahi wa barakatuh. As-salamu 'alayna wa 'ala 'ibadillahis-saliheen. Ash-hadu an la ilaha illallah, wa ash-hadu anna Muhammadan 'abduhu wa rasuluh.</div>
-                <div class="dua-translation">"All compliments, prayers and pure words are due to Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god but Allah, and I bear witness that Muhammad is His servant and Messenger."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="sub-divider">Tashahhud (Sitting)</div>
 
-            <div class="dua-card salah-step highlight">
-                <div class="position-tag">Sitting - Final Tashahhud</div>
-                <div class="dua-label">Salawat upon the Prophet ﷺ (As-Salatul Ibrahimiyyah)</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
-                <div class="dua-transliteration">Allahumma salli 'ala Muhammadin wa 'ala aali Muhammad, kama sallayta 'ala Ibrahima wa 'ala aali Ibrahim, innaka Hamidun Majeed. Allahumma barik 'ala Muhammadin wa 'ala aali Muhammad, kama barakta 'ala Ibrahima wa 'ala aali Ibrahim, innaka Hamidun Majeed.</div>
-                <div class="dua-translation">"O Allah, send prayers upon Muhammad and upon the family of Muhammad, as You sent prayers upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim. Indeed, You are Praiseworthy and Glorious."</div>
-                <div class="dua-source">Bukhari</div>
-            </div>
+                <div class="dua-card salah-step highlight">
+                    <div class="position-tag">Sitting</div>
+                    <div class="dua-label">At-Tashahhud</div>
+                    <div class="dua-arabic" lang="ar">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+                    <div class="dua-transliteration">At-tahiyyatu lillahi was-salawatu wat-tayyibat. As-salamu 'alayka ayyuhan-Nabiyyu wa rahmatullahi wa barakatuh. As-salamu 'alayna wa 'ala 'ibadillahis-saliheen. Ash-hadu an la ilaha illallah, wa ash-hadu anna Muhammadan 'abduhu wa rasuluh.</div>
+                    <div class="dua-translation">"All compliments, prayers and pure words are due to Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god but Allah, and I bear witness that Muhammad is His servant and Messenger."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="sub-divider">Duas Before Salam</div>
+                <div class="dua-card salah-step highlight">
+                    <div class="position-tag">Sitting - Final Tashahhud</div>
+                    <div class="dua-label">Salawat upon the Prophet ﷺ (As-Salatul Ibrahimiyyah)</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+                    <div class="dua-transliteration">Allahumma salli 'ala Muhammadin wa 'ala aali Muhammad, kama sallayta 'ala Ibrahima wa 'ala aali Ibrahim, innaka Hamidun Majeed. Allahumma barik 'ala Muhammadin wa 'ala aali Muhammad, kama barakta 'ala Ibrahima wa 'ala aali Ibrahim, innaka Hamidun Majeed.</div>
+                    <div class="dua-translation">"O Allah, send prayers upon Muhammad and upon the family of Muhammad, as You sent prayers upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim. Indeed, You are Praiseworthy and Glorious."</div>
+                    <div class="dua-source">Bukhari</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Before Tasleem</div>
-                <div class="dua-label">Seeking Refuge from Four Things</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</div>
-                <div class="dua-transliteration">Allahumma inni a'udhu bika min 'adhabi jahannam, wa min 'adhabil-qabr, wa min fitnatil-mahya wal-mamat, wa min sharri fitnatil-masihid-dajjal.</div>
-                <div class="dua-translation">"O Allah, I seek refuge in You from the punishment of Hellfire, from the punishment of the grave, from the trials of life and death, and from the evil of the trial of the False Messiah."</div>
-                <div class="dua-source">Muslim — The Prophet ﷺ taught this and some scholars consider it obligatory</div>
-            </div>
+                <div class="sub-divider">Duas Before Salam</div>
 
-            <div class="dua-card salah-step highlight">
-                <div class="position-tag">Before Tasleem</div>
-                <div class="dua-label">Dua Taught to Abu Bakr رضي الله عنه</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي، إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</div>
-                <div class="dua-transliteration">Allahumma inni dhalamtu nafsi dhulman katheeran, wa la yaghfirudh-dhunuba illa anta, faghfir li maghfiratan min 'indika, warhamni, innaka antal-Ghafurur-Raheem.</div>
-                <div class="dua-translation">"O Allah, I have wronged myself greatly, and none forgives sins but You. So grant me forgiveness from You and have mercy on me. Indeed, You are the Forgiving, the Merciful."</div>
-                <div class="dua-source">Bukhari & Muslim — Abu Bakr asked the Prophet ﷺ to teach him a dua for salah</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Before Tasleem</div>
+                    <div class="dua-label">Seeking Refuge from Four Things</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</div>
+                    <div class="dua-transliteration">Allahumma inni a'udhu bika min 'adhabi jahannam, wa min 'adhabil-qabr, wa min fitnatil-mahya wal-mamat, wa min sharri fitnatil-masihid-dajjal.</div>
+                    <div class="dua-translation">"O Allah, I seek refuge in You from the punishment of Hellfire, from the punishment of the grave, from the trials of life and death, and from the evil of the trial of the False Messiah."</div>
+                    <div class="dua-source">Muslim — The Prophet ﷺ taught this. Some scholars considered it obligatory, while the majority consider it highly recommended.</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Before Tasleem</div>
-                <div class="dua-label">The Comprehensive Dua</div>
-                <div class="dua-arabic" lang="ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
-                <div class="dua-transliteration">Rabbana aatina fid-dunya hasanatan wa fil-aakhirati hasanatan wa qina 'adhaban-naar</div>
-                <div class="dua-translation">"Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire."</div>
-                <div class="dua-source">Quran 2:201 — Bukhari & Muslim report this was the most frequent dua of the Prophet ﷺ</div>
-            </div>
+                <div class="dua-card salah-step highlight">
+                    <div class="position-tag">Before Tasleem</div>
+                    <div class="dua-label">Dua Taught to Abu Bakr رضي الله عنه</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي، إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</div>
+                    <div class="dua-transliteration">Allahumma inni dhalamtu nafsi dhulman katheeran, wa la yaghfirudh-dhunuba illa anta, faghfir li maghfiratan min 'indika, warhamni, innaka antal-Ghafurur-Raheem.</div>
+                    <div class="dua-translation">"O Allah, I have wronged myself greatly, and none forgives sins but You. So grant me forgiveness from You and have mercy on me. Indeed, You are the Forgiving, the Merciful."</div>
+                    <div class="dua-source">Bukhari & Muslim — Abu Bakr asked the Prophet ﷺ to teach him a dua for salah</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Before Tasleem</div>
-                <div class="dua-label">Dua of Ibrahim عليه السلام</div>
-                <div class="dua-arabic" lang="ar">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ ۝ رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</div>
-                <div class="dua-transliteration">Rabbi j'alni muqeemas-salati wa min dhurriyyati, Rabbana wa taqabbal du'a. Rabbanagh-fir li wa liwalidayya wa lil-mu'mineena yawma yaqumul-hisab.</div>
-                <div class="dua-translation">"My Lord, make me an establisher of prayer, and from my descendants. Our Lord, and accept my supplication. Our Lord, forgive me and my parents and the believers the Day the account is established."</div>
-                <div class="dua-source">Quran 14:40-41</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Before Tasleem</div>
+                    <div class="dua-label">The Comprehensive Dua</div>
+                    <div class="dua-arabic" lang="ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+                    <div class="dua-transliteration">Rabbana aatina fid-dunya hasanatan wa fil-aakhirati hasanatan wa qina 'adhaban-naar</div>
+                    <div class="dua-translation">"Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire."</div>
+                    <div class="dua-source">Quran 2:201 — Bukhari & Muslim report this was the most frequent dua of the Prophet ﷺ</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Before Tasleem</div>
-                <div class="dua-label">Seeking Refuge from Cowardice and Miserliness</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْجُبْنِ، وَأَعُوذُ بِكَ مِنَ الْبُخْلِ، وَأَعُوذُ بِكَ مِنْ أَنْ أُرَدَّ إِلَىٰ أَرْذَلِ الْعُمُرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الدُّنْيَا وَعَذَابِ الْقَبْرِ</div>
-                <div class="dua-transliteration">Allahumma inni a'udhu bika minal-jubn, wa a'udhu bika minal-bukhl, wa a'udhu bika min an uradda ila ardhalil-'umur, wa a'udhu bika min fitnatid-dunya wa 'adhabil-qabr.</div>
-                <div class="dua-translation">"O Allah, I seek refuge in You from cowardice, I seek refuge in You from miserliness, I seek refuge in You from being returned to decrepit old age, and I seek refuge in You from the trials of this world and the punishment of the grave."</div>
-                <div class="dua-source">Bukhari</div>
-            </div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Before Tasleem</div>
+                    <div class="dua-label">Dua of Ibrahim عليه السلام</div>
+                    <div class="dua-arabic" lang="ar">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ ۝ رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</div>
+                    <div class="dua-transliteration">Rabbi j'alni muqeemas-salati wa min dhurriyyati, Rabbana wa taqabbal du'a. Rabbanagh-fir li wa liwalidayya wa lil-mu'mineena yawma yaqumul-hisab.</div>
+                    <div class="dua-translation">"My Lord, make me an establisher of prayer, and from my descendants. Our Lord, and accept my supplication. Our Lord, forgive me and my parents and the believers the Day the account is established."</div>
+                    <div class="dua-source">Quran 14:40-41</div>
+                </div>
 
-            <div class="sub-divider">Ending the Prayer</div>
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Before Tasleem</div>
+                    <div class="dua-label">Seeking Refuge from Cowardice and Miserliness</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْجُبْنِ، وَأَعُوذُ بِكَ مِنَ الْبُخْلِ، وَأَعُوذُ بِكَ مِنْ أَنْ أُرَدَّ إِلَىٰ أَرْذَلِ الْعُمُرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الدُّنْيَا وَعَذَابِ الْقَبْرِ</div>
+                    <div class="dua-transliteration">Allahumma inni a'udhu bika minal-jubn, wa a'udhu bika minal-bukhl, wa a'udhu bika min an uradda ila ardhalil-'umur, wa a'udhu bika min fitnatid-dunya wa 'adhabil-qabr.</div>
+                    <div class="dua-translation">"O Allah, I seek refuge in You from cowardice, I seek refuge in You from miserliness, I seek refuge in You from being returned to decrepit old age, and I seek refuge in You from the trials of this world and the punishment of the grave."</div>
+                    <div class="dua-source">Bukhari</div>
+                </div>
 
-            <div class="dua-card salah-step">
-                <div class="position-tag">Turning Right then Left</div>
-                <div class="dua-label">Tasleem (Ending Salutation)</div>
-                <div class="dua-arabic" lang="ar">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</div>
-                <div class="dua-transliteration">As-salamu 'alaykum wa rahmatullah</div>
-                <div class="dua-translation">"Peace and mercy of Allah be upon you."</div>
-                <div class="dua-source">Muslim — Said to the right, then to the left</div>
+                <div class="sub-divider">Ending the Prayer</div>
+
+                <div class="dua-card salah-step">
+                    <div class="position-tag">Turning Right then Left</div>
+                    <div class="dua-label">Tasleem (Ending Salutation)</div>
+                    <div class="dua-arabic" lang="ar">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</div>
+                    <div class="dua-transliteration">As-salamu 'alaykum wa rahmatullah</div>
+                    <div class="dua-translation">"Peace and mercy of Allah be upon you."</div>
+                    <div class="dua-source">Muslim — Said to the right, then to the left</div>
+                </div>
             </div>
         </section>
 
@@ -1115,124 +1221,127 @@
              AFTER SALAH SECTION
              ======================================== -->
         <section class="section" data-section="after-salah">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">📿</span>
                 <h2 class="section-title">Adhkar After Salah</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>Virtue:</strong> The Prophet ﷺ would say these after completing the prayer. They are a source of immense reward and protection.
-            </div>
+            <div class="section-body">
+                <div class="note">
+                    <strong>Virtue:</strong> The Prophet ﷺ would say these after completing the prayer. They are a source of immense reward and protection.
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Immediately After Tasleem <span class="repeat">× 3</span></div>
-                <div class="dua-arabic" lang="ar">أَسْتَغْفِرُ اللَّهَ</div>
-                <div class="dua-transliteration">Astaghfirullah</div>
-                <div class="dua-translation">"I seek Allah's forgiveness."</div>
-                <div class="dua-source">Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Immediately After Tasleem <span class="repeat">× 3</span></div>
+                    <div class="dua-arabic" lang="ar">أَسْتَغْفِرُ اللَّهَ</div>
+                    <div class="dua-transliteration">Astaghfirullah</div>
+                    <div class="dua-translation">"I seek Allah's forgiveness."</div>
+                    <div class="dua-source">Muslim</div>
+                </div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">After Istighfar</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</div>
-                <div class="dua-transliteration">Allahumma antas-salam wa minkas-salam, tabarakta ya dhal-jalali wal-ikram</div>
-                <div class="dua-translation">"O Allah, You are Peace and from You is peace. Blessed are You, O Owner of Majesty and Honour."</div>
-                <div class="dua-source">Muslim</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">After Istighfar</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</div>
+                    <div class="dua-transliteration">Allahumma antas-salam wa minkas-salam, tabarakta ya dhal-jalali wal-ikram</div>
+                    <div class="dua-translation">"O Allah, You are Peace and from You is peace. Blessed are You, O Owner of Majesty and Honour."</div>
+                    <div class="dua-source">Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Declaration of Tawheed</div>
-                <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
-                <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer</div>
-                <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Declaration of Tawheed</div>
+                    <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+                    <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer</div>
+                    <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Extended Declaration</div>
-                <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ، وَلَا نَعْبُدُ إِلَّا إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لَا إِلَٰهَ إِلَّا اللَّهُ مُخْلِصِينَ لَهُ الدِّينَ وَلَوْ كَرِهَ الْكَافِرُونَ</div>
-                <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer. La hawla wa la quwwata illa billah. La ilaha illallah, wa la na'budu illa iyyah, lahun-ni'matu wa lahul-fadlu wa lahuth-thana'ul-hasan. La ilaha illallahu mukhliseena lahud-deena wa law karihal-kafirun.</div>
-                <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things. There is no power and no strength except with Allah. There is no god but Allah, and we worship none but Him. His is the blessing and His is the favour, and His is the good praise. There is no god but Allah, sincere to Him in religion even if the disbelievers hate it."</div>
-                <div class="dua-source">Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Extended Declaration</div>
+                    <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ، وَلَا نَعْبُدُ إِلَّا إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لَا إِلَٰهَ إِلَّا اللَّهُ مُخْلِصِينَ لَهُ الدِّينَ وَلَوْ كَرِهَ الْكَافِرُونَ</div>
+                    <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer. La hawla wa la quwwata illa billah. La ilaha illallah, wa la na'budu illa iyyah, lahun-ni'matu wa lahul-fadlu wa lahuth-thana'ul-hasan. La ilaha illallahu mukhliseena lahud-deena wa law karihal-kafirun.</div>
+                    <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things. There is no power and no strength except with Allah. There is no god but Allah, and we worship none but Him. His is the blessing and His is the favour, and His is the good praise. There is no god but Allah, sincere to Him in religion even if the disbelievers hate it."</div>
+                    <div class="dua-source">Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">La Hawla wa La Quwwata</div>
-                <div class="dua-arabic" lang="ar">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
-                <div class="dua-transliteration">La hawla wa la quwwata illa billah</div>
-                <div class="dua-translation">"There is no power and no strength except with Allah."</div>
-                <div class="dua-source">Bukhari & Muslim — A treasure from the treasures of Paradise</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">La Hawla wa La Quwwata</div>
+                    <div class="dua-arabic" lang="ar">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+                    <div class="dua-transliteration">La hawla wa la quwwata illa billah</div>
+                    <div class="dua-translation">"There is no power and no strength except with Allah."</div>
+                    <div class="dua-source">Bukhari & Muslim — A treasure from the treasures of Paradise</div>
+                </div>
 
-            <div class="sub-divider">Tasbeeh (33 + 33 + 33 + 1 = 100)</div>
+                <div class="sub-divider">Tasbeeh (33 + 33 + 33 + 1 = 100)</div>
 
-            <div class="note">
-                <strong>How to count:</strong> Say SubhanAllah 33 times, then Alhamdulillah 33 times, then Allahu Akbar 33 times. Finally, say the declaration of Tawheed once to complete 100. Whoever does this after every prayer, their sins will be forgiven even if they are like the foam of the sea. (Muslim)
-            </div>
+                <div class="note">
+                    <strong>How to count:</strong> Say SubhanAllah 33 times, then Alhamdulillah 33 times, then Allahu Akbar 33 times. Finally, say the declaration of Tawheed once to complete 100. Whoever does this after every prayer, their sins will be forgiven even if they are like the foam of the sea. (Muslim) Other authentic variations of counting are also reported in the Sunnah.
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">SubhanAllah <span class="repeat">× 33</span></div>
-                <div class="dua-arabic" lang="ar">سُبْحَانَ اللَّهِ</div>
-                <div class="dua-transliteration">SubhanAllah</div>
-                <div class="dua-translation">"Glory be to Allah."</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">SubhanAllah <span class="repeat">× 33</span></div>
+                    <div class="dua-arabic" lang="ar">سُبْحَانَ اللَّهِ</div>
+                    <div class="dua-transliteration">SubhanAllah</div>
+                    <div class="dua-translation">"Glory be to Allah."</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Alhamdulillah <span class="repeat">× 33</span></div>
-                <div class="dua-arabic" lang="ar">الْحَمْدُ لِلَّهِ</div>
-                <div class="dua-transliteration">Alhamdulillah</div>
-                <div class="dua-translation">"Praise be to Allah."</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Alhamdulillah <span class="repeat">× 33</span></div>
+                    <div class="dua-arabic" lang="ar">الْحَمْدُ لِلَّهِ</div>
+                    <div class="dua-transliteration">Alhamdulillah</div>
+                    <div class="dua-translation">"Praise be to Allah."</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Allahu Akbar <span class="repeat">× 33</span></div>
-                <div class="dua-arabic" lang="ar">اللَّهُ أَكْبَرُ</div>
-                <div class="dua-transliteration">Allahu Akbar</div>
-                <div class="dua-translation">"Allah is the Greatest."</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Allahu Akbar <span class="repeat">× 33</span></div>
+                    <div class="dua-arabic" lang="ar">اللَّهُ أَكْبَرُ</div>
+                    <div class="dua-transliteration">Allahu Akbar</div>
+                    <div class="dua-translation">"Allah is the Greatest."</div>
+                </div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">To Complete 100 (Say Once After Tasbeeh)</div>
-                <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
-                <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer</div>
-                <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things."</div>
-                <div class="dua-source">Muslim — This is the 100th, completing the tasbeeh of 33+33+33</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">To Complete 100 (Say Once After Tasbeeh)</div>
+                    <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+                    <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadeer</div>
+                    <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He is Able to do all things."</div>
+                    <div class="dua-source">Muslim — This is the 100th, completing the tasbeeh of 33+33+33</div>
+                </div>
 
-            <div class="sub-divider">Recitation After Salah</div>
+                <div class="sub-divider">Recitation After Salah</div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">Ayatul Kursi</div>
-                <div class="dua-arabic" lang="ar">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
-                <div class="dua-transliteration">Allahu la ilaha illa Huwal-Hayyul-Qayyum. La ta'khudhuhu sinatun wa la nawm. Lahu ma fis-samawati wa ma fil-ard. Man dhal-ladhi yashfa'u 'indahu illa bi-idhnih. Ya'lamu ma bayna aydeehim wa ma khalfahum. Wa la yuheetuna bi shay'in min 'ilmihi illa bima sha'. Wasi'a kursiyyuhus-samawati wal-ard. Wa la ya'uduhu hifdhuhumaa. Wa Huwal-'Aliyyul-'Adheem.</div>
-                <div class="dua-translation">"Allah! There is no god but He, the Living, the Self-Subsisting. Neither slumber overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is before them and what is behind them, and they encompass nothing of His knowledge except what He wills. His Kursi extends over the heavens and the earth, and He feels no fatigue in guarding them. And He is the Most High, the Most Great."</div>
-                <div class="dua-source">Quran 2:255 — Whoever recites this after every prayer, nothing stands between him and Paradise except death. (Nasa'i — Sahih)</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">Ayatul Kursi</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                    <div class="dua-transliteration">Allahu la ilaha illa Huwal-Hayyul-Qayyum. La ta'khudhuhu sinatun wa la nawm. Lahu ma fis-samawati wa ma fil-ard. Man dhal-ladhi yashfa'u 'indahu illa bi-idhnih. Ya'lamu ma bayna aydeehim wa ma khalfahum. Wa la yuheetuna bi shay'in min 'ilmihi illa bima sha'. Wasi'a kursiyyuhus-samawati wal-ard. Wa la ya'uduhu hifdhuhumaa. Wa Huwal-'Aliyyul-'Adheem.</div>
+                    <div class="dua-translation">"Allah! There is no god but He, the Living, the Self-Subsisting. Neither slumber overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is before them and what is behind them, and they encompass nothing of His knowledge except what He wills. His Kursi extends over the heavens and the earth, and He feels no fatigue in guarding them. And He is the Most High, the Most Great."</div>
+                    <div class="dua-source">Quran 2:255 — Whoever recites this after every prayer, nothing prevents him from entering Paradise except death. (Nasa'i — Sahih)</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">The Three Quls (Surah Ikhlas, Falaq, Nas)</div>
-                <div class="dua-arabic" lang="ar">قُلْ هُوَ اللَّهُ أَحَدٌ...</div>
-                <div class="dua-transliteration">Qul Huwa Allahu Ahad... Qul A'udhu bi Rabbil-Falaq... Qul A'udhu bi Rabbin-Nas...</div>
-                <div class="dua-translation">Recite Surah Al-Ikhlas (112), Surah Al-Falaq (113), and Surah An-Nas (114) once after each prayer, and three times after Fajr and Maghrib.</div>
-                <div class="dua-source">Abu Dawud, Tirmidhi — Sahih</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">The Three Quls (Surah Ikhlas, Falaq, Nas)</div>
+                    <div class="dua-arabic" lang="ar">قُلْ هُوَ اللَّهُ أَحَدٌ...</div>
+                    <div class="dua-transliteration">Qul Huwa Allahu Ahad... Qul A'udhu bi Rabbil-Falaq... Qul A'udhu bi Rabbin-Nas...</div>
+                    <div class="dua-translation">Recite Surah Al-Ikhlas (112), Surah Al-Falaq (113), and Surah An-Nas (114) once after every obligatory prayer, and three times after Fajr and Maghrib.</div>
+                    <div class="dua-source">Abu Dawud, Tirmidhi — Sahih</div>
+                </div>
 
-            <div class="sub-divider">Special Adhkar for Fajr & Maghrib</div>
+                <div class="sub-divider">Special Adhkar for Fajr & Maghrib</div>
 
-            <div class="dua-card">
-                <div class="dua-label">After Fajr and Maghrib Only <span class="repeat">× 10</span></div>
-                <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
-                <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamd, yuhyi wa yumeet, wa huwa 'ala kulli shay'in qadeer</div>
-                <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise. He gives life and causes death, and He is Able to do all things."</div>
-                <div class="dua-source">Tirmidhi, Ahmad — Hasan</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">After Fajr and Maghrib Only <span class="repeat">× 10</span></div>
+                    <div class="dua-arabic" lang="ar">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+                    <div class="dua-transliteration">La ilaha illallahu wahdahu la shareeka lah, lahul-mulku wa lahul-hamd, yuhyi wa yumeet, wa huwa 'ala kulli shay'in qadeer</div>
+                    <div class="dua-translation">"There is no god but Allah alone, with no partner. His is the dominion and His is the praise. He gives life and causes death, and He is Able to do all things."</div>
+                    <div class="dua-source">Tirmidhi, Ahmad — Hasan</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">After Fajr and Maghrib Only <span class="repeat">× 7</span></div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ</div>
-                <div class="dua-transliteration">Allahumma ajirni minan-naar</div>
-                <div class="dua-translation">"O Allah, save me from the Fire."</div>
-                <div class="dua-source">Abu Dawud — If one says this and dies that day/night, Allah will protect them from the Fire</div>
+                <div class="dua-card">
+                    <div class="dua-label">After Fajr and Maghrib Only <span class="repeat">× 7</span></div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ</div>
+                    <div class="dua-transliteration">Allahumma ajirni minan-naar</div>
+                    <div class="dua-translation">"O Allah, save me from the Fire."</div>
+                    <div class="dua-source">Abu Dawud — If one says this and dies that day/night, Allah will protect them from the Fire</div>
+                </div>
             </div>
         </section>
 
@@ -1242,25 +1351,28 @@
              LAYLATUL QADR SECTION
              ======================================== -->
         <section class="section" data-section="laylatul-qadr">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">✨</span>
                 <h2 class="section-title">Laylatul Qadr</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>When:</strong> Seek it in the odd nights of the last ten nights of Ramadan (21st, 23rd, 25th, 27th, 29th).
-            </div>
+            <div class="section-body">
+                <div class="note">
+                    <strong>When:</strong> Seek it in the odd nights of the last ten nights of Ramadan (21st, 23rd, 25th, 27th, 29th).
+                </div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">The Recommended Dua for Laylatul Qadr</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</div>
-                <div class="dua-transliteration">Allahumma innaka 'Afuwwun tuhibbul-'afwa fa'fu 'anni</div>
-                <div class="dua-translation">"O Allah, You are Pardoning and You love to pardon, so pardon me."</div>
-                <div class="dua-source">Tirmidhi — Sahih</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">The Recommended Dua for Laylatul Qadr</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</div>
+                    <div class="dua-transliteration">Allahumma innaka 'Afuwwun tuhibbul-'afwa fa'fu 'anni</div>
+                    <div class="dua-translation">"O Allah, You are Pardoning and You love to pardon, so pardon me."</div>
+                    <div class="dua-source">Tirmidhi — Sahih</div>
+                </div>
 
-            <div class="note">
-                <strong>Context:</strong> Aisha (رضي الله عنها) asked the Prophet ﷺ: "If I know which night is Laylatul Qadr, what should I say during it?" He replied with this dua.
+                <div class="note">
+                    <strong>Context:</strong> Aisha (رضي الله عنها) asked the Prophet ﷺ: "If I know which night is Laylatul Qadr, what should I say during it?" He replied with this dua.
+                </div>
             </div>
         </section>
 
@@ -1270,57 +1382,60 @@
              GENERAL RAMADAN SECTION
              ======================================== -->
         <section class="section" data-section="general">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">🤲</span>
                 <h2 class="section-title">General Ramadan Adhkar</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="dua-card">
-                <div class="dua-label">When Insulted While Fasting</div>
-                <div class="dua-arabic" lang="ar">إِنِّي صَائِمٌ، إِنِّي صَائِمٌ</div>
-                <div class="dua-transliteration">Inni saa'im, inni saa'im</div>
-                <div class="dua-translation">"I am fasting, I am fasting."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+            <div class="section-body">
+                <div class="dua-card">
+                    <div class="dua-label">When Insulted While Fasting</div>
+                    <div class="dua-arabic" lang="ar">إِنِّي صَائِمٌ، إِنِّي صَائِمٌ</div>
+                    <div class="dua-transliteration">Inni saa'im, inni saa'im</div>
+                    <div class="dua-translation">"I am fasting, I am fasting."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Seeking Forgiveness (Istighfar) <span class="repeat">× 100 daily</span></div>
-                <div class="dua-arabic" lang="ar">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div>
-                <div class="dua-transliteration">Astaghfirullaha wa atubu ilayh</div>
-                <div class="dua-translation">"I seek Allah's forgiveness and I repent to Him."</div>
-                <div class="dua-source">Bukhari & Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Seeking Forgiveness (Istighfar) <span class="repeat">× 100 daily</span></div>
+                    <div class="dua-arabic" lang="ar">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div>
+                    <div class="dua-transliteration">Astaghfirullaha wa atubu ilayh</div>
+                    <div class="dua-translation">"I seek Allah's forgiveness and I repent to Him."</div>
+                    <div class="dua-source">Bukhari & Muslim</div>
+                </div>
 
-            <div class="dua-card highlight">
-                <div class="dua-label">Sayyid al-Istighfar (Master of Seeking Forgiveness)</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</div>
-                <div class="dua-transliteration">Allahumma anta Rabbi la ilaha illa anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastata'tu, a'udhu bika min sharri ma sana'tu, abu'u laka bini'matika 'alayya, wa abu'u bi dhanbi faghfir li fa innahu la yaghfirudh-dhunuba illa anta</div>
-                <div class="dua-translation">"O Allah, You are my Lord, there is no god but You. You created me and I am Your servant, and I am upon Your covenant and promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your favour upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You."</div>
-                <div class="dua-source">Bukhari — Whoever says this with conviction in the morning and dies that day enters Paradise; same for evening</div>
-            </div>
+                <div class="dua-card highlight">
+                    <div class="dua-label">Sayyid al-Istighfar (Master of Seeking Forgiveness)</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</div>
+                    <div class="dua-transliteration">Allahumma anta Rabbi la ilaha illa anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastata'tu, a'udhu bika min sharri ma sana'tu, abu'u laka bini'matika 'alayya, wa abu'u bi dhanbi faghfir li fa innahu la yaghfirudh-dhunuba illa anta</div>
+                    <div class="dua-translation">"O Allah, You are my Lord, there is no god but You. You created me and I am Your servant, and I am upon Your covenant and promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your favour upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You."</div>
+                    <div class="dua-source">Bukhari — Whoever says this with conviction in the morning and dies that day enters Paradise; same for evening</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Praising Allah</div>
-                <div class="dua-arabic" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
-                <div class="dua-transliteration">SubhanAllahi wa bihamdihi, SubhanAllahil-'Adheem</div>
-                <div class="dua-translation">"Glory be to Allah and praise Him, Glory be to Allah the Almighty."</div>
-                <div class="dua-source">Bukhari & Muslim — Two words light on the tongue, heavy on the scales, beloved to the Most Merciful</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Praising Allah</div>
+                    <div class="dua-arabic" lang="ar">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
+                    <div class="dua-transliteration">SubhanAllahi wa bihamdihi, SubhanAllahil-'Adheem</div>
+                    <div class="dua-translation">"Glory be to Allah and praise Him, Glory be to Allah the Almighty."</div>
+                    <div class="dua-source">Bukhari & Muslim — Two words light on the tongue, heavy on the scales, beloved to the Most Merciful</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Dua for Guidance</div>
-                <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَىٰ وَالتُّقَىٰ وَالْعَفَافَ وَالْغِنَىٰ</div>
-                <div class="dua-transliteration">Allahumma inni as'alukal-huda wat-tuqa wal-'afaafa wal-ghina</div>
-                <div class="dua-translation">"O Allah, I ask You for guidance, piety, chastity, and self-sufficiency."</div>
-                <div class="dua-source">Muslim</div>
-            </div>
+                <div class="dua-card">
+                    <div class="dua-label">Dua for Guidance</div>
+                    <div class="dua-arabic" lang="ar">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَىٰ وَالتُّقَىٰ وَالْعَفَافَ وَالْغِنَىٰ</div>
+                    <div class="dua-transliteration">Allahumma inni as'alukal-huda wat-tuqa wal-'afaafa wal-ghina</div>
+                    <div class="dua-translation">"O Allah, I ask You for guidance, piety, chastity, and self-sufficiency."</div>
+                    <div class="dua-source">Muslim</div>
+                </div>
 
-            <div class="dua-card">
-                <div class="dua-label">Dua for Parents</div>
-                <div class="dua-arabic" lang="ar">رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ، رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
-                <div class="dua-transliteration">Rabbighfir li wa liwalidayya, Rabbir-hamhuma kama rabbayani sagheera</div>
-                <div class="dua-translation">"My Lord, forgive me and my parents. My Lord, have mercy upon them as they brought me up when I was small."</div>
-                <div class="dua-source">Quran 17:24</div>
+                <div class="dua-card">
+                    <div class="dua-label">Dua for Parents</div>
+                    <div class="dua-arabic" lang="ar">رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ، رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
+                    <div class="dua-transliteration">Rabbighfir li wa liwalidayya, Rabbir-hamhuma kama rabbayani sagheera</div>
+                    <div class="dua-translation">"My Lord, forgive me and my parents. My Lord, have mercy upon them as they brought me up when I was small."</div>
+                    <div class="dua-source">Quran 17:24</div>
+                </div>
             </div>
         </section>
 
@@ -1330,20 +1445,23 @@
              99 NAMES OF ALLAH SECTION
              ======================================== -->
         <section class="section" data-section="names">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">✨</span>
                 <h2 class="section-title">The 99 Names of Allah</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>Virtue:</strong> The Prophet ﷺ said: "Allah has ninety-nine names — one hundred minus one. Whoever preserves them will enter Paradise." (Bukhari 7392 & Muslim 2677)
-            </div>
+            <div class="section-body">
+                <div class="note">
+                    <strong>Virtue:</strong> The Prophet ﷺ said: "Allah has ninety-nine names — one hundred minus one. Whoever preserves them will enter Paradise." (Bukhari 7392 & Muslim 2677)
+                </div>
 
-            <div class="note purple">
-                <strong>What does 'preserve' mean?</strong> Scholars explain it means: (1) memorising them, (2) understanding their meanings, (3) worshipping Allah by them, and (4) calling upon Him through them in supplication.
-            </div>
+                <div class="note purple">
+                    <strong>What does 'preserve' mean?</strong> Scholars explain it means: (1) memorising them, (2) understanding their meanings, (3) worshipping Allah by them, and (4) calling upon Him through them in supplication.
+                </div>
 
-            <div id="names-grid" class="names-grid"></div>
+                <div id="names-grid" class="names-grid"></div>
+            </div>
         </section>
 
         <div class="geometric"></div>
@@ -1352,134 +1470,137 @@
              COMMON ERRORS SECTION
              ======================================== -->
         <section class="section" data-section="errors">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">⚠️</span>
                 <h2 class="section-title">Common Errors in Salah</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note warning">
-                <strong>Important:</strong> Correcting these errors will help perfect our prayer and earn greater reward. The Prophet ﷺ said: "Pray as you have seen me praying." (Bukhari)
-            </div>
+            <div class="section-body">
+                <div class="note warning">
+                    <strong>Important:</strong> Correcting these errors will help perfect our prayer and earn greater reward. The Prophet ﷺ said: "Pray as you have seen me praying." (Bukhari)
+                </div>
 
-            <div class="sub-divider">The Intention</div>
+                <div class="sub-divider">The Intention</div>
 
-            <div class="error-card">
-                <div class="error-title">Saying the Intention Aloud</div>
-                <div class="error-wrong">Saying "Nawaytu an usalliya..." out loud before prayer</div>
-                <div class="error-correct">The intention (niyyah) is made in the heart only, not spoken</div>
-                <div class="error-source">Neither the Prophet ﷺ nor his Companions ever verbalised the intention. The intention is the resolve in the heart. — Ibn Taymiyyah, Majmu' al-Fatawa</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Saying the Intention Aloud</div>
+                    <div class="error-wrong">Saying "Nawaytu an usalliya..." out loud before prayer</div>
+                    <div class="error-correct">The intention (niyyah) is made in the heart only, not spoken</div>
+                    <div class="error-source">Neither the Prophet ﷺ nor his Companions ever verbalised the intention. The intention is the resolve in the heart. — Ibn Taymiyyah, Majmu' al-Fatawa</div>
+                </div>
 
-            <div class="sub-divider">Standing (Qiyam)</div>
+                <div class="sub-divider">Standing (Qiyam)</div>
 
-            <div class="error-card">
-                <div class="error-title">Not Straightening the Rows</div>
-                <div class="error-wrong">Standing with gaps between worshippers or crooked rows</div>
-                <div class="error-correct">Stand shoulder to shoulder, foot to foot, with no gaps</div>
-                <div class="error-source">The Prophet ﷺ said: "Straighten your rows, for straightening the rows is part of perfecting the prayer." (Bukhari & Muslim). He also said: "Straighten your rows or Allah will cause discord among your hearts." (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Straightening the Rows</div>
+                    <div class="error-wrong">Standing with gaps between worshippers or crooked rows</div>
+                    <div class="error-correct">Stand shoulder to shoulder, foot to foot, with no gaps</div>
+                    <div class="error-source">The Prophet ﷺ said: "Straighten your rows, for straightening the rows is part of perfecting the prayer." (Bukhari & Muslim). He also said: "Straighten your rows or Allah will cause discord among your hearts." (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Looking Around or Upward</div>
-                <div class="error-wrong">Looking up at the sky, around the room, or at others during prayer</div>
-                <div class="error-correct">Keep your gaze at the place of prostration</div>
-                <div class="error-source">The Prophet ﷺ said: "What is wrong with those people who look up at the sky during prayer?" His words became so severe that he said: "They should stop doing that, or else their eyesight will be taken away." (Bukhari)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Looking Around or Upward</div>
+                    <div class="error-wrong">Looking up at the sky, around the room, or at others during prayer</div>
+                    <div class="error-correct">Keep your gaze at the place of prostration</div>
+                    <div class="error-source">The Prophet ﷺ said: "What is wrong with those people who look up at the sky during prayer?" His words became so severe that he said: "They should stop doing that, or else their eyesight will be taken away." (Bukhari)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Fidgeting and Unnecessary Movements</div>
-                <div class="error-wrong">Playing with clothing, watch, phone, scratching, adjusting unnecessarily</div>
-                <div class="error-correct">Remain still and focused, moving only when necessary</div>
-                <div class="error-source">The Prophet ﷺ saw a man adjusting his beard in prayer and said: "If his heart had khushu', his limbs would have khushu'." (Reported by scholars as a statement of the Salaf)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Fidgeting and Unnecessary Movements</div>
+                    <div class="error-wrong">Playing with clothing, watch, phone, scratching, adjusting unnecessarily</div>
+                    <div class="error-correct">Remain still and focused, moving only when necessary</div>
+                    <div class="error-source">The Prophet ﷺ saw a man adjusting his beard in prayer and said: "If his heart had khushu', his limbs would have khushu'." (Reported by scholars as a statement of the Salaf)</div>
+                </div>
 
-            <div class="sub-divider">Ruku (Bowing)</div>
+                <div class="sub-divider">Ruku (Bowing)</div>
 
-            <div class="error-card">
-                <div class="error-title">Not Keeping the Back Straight</div>
-                <div class="error-wrong">Bowing with a curved or arched back</div>
-                <div class="error-correct">Keep the back straight and level, head in line with the back</div>
-                <div class="error-source">Abu Humayd رضي الله عنه described the Prophet's ﷺ prayer: "When he bowed, he kept his back straight, so that if water were poured on it, it would stay in place." (Ibn Majah — Sahih)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Keeping the Back Straight</div>
+                    <div class="error-wrong">Bowing with a curved or arched back</div>
+                    <div class="error-correct">Keep the back straight and level, head in line with the back</div>
+                    <div class="error-source">Abu Humayd رضي الله عنه described the Prophet's ﷺ prayer: "When he bowed, he kept his back straight, so that if water were poured on it, it would stay in place." (Ibn Majah — Sahih)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Not Pausing After Rising from Ruku</div>
-                <div class="error-wrong">Going straight into sujood without standing fully upright</div>
-                <div class="error-correct">Stand completely upright and pause before going into sujood</div>
-                <div class="error-source">The Prophet ﷺ said about the man who prayed badly: "Then stand up until you are standing straight." (Bukhari & Muslim). Standing still between ruku and sujood is a pillar of the prayer.</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Pausing After Rising from Ruku</div>
+                    <div class="error-wrong">Going straight into sujood without standing fully upright</div>
+                    <div class="error-correct">Stand completely upright and pause before going into sujood</div>
+                    <div class="error-source">The Prophet ﷺ said about the man who prayed badly: "Then stand up until you are standing straight." (Bukhari & Muslim). Standing still between ruku and sujood is a pillar of the prayer.</div>
+                </div>
 
-            <div class="sub-divider">Sujood (Prostration)</div>
+                <div class="sub-divider">Sujood (Prostration)</div>
 
-            <div class="error-card">
-                <div class="error-title">Elbows on the Ground</div>
-                <div class="error-wrong">Resting the forearms and elbows flat on the ground during sujood</div>
-                <div class="error-correct">Keep elbows raised off the ground, away from the sides</div>
-                <div class="error-source">The Prophet ﷺ said: "Be balanced in sujood, and none of you should spread his forearms like a dog." (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Elbows on the Ground</div>
+                    <div class="error-wrong">Resting the forearms and elbows flat on the ground during sujood</div>
+                    <div class="error-correct">Keep elbows raised off the ground, away from the sides</div>
+                    <div class="error-source">The Prophet ﷺ said: "Be balanced in sujood, and none of you should spread his forearms like a dog." (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Not Prostrating on All Seven Limbs</div>
-                <div class="error-wrong">Lifting feet off the ground, or forehead/nose not touching properly</div>
-                <div class="error-correct">Prostrate on forehead (with nose), both hands, both knees, and toes of both feet</div>
-                <div class="error-source">The Prophet ﷺ said: "I have been commanded to prostrate on seven bones: the forehead — and he pointed to his nose — the two hands, the two knees, and the edges of the two feet." (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Prostrating on All Seven Limbs</div>
+                    <div class="error-wrong">Lifting feet off the ground, or forehead/nose not touching properly</div>
+                    <div class="error-correct">Prostrate on forehead (with nose), both hands, both knees, and toes of both feet</div>
+                    <div class="error-source">The Prophet ﷺ said: "I have been commanded to prostrate on seven bones: the forehead — and he pointed to his nose — the two hands, the two knees, and the edges of the two feet." (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Rushing Through Sujood</div>
-                <div class="error-wrong">Pecking the ground quickly without settling</div>
-                <div class="error-correct">Take time in sujood, ensuring every bone settles in place</div>
-                <div class="error-source">The Prophet ﷺ told the man who prayed badly: "Then prostrate until you are settled in your prostration." (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Rushing Through Sujood</div>
+                    <div class="error-wrong">Pecking the ground quickly without settling</div>
+                    <div class="error-correct">Take time in sujood, ensuring every bone settles in place</div>
+                    <div class="error-source">The Prophet ﷺ told the man who prayed badly: "Then prostrate until you are settled in your prostration." (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="sub-divider">Sitting Between Prostrations</div>
+                <div class="sub-divider">Sitting Between Prostrations</div>
 
-            <div class="error-card">
-                <div class="error-title">Not Sitting Fully Between Prostrations</div>
-                <div class="error-wrong">Rising from first sujood and going straight into the second without sitting</div>
-                <div class="error-correct">Sit upright between the two prostrations and be still</div>
-                <div class="error-source">The Prophet ﷺ would sit between the two prostrations until every bone returned to its place. (Abu Dawud — Sahih)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Sitting Fully Between Prostrations</div>
+                    <div class="error-wrong">Rising from first sujood and going straight into the second without sitting</div>
+                    <div class="error-correct">Sit upright between the two prostrations and be still</div>
+                    <div class="error-source">The Prophet ﷺ would sit between the two prostrations until every bone returned to its place. (Abu Dawud — Sahih)</div>
+                </div>
 
-            <div class="sub-divider">General Errors</div>
+                <div class="sub-divider">General Errors</div>
 
-            <div class="error-card">
-                <div class="error-title">Rushing Through the Entire Prayer</div>
-                <div class="error-wrong">Praying so fast that positions are not completed properly</div>
-                <div class="error-correct">Take time in each position, allowing every limb to settle</div>
-                <div class="error-source">The Prophet ﷺ said to the man who rushed: "Go back and pray, for you have not prayed." He repeated this three times, then taught him to have tuma'neenah (tranquility) in each position. (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Rushing Through the Entire Prayer</div>
+                    <div class="error-wrong">Praying so fast that positions are not completed properly</div>
+                    <div class="error-correct">Take time in each position, allowing every limb to settle</div>
+                    <div class="error-source">The Prophet ﷺ said to the man who rushed: "Go back and pray, for you have not prayed." He repeated this three times, then taught him to have tuma'neenah (tranquility) in each position. (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Racing the Imam</div>
-                <div class="error-wrong">Moving to the next position before or at the same time as the Imam</div>
-                <div class="error-correct">Follow the Imam, moving only after he has completed his movement</div>
-                <div class="error-source">The Prophet ﷺ said: "Does not the one who raises his head before the Imam fear that Allah may transform his head into the head of a donkey, or his form into the form of a donkey?" (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Racing the Imam</div>
+                    <div class="error-wrong">Moving to the next position before or at the same time as the Imam</div>
+                    <div class="error-correct">Follow the Imam, moving only after he has completed his movement</div>
+                    <div class="error-source">The Prophet ﷺ said: "Does not the one who raises his head before the Imam fear that Allah may transform his head into the head of a donkey, or his form into the form of a donkey?" (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Crossing in Front of Someone Praying</div>
-                <div class="error-wrong">Walking between a person and their place of prostration</div>
-                <div class="error-correct">Walk behind the person praying, or wait until they finish</div>
-                <div class="error-source">The Prophet ﷺ said: "If the one who crosses in front of a person praying knew what (sin) was on him, he would stand for forty (years) rather than cross in front of him." (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Crossing in Front of Someone Praying</div>
+                    <div class="error-wrong">Walking between a person and their place of prostration</div>
+                    <div class="error-correct">Walk behind the person praying, or wait until they finish</div>
+                    <div class="error-source">The Prophet ﷺ said: "If the one who crosses in front of a person praying knew what (sin) was on him, he would stand for forty (years) rather than cross in front of him." (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Not Using a Sutrah</div>
-                <div class="error-wrong">Praying without anything in front to mark your prayer space</div>
-                <div class="error-correct">Pray towards a sutrah (barrier) such as a wall, pillar, or any object</div>
-                <div class="error-source">The Prophet ﷺ said: "When one of you prays, let him pray towards a sutrah and get close to it." (Abu Dawud — Sahih)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Not Using a Sutrah</div>
+                    <div class="error-wrong">Praying without anything in front to mark your prayer space</div>
+                    <div class="error-correct">Pray towards a sutrah (barrier) such as a wall, pillar, or any object</div>
+                    <div class="error-source">The Prophet ﷺ said: "When one of you prays, let him pray towards a sutrah and get close to it." (Abu Dawud — Sahih)</div>
+                </div>
 
-            <div class="error-card">
-                <div class="error-title">Praying in Line with or Ahead of the Imam</div>
-                <div class="error-wrong">Standing beside or in front of the Imam in congregation</div>
-                <div class="error-correct">Always stand behind the Imam, even if praying alone with him</div>
-                <div class="error-source">When Ibn 'Abbas رضي الله عنهما stood beside the Prophet ﷺ, he moved him to stand behind him. (Bukhari & Muslim)</div>
-            </div>
+                <div class="error-card">
+                    <div class="error-title">Praying in Line with or Ahead of the Imam</div>
+                    <div class="error-wrong">Standing beside or in front of the Imam in congregation</div>
+                    <div class="error-correct">Always stand behind the Imam, even if praying alone with him</div>
+                    <div class="error-source">When Ibn 'Abbas رضي الله عنهما stood beside the Prophet ﷺ, he moved him to stand behind him. (Bukhari & Muslim)</div>
+                </div>
 
-            <div class="note purple">
-                <strong>Remember:</strong> The prayer is the first deed we will be asked about on the Day of Judgement. Taking care to pray correctly is a sign of love for Allah and His Messenger ﷺ. May Allah help us perfect our prayers. آمين
+                <div class="note purple">
+                    <strong>Remember:</strong> The prayer is the first deed we will be asked about on the Day of Judgement. Taking care to pray correctly is a sign of love for Allah and His Messenger ﷺ. May Allah help us perfect our prayers. آمين
+                </div>
             </div>
         </section>
 
@@ -1489,54 +1610,61 @@
              THE FAREWELL SERMON
              ======================================== -->
         <section class="section" data-section="sermon">
-            <div class="section-header">
+            <div class="section-header" onclick="toggleSection(this)">
                 <span class="section-icon">📜</span>
                 <h2 class="section-title">The Farewell Sermon</h2>
+                <span class="section-chevron">▼</span>
             </div>
 
-            <div class="note">
-                <strong>Khutbat al-Wada'</strong> — Delivered by the Prophet ﷺ on the 9th of Dhul Hijjah, 10 AH (6th March 632 CE), in the valley of Uranah at Mount Arafat, during his first and final Hajj, before more than 120,000 Companions.
-            </div>
-
-            <div class="dua-card">
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Lend me an attentive ear, for I know not whether after this year, I shall ever be amongst you again. Therefore listen to what I am saying to you very carefully and take these words to those who could not be present here today.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Just as you regard this month, this day, this city as sacred, so regard the life and property of every Muslim as a sacred trust. Return the goods entrusted to you to their rightful owners. Hurt no one so that no one may hurt you. Remember that you will indeed meet your Lord, and that He will indeed reckon your deeds. Allah has forbidden you to take usury (interest); therefore all interest obligations shall henceforth be waived. Your capital, however, is yours to keep. You will neither inflict nor suffer any inequity.</p>
-
-                <p class="sermon-text">Beware of Satan for the safety of your religion. He has lost all hope that he will ever be able to lead you astray in big things, so beware of following him in small things.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">It is true that you have certain rights in regard to your women, but they also have rights over you. Remember that you have taken them as your wives only under Allah's trust and with His permission. Do treat your women well and be kind to them, for they are your partners and committed helpers.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">Listen to me in earnest. Worship Allah, say your five daily prayers, fast during the month of Ramadan, and give your wealth in Zakat. Perform Hajj if you can afford to.</p>
-
-                <p class="sermon-text">All mankind is from Adam and Eve. An Arab has no superiority over a non-Arab, nor a non-Arab has any superiority over an Arab; also a white has no superiority over a black, nor a black has any superiority over a white — except by piety and good action.</p>
-
-                <p class="sermon-text">Learn that every Muslim is a brother to every Muslim and that the Muslims constitute one brotherhood. Nothing shall be legitimate to a Muslim which belongs to a fellow Muslim unless it was given freely and willingly. Do not, therefore, do injustice to yourselves.</p>
-
-                <p class="sermon-text">Remember, one day you will appear before Allah and answer for your deeds. So beware, do not stray from the path of righteousness after I am gone.</p>
-
-                <p class="sermon-address">O People —</p>
-                <p class="sermon-text">No prophet or apostle will come after me, and no new faith will be born. Reason well therefore, O people, and understand words which I convey to you. I leave behind me two things, the Quran and my Sunnah, and if you follow these you will never go astray.</p>
-
-                <p class="sermon-text" style="font-weight: 600; color: var(--gold);">All those who listen to me shall pass on my words to others and those to others again; and may the last ones understand my words better than those who listened to me directly.</p>
-
-                <p class="sermon-closing">"Be my witness, O Allah, that I have conveyed Your message to Your people."</p>
-
-                <div class="sermon-ref">
-                    Sources include narrations found in Bukhari, Muslim, Tirmidhi and Musnad Ahmad (wording varies across narrations).
+            <div class="section-body">
+                <div class="note">
+                    <strong>Khutbat al-Wada'</strong> — Delivered by the Prophet ﷺ on the 9th of Dhul Hijjah, 10 AH (6th March 632 CE), in the valley of Uranah at Mount Arafat, during his first and final Hajj, before more than 120,000 Companions.
                 </div>
-            </div>
 
-            <div class="note purple">
-                <strong>Note:</strong> The exact wording of the Farewell Sermon varies across authentic sources, as it was narrated by many Companions who each reported the portions they personally heard. Imam Ahmad ibn Hanbal's Musnad contains the most complete version. Scholars have carefully compiled this composite from multiple authentic narrations.
-            </div>
+                <div class="dua-card">
+                    <p class="sermon-address">O People —</p>
+                    <p class="sermon-text">Lend me an attentive ear, for I know not whether after this year, I shall ever be amongst you again. Therefore listen to what I am saying to you very carefully and take these words to those who could not be present here today.</p>
 
-            <div class="note">
-                After concluding the sermon, the following verse was revealed: <em>"This day I have perfected for you your religion, and completed My favour upon you, and have chosen for you Islam as your religion."</em> (Quran 5:3)
+                    <p class="sermon-address">O People —</p>
+                    <p class="sermon-text">Just as you regard this month, this day, this city as sacred, so regard the life and property of every Muslim as a sacred trust. Return the goods entrusted to you to their rightful owners. Hurt no one so that no one may hurt you. Remember that you will indeed meet your Lord, and that He will indeed reckon your deeds. Allah has forbidden you to take usury (interest); therefore all interest obligations shall henceforth be waived. Your capital, however, is yours to keep. You will neither inflict nor suffer any inequity.</p>
+
+                    <p class="sermon-text">Beware of Satan for the safety of your religion. He has lost all hope that he will ever be able to lead you astray in big things, so beware of following him in small things.</p>
+
+                    <p class="sermon-address">O People —</p>
+                    <p class="sermon-text">It is true that you have certain rights in regard to your women, but they also have rights over you. Remember that you have taken them as your wives only under Allah's trust and with His permission. Do treat your women well and be kind to them, for they are your partners and committed helpers.</p>
+
+                    <p class="sermon-address">O People —</p>
+                    <p class="sermon-text">Listen to me in earnest. Worship Allah, say your five daily prayers, fast during the month of Ramadan, and give your wealth in Zakat. Perform Hajj if you can afford to.</p>
+
+                    <p class="sermon-text">All mankind is from Adam and Eve. An Arab has no superiority over a non-Arab, nor a non-Arab has any superiority over an Arab; also a white has no superiority over a black, nor a black has any superiority over a white — except by piety and good action.</p>
+
+                    <p class="sermon-text">Learn that every Muslim is a brother to every Muslim and that the Muslims constitute one brotherhood. Nothing shall be legitimate to a Muslim which belongs to a fellow Muslim unless it was given freely and willingly. Do not, therefore, do injustice to yourselves.</p>
+
+                    <p class="sermon-text">Remember, one day you will appear before Allah and answer for your deeds. So beware, do not stray from the path of righteousness after I am gone.</p>
+
+                    <p class="sermon-address">O People —</p>
+                    <p class="sermon-text">No prophet or apostle will come after me, and no new faith will be born. Reason well therefore, O people, and understand words which I convey to you. I leave behind me two things, the Quran and my Sunnah, and if you follow these you will never go astray.</p>
+
+                    <p class="sermon-text" style="font-weight: 600; color: var(--gold);">All those who listen to me shall pass on my words to others and those to others again; and may the last ones understand my words better than those who listened to me directly.</p>
+
+                    <p class="sermon-closing">"Be my witness, O Allah, that I have conveyed Your message to Your people."</p>
+
+                    <div class="sermon-ref">
+                        Note: The Farewell Sermon is narrated in multiple authentic reports across different collections. This presentation is a thematic compilation from various narrations, so the exact wording may differ between sources. Where a specific sentence is quoted, it should be traced to its individual narration and grading.
+                    </div>
+                </div>
+
+                <div class="note purple">
+                    <strong>Note:</strong> The exact wording of the Farewell Sermon varies across authentic sources, as it was narrated by many Companions who each reported the portions they personally heard. Imam Ahmad ibn Hanbal's Musnad contains the most complete version. Scholars have carefully compiled this composite from multiple authentic narrations.
+                </div>
+
+                <div class="note">
+                    <strong>Method note:</strong> This section is included for reminder and benefit. For strict verification, key statements should be presented with their individual hadith references and scholar gradings, rather than as one continuous sermon.
+                </div>
+
+                <div class="note">
+                    After concluding the sermon, the following verse was revealed: <em>"This day I have perfected for you your religion, and completed My favour upon you, and have chosen for you Islam as your religion."</em> (Quran 5:3)
+                </div>
             </div>
         </section>
 
@@ -1562,51 +1690,106 @@
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <button type="button" class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
     <footer class="footer">
+        <p class="footer-text" style="font-style: italic; margin-bottom: 0.8rem; font-size: 0.85rem;">Variations reported in the Sunnah are numerous. This guide presents commonly practised authentic forms.</p>
         <p class="footer-text">May Allah accept our fasting and prayers</p>
         <p class="footer-dua" lang="ar">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</p>
     </footer>
 
     <script>
+        // ═══════════════ COLLAPSIBLE SECTIONS ═══════════════
+        function toggleSection(headerEl) {
+            var body = headerEl.nextElementSibling;
+            var isCollapsed = body.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                // Expand
+                body.classList.remove('collapsed');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.style.opacity = '1';
+                headerEl.classList.remove('collapsed');
+                // After transition, remove max-height so content can grow (e.g. modals)
+                setTimeout(function() {
+                    body.style.maxHeight = 'none';
+                }, 400);
+            } else {
+                // Collapse
+                body.style.maxHeight = body.scrollHeight + 'px';
+                // Force reflow
+                body.offsetHeight;
+                body.classList.add('collapsed');
+                body.style.maxHeight = '0';
+                body.style.opacity = '0';
+                headerEl.classList.add('collapsed');
+            }
+        }
+
+        // ═══════════════ BACK TO TOP ═══════════════
+        (function() {
+            var btn = document.getElementById('backToTop');
+            if (!btn) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+        })();
+
+        // ═══════════════ NAVIGATION ═══════════════
         function showSection(section, btnEl) {
-            const allSections = document.querySelectorAll('.section');
-            const allBtns = document.querySelectorAll('.nav-btn');
-            const geometrics = document.querySelectorAll('.geometric');
+            var allSections = document.querySelectorAll('.section');
+            var allBtns = document.querySelectorAll('.nav-btn');
+            var geometrics = document.querySelectorAll('.geometric');
             
             // Update active button
-            allBtns.forEach(btn => btn.classList.remove('active'));
+            allBtns.forEach(function(btn) { btn.classList.remove('active'); });
             btnEl.classList.add('active');
             
             if (section === 'all') {
-                allSections.forEach(s => s.style.display = 'block');
-                geometrics.forEach(g => g.style.display = 'block');
+                allSections.forEach(function(s) { s.style.display = 'block'; });
+                geometrics.forEach(function(g) { g.style.display = 'block'; });
             } else {
-                allSections.forEach(s => {
+                allSections.forEach(function(s) {
                     s.style.display = s.dataset.section === section ? 'block' : 'none';
                 });
-                // Keep dividers visible for visual rhythm
-                geometrics.forEach(g => g.style.display = 'block');
+                geometrics.forEach(function(g) { g.style.display = 'block'; });
             }
             
-            // Scroll to content (below nav), not back to header
+            // Expand the visible section(s) and scroll to content
+            allSections.forEach(function(s) {
+                if (s.style.display !== 'none') {
+                    var body = s.querySelector('.section-body');
+                    var header = s.querySelector('.section-header');
+                    if (body && body.classList.contains('collapsed')) {
+                        body.classList.remove('collapsed');
+                        body.style.maxHeight = 'none';
+                        body.style.opacity = '1';
+                        header.classList.remove('collapsed');
+                    }
+                }
+            });
+            
             document.querySelector('.container').scrollIntoView({ block: 'start' });
         }
 
+        // ═══════════════ DOWNLOAD ═══════════════
         async function downloadOffline() {
             try {
                 var response = await fetch('RamadanAdhkar-Offline.html');
                 var html = await response.text();
                 var blob = new Blob([html], { type: 'text/html' });
 
-                // iOS detection
                 var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
                 if (isIOS && navigator.share) {
-                    // iOS: use Share Sheet → "Save to Files"
                     var file = new File([blob], 'RamadanAdhkar-Offline.html', { type: 'text/html' });
                     await navigator.share({ files: [file] });
                 } else {
-                    // Android / Desktop: direct blob download
                     var url = URL.createObjectURL(blob);
                     var a = document.createElement('a');
                     a.href = url;
@@ -1617,17 +1800,17 @@
                     URL.revokeObjectURL(url);
                 }
             } catch (err) {
-                // Final fallback: open in new tab
                 window.open('RamadanAdhkar-Offline.html', '_blank');
             }
         }
 
+        // ═══════════════ SHARE ═══════════════
         async function shareAdkhar() {
             if (window.location.protocol === "file:") {
                 alert("For proper sharing, please upload this file to a website first. Local files cannot generate shareable links.");
             }
 
-            const shareData = {
+            var shareData = {
                 title: 'Ramadan Adhkar',
                 text: 'Authenticated duas and adhkar for Ramadan - Suhoor, Iftar, Salah, Laylatul Qadr, 99 Names of Allah, the Farewell Sermon and more. Created by Farhan Shaikh.',
                 url: window.location.href
@@ -1637,7 +1820,6 @@
                 if (navigator.share) {
                     await navigator.share(shareData);
                 } else {
-                    // Fallback: show prompt to copy URL
                     prompt("Copy this link:", window.location.href);
                 }
             } catch (err) {
@@ -1645,12 +1827,12 @@
             }
         }
 
-        // Add smooth fade-in on scroll (skip on Kindle / reduced-motion devices)
+        // ═══════════════ FADE-IN ON SCROLL ═══════════════
         if ('IntersectionObserver' in window) {
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 
                 !window.matchMedia('(monochrome)').matches) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
                             entry.target.style.opacity = '1';
                             entry.target.style.transform = 'translateY(0)';
@@ -1658,7 +1840,7 @@
                     });
                 }, { threshold: 0.1 });
 
-                document.querySelectorAll('.dua-card, .error-card').forEach(card => {
+                document.querySelectorAll('.dua-card, .error-card').forEach(function(card) {
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
                     card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1666,6 +1848,8 @@
                 });
             }
         }
+
+        // ═══════════════ 99 NAMES OF ALLAH ═══════════════
         var namesOfAllah = [
             {n:1, ar:"الرَّحْمَنُ", tr:"Ar-Rahmaan", en:"The Beneficent", ex:"He who wills goodness and mercy for all His creatures. His mercy encompasses everything in existence."},
             {n:2, ar:"الرَّحِيمُ", tr:"Ar-Raheem", en:"The Merciful", ex:"He who acts with extreme kindness. While Ar-Rahmaan refers to the vastness of mercy, Ar-Raheem refers to mercy in action towards the believers."},

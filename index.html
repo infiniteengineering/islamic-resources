@@ -4,590 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#f7f3eb">
-    <meta name="color-scheme" content="light only">
-    <meta name="supported-color-schemes" content="light only">
-    <meta name="description" content="Authentic Islamic resources — duas, adhkar, prayer guides, and more. Sourced from the Quran and Sunnah.">
-    <title>Islamic Resources</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Islamic Resources — Farhan Shaikh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            color-scheme: light only;
-            --bg-primary: #f7f3eb;
-            --bg-card: #efe9dd;
-            --bg-card-hover: #e8e0d0;
-            --gold: #8b5a2b;
-            --gold-light: #552810;
-            --gold-dim: #3a1e0a;
-            --text-primary: #110d04;
-            --text-secondary: #271e0f;
-            --text-arabic: #2c1810;
-            --accent-teal: #3a6355;
-            --accent-purple: #5a4a6a;
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #f7f3eb;
+            --bg-card: #efe9dd;
+            --bg-card-hover: #e8e1d3;
+            --text-primary: #3d2e1f;
+            --text-secondary: #6b5744;
+            --text-arabic: #2c1810;
+            --accent-brown: #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --border-color: #d4c9b8;
+            --shadow-color: rgba(61, 46, 31, 0.08);
+        }
 
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.7;
-            background-image:
-                radial-gradient(ellipse at 50% 0%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 100%, rgba(74, 124, 111, 0.04) 0%, transparent 40%);
+            line-height: 1.8;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* ============ HEADER ============ */
+        /* ═══════════════ HEADER ═══════════════ */
         .header {
             text-align: center;
-            padding: 3rem 1.5rem 1.5rem;
-            position: relative;
+            padding: 60px 20px 45px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
         }
 
-        .header-bismillah {
-            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            direction: rtl;
-        }
-
-        .header-title-ar {
-            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+        .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
             font-size: 2.2rem;
             color: var(--text-arabic);
-            direction: rtl;
-            margin-bottom: 0.3rem;
-            line-height: 1.4;
-        }
-
-        .header-title-en {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--gold);
-            letter-spacing: 0.03em;
-            margin-bottom: 0.8rem;
-        }
-
-        .header-subtitle {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 520px;
-            margin: 0 auto;
+            margin-bottom: 24px;
             line-height: 1.6;
         }
 
-        .header-credit {
-            font-size: 0.85rem;
+        .header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            margin-top: 0.8rem;
-        }
-
-        .header-credit strong {
-            color: var(--gold);
-        }
-
-        .header-divider {
-            display: block;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 1.5rem auto 0;
-        }
-
-        /* ============ GEOMETRIC DIVIDER ============ */
-        .geometric {
-            width: 100%;
-            max-width: 300px;
-            height: 1px;
-            margin: 1rem auto 1.5rem;
-            position: relative;
-            background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
-        }
-
-        .geometric::before {
-            content: '✦';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--bg-primary);
-            padding: 0 1rem;
-            color: var(--gold);
-            font-size: 0.8rem;
-        }
-
-        /* ============ MAIN CONTENT ============ */
-        .main {
-            max-width: 750px;
+            font-style: italic;
+            max-width: 520px;
             margin: 0 auto;
-            padding: 0 1.2rem 2rem;
         }
 
-        /* ============ RESOURCE CARDS ============ */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        /* ═══════════════ MAIN ═══════════════ */
+        .main {
+            flex: 1;
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
         }
 
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        /* ═══════════════ RESOURCE CARDS ═══════════════ */
         .resource-card {
-            background: var(--bg-card);
-            border-radius: 4px;
-            padding: 1.4rem 1.5rem;
+            display: block;
             text-decoration: none;
             color: inherit;
-            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px 26px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-            border: 1px solid rgba(139, 90, 43, 0.1);
         }
 
         .resource-card:hover {
             background: var(--bg-card-hover);
+            box-shadow: 0 4px 20px rgba(61, 46, 31, 0.12);
             transform: translateY(-2px);
-            border-color: rgba(139, 90, 43, 0.25);
+            border-color: var(--accent-brown-light);
         }
 
         .resource-card:active {
             transform: translateY(0);
         }
 
-        .resource-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--gold), var(--gold-dim));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .card-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.8;
+            margin-bottom: 10px;
         }
 
-        .resource-card:hover::before {
-            opacity: 1;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-icon {
-            font-size: 1.6rem;
-            flex-shrink: 0;
-        }
-
-        .card-title-en {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--gold);
+        .card-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
         }
 
         .card-description {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 0.6rem;
+            line-height: 1.65;
+            margin-bottom: 12px;
         }
 
-        .card-tags {
+        .card-meta {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 0.4rem;
+            gap: 8px;
         }
 
-        .card-tag {
+        .card-badge {
             font-size: 0.72rem;
-            padding: 0.15rem 0.55rem;
-            border-radius: 2px;
-            background: rgba(139, 90, 43, 0.08);
-            color: var(--gold-dim);
-            font-weight: 500;
-            letter-spacing: 0.03em;
+            font-weight: 600;
+            color: var(--accent-brown);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 3px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .card-rev {
+            font-size: 0.72rem;
+            color: var(--accent-brown-light);
+            font-weight: 600;
         }
 
         .card-arrow {
             position: absolute;
-            right: 1.5rem;
+            right: 24px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.2rem;
-            color: var(--gold);
-            opacity: 0.3;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 1.4rem;
+            color: var(--border-color);
+            transition: all 0.25s ease;
         }
 
         .resource-card:hover .card-arrow {
-            opacity: 0.8;
-            transform: translateY(-50%) translateX(3px);
+            color: var(--accent-brown);
+            right: 20px;
         }
 
-        /* ============ LIVE BADGE ============ */
-        .live-badge {
-            display: inline-block;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 0.12rem 0.5rem;
-            border-radius: 2px;
-            background: rgba(58, 99, 85, 0.15);
-            color: var(--accent-teal);
-            margin-left: 0.5rem;
-            vertical-align: middle;
-        }
-
-        /* ============ COMING SOON CARDS ============ */
-        .resource-card.coming-soon {
-            opacity: 0.55;
-            cursor: default;
-        }
-
-        .resource-card.coming-soon:hover {
-            transform: none;
+        /* ═══════════════ COMING SOON ═══════════════ */
+        .coming-soon {
             background: var(--bg-card);
-            border-color: rgba(139, 90, 43, 0.1);
-        }
-
-        .resource-card.coming-soon::before {
-            display: none;
-        }
-
-        .resource-card.coming-soon .card-arrow {
-            display: none;
-        }
-
-        .coming-soon-badge {
-            display: inline-block;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 0.12rem 0.5rem;
-            border-radius: 2px;
-            background: rgba(90, 74, 106, 0.12);
-            color: var(--accent-purple);
-            margin-left: 0.5rem;
-            vertical-align: middle;
-        }
-
-        /* ============ DUA SECTION ============ */
-        .dua-section {
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .dua-section .arabic {
-            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-            font-size: 1.15rem;
-            color: var(--text-arabic);
-            direction: rtl;
-            line-height: 2;
-            margin-bottom: 0.6rem;
-        }
-
-        .dua-section .translation {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* ============ FOOTER ============ */
-        .footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        /* ============ SHARE BUTTON ============ */
-        .share-section {
-            text-align: center;
-            padding: 1.5rem 0;
-        }
-
-        .share-btn {
-            background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
-            color: var(--bg-primary);
-            border: none;
-            padding: 0.8rem 2rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(139, 90, 43, 0.3);
-        }
-
-        /* ============ SECTION DIVIDER LABEL ============ */
-        .section-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-align: center;
-            margin: 2rem 0 1rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin-bottom: 20px;
             opacity: 0.6;
         }
 
-        /* ============ RESPONSIVE ============ */
-        @media (min-width: 550px) {
-            .cards-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .resource-card.featured {
-                grid-column: 1 / -1;
-            }
+        .coming-soon .card-title {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
-        @media (max-width: 549px) {
-            .header-title-ar { font-size: 1.8rem; }
-            .header-title-en { font-size: 1.3rem; }
+        .coming-soon .card-description {
+            font-size: 0.85rem;
+        }
+
+        /* ═══════════════ METHODOLOGY ═══════════════ */
+        .methodology-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin-top: 35px;
+        }
+
+        .methodology-box .info-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+        }
+
+        .methodology-box p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-verse {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.15rem;
+            color: var(--text-arabic);
+            margin-bottom: 8px;
+        }
+
+        .footer-translation {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-credit {
+            font-size: 0.8rem;
+            color: var(--accent-brown-light);
+        }
+
+        .footer-credit strong {
+            color: var(--accent-brown);
+        }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header { padding: 45px 18px 35px; }
+            .header h1 { font-size: 1.65rem; }
+            .bismillah { font-size: 1.7rem; }
+            .card-title { font-size: 1.2rem; }
+            .card-arabic { font-size: 1.15rem; }
+            .resource-card { padding: 22px 20px; }
             .card-arrow { display: none; }
-        }
-
-        /* ============ REDUCED MOTION ============ */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                transition: none !important;
-                animation: none !important;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- ═══════════════ HEADER ═══════════════ -->
     <header class="header">
-        <div class="header-bismillah" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-        <div class="header-title-ar" lang="ar">مَوَارِدُ إِسْلَامِيَّة</div>
-        <h1 class="header-title-en">Islamic Resources</h1>
-        <p class="header-subtitle">Authentic duas, adhkar, and guides sourced from the Quran and Sunnah — for everyday use on any device.</p>
-        <p class="header-credit">Created by <strong>Farhan Shaikh</strong> — with the help of AI</p>
-        <span class="header-divider"></span>
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <h1>Islamic Resources</h1>
+        <p class="subtitle">Authenticated content from the Qur'ān and Sunnah — strictly from Ṣaḥīḥ sources with full references</p>
     </header>
 
-    <div class="geometric"></div>
-
-    <!-- MAIN CONTENT -->
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <main class="main">
 
-        <!-- ====== LIVE ====== -->
-        <div class="cards-grid">
+        <div class="section-label">Available Resources</div>
 
-            <!-- 1. RAMADAN ADHKAR — LIVE -->
-            <a href="ramadan-adhkar.html" class="resource-card featured">
-                <div class="card-header">
-                    <span class="card-icon">🌙</span>
-                    <span class="card-title-en">Ramadan Adhkar <span class="live-badge">Live</span></span>
-                </div>
-                <p class="card-description">Authenticated duas and adhkar for Ramadan — Suhoor, Iftar, Salah, Laylatul Qadr, the 99 Names of Allah, and the Farewell Sermon.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Suhoor & Iftar</span>
-                    <span class="card-tag">Salah</span>
-                    <span class="card-tag">99 Names</span>
-                    <span class="card-tag">Farewell Sermon</span>
-                </div>
-                <span class="card-arrow">→</span>
-            </a>
+        <!-- ─── Ramadan Adhkar ─── -->
+        <a href="ramadan-adhkar.html" class="resource-card">
+            <div class="card-arabic">أذكار رمضان</div>
+            <div class="card-title">Ramadan Adhkār</div>
+            <div class="card-description">
+                Authenticated daily adhkār, duas for Suhūr, Iftār, after Ṣalāh, Laylat al-Qadr, the last ten nights, and more. Includes the 99 Names of Allāh with modals and the Prophet's Farewell Sermon.
+            </div>
+            <div class="card-meta">
+                <span class="card-badge">9 Sections · 99 Names · Offline Available</span>
+                <span class="card-rev">Rev 1.3 · 15 Feb 2026</span>
+            </div>
+            <span class="card-arrow">›</span>
+        </a>
 
+        <!-- ─── End Times ─── -->
+        <a href="end-times.html" class="resource-card">
+            <div class="card-arabic">أشراط الساعة الكبرى</div>
+            <div class="card-title">The Major Signs of the Hour</div>
+            <div class="card-description">
+                Ad-Dajjāl, Al-Mahdī, and ʿĪsā ibn Maryam (عليه السلام) — their descriptions, the sequence of events, and means of protection. Strictly from Ṣaḥīḥ al-Bukhārī, Ṣaḥīḥ Muslim, and authenticated Sunan narrations.
+            </div>
+            <div class="card-meta">
+                <span class="card-badge">7 Sections · Timeline · Scholarly Verified</span>
+                <span class="card-rev">Rev 1.0 · 15 Feb 2026</span>
+            </div>
+            <span class="card-arrow">›</span>
+        </a>
+
+        <!-- ─── Coming Soon ─── -->
+        <div class="coming-soon">
+            <div class="card-title">More resources coming soon in shā' Allāh</div>
+            <div class="card-description">
+                Additional authenticated content being prepared and verified.
+            </div>
         </div>
 
-        <!-- ====== COMING SOON ====== -->
-        <div class="section-label">Coming Soon</div>
-
-        <div class="cards-grid">
-
-            <!-- 2. HOW TO PRAY -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">🕌</span>
-                    <span class="card-title-en">Prayer <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">Step-by-step guide to Salah — from standing to sitting, with all the words, positions, and common mistakes to avoid.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Fard Prayer</span>
-                    <span class="card-tag">Sunnah Prayer</span>
-                    <span class="card-tag">Step by Step</span>
-                </div>
-            </div>
-
-            <!-- 3. MAKING WUDU -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">💧</span>
-                    <span class="card-title-en">Wudu <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">How to perform wudu correctly according to the Sunnah — each step, its dua, and what breaks wudu.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Ablution</span>
-                    <span class="card-tag">Purification</span>
-                    <span class="card-tag">Duas</span>
-                </div>
-            </div>
-
-            <!-- 4. DAILY ADHKAR -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">☀️</span>
-                    <span class="card-title-en">Daily Adhkar <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">The daily fortress — authenticated morning, evening, and bedtime supplications from the Sunnah for protection and remembrance.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Morning</span>
-                    <span class="card-tag">Evening</span>
-                    <span class="card-tag">Bedtime</span>
-                </div>
-            </div>
-
-            <!-- 5. EID PRAYER GUIDE -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">🎉</span>
-                    <span class="card-title-en">Eid Prayer <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">How to pray Eid Salah — the additional takbeeraat, the khutbah, and the Sunnah supplications for Eid al-Fitr and Eid al-Adha.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Eid al-Fitr</span>
-                    <span class="card-tag">Eid al-Adha</span>
-                    <span class="card-tag">Takbeeraat</span>
-                </div>
-            </div>
-
-            <!-- 6. UMRAH GUIDE -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">🕋</span>
-                    <span class="card-title-en">Umrah <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">A practical step-by-step guide to performing Umrah — from Ihram to Tawaf, Sa'i, and all the duas at each stage.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Ihram</span>
-                    <span class="card-tag">Tawaf</span>
-                    <span class="card-tag">Sa'i</span>
-                    <span class="card-tag">Duas</span>
-                </div>
-            </div>
-
-            <!-- 7. THE PROPHET ﷺ — LIVE -->
-            <a href="the-prophet.html" class="resource-card">
-                <div class="card-header">
-                    <span class="card-icon">📖</span>
-                    <span class="card-title-en">The Prophet ﷺ <span class="live-badge">Live</span></span>
-                </div>
-                <p class="card-description">His life, family, character, and prophethood — facts every Muslim should know to increase their love for him ﷺ.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Family</span>
-                    <span class="card-tag">Character</span>
-                    <span class="card-tag">Prophethood</span>
-                    <span class="card-tag">Daily Life</span>
-                </div>
-                <span class="card-arrow">→</span>
-            </a>
-
-            <!-- 8. COMPANIONS & ISLAMIC FIGURES -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">⭐</span>
-                    <span class="card-title-en">Companions <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">The Companions of the Prophet ﷺ and influential figures in Islamic history — who they were and what we learn from them.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Sahaba</span>
-                    <span class="card-tag">Scholars</span>
-                    <span class="card-tag">Biographies</span>
-                </div>
-            </div>
-
-            <!-- 9. HADITH FOR KIDS -->
-            <div class="resource-card coming-soon">
-                <div class="card-header">
-                    <span class="card-icon">🧒</span>
-                    <span class="card-title-en">Hadith for Kids <span class="coming-soon-badge">Coming Soon</span></span>
-                </div>
-                <p class="card-description">Short, beautiful hadith explained simply for children — building love for the Prophet ﷺ and good character from a young age.</p>
-                <div class="card-tags">
-                    <span class="card-tag">Children</span>
-                    <span class="card-tag">Manners</span>
-                    <span class="card-tag">Short Hadith</span>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- SHARE -->
-        <div class="share-section">
-            <button type="button" class="share-btn" onclick="shareSite()">Share with Family & Friends</button>
+        <!-- ─── Methodology ─── -->
+        <div class="methodology-box">
+            <div class="info-title">Our Standards</div>
+            <p>
+                Every resource on this site is based strictly on authenticated narrations from the Prophet ﷺ — primarily from Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim, with supplementary narrations only where graded Ṣaḥīḥ or Ḥasan by recognised scholars. No weak narrations. No speculation. No unsourced claims. Every reference is linked for independent verification. Content follows the understanding of Ahl al-Sunnah wa'l-Jamāʿah.
+            </p>
         </div>
 
     </main>
 
-    <!-- DUA -->
-    <section class="dua-section">
-        <div class="arabic" lang="ar">رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ</div>
-        <div class="translation">"Our Lord, accept from us. Indeed, You are the Hearing, the Knowing." — Quran 2:127</div>
-    </section>
-
-    <!-- FOOTER -->
+    <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
-        Every effort has been made to ensure accuracy and authenticity from the Quran and Sunnah.<br>
-        If you find any errors, please bring them to my attention so they can be corrected.
+        <div class="footer-verse">
+            وَذَكِّرۡ فَإِنَّ ٱلذِّكۡرَىٰ تَنفَعُ ٱلۡمُؤۡمِنِينَ
+        </div>
+        <p class="footer-translation">
+            "And remind, for indeed the reminder benefits the believers." — al-Dhāriyāt (51:55)
+        </p>
+        <p class="footer-credit">
+            Created by <strong>Farhan Shaikh</strong>
+        </p>
     </footer>
-
-    <script>
-        async function shareSite() {
-            if (window.location.protocol === "file:") {
-                alert("For proper sharing, please upload this file to a website first. Local files cannot generate shareable links.");
-            }
-
-            var shareData = {
-                title: 'Islamic Resources',
-                text: 'Authentic Islamic resources — duas, adhkar, prayer guides, and more. Sourced from the Quran and Sunnah. Created by Farhan Shaikh.',
-                url: window.location.href
-            };
-
-            try {
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                } else if (navigator.clipboard) {
-                    await navigator.clipboard.writeText(window.location.href);
-                    alert('Link copied to clipboard!');
-                } else {
-                    prompt("Copy this link:", window.location.href);
-                }
-            } catch (err) {
-                console.log('Share failed:', err);
-            }
-        }
-    </script>
 
 </body>
 </html>

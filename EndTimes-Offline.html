@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <title>The Major Signs — Ad-Dajjal, Al-Mahdi &amp; ʿĪsā ibn Maryam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* KFGQPC Uthmanic Script - Same as Quran.com */
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary: #f7f3eb;
+            --bg-card: #efe9dd;
+            --bg-card-alt: #e8e1d3;
+            --text-primary: #3d2e1f;
+            --text-secondary: #6b5744;
+            --text-arabic: #2c1810;
+            --accent-brown: #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --accent-gold: #b8860b;
+            --border-color: #d4c9b8;
+            --shadow-color: rgba(61, 46, 31, 0.08);
+            --hadith-bg: #f0e8d8;
+            --warning-bg: #e8dcc8;
+            --ref-color: #7a6248;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* ═══════════════ BACK BUTTON ═══════════════ */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-brown);
+            background: var(--bg-card);
+        }
+
+        /* ═══════════════ HEADER ═══════════════ */
+        .header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+        }
+
+        .header .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--text-arabic);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .header .methodology {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--accent-brown);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .methodology-icon {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        /* ═══════════════ NAV ═══════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            min-width: max-content;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:active {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--accent-brown);
+        }
+
+        /* ═══════════════ CONTENT ═══════════════ */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* ═══════════════ SECTIONS ═══════════════ */
+        .section {
+            margin-top: 50px;
+        }
+
+        .section-number {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .section h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .section h2 .arabic-title {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--text-arabic);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .section-intro {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            border-left: 3px solid var(--accent-brown-light);
+            padding-left: 15px;
+        }
+
+        .section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent-brown);
+            margin: 30px 0 12px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section p {
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        /* ═══════════════ HADITH CARDS ═══════════════ */
+        .hadith-card {
+            background: var(--hadith-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 22px 22px 16px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .hadith-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.35rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 2.2;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .hadith-english {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .hadith-narrator {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .hadith-ref {
+            font-size: 0.78rem;
+            color: var(--ref-color);
+            font-weight: 600;
+            display: inline-block;
+            background: var(--bg-card);
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hadith-ref a {
+            color: var(--accent-brown);
+            text-decoration: none;
+        }
+
+        .hadith-ref a:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══════════════ QURAN VERSE ═══════════════ */
+        .quran-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--accent-brown-light);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .quran-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.5rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 2.4;
+            margin-bottom: 14px;
+        }
+
+        .quran-translation {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .quran-ref {
+            font-size: 0.82rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* ═══════════════ INFO BOXES ═══════════════ */
+        .info-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .info-box .info-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .info-box ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent-brown-light);
+            font-size: 0.6rem;
+            top: 8px;
+        }
+
+        /* ═══════════════ SEQUENCE / TIMELINE ═══════════════ */
+        .timeline {
+            margin: 25px 0;
+            padding-left: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+        }
+
+        .timeline-marker {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content strong {
+            color: var(--accent-brown);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .timeline-content .timeline-ref {
+            font-size: 0.78rem;
+            color: var(--ref-color);
+            font-style: italic;
+        }
+
+        /* ═══════════════ PROTECTION / DUA ═══════════════ */
+        .dua-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .dua-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-brown-light);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .dua-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            line-height: 2.2;
+            margin-bottom: 12px;
+        }
+
+        .dua-transliteration {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .dua-meaning {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .dua-ref {
+            font-size: 0.78rem;
+            color: var(--ref-color);
+            font-weight: 600;
+        }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .revision-stamp {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+            color: var(--accent-brown-light);
+            margin-top: 12px;
+        }
+
+        .share-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 28px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-brown-light);
+        }
+
+        /* ═══════════════ BACK TO TOP ═══════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            z-index: 50;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        /* ═══════════════ COLLAPSIBLE ═══════════════ */
+        .collapsible-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--accent-brown-light);
+            transition: transform 0.3s;
+        }
+
+        .collapsible-header .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-body {
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .collapsible-body.collapsed {
+            max-height: 0 !important;
+        }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .header .bismillah { font-size: 1.6rem; }
+            .hadith-arabic, .quran-arabic { font-size: 1.2rem; }
+            .dua-arabic { font-size: 1.2rem; }
+            .section h2 { font-size: 1.35rem; }
+            .hadith-card { padding: 16px; }
+            .nav-links { justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← Home</a>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <h1>The Major Signs of the Hour</h1>
+        <p class="subtitle">Ad-Dajjāl · Al-Mahdī · ʿĪsā ibn Maryam (عليه السلام)</p>
+        <div class="methodology">
+            <span class="methodology-icon">📖</span>
+            Strictly Ṣaḥīḥ &amp; Authenticated Aḥādīth Only — Full References Provided
+        </div>
+    </header>
+
+    <!-- ═══════════════ NAV ═══════════════ -->
+    <nav class="nav-container">
+        <div class="nav-links">
+            <a href="#introduction">Introduction</a>
+            <a href="#dajjal">Ad-Dajjāl</a>
+            <a href="#mahdi">Al-Mahdī</a>
+            <a href="#isa">ʿĪsā (عليه السلام)</a>
+            <a href="#sequence">Sequence</a>
+            <a href="#protection">Protection</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ CONTENT ═══════════════ -->
+    <main class="content">
+
+        <!-- ═══════════════ INTRODUCTION ═══════════════ -->
+        <section class="section" id="introduction">
+            <div class="section-number">Section One</div>
+            <h2>Introduction</h2>
+            <p class="section-intro">
+                Belief in the Signs of the Hour is part of belief in the Last Day — one of the six pillars of Īmān. The Prophet ﷺ warned his Ummah about these events so that the believers may be prepared and protected.
+            </p>
+
+            <p>The Prophet ﷺ described the trial of Ad-Dajjāl as the greatest trial from the creation of Ādam until the Hour. Every prophet warned his nation about the one-eyed liar, and our Prophet ﷺ provided the most detailed descriptions to protect his Ummah.</p>
+
+            <p>This page presents only what is established through authenticated narrations from the Prophet ﷺ, primarily from Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim, with supplementary narrations from the Sunan collections where their chains have been verified as Ṣaḥīḥ (authentic) or Ḥasan (good) by recognised scholars of ḥadīth. Every narration is referenced so you can verify it yourself.</p>
+
+            <div class="info-box">
+                <div class="info-title">Methodology</div>
+                <ul>
+                    <li>Primary sources: Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim</li>
+                    <li>Supplementary: Sunan Abī Dāwūd, Sunan Ibn Mājah, Jāmiʿ al-Tirmidhī — only where graded Ṣaḥīḥ or Ḥasan by recognised hadith scholars (e.g., al-Albānī and other specialists), and where the grading is accepted by the mainstream Sunni hadith tradition</li>
+                    <li>No weak (Ḍaʿīf) narrations included</li>
+                    <li>No speculation — only what the Prophet ﷺ stated</li>
+                    <li>Sunni orthodoxy (Ahl al-Sunnah wa'l-Jamāʿah)</li>
+                    <li>Where scholars differed in interpretation, the most widely accepted Sunni understanding is presented</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══════════════ AD-DAJJAL ═══════════════ -->
+        <section class="section" id="dajjal">
+            <div class="section-number">Section Two</div>
+            <h2>
+                <span class="arabic-title">المسيح الدجّال</span>
+                Ad-Dajjāl — The False Messiah
+            </h2>
+            <p class="section-intro">
+                The greatest trial to face mankind. The Prophet ﷺ spoke of him more than any other sign of the Hour, and every prophet warned their nation about him.
+            </p>
+
+            <!-- ─── Every Prophet Warned ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                Every Prophet Warned of Him
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"No prophet was sent but that he warned his followers against the one-eyed liar (Ad-Dajjāl). Beware! He is blind in one eye, and your Lord is not so, and there will be written between his eyes (the word) Kāfir (i.e., disbeliever)."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Anas ibn Mālik (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:7131" target="_blank">Ṣaḥīḥ al-Bukhārī 7131</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The Dajjāl is blind in one eye and there is written between his eyes the word 'Kāfir'."</strong> He then spelled the word as Kāf, Fā, Rā — which every Muslim would be able to read.
+                    </div>
+                    <div class="hadith-narrator">Narrated by Anas ibn Mālik (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2933b" target="_blank">Ṣaḥīḥ Muslim 2933b</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── Physical Description ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Physical Description
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>The Prophet ﷺ provided detailed physical descriptions so the believers could recognise him and not be deceived:</p>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"He (Dajjāl) would be a young man with twisted, contracted hair, and a blind eye. I compare him to ʿAbd al-ʿUzzā ibn Qaṭan."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the lengthy ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"While sleeping near the Kaʿbah, I saw in my dream a man of brown complexion, the best one can see amongst brown-complexioned men, and his hair was long that it fell between his shoulders. His hair was lank and water was dribbling from his head... Then I asked who he was. They said, 'He is the Masīḥ (Messiah), Ad-Dajjāl.'"</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by ʿAbdullāh ibn ʿUmar (رضي الله عنهما)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:7128" target="_blank">Ṣaḥīḥ al-Bukhārī 7128</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said about the Dajjāl: <strong>"He is blind in the left eye and has a great quantity of hair."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Ḥudhayfa (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2934" target="_blank">Ṣaḥīḥ Muslim 2934</a>
+                    </span>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-title">Summary of His Description (from Ṣaḥīḥ narrations)</div>
+                    <ul>
+                        <li>A young man with curly/twisted hair</li>
+                        <li>Blind in one eye (his right eye likened to a floating grape in some narrations; his left eye described as defective in others — scholars reconcile that both eyes are defective, one blind and one damaged)</li>
+                        <li>The word "Kāfir" (كَافِر) written between his eyes, recognised by every believer — even those unable to read</li>
+                        <li>It is reported in authentic narrations that he will have no children</li>
+                        <li>He is a human being who will eat and drink — Allāh is far above that</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ─── His Emergence and Trials ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Emergence and Trials
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        <strong>"He would appear on the way between Syria and Iraq and would spread mischief right and left. O servants of Allāh! Adhere (to the path of Truth)."</strong>
+                        <br><br>
+                        We said: "O Messenger of Allāh, how long would he stay on the earth?" He ﷺ said: <strong>"For forty days — one day like a year, and one day like a month, and one day like a week, and the rest of the days would be like your days."</strong>
+                        <br><br>
+                        We said: "O Messenger of Allāh, would one day's prayer suffice for the prayers of a day equal to one year?" He ﷺ said: <strong>"No, but you must make an estimate of time (and then observe prayer)."</strong>
+                        <br><br>
+                        We said: "How quickly would he walk upon the earth?" He ﷺ said: <strong>"Like cloud driven by the wind."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said that the Dajjāl would have <strong>water and fire with him — what would seem to be fire would be cold water, and what would seem to be water would be fire.</strong> He ﷺ warned: <strong>"So do not destroy yourselves."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Ḥudhayfa (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:7130" target="_blank">Ṣaḥīḥ al-Bukhārī 7130</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"He will come to the people and invite them (to follow him), and they will affirm their faith in him and respond to him. He will then give a command to the sky, and there will be rainfall upon the earth, and it will bring forth vegetation... Then he will call a person brimming with youth, and strike him with the sword and cut him into two pieces... He will then call that young man, and he will come forward laughing with his face gleaming."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── He Cannot Enter Makkah or Madinah ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                He Cannot Enter Makkah or Madīnah
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"There will be no town which Ad-Dajjāl will not enter except Makkah and Madīnah, and there will be no entrance (road) but the angels will be standing in rows guarding it against him. Then Madīnah will shake with its inhabitants thrice, and Allāh will expel all the disbelievers and the hypocrites from it."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Anas ibn Mālik (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:1881" target="_blank">Ṣaḥīḥ al-Bukhārī 1881</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The terror caused by Al-Masīḥ Ad-Dajjāl will not enter Madīnah, and at that time Madīnah will have seven gates, and there will be two angels at each gate guarding them."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Bakra (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:7125" target="_blank">Ṣaḥīḥ al-Bukhārī 7125</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── The Story of Tamīm al-Dārī (Al-Jassāsah) ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Story of Tamīm al-Dārī and Al-Jassāsah
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>This is the only ḥadīth in which the Prophet ﷺ narrated from a Companion's account and confirmed it. Tamīm al-Dārī (رضي الله عنه), a former Christian who accepted Islam, told the Prophet ﷺ that he had sailed on the sea and was driven by a storm to an island where they encountered a beast (Al-Jassāsah — the Spy) who led them to a man chained in a monastery.</p>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The chained man (the Dajjāl) asked them about the date-palms of Baysān, the Lake of Ṭabariyyah (Tiberias), and the Spring of Zughar — inquiring whether they still had water and produced fruit. When they confirmed these things, he said: <strong>"Soon I will be given permission to emerge, and I will emerge and travel throughout the land. I will not leave any town but I will enter it within forty nights — apart from Makkah and Ṭaybah (Madīnah), for they are both forbidden to me. Every time I want to enter one of them, I will be met by an angel with an unsheathed sword in his hand, who will drive me back."</strong>
+                        <br><br>
+                        The Prophet ﷺ then said, striking the minbar with his stick: <strong>"This is Ṭaybah, this is Ṭaybah, this is Ṭaybah"</strong> — meaning Madīnah — <strong>"Have I not told you that? I liked what Tamīm said because it agreed with what I have been telling you about him and about Makkah and Madīnah."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Fāṭimah bint Qays (رضي الله عنها)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2942" target="_blank">Ṣaḥīḥ Muslim 2942</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ AL-MAHDI ═══════════════ -->
+        <section class="section" id="mahdi">
+            <div class="section-number">Section Three</div>
+            <h2>
+                <span class="arabic-title">المهدي</span>
+                Al-Mahdī — The Guided One
+            </h2>
+            <p class="section-intro">
+                A righteous leader from the family of the Prophet ﷺ who will appear near the end of time and fill the earth with justice as it was filled with oppression.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">A Note on the Mahdī Aḥādīth</div>
+                <p>The ḥadīth about Al-Mahdī are not found explicitly by the title "Mahdī" in Ṣaḥīḥ al-Bukhārī or Ṣaḥīḥ Muslim. However, Ṣaḥīḥ Muslim contains narrations that scholars understand to refer to him (the leader behind whom ʿĪsā will pray). The explicit Mahdī narrations are found in the Sunan collections (Abū Dāwūd, Ibn Mājah, al-Tirmidhī) and Musnad Aḥmad, and many scholars — including Ibn Taymiyyah, al-Albānī, and the scholars of the Permanent Committee (al-Lajnah al-Dāʾimah) — have graded the core narrations as authentic. Scholars such as al-Sakhāwī, Ibn Kathīr, and al-Shawkānī stated that the reports about the Mahdī are transmitted through numerous chains and widely accepted by the scholars of Ahl al-Sunnah.</p>
+            </div>
+
+            <!-- ─── His Lineage ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Lineage and Name
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The Mahdī will be of my family, of the descendants of Fāṭimah."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Umm Salamah (رضي الله عنها)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/abudawud:4284" target="_blank">Sunan Abī Dāwūd 4284</a> — Graded Ṣaḥīḥ by Ibn Taymiyyah &amp; al-Albānī
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The world will not pass away until the Arabs are ruled by a man from my family whose name agrees with my name."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by ʿAbdullāh ibn Masʿūd (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/abudawud:4282" target="_blank">Sunan Abī Dāwūd 4282</a> — Graded Ṣaḥīḥ by al-Albānī
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The Mahdī will be of my stock, and will have a broad forehead and a prominent nose. He will fill the earth with equity and justice as it was filled with oppression and tyranny, and he will rule for seven years."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Saʿīd al-Khudrī (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/abudawud:4285" target="_blank">Sunan Abī Dāwūd 4285</a> — Graded Ḥasan by al-Albānī
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── His Appearance ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Circumstances of His Appearance
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"The Mahdī is from us, the people of the household (Ahl al-Bayt). Allāh will set right his affairs in a single night."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by ʿAlī ibn Abī Ṭālib (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/ibnmajah:4085" target="_blank">Sunan Ibn Mājah 4085</a> — Graded Ḥasan by al-Albānī
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"Disagreement will occur at the death of a Caliph, and a man of the people of Madīnah will come fleeing to Makkah. Some of the people of Makkah will come to him, bring him out against his will, and swear allegiance to him between the Corner (of the Kaʿbah) and the Maqām (of Ibrāhīm). An expeditionary force will then be sent against him from Shām (Syria), but will be swallowed up in the desert between Makkah and Madīnah."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Umm Salamah (رضي الله عنها)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/abudawud:4286" target="_blank">Sunan Abī Dāwūd 4286</a> — Graded Ḥasan by al-Albānī
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── Isa prays behind him ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                ʿĪsā (عليه السلام) Will Pray Behind Him
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>This narration, from Ṣaḥīḥ Muslim itself, is understood by the scholars of Ahl al-Sunnah to refer to Al-Mahdī — the Imām from among this Ummah behind whom ʿĪsā (عليه السلام) will pray:</p>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"A section of my people will not cease fighting for the Truth and will prevail till the Day of Resurrection."</strong> He ﷺ said: <strong>"ʿĪsā son of Maryam would then descend, and their (the Muslims') commander would invite him to come and lead them in prayer, but he would say: 'No, some amongst you are commanders over some (amongst you).' This is the honour from Allāh for this Ummah."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Jābir ibn ʿAbdullāh (رضي الله عنهما)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:156" target="_blank">Ṣaḥīḥ Muslim 156</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"How will you be when the son of Maryam descends amongst you and your Imām is from among you?"</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:3449" target="_blank">Ṣaḥīḥ al-Bukhārī 3449</a> &amp;
+                        <a href="https://sunnah.com/muslim:155d" target="_blank">Ṣaḥīḥ Muslim 155d</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ ISA (AS) ═══════════════ -->
+        <section class="section" id="isa">
+            <div class="section-number">Section Four</div>
+            <h2>
+                <span class="arabic-title">عيسى ابن مريم عليه السلام</span>
+                ʿĪsā ibn Maryam — The Messiah
+            </h2>
+            <p class="section-intro">
+                The true Messiah, a Prophet and Messenger of Allāh, who was raised alive to the heavens and will return to the earth before the Hour.
+            </p>
+
+            <!-- ─── The Qur'anic Confirmation ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Qur'ānic Confirmation
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="quran-card">
+                    <div class="quran-arabic">
+                        وَإِنَّهُۥ لَعِلۡمٞ لِّلسَّاعَةِ فَلَا تَمۡتَرُنَّ بِهَا وَٱتَّبِعُونِۚ هَٰذَا صِرَٰطٞ مُّسۡتَقِيمٞ
+                    </div>
+                    <div class="quran-translation">
+                        "And indeed, he (ʿĪsā) is a sign for knowledge of the Hour, so be not in doubt of it, and follow Me. This is a straight path."
+                    </div>
+                    <div class="quran-ref">Sūrah al-Zukhruf (43:61)</div>
+                </div>
+
+                <div class="quran-card">
+                    <div class="quran-arabic">
+                        وَإِن مِّنۡ أَهۡلِ ٱلۡكِتَٰبِ إِلَّا لَيُؤۡمِنَنَّ بِهِۦ قَبۡلَ مَوۡتِهِۦۖ وَيَوۡمَ ٱلۡقِيَٰمَةِ يَكُونُ عَلَيۡهِمۡ شَهِيدٗا
+                    </div>
+                    <div class="quran-translation">
+                        "And there is none from the People of the Scripture but that he will surely believe in him (ʿĪsā) before his death. And on the Day of Resurrection he will be against them a witness."
+                    </div>
+                    <div class="quran-ref">Sūrah al-Nisāʾ (4:159)</div>
+                </div>
+            </div>
+
+            <!-- ─── His Descent ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Descent
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        <strong>"...and it would be at this very time that Allāh would send ʿĪsā, son of Maryam, and he will descend at the white minaret in the eastern side of Damascus wearing two garments lightly dyed with saffron, placing his hands on the wings of two Angels. When he would lower his head, there would fall beads of perspiration from his head, and when he would raise it up, beads like pearls would scatter from it."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── He Will Kill the Dajjal ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                He Will Kill Ad-Dajjāl
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        <strong>"Every non-believer who would smell the odour of his (ʿĪsā's) self would die, and his breath would reach as far as he would be able to see. He would then search for him (Dajjāl) until he would catch hold of him at the gate of Ludd and would kill him."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── What He Will Do ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Mission on Earth
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"By Him in Whose hand is my life, the son of Maryam will soon descend among you as a just judge. He will break crosses, kill swine and abolish the Jizyah, and wealth will pour forth to such an extent that no one will accept it."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/bukhari:2222" target="_blank">Ṣaḥīḥ al-Bukhārī 2222</a> &amp;
+                        <a href="https://sunnah.com/muslim:155a" target="_blank">Ṣaḥīḥ Muslim 155a</a>
+                    </span>
+                </div>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"I swear by Allāh that the son of Maryam will certainly descend as a just judge and he would definitely break the cross, and kill swine and abolish the Jizyah, and would leave the young she-camel and no one would endeavour to collect Zakāt on it. Spite, mutual hatred and jealousy against one another will certainly disappear, and when he summons people to accept wealth, not even one would do so."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:155c" target="_blank">Ṣaḥīḥ Muslim 155c</a>
+                    </span>
+                </div>
+
+                <p>ʿĪsā (عليه السلام) will rule as a just leader among the Muslims, and the scholars explain that he will judge according to Islamic law, not by a new revelation. The scholars of Ahl al-Sunnah explain from these narrations that he will rule according to the law of Islam and will not bring a new revelation.</p>
+            </div>
+
+            <!-- ─── Ya'juj and Ma'juj ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                Ya'jūj and Ma'jūj (Gog and Magog)
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>After killing the Dajjāl, ʿĪsā (عليه السلام) and the believers will face the emergence of Ya'jūj and Ma'jūj:</p>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        <strong>"Allāh would then reveal to ʿĪsā: 'I have released servants of Mine whom no one will be able to fight. Take My servants to safety in al-Ṭūr (Mount Sinai).' And Allāh would send Ya'jūj and Ma'jūj, who will come swarming down from every mound. The first of them will pass by Lake Ṭabariyyah (Tiberias) and will drink the water in it, and the last of them will pass by it and will say: 'There was water here once.'"</strong>
+                        <br><br>
+                        <strong>"Then ʿĪsā and his companions will make duʿā to Allāh, and Allāh will send insects (worms) that will attack their (Ya'jūj and Ma'jūj's) necks, and in the morning they will all be dead as one."</strong>
+                    </div>
+                    <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ─── His Death ─── -->
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                His Life and Death
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>ʿĪsā (عليه السلام) will live on earth after his descent and then die a natural death. The Muslims will pray the funeral prayer over him.</p>
+
+                <div class="hadith-card">
+                    <div class="hadith-english">
+                        The Prophet ﷺ said: <strong>"ʿĪsā ibn Maryam will then live on the earth for forty years, and then he will die, and the Muslims will pray over him."</strong>
+                    </div>
+                    <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                    <span class="hadith-ref">
+                        <a href="https://sunnah.com/abudawud:4324" target="_blank">Sunan Abī Dāwūd 4324</a> — Graded Ṣaḥīḥ by al-Albānī
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ SEQUENCE ═══════════════ -->
+        <section class="section" id="sequence">
+            <div class="section-number">Section Five</div>
+            <h2>The Sequence of Events</h2>
+            <p class="section-intro">
+                Based on what can be derived from the authentic narrations. Scholars note that no explicit ordering of all events was narrated from the Prophet ﷺ in a single ḥadīth, but the following order reflects the most widely accepted understanding among Sunni scholars based on the collective narrations. Some details of precise sequencing were not explicitly stated in a single narration.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <strong>The Appearance of Al-Mahdī</strong>
+                        He will emerge at a time of great corruption and oppression. He will be given bay'ah (allegiance) between the Corner and the Maqām in Makkah.
+                        <div class="timeline-ref">Sunan Abī Dāwūd 4286</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <strong>The Emergence of Ad-Dajjāl</strong>
+                        He will appear between Shām and Iraq, and will travel across the earth for forty days (one like a year, one like a month, one like a week, and the rest like normal days).
+                        <div class="timeline-ref">Ṣaḥīḥ Muslim 2937a</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <strong>The Descent of ʿĪsā (عليه السلام)</strong>
+                        He will descend at the white minaret, east of Damascus, at the time of Fajr prayer. The Muslims' Imām (Al-Mahdī) will offer to step back, but ʿĪsā will pray behind him — an honour for this Ummah.
+                        <div class="timeline-ref">Ṣaḥīḥ Muslim 2937a, Ṣaḥīḥ Muslim 156</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <strong>The Killing of Ad-Dajjāl</strong>
+                        ʿĪsā (عليه السلام) will pursue Ad-Dajjāl and kill him at the gate of Ludd (in Palestine).
+                        <div class="timeline-ref">Ṣaḥīḥ Muslim 2937a</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <strong>The Release of Ya'jūj and Ma'jūj</strong>
+                        Allāh will reveal to ʿĪsā to take the believers to Mount Sinai. Ya'jūj and Ma'jūj will spread across the earth, then Allāh will destroy them.
+                        <div class="timeline-ref">Ṣaḥīḥ Muslim 2937a</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">6</div>
+                    <div class="timeline-content">
+                        <strong>An Era of Peace and Justice</strong>
+                        ʿĪsā (عليه السلام) will rule the earth with justice. Spite, hatred, and jealousy will disappear. Wealth will be so abundant no one will accept charity.
+                        <div class="timeline-ref">Ṣaḥīḥ Muslim 155c, Ṣaḥīḥ al-Bukhārī 2222</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">7</div>
+                    <div class="timeline-content">
+                        <strong>The Death of ʿĪsā (عليه السلام)</strong>
+                        He will live for forty years on earth, then die a natural death. The Muslims will pray over him.
+                        <div class="timeline-ref">Sunan Abī Dāwūd 4324</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ PROTECTION ═══════════════ -->
+        <section class="section" id="protection">
+            <div class="section-number">Section Six</div>
+            <h2>Protection from Ad-Dajjāl</h2>
+            <p class="section-intro">
+                The Prophet ﷺ taught his Ummah specific means of protection from the greatest trial to face mankind.
+            </p>
+
+            <!-- ─── 1. Surah Al-Kahf ─── -->
+            <h3>1. Reciting Sūrah al-Kahf</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"He who amongst you would survive to see him (the Dajjāl) should recite over him the opening verses of Sūrah al-Kahf."</strong>
+                </div>
+                <div class="hadith-narrator">From the ḥadīth of An-Nawwās ibn Samʿān (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/muslim:2937a" target="_blank">Ṣaḥīḥ Muslim 2937a</a>
+                </span>
+            </div>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"Whoever memorises ten āyāt from the beginning of Sūrah al-Kahf will be protected from the Dajjāl."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū al-Dardāʾ (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/muslim:809a" target="_blank">Ṣaḥīḥ Muslim 809a</a>
+                </span>
+            </div>
+
+            <!-- ─── 2. Seeking Refuge in Prayer ─── -->
+            <h3>2. Seeking Refuge in Every Prayer</h3>
+
+            <div class="dua-card">
+                <div class="dua-label">Duʿā After Tashahhud</div>
+                <div class="dua-arabic">
+                    اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ وَمِنْ عَذَابِ النَّارِ وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ وَمِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ
+                </div>
+                <div class="dua-transliteration">
+                    Allāhumma innī aʿūdhu bika min ʿadhāb al-qabr, wa min ʿadhāb al-nār, wa min fitnat al-maḥyā wa'l-mamāt, wa min fitnat al-masīḥ al-Dajjāl.
+                </div>
+                <div class="dua-meaning">
+                    "O Allāh, I seek refuge with You from the punishment of the grave, from the punishment of the Fire, from the trials of life and death, and from the trial of the False Messiah (Al-Masīḥ Ad-Dajjāl)."
+                </div>
+                <div class="dua-ref">
+                    <a href="https://sunnah.com/bukhari:1377" target="_blank" style="color: var(--ref-color);">Ṣaḥīḥ al-Bukhārī 1377</a> &amp;
+                    <a href="https://sunnah.com/muslim:588" target="_blank" style="color: var(--ref-color);">Ṣaḥīḥ Muslim 588</a>
+                </div>
+            </div>
+
+            <p>The Prophet ﷺ used to seek refuge from the trial of the Dajjāl in every prayer, and he instructed his Ummah to do the same. ʿĀʾishah (رضي الله عنها) reported that the Prophet ﷺ used to make this supplication in his Ṣalāh.</p>
+
+            <!-- ─── 3. Flee from him ─── -->
+            <h3>3. Staying Away from Him</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"Let him who hears of the Dajjāl go far from him, for by Allāh, a man will come to him thinking he is a believer, but will end up following him because of the doubts he sends."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by ʿImrān ibn Ḥuṣayn (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/abudawud:4319" target="_blank">Sunan Abī Dāwūd 4319</a> — Graded Ṣaḥīḥ by al-Albānī
+                </span>
+            </div>
+
+            <!-- ─── 4. Knowing the marks ─── -->
+            <h3>4. Knowing He is One-Eyed — Your Lord is Not</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"I warn you of him, and there was no prophet but warned his followers of him; but I will tell you something about him which no prophet has told his followers: Ad-Dajjāl is one-eyed whereas Allāh is not."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by ʿAbdullāh ibn ʿUmar (رضي الله عنهما)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/bukhari:7127" target="_blank">Ṣaḥīḥ al-Bukhārī 7127</a>
+                </span>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Summary of Protections (from Ṣaḥīḥ narrations)</div>
+                <ul>
+                    <li>Memorise and recite the opening (or closing) ten āyāt of Sūrah al-Kahf</li>
+                    <li>Seek refuge from the Dajjāl in every prayer (after Tashahhud)</li>
+                    <li>Stay far away from the Dajjāl if he appears</li>
+                    <li>Know Allāh is not one-eyed; the Dajjāl is one-eyed with "Kāfir" written between his eyes</li>
+                    <li>Know that no one can see their Lord until they die — the Dajjāl will be seen by all</li>
+                    <li>Know the Dajjāl is a human who eats and drinks — Allāh is far above that</li>
+                    <li>Makkah and Madīnah are protected from his entry, as stated in the authentic narrations</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══════════════ SOURCES ═══════════════ -->
+        <section class="section" id="sources">
+            <div class="section-number">Section Seven</div>
+            <h2>Sources &amp; References</h2>
+            <p class="section-intro">
+                All narrations on this page are from the following authenticated collections. Every ḥadīth number is linked to sunnah.com for independent verification.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">Primary Sources (Mutually Agreed Upon — Muttafaq ʿAlayh)</div>
+                <ul>
+                    <li><strong>Ṣaḥīḥ al-Bukhārī</strong> — Ḥadīth 1377, 1881, 2222, 3448, 3449, 7125, 7127, 7128, 7130, 7131</li>
+                    <li><strong>Ṣaḥīḥ Muslim</strong> — Ḥadīth 155a-f, 156, 588, 809a, 2933b, 2934, 2937a-b, 2942</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Supplementary Sources (Graded Ṣaḥīḥ or Ḥasan by Recognised Scholars)</div>
+                <ul>
+                    <li><strong>Sunan Abī Dāwūd</strong> — Ḥadīth 4282, 4284, 4285, 4286, 4319, 4324</li>
+                    <li><strong>Sunan Ibn Mājah</strong> — Ḥadīth 4085</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Qur'ānic References</div>
+                <ul>
+                    <li>Sūrah al-Nisāʾ (4:159)</li>
+                    <li>Sūrah al-Zukhruf (43:61)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Grading scholars referenced:</strong> Imām al-Albānī (رحمه الله), Shaykh al-Islām Ibn Taymiyyah (رحمه الله), al-Ḥākim (رحمه الله), and the Permanent Committee for Scholarly Research and Iftāʾ (al-Lajnah al-Dāʾimah).
+            </p>
+
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Scholars who confirmed the widespread transmission of the Mahdī narrations:</strong> Ibn Kathīr (رحمه الله), al-Sakhāwī (رحمه الله), al-Shawkānī (رحمه الله), and others.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 12px;">
+            وَمَا يَنطِقُ عَنِ ٱلۡهَوَىٰٓ ۝ إِنۡ هُوَ إِلَّا وَحۡيٞ يُوحَىٰ
+        </p>
+        <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
+            "Nor does he speak from his own desire. It is nothing but revelation that is revealed." — al-Najm (53:3–4)
+        </p>
+
+        <p style="margin-top: 20px;">May Allāh protect us all from the trial of the Dajjāl and grant us steadfastness upon the truth.</p>
+
+        <button class="share-btn" onclick="shareResource()">📤 Share This Resource</button>
+
+        <p style="margin-top: 20px; font-size: 0.88rem; color: var(--text-primary); font-style: italic; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Belief in the emergence of Al-Mahdī, the coming of Ad-Dajjāl, and the descent of ʿĪsā ibn Maryam is affirmed by the scholars of Ahl al-Sunnah wa'l-Jamāʿah and recorded in the classical books of creed.
+        </p>
+
+        <div class="revision-stamp">
+            <span>Rev 1.0</span>
+            <span>15 Feb 2026</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 8px;">
+            Created by Farhan Shaikh
+        </p>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // ─── Back to Top Button ───
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 400) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // ─── Collapsible Sections ───
+        function toggleSection(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            if (body.classList.contains('collapsed')) {
+                body.classList.remove('collapsed');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                icon.classList.add('open');
+                // After transition, remove max-height so content can expand dynamically
+                setTimeout(() => { body.style.maxHeight = 'none'; }, 400);
+            } else {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                // Force reflow
+                body.offsetHeight;
+                body.classList.add('collapsed');
+                icon.classList.remove('open');
+            }
+        }
+
+        // ─── Share Functionality ───
+        function shareResource() {
+            const shareData = {
+                title: 'The Major Signs — Ad-Dajjal, Al-Mahdi & Isa ibn Maryam',
+                text: 'A comprehensive resource on the Major Signs of the Hour, based strictly on Sahih hadith with full references.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(err => {
+                    // Fallback: copy URL
+                    copyToClipboard();
+                });
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+
+</body>
+</html>
