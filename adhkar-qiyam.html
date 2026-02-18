@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated Qiyam al-Layl (night prayer) adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Qiyam al-Layl Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header-arabic { font-family:'Amiri',serif; font-size:1.7rem; color:var(--text-arabic); direction:rtl; margin-bottom:8px; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:560px; margin:0 auto; }
+        .main { flex:1; max-width:720px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section-divider { text-align:center; font-size:0.75rem; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:32px 0 24px; display:flex; align-items:center; gap:14px; }
+        .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border-color); }
+        .dua-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:28px 28px 24px; margin-bottom:20px; box-shadow:0 2px 10px var(--shadow-color); }
+        .source-tag { font-size:0.68rem; font-weight:700; color:#fff; background:var(--accent-brown); padding:3px 9px; border-radius:3px; letter-spacing:0.8px; margin-bottom:14px; display:inline-block; }
+        .dua-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+        .dua-num { font-size:0.72rem; font-weight:700; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:1px; }
+        .freq-badge { font-size:0.72rem; font-weight:600; color:var(--accent-brown); background:var(--bg-primary); border:1px solid var(--border-color); padding:3px 10px; border-radius:4px; }
+        .arabic { font-family:'Uthmanic','Amiri',serif; font-size:1.55rem; color:var(--text-arabic); direction:rtl; text-align:right; line-height:2.1; margin-bottom:14px; }
+        .transliteration { font-style:italic; font-size:0.95rem; color:var(--text-secondary); margin-bottom:10px; line-height:1.7; }
+        .translation { font-size:0.97rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .note { font-size:0.85rem; color:var(--accent-brown); background:var(--bg-primary); border-left:3px solid var(--accent-brown-light); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:12px; line-height:1.65; }
+        .reference { font-size:0.79rem; color:var(--accent-brown-light); border-top:1px solid var(--border-color); padding-top:10px; margin-top:4px; line-height:1.6; }
+        .reference strong { color:var(--accent-brown); }
+        .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
+        .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
+        .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
+        .back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent-brown); color:var(--bg-primary); border:none; font-size:1.2rem; cursor:pointer; z-index:200; opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; -webkit-tap-highlight-color:transparent; }
+        .back-to-top.visible { opacity:0.85; visibility:visible; }
+        .back-to-top:hover { opacity:1; }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-links { font-size:0.8rem; margin-bottom:8px; }
+        .footer-links a { color:var(--accent-brown-light); text-decoration:none; margin:0 8px; }
+        .footer-links a:hover { color:var(--accent-brown); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .bismillah{font-size:1.75rem;} .dua-card{padding:20px 18px;} .arabic{font-size:1.4rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">قيام الليل</div>
+    <h1>Qiyam al-Layl Adhkār</h1>
+    <p class="subtitle">Night prayer (Tahajjud) — the voluntary prayer in the last third of the night, beloved to Allah</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">The Virtue of Night Prayer</div>
+
+    <!-- #1 — Virtue -->
+    <div class="dua-card">
+        <span class="source-tag">QUR'AN</span>
+        <div class="dua-header">
+            <span class="dua-num">Virtue · 1</span>
+            <span class="freq-badge">Allah's Praise</span>
+        </div>
+        <div class="note">Allah describes the righteous servants in the Qur'an:</div>
+        <div class="arabic">كَانُوا قَلِيلًا مِّنَ اللَّيْلِ مَا يَهْجَعُونَ ۝ وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ</div>
+        <div class="translation">"They used to sleep but little at night, and in the hours before dawn they would seek forgiveness."</div>
+        <div class="reference"><strong>Qur'an:</strong> Adh-Dhariyat 51:17-18</div>
+    </div>
+
+    <!-- #2 — Best prayer -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Virtue · 2</span>
+            <span class="freq-badge">Best Voluntary Prayer</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "The best prayer after the obligatory prayers is the night prayer."</div>
+        <div class="reference"><strong>Source:</strong> Muslim 1163 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #3 — Last third -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Virtue · 3</span>
+            <span class="freq-badge">Divine Descent</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Our Lord descends to the lowest heaven during the last third of every night and says: 'Who is calling upon Me that I may answer him? Who is asking from Me that I may give him? Who is seeking My forgiveness that I may forgive him?'"</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 1145 — Ṣaḥīḥ · Muslim 758 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Upon Waking for Night Prayer</div>
+
+    <!-- #4 — Waking dua (detailed) -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 4</span>
+            <span class="freq-badge">Upon Waking at Night</span>
+        </div>
+        <div class="note">This is one of the authentic wordings reported. The Prophet ﷺ would wake in the night and say:</div>
+        <div class="arabic">اللَّهُمَّ لَكَ الحَمْدُ أَنْتَ نُورُ السَّمَاوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ ، وَلَكَ الحَمْدُ أَنْتَ قَيِّمُ السَّمَاوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ ، وَلَكَ الحَمْدُ أَنْتَ الحَقُّ وَوَعْدُكَ الحَقُّ ، وَقَوْلُكَ الحَقُّ ، وَلِقَاؤُكَ الحَقُّ ، وَالجَنَّةُ حَقٌّ ، وَالنَّارُ حَقٌّ ، وَالنَّبِيُّونَ حَقٌّ ، وَمُحَمَّدٌ حَقٌّ ، وَالسَّاعَةُ حَقٌّ ، اللَّهُمَّ لَكَ أَسْلَمْتُ ، وَبِكَ آمَنْتُ ، وَعَلَيْكَ تَوَكَّلْتُ ، وَإِلَيْكَ أَنَبْتُ ، وَبِكَ خَاصَمْتُ ، وَإِلَيْكَ حَاكَمْتُ ، فَاغْفِرْ لِي مَا قَدَّمْتُ وَمَا أَخَّرْتُ ، وَمَا أَسْرَرْتُ وَمَا أَعْلَنْتُ ، أَنْتَ المُقَدِّمُ وَأَنْتَ المُؤَخِّرُ ، لَا إِلَهَ إِلَّا أَنْتَ</div>
+        <div class="transliteration">Allāhumma laka-l-ḥamdu anta nūru-s-samāwāti wal-arḍi wa man fīhinn, wa laka-l-ḥamdu anta qayyimu-s-samāwāti wal-arḍi wa man fīhinn, wa laka-l-ḥamdu anta-l-ḥaqq, wa wa'duka-l-ḥaqq, wa qawluka-l-ḥaqq, wa liqā'uka-l-ḥaqq, wal-jannatu ḥaqq, wa-n-nāru ḥaqq, wa-n-nabiyyūna ḥaqq, wa Muḥammadun ḥaqq, wa-s-sā'atu ḥaqq. Allāhumma laka aslamtu, wa bika āmantu, wa 'alayka tawakkaltu, wa ilayka anabtu, wa bika khāṣamtu, wa ilayka ḥākamtu, fa-ghfir lī mā qaddamtu wa mā akhkhartu, wa mā asrartu wa mā a'lantu, anta-l-muqaddimu wa anta-l-mu'akhkhir, lā ilāha illā ant.</div>
+        <div class="translation">O Allah, to You is all praise — You are the Light of the heavens and the earth and all who are therein. To You is all praise — You are the Sustainer of the heavens and the earth and all who are therein. To You is all praise — You are the Truth, Your promise is true, Your word is true, meeting You is true, Paradise is true, the Fire is true, the Prophets are true, Muḥammad is true, and the Hour is true. O Allah, to You I have submitted, in You I have believed, upon You I have relied, to You I have turned, with Your help I have argued, and to You I refer judgement. So forgive me what I have sent forth and what I have left behind, what I have concealed and what I have declared. You are the One who brings forward and the One who puts back — none has the right to be worshipped except You.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 1120 — Ṣaḥīḥ · Muslim 769 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #5 — Wiping face -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 5</span>
+            <span class="freq-badge">Upon Waking</span>
+        </div>
+        <div class="note">When the Prophet ﷺ woke up at night, he would wipe the sleep from his face with his hand, then recite the last ten verses of Sūrah Āl ʿImrān (3:190-200), which begin with: "Indeed, in the creation of the heavens and the earth..."</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 183 — Ṣaḥīḥ · Muslim 763 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">During Night Prayer</div>
+
+    <!-- #6 — Beginning night prayer -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 6</span>
+            <span class="freq-badge">Opening Night Prayer</span>
+        </div>
+        <div class="note">The Prophet ﷺ would begin his night prayer with:</div>
+        <div class="arabic">اللَّهُمَّ رَبَّ جِبْرَائِيلَ وَمِيكَائِيلَ وَإِسْرَافِيلَ ، فَاطِرَ السَّمَاوَاتِ وَالأَرْضِ ، عَالِمَ الْغَيْبِ وَالشَّهَادَةِ ، أَنْتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِيمَا كَانُوا فِيهِ يَخْتَلِفُونَ ، اهْدِنِي لِمَا اخْتُلِفَ فِيهِ مِنَ الْحَقِّ بِإِذْنِكَ ، إِنَّكَ تَهْدِي مَنْ تَشَاءُ إِلَى صِرَاطٍ مُسْتَقِيمٍ</div>
+        <div class="transliteration">Allāhumma rabba Jibrā'īla wa Mīkā'īla wa Isrāfīl, fāṭira-s-samāwāti wa-l-arḍ, 'ālima-l-ghaybi wa-sh-shahādah, anta taḥkumu bayna 'ibādika fīmā kānū fīhi yakhtalifūn, ihdinī limā khtulifa fīhi mina-l-ḥaqqi bi-idhnik, innaka tahdī man tashā'u ilā ṣirāṭin mustaqīm.</div>
+        <div class="translation">O Allah, Lord of Jibrīl, Mīkāʾīl, and Isrāfīl, Creator of the heavens and the earth, Knower of the unseen and the seen, You judge between Your servants concerning that in which they differ. Guide me to the truth in that which they differ, by Your permission. Indeed, You guide whom You will to the straight path.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 770 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #7 — Long recitation -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 7</span>
+            <span class="freq-badge">During Recitation</span>
+        </div>
+        <div class="note">The Prophet ﷺ would stand for long periods at night, reciting the Qur'an slowly and reflecting upon it. He would pause at verses of mercy to ask for mercy, at verses of punishment to seek refuge, and at verses of glorification to glorify Allah.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 772 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #8 — Weeping -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 8</span>
+            <span class="freq-badge">Weeping in Prayer</span>
+        </div>
+        <div class="note">ʿAbdullah ibn al-Shikhkhīr رضي الله عنه said: "I saw the Messenger of Allah ﷺ praying, and there was a sound coming from his chest like the sound of a boiling kettle, on account of weeping."</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 904 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3858 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Seeking Forgiveness</div>
+
+    <!-- #9 — In the pre-dawn -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 9</span>
+            <span class="freq-badge">Before Fajr</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "The closest that the Lord comes to a servant is in the last part of the night, so if you are able to be among those who remember Allah at that hour, then do so."</div>
+        <div class="note">This is the time to seek forgiveness abundantly, as Allah praised those who seek forgiveness in the hours before dawn.</div>
+        <div class="reference"><strong>Source:</strong> At-Tirmidhi 3579 — Ṣaḥīḥ · An-Nasa'i 580 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #10 — Istighfar -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 10</span>
+            <span class="freq-badge">Seeking Forgiveness</span>
+        </div>
+        <div class="arabic">أَسْتَغْفِرُ اللهَ وَأَتُوبُ إِلَيْهِ</div>
+        <div class="transliteration">Astaghfirullāha wa atūbu ilayh.</div>
+        <div class="translation">I seek Allah's forgiveness and turn to Him in repentance.</div>
+        <div class="note">Repeat this abundantly in the last third of the night and before Fajr.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6307 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">After Completing Night Prayer</div>
+
+    <!-- #11 — After night prayer -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 11</span>
+            <span class="freq-badge">Concluding Qiyam</span>
+        </div>
+        <div class="note">Night prayer is concluded with Witr (the odd-numbered prayer). The Prophet ﷺ said: "Make Witr the last of your prayer at night." See the dedicated Witr section for specific supplications.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 998 — Ṣaḥīḥ · Muslim 751 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #12 — Two brief rakahs -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 12</span>
+            <span class="freq-badge">After Witr (Optional)</span>
+        </div>
+        <div class="note">ʿĀ'ishah رضي الله عنها reported: "The Prophet ﷺ used to pray two brief rakʿahs after Witr while sitting." This is optional and was a specific practice of the Prophet ﷺ.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 738 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah.
+        </p>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="adhkar-methodology.html">Methodology</a>
+    </div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+<script>
+window.addEventListener("scroll", function() {
+    var btn = document.getElementById("backToTop");
+    if (btn) btn.classList.toggle("visible", window.scrollY > 400);
+});
+</script>
+</body>
+</html>

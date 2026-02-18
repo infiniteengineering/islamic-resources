@@ -45,9 +45,9 @@
         .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
         .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
         .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
-        .back-top { text-align:center; margin-top:40px; }
-        .back-top a { font-size:0.82rem; color:var(--accent-brown-light); text-decoration:none; }
-        .back-top a:hover { color:var(--accent-brown); }
+        .back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent-brown); color:var(--bg-primary); border:none; font-size:1.2rem; cursor:pointer; z-index:200; opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; -webkit-tap-highlight-color:transparent; }
+        .back-to-top.visible { opacity:0.85; visibility:visible; }
+        .back-to-top:hover { opacity:1; }
         .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
         .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
         .footer-credit strong { color:var(--accent-brown); }
@@ -280,7 +280,7 @@
         </p>
     </div>
 
-    <div class="back-top"><a href="#top">↑ Back to top</a></div>
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 </main>
 
@@ -289,5 +289,11 @@
     <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
 </footer>
 
+<script>
+window.addEventListener("scroll", function() {
+    var btn = document.getElementById("backToTop");
+    if (btn) btn.classList.toggle("visible", window.scrollY > 400);
+});
+</script>
 </body>
 </html>

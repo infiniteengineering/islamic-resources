@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated Witr prayer adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Witr Prayer Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header-arabic { font-family:'Amiri',serif; font-size:1.7rem; color:var(--text-arabic); direction:rtl; margin-bottom:8px; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:500px; margin:0 auto; }
+        .main { flex:1; max-width:720px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section-divider { text-align:center; font-size:0.75rem; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:32px 0 24px; display:flex; align-items:center; gap:14px; }
+        .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border-color); }
+        .dua-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:28px 28px 24px; margin-bottom:20px; box-shadow:0 2px 10px var(--shadow-color); }
+        .source-tag { font-size:0.68rem; font-weight:700; color:#fff; background:var(--accent-brown); padding:3px 9px; border-radius:3px; letter-spacing:0.8px; margin-bottom:14px; display:inline-block; }
+        .dua-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+        .dua-num { font-size:0.72rem; font-weight:700; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:1px; }
+        .freq-badge { font-size:0.72rem; font-weight:600; color:var(--accent-brown); background:var(--bg-primary); border:1px solid var(--border-color); padding:3px 10px; border-radius:4px; }
+        .arabic { font-family:'Uthmanic','Amiri',serif; font-size:1.55rem; color:var(--text-arabic); direction:rtl; text-align:right; line-height:2.1; margin-bottom:14px; }
+        .transliteration { font-style:italic; font-size:0.95rem; color:var(--text-secondary); margin-bottom:10px; line-height:1.7; }
+        .translation { font-size:0.97rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .note { font-size:0.85rem; color:var(--accent-brown); background:var(--bg-primary); border-left:3px solid var(--accent-brown-light); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:12px; line-height:1.65; }
+        .reference { font-size:0.79rem; color:var(--accent-brown-light); border-top:1px solid var(--border-color); padding-top:10px; margin-top:4px; line-height:1.6; }
+        .reference strong { color:var(--accent-brown); }
+        .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
+        .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
+        .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
+        .back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent-brown); color:var(--bg-primary); border:none; font-size:1.2rem; cursor:pointer; z-index:200; opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; -webkit-tap-highlight-color:transparent; }
+        .back-to-top.visible { opacity:0.85; visibility:visible; }
+        .back-to-top:hover { opacity:1; }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-links { font-size:0.8rem; margin-bottom:8px; }
+        .footer-links a { color:var(--accent-brown-light); text-decoration:none; margin:0 8px; }
+        .footer-links a:hover { color:var(--accent-brown); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .bismillah{font-size:1.75rem;} .dua-card{padding:20px 18px;} .arabic{font-size:1.4rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">صلاة الوتر</div>
+    <h1>Witr Prayer Adhkār</h1>
+    <p class="subtitle">The odd-numbered prayer that concludes the night — guidance and supplications</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">The Practice of Witr</div>
+
+    <!-- #1 — Command for Witr -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 1</span>
+            <span class="freq-badge">Every Night</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Witr is a duty upon every Muslim. Whoever wishes may pray five rakʿahs, whoever wishes may pray three, and whoever wishes may pray one." He ﷺ also said: "Make Witr the last of your prayer at night."</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 1422 — Ṣaḥīḥ (al-Albānī) · An-Nasa'i 1712 — Ṣaḥīḥ (al-Albānī)<br>Al-Bukhari 998 — Ṣaḥīḥ · Muslim 751 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #2 — Number of rakats -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 2</span>
+            <span class="freq-badge">Number of Rakʿahs</span>
+        </div>
+        <div class="note">Multiple authentic reports exist regarding the number of rakʿahs for Witr:</div>
+        <div class="translation">• <strong>One rakʿah</strong> — The minimum<br>
+        • <strong>Three rakʿahs</strong> — Very common<br>
+        • <strong>Five rakʿahs</strong> — Authentic<br>
+        • <strong>Seven rakʿahs</strong> — Authentic<br>
+        • <strong>Nine rakʿahs</strong> — Authentic<br>
+        • <strong>Eleven rakʿahs</strong> — The Prophet's ﷺ most common practice</div>
+        <div class="note">All of these are established in the Sunnah. The worshipper may choose according to ability and circumstances.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 738 — Ṣaḥīḥ · Abu Dawud 1422 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #3 — Timing -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 3</span>
+            <span class="freq-badge">Timing</span>
+        </div>
+        <div class="note">Witr is prayed after the ʿIshāʾ prayer and before Fajr. The Prophet ﷺ said: "Allah has added a prayer for you, which is Witr, so pray it between ʿIshāʾ and Fajr." The last third of the night is the most virtuous time, but it may be prayed immediately after ʿIshāʾ.</div>
+        <div class="reference"><strong>Source:</strong> At-Tirmidhi 452 — Ṣaḥīḥ · Ahmad 21459 — Ṣaḥīḥ (Shuʿayb al-Arnaʾūṭ)</div>
+    </div>
+
+    <div class="section-divider">Qunūt of Witr</div>
+
+    <!-- #4 — When to make Qunut -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 4</span>
+            <span class="freq-badge">Qunūt Timing</span>
+        </div>
+        <div class="note">Qunūt is recited in the last rakʿah of Witr, after completing the recitation and before going into rukūʿ (bowing). Some scholars also allow it after rising from rukūʿ. Both positions are based on authentic reports.</div>
+        <div class="reference"><strong>Source:</strong> An-Nasa'i 1746 — Ṣaḥīḥ (al-Albānī) · Ibn Majah 1182 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #5 — Qunut dua (main) -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 5</span>
+            <span class="freq-badge">Qunūt — Primary Wording</span>
+        </div>
+        <div class="note"><strong>This wording is authentically reported.</strong> Other authentic wordings also exist and are used by scholars. The Prophet ﷺ taught this supplication to al-Ḥasan ibn ʿAlī رضي الله عنهما.</div>
+        <div class="arabic">اللَّهُمَّ اهْدِنِي فِيمَنْ هَدَيْتَ ، وَعَافِنِي فِيمَنْ عَافَيْتَ ، وَتَوَلَّنِي فِيمَنْ تَوَلَّيْتَ ، وَبَارِكْ لِي فِيمَا أَعْطَيْتَ ، وَقِنِي شَرَّ مَا قَضَيْتَ ، فَإِنَّكَ تَقْضِي وَلَا يُقْضَى عَلَيْكَ ، وَإِنَّهُ لَا يَذِلُّ مَنْ وَالَيْتَ ، وَلَا يَعِزُّ مَنْ عَادَيْتَ ، تَبَارَكْتَ رَبَّنَا وَتَعَالَيْتَ</div>
+        <div class="transliteration">Allāhumma hdinī fīman hadayt, wa 'āfinī fīman 'āfayt, wa tawallanī fīman tawallayt, wa bārik lī fīmā a'ṭayt, wa qinī sharra mā qaḍayt, fa-innaka taqḍī wa lā yuqḍā 'alayk, wa innahu lā yadhillu man wālayt, wa lā ya'izzu man 'ādayt, tabārakta rabbanā wa ta'ālayt.</div>
+        <div class="translation">O Allah, guide me among those You have guided, pardon me among those You have pardoned, be an ally to me among those to whom You are an ally, and bless for me what You have bestowed. Protect me from the evil You have decreed, for indeed You decree and none can decree over You. He whom You support can never be humiliated, and he whom You oppose can never be honored. Blessed are You, our Lord, and Exalted.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 1425 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 464 — Ṣaḥīḥ · An-Nasa'i 1745 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #6 — Addition to Qunut -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 6</span>
+            <span class="freq-badge">Addition After Qunūt</span>
+        </div>
+        <div class="note">This addition is reported to be recited after the main Qunūt supplication:</div>
+        <div class="arabic">اللَّهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ ، وَنُثْنِي عَلَيْكَ الْخَيْرَ ، وَلَا نَكْفُرُكَ ، وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ ، اللَّهُمَّ إِيَّاكَ نَعْبُدُ ، وَلَكَ نُصَلِّي وَنَسْجُدُ ، وَإِلَيْكَ نَسْعَى وَنَحْفِدُ ، نَرْجُو رَحْمَتَكَ وَنَخْشَى عَذَابَكَ ، إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ</div>
+        <div class="transliteration">Allāhumma innā nasta'īnuka wa nastaghfiruk, wa nuthnī 'alayka-l-khayr, wa lā nakfuruk, wa nakhla'u wa natruku man yafjuruk. Allāhumma iyyāka na'bud, wa laka nuṣallī wa nasjud, wa ilayka nas'ā wa naḥfid, narjū raḥmatak wa nakhshā 'adhābak, inna 'adhābaka bi-l-kuffāri mulḥiq.</div>
+        <div class="translation">O Allah, we seek Your help and Your forgiveness, and we praise You with all good and do not deny You. We renounce and abandon whoever disobeys You. O Allah, You alone we worship, to You we pray and prostrate, and towards You we strive and hasten. We hope for Your mercy and fear Your punishment, verily Your punishment will surely reach the disbelievers.</div>
+        <div class="reference"><strong>Source:</strong> Authenticated in narrations from ʿUmar رضي الله عنه — Al-Bayhaqi 2/210 — Graded Ḥasan by some scholars</div>
+    </div>
+
+    <!-- #7 — Salawat after Qunut -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 7</span>
+            <span class="freq-badge">After Qunūt (Optional)</span>
+        </div>
+        <div class="note">Some scholars recommend sending ṣalawāt (blessings) upon the Prophet ﷺ after Qunūt before going into rukūʿ:</div>
+        <div class="arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</div>
+        <div class="transliteration">Allāhumma ṣalli 'alā Muḥammad wa 'alā āli Muḥammad.</div>
+        <div class="translation">O Allah, send prayers upon Muḥammad and upon the family of Muḥammad.</div>
+        <div class="reference"><strong>Source:</strong> Based on the practice of some of the Salaf</div>
+    </div>
+
+    <div class="section-divider">After Witr</div>
+
+    <!-- #8 — After completing Witr -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 8</span>
+            <span class="freq-badge">After Salām from Witr</span>
+        </div>
+        <div class="note">The Prophet ﷺ would say after the salām of Witr:</div>
+        <div class="arabic">سُبْحَانَ الْمَلِكِ الْقُدُّوسِ</div>
+        <div class="transliteration">Subḥāna-l-maliki-l-quddūs.</div>
+        <div class="translation">How perfect is the King, the Most Holy.</div>
+        <div class="note">He ﷺ would repeat this three times, elongating the last repetition and raising his voice.</div>
+        <div class="reference"><strong>Source:</strong> An-Nasa'i 1699 — Ṣaḥīḥ (al-Albānī) · Abu Dawud 1430 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #9 — Addition after Witr -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 9</span>
+            <span class="freq-badge">Addition After Witr</span>
+        </div>
+        <div class="note">This is an authentic addition to be said after "Subḥāna-l-maliki-l-quddūs":</div>
+        <div class="arabic">سُبْحَانَ الْمَلِكِ الْقُدُّوسِ رَبِّ الْمَلَائِكَةِ وَالرُّوحِ</div>
+        <div class="transliteration">Subḥāna-l-maliki-l-quddūs, rabbi-l-malā'ikati wa-r-rūḥ.</div>
+        <div class="translation">How perfect is the King, the Most Holy, Lord of the angels and the Spirit.</div>
+        <div class="reference"><strong>Source:</strong> An-Nasa'i 1730 — Ṣaḥīḥ (al-Albānī) · Ad-Daraqutni 2/31 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <div class="section-divider">Additional Guidance</div>
+
+    <!-- #10 — Making up Witr -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 10</span>
+            <span class="freq-badge">If Witr is Missed</span>
+        </div>
+        <div class="note">If someone sleeps through Witr or forgets to pray it, the Prophet ﷺ said: "Let him pray it when he remembers." However, it is prayed as an even number (Shaf') rather than odd. For example, if one usually prays three rakʿahs for Witr, make it up as four rakʿahs (two sets of two).</div>
+        <div class="reference"><strong>Source:</strong> Muslim 746 — Ṣaḥīḥ · At-Tirmidhi 467 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #11 — Two Witr in one night -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 11</span>
+            <span class="freq-badge">One Witr Per Night</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "There are not two Witr prayers in one night." This means if someone prays Witr early in the night, then wakes to pray Tahajjud, they should not pray Witr again — Witr has already been completed.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 1439 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 470 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah.
+        </p>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="adhkar-methodology.html">Methodology</a>
+    </div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+<script>
+window.addEventListener("scroll", function() {
+    var btn = document.getElementById("backToTop");
+    if (btn) btn.classList.toggle("visible", window.scrollY > 400);
+});
+</script>
+</body>
+</html>

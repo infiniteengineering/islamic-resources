@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated Tarawih prayer adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Tarawih Prayer Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header-arabic { font-family:'Amiri',serif; font-size:1.7rem; color:var(--text-arabic); direction:rtl; margin-bottom:8px; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:500px; margin:0 auto; }
+        .main { flex:1; max-width:720px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section-divider { text-align:center; font-size:0.75rem; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:32px 0 24px; display:flex; align-items:center; gap:14px; }
+        .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border-color); }
+        .dua-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:28px 28px 24px; margin-bottom:20px; box-shadow:0 2px 10px var(--shadow-color); }
+        .source-tag { font-size:0.68rem; font-weight:700; color:#fff; background:var(--accent-brown); padding:3px 9px; border-radius:3px; letter-spacing:0.8px; margin-bottom:14px; display:inline-block; }
+        .dua-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+        .dua-num { font-size:0.72rem; font-weight:700; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:1px; }
+        .freq-badge { font-size:0.72rem; font-weight:600; color:var(--accent-brown); background:var(--bg-primary); border:1px solid var(--border-color); padding:3px 10px; border-radius:4px; }
+        .arabic { font-family:'Uthmanic','Amiri',serif; font-size:1.55rem; color:var(--text-arabic); direction:rtl; text-align:right; line-height:2.1; margin-bottom:14px; }
+        .transliteration { font-style:italic; font-size:0.95rem; color:var(--text-secondary); margin-bottom:10px; line-height:1.7; }
+        .translation { font-size:0.97rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .note { font-size:0.85rem; color:var(--accent-brown); background:var(--bg-primary); border-left:3px solid var(--accent-brown-light); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:12px; line-height:1.65; }
+        .reference { font-size:0.79rem; color:var(--accent-brown-light); border-top:1px solid var(--border-color); padding-top:10px; margin-top:4px; line-height:1.6; }
+        .reference strong { color:var(--accent-brown); }
+        .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
+        .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
+        .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
+        .back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent-brown); color:var(--bg-primary); border:none; font-size:1.2rem; cursor:pointer; z-index:200; opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; -webkit-tap-highlight-color:transparent; }
+        .back-to-top.visible { opacity:0.85; visibility:visible; }
+        .back-to-top:hover { opacity:1; }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-links { font-size:0.8rem; margin-bottom:8px; }
+        .footer-links a { color:var(--accent-brown-light); text-decoration:none; margin:0 8px; }
+        .footer-links a:hover { color:var(--accent-brown); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .bismillah{font-size:1.75rem;} .dua-card{padding:20px 18px;} .arabic{font-size:1.4rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">صلاة التراويح</div>
+    <h1>Tarawih Prayer Adhkār</h1>
+    <p class="subtitle">Night prayer in Ramadan — guidance from the Prophet ﷺ and supplications during Tarawih</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">The Practice of Tarawih</div>
+
+    <!-- #1 — Tarawih practice -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 1</span>
+            <span class="freq-badge">Ramadan Nights</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Whoever stands (in prayer) during Ramadan with faith and seeking reward, his previous sins will be forgiven." He ﷺ prayed eleven rakʿahs at night, including Witr.</div>
+        <div class="note">Variations exist in the number of rakʿahs: eight rakʿahs plus three Witr (eleven total) was the Prophet's ﷺ regular practice. Twenty rakʿahs was practiced by the Companions during ʿUmar's caliphate. Both are authentic and accepted.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 2009 — Ṣaḥīḥ · Muslim 759 — Ṣaḥīḥ (for the hadith about forgiveness)<br>Al-Bukhari 1147 — Ṣaḥīḥ · Muslim 738 — Ṣaḥīḥ (for eleven rakʿahs)</div>
+    </div>
+
+    <!-- #2 — Intention -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 2</span>
+            <span class="freq-badge">Before Beginning</span>
+        </div>
+        <div class="note">The intention for Tarawih is made in the heart. It is voluntary night prayer (qiyam) in Ramadan, prayed after ʿIshāʾ. No specific verbal intention is required — the intention is through the act of standing for prayer.</div>
+        <div class="reference"><strong>Principle:</strong> "Actions are by intentions" — Al-Bukhari 1 — Ṣaḥīḥ · Muslim 1907 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Between Sets of Rakʿahs</div>
+
+    <!-- #3 — Between sets -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 3</span>
+            <span class="freq-badge">Between Sets</span>
+        </div>
+        <div class="note">It is recommended to rest briefly between sets of rakʿahs. During these breaks, the worshipper may sit quietly, make dhikr, or recite Qur'an. The Companions would rest for the duration it would take to pray four rakʿahs.</div>
+        <div class="reference"><strong>Source:</strong> Reported in authenticated compilations regarding the practice during ʿUmar's رضي الله عنه time</div>
+    </div>
+
+    <!-- #4 — Tasbih -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 4</span>
+            <span class="freq-badge">Between Sets (Optional)</span>
+        </div>
+        <div class="arabic">سُبْحَانَ اللهِ وَالحَمْدُ للهِ وَلَا إِلَهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</div>
+        <div class="transliteration">Subḥānallāh, wa-l-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar.</div>
+        <div class="translation">How perfect Allah is, and all praise is for Allah, and none has the right to be worshipped except Allah, and Allah is the Most Great.</div>
+        <div class="note">General dhikr that can be said during breaks between prayer sets.</div>
+        <div class="reference"><strong>Source:</strong> At-Tirmidhi 3585 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">During Tarawih Prayer</div>
+
+    <!-- #5 — Long recitation -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 5</span>
+            <span class="freq-badge">During Prayer</span>
+        </div>
+        <div class="note">The Prophet ﷺ would recite long portions of the Qur'an during night prayer. He would stand for extended periods, sometimes reciting an entire Juz' (section) in one rakʿah. However, he also said: "Pray as you have seen me praying" — meaning balance and moderation are important, especially when leading others.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 631 — Ṣaḥīḥ · Muslim 772 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #6 — After recitation -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 6</span>
+            <span class="freq-badge">During Recitation</span>
+        </div>
+        <div class="note">When the Prophet ﷺ recited a verse mentioning mercy, he would pause and ask for mercy. When he recited a verse mentioning punishment, he would pause and seek refuge. When he recited a verse of glorification, he would glorify Allah.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 772 — Ṣaḥīḥ · Abu Dawud 873 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <div class="section-divider">After Completing Tarawih</div>
+
+    <!-- #7 — After tarawih -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 7</span>
+            <span class="freq-badge">After Tarawih</span>
+        </div>
+        <div class="note">After completing prayer, the same adhkār said after obligatory prayers may be recited. This includes:</div>
+        <div class="arabic">أَسْتَغْفِرُ اللهَ</div>
+        <div class="translation">I seek Allah's forgiveness — <strong>3 times</strong></div>
+        <div class="arabic">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</div>
+        <div class="translation">O Allah, You are Peace and from You is peace. Blessed are You, O Possessor of Majesty and Honor.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 591 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #8 — Witr follows -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 8</span>
+            <span class="freq-badge">Concluding with Witr</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Make Witr the last of your prayer at night." Tarawih is followed by Witr prayer (one, three, five, seven, nine, or eleven rakʿahs). The Witr prayer has specific supplications covered in the dedicated Witr section.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 998 — Ṣaḥīḥ · Muslim 751 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Additional Guidance</div>
+
+    <!-- #9 — Praying at home -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Guidance · 9</span>
+            <span class="freq-badge">At Home or Mosque</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "The best prayer is a person's prayer in his home, except for the prescribed (obligatory) prayers." This includes Tarawih. However, praying in congregation at the mosque is also from the Sunnah and was practiced by the Companions. Both are excellent.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 731 — Ṣaḥīḥ · Muslim 781 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #10 — Laylat al-Qadr -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 10</span>
+            <span class="freq-badge">Seeking Laylat al-Qadr</span>
+        </div>
+        <div class="note">The Prophet ﷺ taught this supplication for Laylat al-Qadr (the Night of Decree), which is sought in the last ten nights of Ramadan during Tarawih and Qiyam:</div>
+        <div class="arabic">اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</div>
+        <div class="transliteration">Allāhumma innaka 'afuwwun tuḥibbu-l-'afwa fa-ʿfu 'annī.</div>
+        <div class="translation">O Allah, You are Most Forgiving, and You love forgiveness, so forgive me.</div>
+        <div class="reference"><strong>Source:</strong> At-Tirmidhi 3513 — Ṣaḥīḥ · Ibn Majah 3850 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah.
+        </p>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="adhkar-methodology.html">Methodology</a>
+    </div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+<script>
+window.addEventListener("scroll", function() {
+    var btn = document.getElementById("backToTop");
+    if (btn) btn.classList.toggle("visible", window.scrollY > 400);
+});
+</script>
+</body>
+</html>
