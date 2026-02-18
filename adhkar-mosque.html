@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated mosque and adhān adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Mosque & Adhān Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header-arabic { font-family:'Amiri',serif; font-size:1.7rem; color:var(--text-arabic); direction:rtl; margin-bottom:8px; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:500px; margin:0 auto; }
+        .main { flex:1; max-width:720px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section-divider { text-align:center; font-size:0.75rem; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:32px 0 24px; display:flex; align-items:center; gap:14px; }
+        .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border-color); }
+        .dua-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:28px 28px 24px; margin-bottom:20px; box-shadow:0 2px 10px var(--shadow-color); }
+        .source-tag { font-size:0.68rem; font-weight:700; color:#fff; background:var(--accent-brown); padding:3px 9px; border-radius:3px; letter-spacing:0.8px; margin-bottom:14px; display:inline-block; }
+        .dua-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+        .dua-num { font-size:0.72rem; font-weight:700; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:1px; }
+        .freq-badge { font-size:0.72rem; font-weight:600; color:var(--accent-brown); background:var(--bg-primary); border:1px solid var(--border-color); padding:3px 10px; border-radius:4px; }
+        .arabic { font-family:'Uthmanic','Amiri',serif; font-size:1.55rem; color:var(--text-arabic); direction:rtl; text-align:right; line-height:2.1; margin-bottom:14px; }
+        .transliteration { font-style:italic; font-size:0.95rem; color:var(--text-secondary); margin-bottom:10px; line-height:1.7; }
+        .translation { font-size:0.97rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .note { font-size:0.85rem; color:var(--accent-brown); background:var(--bg-primary); border-left:3px solid var(--accent-brown-light); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:12px; line-height:1.65; }
+        .reference { font-size:0.79rem; color:var(--accent-brown-light); border-top:1px solid var(--border-color); padding-top:10px; margin-top:4px; line-height:1.6; }
+        .reference strong { color:var(--accent-brown); }
+        .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
+        .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
+        .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
+        .back-top { text-align:center; margin-top:40px; }
+        .back-top a { font-size:0.82rem; color:var(--accent-brown-light); text-decoration:none; }
+        .back-top a:hover { color:var(--accent-brown); }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .bismillah{font-size:1.75rem;} .dua-card{padding:20px 18px;} .arabic{font-size:1.4rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">أذكار المسجد والأذان</div>
+    <h1>Mosque & Adhān Adhkār</h1>
+    <p class="subtitle">Remembrances for going to the mosque, entering, leaving, and responding to the adhān</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">Going to the Mosque</div>
+
+    <!-- #1 — Going to mosque -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 1</span>
+            <span class="freq-badge">Leaving for Mosque</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا ، وَفِي لِسَانِي نُورًا ، وَاجْعَلْ فِي سَمْعِي نُورًا ، وَاجْعَلْ فِي بَصَرِي نُورًا ، وَاجْعَلْ مِنْ خَلْفِي نُورًا ، وَمِنْ أَمَامِي نُورًا ، وَاجْعَلْ مِنْ فَوْقِي نُورًا ، وَمِنْ تَحْتِي نُورًا ، اللَّهُمَّ أَعْطِنِي نُورًا</div>
+        <div class="transliteration">Allāhumma j'al fī qalbī nūrā, wa fī lisānī nūrā, wa j'al fī sam'ī nūrā, wa j'al fī baṣarī nūrā, wa j'al min khalfī nūrā, wa min amāmī nūrā, wa j'al min fawqī nūrā, wa min taḥtī nūrā. Allāhumma a'ṭinī nūrā.</div>
+        <div class="translation">O Allah, place light in my heart, light in my tongue, place light in my hearing, place light in my sight, place light behind me, light in front of me, place light above me, and light below me. O Allah, grant me light.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6316 — Ṣaḥīḥ · Muslim 763 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Entering & Leaving the Mosque</div>
+
+    <!-- #2 — Entering mosque -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 2</span>
+            <span class="freq-badge">Entering Mosque</span>
+        </div>
+        <div class="note">Enter with the right foot and say:</div>
+        <div class="arabic">أَعُوذُ بِاللَّهِ الْعَظِيمِ ، وَبِوَجْهِهِ الْكَرِيمِ ، وَسُلْطَانِهِ الْقَدِيمِ ، مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+        <div class="transliteration">A'ūdhu billāhi-l-'aẓīm, wa bi-wajhihi-l-karīm, wa sulṭānihi-l-qadīm, mina-sh-shayṭāni-r-rajīm.</div>
+        <div class="translation">I seek refuge in Allah the Almighty, in His Noble Face, and His Eternal Authority, from the accursed Shayṭān.</div>
+        <div class="note">When one says this, Shayṭān says: "He has been protected from me for the whole day."</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 466 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #3 — Entering mosque dua -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 3</span>
+            <span class="freq-badge">Entering Mosque</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</div>
+        <div class="transliteration">Bismillāh, wa-ṣ-ṣalātu wa-s-salāmu 'alā rasūli Allāh. Allāhumma ftaḥ lī abwāba raḥmatik.</div>
+        <div class="translation">In the Name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, open for me the gates of Your mercy.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 713 — Ṣaḥīḥ · Abu Dawud 465 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #4 — Leaving mosque -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 4</span>
+            <span class="freq-badge">Leaving Mosque</span>
+        </div>
+        <div class="note">Leave with the left foot and say:</div>
+        <div class="arabic">بِسْمِ اللَّهِ ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ</div>
+        <div class="transliteration">Bismillāh, wa-ṣ-ṣalātu wa-s-salāmu 'alā rasūli Allāh. Allāhumma innī as'aluka min faḍlik.</div>
+        <div class="translation">In the Name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, I ask You from Your bounty.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 713 — Ṣaḥīḥ · Ibn Majah 771 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <div class="section-divider">Responding to the Adhān</div>
+
+    <!-- #5 — Repeating adhan -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 5</span>
+            <span class="freq-badge">During Adhān</span>
+        </div>
+        <div class="note">Repeat what the mu'adhdhin says, except when he says "Ḥayya 'ala-ṣ-ṣalāh" (Come to prayer) and "Ḥayya 'ala-l-falāḥ" (Come to success), say instead:</div>
+        <div class="arabic">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+        <div class="transliteration">Lā ḥawla wa lā quwwata illā billāh.</div>
+        <div class="translation">There is no might nor power except with Allah.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 611 — Ṣaḥīḥ · Muslim 383 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #6 — After adhan -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 6</span>
+            <span class="freq-badge">After Adhān</span>
+        </div>
+        <div class="note">After the mu'adhdhin finishes, send ṣalawāt upon the Prophet ﷺ and then say:</div>
+        <div class="arabic">اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ ، وَالصَّلَاةِ الْقَائِمَةِ ، آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ ، وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ</div>
+        <div class="transliteration">Allāhumma rabba hādhihi-d-da'wati-t-tāmmah, wa-ṣ-ṣalāti-l-qā'imah, āti Muḥammadan al-wasīlata wa-l-faḍīlah, wa-b'athu maqāman maḥmūdan alladhī wa'adtah.</div>
+        <div class="translation">O Allah, Lord of this perfect call and established prayer, grant Muḥammad the intercession and favor, and raise him to the praised station which You have promised him.</div>
+        <div class="note">Whoever says this, my intercession will be guaranteed for him on the Day of Resurrection.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 614 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #7 — Between adhan and iqamah -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 7</span>
+            <span class="freq-badge">Between Adhān & Iqāmah</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Supplication is not rejected between the adhān and the iqāmah, so make duʿā'."</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 521 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 212 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">While in the Mosque</div>
+
+    <!-- #8 — Two rak'ah -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 8</span>
+            <span class="freq-badge">Upon Entering Mosque</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "When any one of you enters the mosque, let him not sit down until he prays two rakʿahs."</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 444 — Ṣaḥīḥ · Muslim 714 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #9 — Sitting in mosque -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 9</span>
+            <span class="freq-badge">Sitting in Mosque</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "The angels send prayers upon any one of you so long as he remains in his place of prayer for which he made wuḍū', saying: 'O Allah, forgive him; O Allah, have mercy on him.'"</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 659 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #10 — Leaving mosque -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 10</span>
+            <span class="freq-badge">Virtue of Walking to Mosque</span>
+        </div>
+        <div class="note">The Prophet ﷺ said: "Whoever purifies himself in his house, then comes to the mosque to perform an obligatory prayer, one of his steps erases a sin and the other raises him a degree."</div>
+        <div class="reference"><strong>Source:</strong> Muslim 666 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah.
+        </p>
+    </div>
+
+    <div class="back-top"><a href="#top">↑ Back to top</a></div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links" style="font-size:0.8rem; margin-bottom:8px;"><a href="adhkar-methodology.html" style="color:var(--accent-brown-light); text-decoration:none; margin:0 8px;">Methodology</a></div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+</body>
+</html>

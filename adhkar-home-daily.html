@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated home and daily life adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Home & Daily Life Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header-arabic { font-family:'Amiri',serif; font-size:1.7rem; color:var(--text-arabic); direction:rtl; margin-bottom:8px; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:500px; margin:0 auto; }
+        .main { flex:1; max-width:720px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section-divider { text-align:center; font-size:0.75rem; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:32px 0 24px; display:flex; align-items:center; gap:14px; }
+        .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border-color); }
+        .dua-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:28px 28px 24px; margin-bottom:20px; box-shadow:0 2px 10px var(--shadow-color); }
+        .source-tag { font-size:0.68rem; font-weight:700; color:#fff; background:var(--accent-brown); padding:3px 9px; border-radius:3px; letter-spacing:0.8px; margin-bottom:14px; display:inline-block; }
+        .dua-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+        .dua-num { font-size:0.72rem; font-weight:700; color:var(--accent-brown-light); text-transform:uppercase; letter-spacing:1px; }
+        .freq-badge { font-size:0.72rem; font-weight:600; color:var(--accent-brown); background:var(--bg-primary); border:1px solid var(--border-color); padding:3px 10px; border-radius:4px; }
+        .arabic { font-family:'Uthmanic','Amiri',serif; font-size:1.55rem; color:var(--text-arabic); direction:rtl; text-align:right; line-height:2.1; margin-bottom:14px; }
+        .transliteration { font-style:italic; font-size:0.95rem; color:var(--text-secondary); margin-bottom:10px; line-height:1.7; }
+        .translation { font-size:0.97rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .note { font-size:0.85rem; color:var(--accent-brown); background:var(--bg-primary); border-left:3px solid var(--accent-brown-light); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:12px; line-height:1.65; }
+        .reference { font-size:0.79rem; color:var(--accent-brown-light); border-top:1px solid var(--border-color); padding-top:10px; margin-top:4px; line-height:1.6; }
+        .reference strong { color:var(--accent-brown); }
+        .methodology-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:20px 22px; margin-top:38px; }
+        .methodology-box .info-title { font-weight:700; color:var(--accent-brown); margin-bottom:8px; font-size:0.88rem; }
+        .methodology-box p { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; }
+        .back-top { text-align:center; margin-top:40px; }
+        .back-top a { font-size:0.82rem; color:var(--accent-brown-light); text-decoration:none; }
+        .back-top a:hover { color:var(--accent-brown); }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .bismillah{font-size:1.75rem;} .dua-card{padding:20px 18px;} .arabic{font-size:1.4rem;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">أذكار البيت والحياة اليومية</div>
+    <h1>Home & Daily Life Adhkār</h1>
+    <p class="subtitle">Remembrances for entering home, eating, drinking, wearing clothes, and daily activities</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">Entering & Leaving Home</div>
+
+    <!-- #1 — Entering home -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 1</span>
+            <span class="freq-badge">Entering Home</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ وَلَجْنَا ، وَبِسْمِ اللَّهِ خَرَجْنَا ، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا</div>
+        <div class="transliteration">Bismillāhi walajnā, wa bismillāhi kharajnā, wa 'alā Allāhi rabbinā tawakkalnā.</div>
+        <div class="translation">In the Name of Allah we enter, and in the Name of Allah we leave, and upon Allah our Lord we rely.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5096 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #2 — Leaving home -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 2</span>
+            <span class="freq-badge">Leaving Home</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ ، تَوَكَّلْتُ عَلَى اللَّهِ ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+        <div class="transliteration">Bismillāh, tawakkaltu 'alā Allāh, lā ḥawla wa lā quwwata illā billāh.</div>
+        <div class="translation">In the Name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.</div>
+        <div class="note">The Prophet ﷺ said: "When a man goes out of his house and says this, it will be said to him: 'You are guided, defended, and protected.' The devils will go far from him."</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5095 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3426 — Ḥasan Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Eating & Drinking</div>
+
+    <!-- #3 — Before eating -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 3</span>
+            <span class="freq-badge">Before Eating</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ</div>
+        <div class="transliteration">Bismillāh.</div>
+        <div class="translation">In the Name of Allah.</div>
+        <div class="note">If one forgets to say Bismillah before eating, say when remembering: "Bismillāhi fī awwalihi wa ākhirih" (In the Name of Allah at its beginning and end).</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 3767 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 1858 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #4 — After eating -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 4</span>
+            <span class="freq-badge">After Eating</span>
+        </div>
+        <div class="arabic">الحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ</div>
+        <div class="transliteration">Alḥamdu lillāhi-lladhī aṭ'amanī hādhā wa razaqanīhi min ghayri ḥawlin minnee wa lā quwwah.</div>
+        <div class="translation">All praise is for Allah Who fed me this and provided it for me without any might nor power from myself.</div>
+        <div class="note">Whoever says this, his previous sins are forgiven.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 4023 — Ḥasan (al-Albānī) · At-Tirmidhi 3458 — Ḥasan</div>
+    </div>
+
+    <!-- #5 — Guest for host -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 5</span>
+            <span class="freq-badge">Guest for Host</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ بَارِكْ لَهُمْ فِيمَا رَزَقْتَهُمْ ، وَاغْفِرْ لَهُمْ وَارْحَمْهُمْ</div>
+        <div class="transliteration">Allāhumma bārik lahum fīmā razaqtahum, wa ghfir lahum wa rḥamhum.</div>
+        <div class="translation">O Allah, bless for them what You have provided them, and forgive them and have mercy upon them.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 2042 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Wearing Clothes</div>
+
+    <!-- #6 — New clothes -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 6</span>
+            <span class="freq-badge">Wearing New Clothes</span>
+        </div>
+        <div class="arabic">الحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ</div>
+        <div class="transliteration">Alḥamdu lillāhi-lladhī kasānī hādhā wa razaqanīhi min ghayri ḥawlin minnee wa lā quwwah.</div>
+        <div class="translation">All praise is for Allah Who clothed me with this and provided it for me without any might nor power from myself.</div>
+        <div class="note">Whoever says this, his previous sins are forgiven.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 4023 — Ḥasan (al-Albānī) · At-Tirmidhi 3458 — Ḥasan</div>
+    </div>
+
+    <!-- #7 — Undressing -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 7</span>
+            <span class="freq-badge">Removing Clothes</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ</div>
+        <div class="transliteration">Bismillāh.</div>
+        <div class="translation">In the Name of Allah.</div>
+        <div class="note">Say Bismillah when removing clothes to protect one's modesty from being seen by the jinn.</div>
+        <div class="reference"><strong>Source:</strong> At-Tirmidhi 606 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <div class="section-divider">Restroom</div>
+
+    <!-- #8 — Entering restroom -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 8</span>
+            <span class="freq-badge">Entering Restroom</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الخُبُثِ وَالخَبَائِثِ</div>
+        <div class="transliteration">Allāhumma innī a'ūdhu bika mina-l-khubuthi wa-l-khabā'ith.</div>
+        <div class="translation">O Allah, I seek refuge in You from male and female devils.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 142 — Ṣaḥīḥ · Muslim 375 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #9 — Leaving restroom -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 9</span>
+            <span class="freq-badge">Leaving Restroom</span>
+        </div>
+        <div class="arabic">غُفْرَانَكَ</div>
+        <div class="transliteration">Ghufrānak.</div>
+        <div class="translation">I seek Your forgiveness.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 30 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 7 — Ṣaḥīḥ · Ibn Majah 300 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Wuḍū'</div>
+
+    <!-- #10 — Before wudu -->
+    <div class="dua-card">
+        <span class="source-tag">PRACTICE OF THE PROPHET ﷺ</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 10</span>
+            <span class="freq-badge">Before Wuḍū'</span>
+        </div>
+        <div class="arabic">بِسْمِ اللَّهِ</div>
+        <div class="transliteration">Bismillāh.</div>
+        <div class="translation">In the Name of Allah.</div>
+        <div class="note">There is no wuḍū' for one who does not mention the Name of Allah.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 101 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 25 — Ṣaḥīḥ · Ibn Majah 397 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #11 — After wudu -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 11</span>
+            <span class="freq-badge">After Wuḍū'</span>
+        </div>
+        <div class="arabic">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+        <div class="transliteration">Ashhadu an lā ilāha illallāhu waḥdahu lā sharīka lah, wa ashhadu anna Muḥammadan 'abduhu wa rasūluh.</div>
+        <div class="translation">I bear witness that none has the right to be worshipped except Allah alone, without partner, and I bear witness that Muḥammad is His slave and Messenger.</div>
+        <div class="note">The gates of Paradise will be opened for whoever says this.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 234 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="section-divider">Sneezing</div>
+
+    <!-- #12 — When sneezing -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 12</span>
+            <span class="freq-badge">When Sneezing</span>
+        </div>
+        <div class="arabic">الحَمْدُ لِلَّهِ</div>
+        <div class="transliteration">Alḥamdu lillāh.</div>
+        <div class="translation">All praise is for Allah.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6224 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #13 — Reply to sneezer -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 13</span>
+            <span class="freq-badge">Reply to One Who Sneezes</span>
+        </div>
+        <div class="note">When someone sneezes and says "Alḥamdu lillāh," reply with:</div>
+        <div class="arabic">يَرْحَمُكَ اللَّهُ</div>
+        <div class="transliteration">Yarḥamuka Allāh.</div>
+        <div class="translation">May Allah have mercy on you.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6224 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #14 — Sneezer's response -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 14</span>
+            <span class="freq-badge">Sneezer's Response</span>
+        </div>
+        <div class="note">When someone says "Yarḥamuka Allāh" to you, respond with:</div>
+        <div class="arabic">يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ</div>
+        <div class="transliteration">Yahdīkumu Allāhu wa yuṣliḥu bālakum.</div>
+        <div class="translation">May Allah guide you and rectify your condition.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6224 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah.
+        </p>
+    </div>
+
+    <div class="back-top"><a href="#top">↑ Back to top</a></div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links" style="font-size:0.8rem; margin-bottom:8px;"><a href="adhkar-methodology.html" style="color:var(--accent-brown-light); text-decoration:none; margin:0 8px;">Methodology</a></div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+</body>
+</html>

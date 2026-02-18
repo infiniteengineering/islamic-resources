@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authentication methodology and scholarly standards for Daily Adhkar collection.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Methodology & Authentication Standards — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Uthmanic'; src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype'); font-display: swap; }
+        :root { --bg-primary:#f7f3eb; --bg-card:#efe9dd; --text-primary:#3d2e1f; --text-secondary:#6b5744; --text-arabic:#2c1810; --accent-brown:#8b5a2b; --accent-brown-light:#a67c52; --border-color:#d4c9b8; --shadow-color:rgba(61,46,31,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; line-height:1.8; font-size:18px; display:flex; flex-direction:column; }
+        .back-nav { padding:14px 24px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; }
+        .back-link { font-size:0.85rem; color:var(--accent-brown-light); text-decoration:none; transition:color 0.2s; }
+        .back-link:hover { color:var(--accent-brown); }
+        .header { text-align:center; padding:50px 20px 38px; border-bottom:1px solid var(--border-color); background:linear-gradient(180deg,#efe9dd 0%,var(--bg-primary) 100%); }
+        .bismillah { font-family:'Uthmanic','Amiri',serif; font-size:2.2rem; color:var(--text-arabic); margin-bottom:20px; line-height:1.6; }
+        .header h1 { font-size:2rem; font-weight:700; color:var(--accent-brown); margin-bottom:8px; }
+        .header .subtitle { font-size:1rem; color:var(--text-secondary); font-style:italic; max-width:600px; margin:0 auto; }
+        .main { flex:1; max-width:780px; width:100%; margin:0 auto; padding:36px 20px 60px; }
+        .section { margin-bottom:40px; }
+        .section-title { font-size:1.4rem; font-weight:700; color:var(--accent-brown); margin-bottom:16px; border-bottom:2px solid var(--border-color); padding-bottom:8px; }
+        .content-box { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:24px 28px; margin-bottom:20px; }
+        .content-box h3 { font-size:1.1rem; font-weight:700; color:var(--accent-brown); margin-bottom:12px; }
+        .content-box p { font-size:0.95rem; color:var(--text-primary); line-height:1.75; margin-bottom:12px; }
+        .content-box p:last-child { margin-bottom:0; }
+        .content-box ul { margin-left:24px; margin-bottom:12px; }
+        .content-box li { font-size:0.95rem; color:var(--text-primary); line-height:1.75; margin-bottom:8px; }
+        .content-box strong { color:var(--accent-brown); }
+        .highlight-box { background:var(--bg-primary); border-left:4px solid var(--accent-brown); padding:16px 20px; margin:20px 0; border-radius:0 8px 8px 0; }
+        .highlight-box p { font-size:0.93rem; color:var(--text-secondary); line-height:1.7; margin-bottom:8px; }
+        .back-top { text-align:center; margin-top:40px; }
+        .back-top a { font-size:0.82rem; color:var(--accent-brown-light); text-decoration:none; }
+        .back-top a:hover { color:var(--accent-brown); }
+        .footer { text-align:center; padding:28px 20px; border-top:1px solid var(--border-color); }
+        .footer-links { font-size:0.8rem; color:var(--accent-brown-light); margin-bottom:8px; }
+        .footer-links a { color:var(--accent-brown-light); text-decoration:none; margin:0 8px; }
+        .footer-links a:hover { color:var(--accent-brown); }
+        .footer-credit { font-size:0.8rem; color:var(--accent-brown-light); }
+        .footer-credit strong { color:var(--accent-brown); }
+        @media (max-width:600px) { body{font-size:16px;} .header{padding:36px 16px 28px;} .header h1{font-size:1.6rem;} .content-box{padding:18px 20px;} }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <h1>About This Project</h1>
+    <p class="subtitle">Compilation methodology and source standards</p>
+</header>
+
+<main class="main">
+
+    <div class="section">
+        <div class="content-box" style="background: #fff9f0; border-left: 4px solid var(--accent-brown);">
+            <h3>About This Collection</h3>
+            <p>This collection has been compiled as a <strong>personal effort</strong> to gather authentic daily adhkār from the Qur'ān and the Sunnah in a structured and accessible format.</p>
+            
+            <p>It is <strong>not the work of a scholar</strong> and is not presented as scholarly authority or formal religious guidance. Rather, it is a personal compilation based on recognised hadith sources and commonly accepted authenticity gradings found in well-known Islamic references.</p>
+            
+            <p>The material has been <strong>organised and reviewed through independent study</strong>, supported by digital research tools and AI-assisted organisation. These tools were used only to help structure, cross-reference, and present information drawn from recognised Islamic sources.</p>
+            
+            <p><strong>No claim is made of independent hadith authentication or scholarly verification.</strong> This work relies on the published judgements of recognised hadith scholars where referenced.</p>
+            
+            <p>Every effort has been made to present accurate and reliable material. However, as a personal compilation, <strong>unintentional errors may exist.</strong></p>
+            
+            <p>Corrections, clarifications, and scholarly feedback are sincerely welcomed.</p>
+            
+            <p>The intention of this project is <strong>personal practice, benefit, and sharing authentic remembrance</strong> — not issuing rulings, interpretations, or new religious conclusions.</p>
+            
+            <p><strong>May Allah forgive any mistakes and accept what is correct.</strong></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Compilation Criteria</h2>
+        
+        <div class="content-box">
+            <h3>Reliance on Scholarly Authentication</h3>
+            <p>This collection <strong>is based on supplications authenticated by recognised scholars</strong> as <strong>Ṣaḥīḥ (authentic)</strong> or <strong>Ḥasan (good)</strong>. No independent hadith authentication has been performed — this work relies entirely on the grading and verification of established Sunni hadith scholars.</p>
+            
+            <p><strong>Ṣaḥīḥ (Authentic):</strong> Narrations with an unbroken chain of trustworthy narrators with precise memory, free from hidden defects and irregularities.</p>
+            
+            <p><strong>Ḥasan (Good):</strong> Narrations meeting Ṣaḥīḥ criteria except for slight weakness in narrator memory, authenticated by scholars as acceptable for practice.</p>
+            
+            <p><strong>What was excluded:</strong> Supplications graded as weak (Ḍaʿīf), fabricated, or unverified in the published scholarly works referenced.</p>
+        </div>
+
+        <div class="content-box">
+            <h3>Scholars Relied Upon</h3>
+            <p>This compilation draws from the authentication work of recognised Sunni hadith scholars, primarily:</p>
+            <ul>
+                <li><strong>Imam Muḥammad Nāṣir al-Dīn al-Albānī</strong> (1914–1999) — His authentication of hadith collections</li>
+                <li><strong>Sheikh ʿAbd al-ʿAzīz ibn Bāz</strong> (1910–1999) — Former Grand Mufti of Saudi Arabia</li>
+                <li><strong>Imam Yaḥyā ibn Sharaf al-Nawawī</strong> (1233–1277) — Classical hadith scholar</li>
+                <li><strong>Contemporary scholars</strong> including Shuʿayb al-Arnaʾūṭ and others who verified major hadith collections</li>
+            </ul>
+            <p>The gradings and references provided are based on their published work, not independent verification.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Source Hierarchy</h2>
+        
+        <div class="content-box">
+            <h3>Primary Sources</h3>
+            <p><strong>Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim</strong> are prioritised as the most authentic hadith collections after the Qur'an. All narrations from these two works are accepted without additional verification needed.</p>
+        </div>
+
+        <div class="content-box">
+            <h3>Secondary Sources</h3>
+            <p>The <strong>Four Sunan</strong> (Abu Dawud, At-Tirmidhi, An-Nasa'i, Ibn Majah) and authenticated narrations from <strong>Musnad Ahmad</strong>, <strong>Ṣaḥīḥ Ibn Ḥibbān</strong>, and <strong>other classical collections</strong> are included when authenticated by the scholars mentioned above.</p>
+        </div>
+
+        <div class="content-box">
+            <h3>Qur'anic Supplications</h3>
+            <p>Verses from the <strong>Qur'an</strong> used as supplications (such as Āyat al-Kursī, the last verses of Sūrah al-Baqarah, and the Three Quls) are included with their hadith evidence for when and how the Prophet ﷺ instructed their recitation.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">How I Handled Variations</h2>
+        
+        <div class="content-box">
+            <h3>Multiple Authentic Wordings</h3>
+            <p>Where <strong>multiple authentic wordings exist</strong> for the same supplication (such as the opening duʿā' in prayer, the Tashahhud, or Qunūt of Witr):</p>
+            <ul>
+                <li>The <strong>most commonly used version</strong> found in mainstream adhkar collections has been selected</li>
+                <li>A note has been added stating: <em>"This is one of the authentic wordings reported. Other authentic wordings are also established in the Sunnah."</em></li>
+                <li>Preference was given to versions appearing frequently in works like Ḥiṣn al-Muslim and similar compilations</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>Important:</strong> Multiple authentic wordings do not weaken each other. Each is a valid transmission from the Prophet ﷺ. The selection of one version over another is simply for practical organization — not a judgment that one is "better" than another.</p>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3>Frequency & Timing</h3>
+            <p>Where different reports exist about numbers or timing, what appeared most widely practiced in mainstream Sunni communities has been selected, based on the scholars' authentication. These are <strong>compilation choices</strong>, not scholarly rulings.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Reference Format</h2>
+        
+        <div class="content-box">
+            <h3>Citation Structure</h3>
+            <p>Every supplication includes full references in the format:</p>
+            <p style="margin-left:20px;"><strong>Source — Hadith Number — Grading</strong></p>
+            
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>Al-Bukhari 6405 — Ṣaḥīḥ</li>
+                <li>Muslim 2723 — Ṣaḥīḥ</li>
+                <li>Abu Dawud 5082 — Ṣaḥīḥ (al-Albānī)</li>
+                <li>At-Tirmidhi 3575 — Ḥasan Ṣaḥīḥ</li>
+            </ul>
+            
+            <p>This allows independent verification by anyone who wishes to check the sources.</p>
+        </div>
+
+        <div class="content-box">
+            <h3>Source Type Labels</h3>
+            <p>Each supplication is labelled with its source type:</p>
+            <ul>
+                <li><strong>QUR'AN:</strong> Verses from the Qur'an</li>
+                <li><strong>PROPHETIC SUPPLICATION:</strong> Duʿā' taught by the Prophet ﷺ in his words</li>
+                <li><strong>PRACTICE OF THE PROPHET ﷺ:</strong> Actions or habits of the Prophet ﷺ with instruction or benefit noted</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Scholarly Framework</h2>
+        
+        <div class="content-box">
+            <h3>Ahl al-Sunnah wa'l-Jamāʿah</h3>
+            <p>This collection follows the <strong>understanding and methodology of Ahl al-Sunnah wa'l-Jamāʿah</strong> — the mainstream Sunni tradition represented by the vast majority of Muslims throughout history.</p>
+            
+            <p>We adhere to the principle: <strong>No innovation in worship.</strong> All supplications are traced back to the Qur'an and authentic Sunnah, with no additions from personal preference, dreams, or unsourced practices.</p>
+        </div>
+
+        <div class="content-box">
+            <h3>Limitations</h3>
+            <p>This compilation has the following limitations:</p>
+            <ul>
+                <li>No qualification to perform independent hadith authentication</li>
+                <li>Relies entirely on published work of recognised scholars</li>
+                <li>Organised with AI assistance for structuring and cross-referencing</li>
+                <li>May contain errors in selection, translation, or presentation</li>
+                <li>Represents commonly used adhkar, not an exhaustive collection</li>
+                <li>Personal compilation choices, not scholarly determinations</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>Commitment:</strong> If errors are found or better information becomes available, corrections will be made. May Allah forgive any mistakes and accept what is correct.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">What This Is NOT</h2>
+        
+        <div class="content-box">
+            <p>This collection is <strong>NOT</strong>:</p>
+            <ul>
+                <li><strong>Scholarly work</strong> — I am a lay Muslim, not a scholar of hadith or fiqh</li>
+                <li><strong>Original research</strong> — I have compiled from existing authenticated sources</li>
+                <li><strong>Legal rulings</strong> — Consult qualified scholars for religious questions</li>
+                <li><strong>The only valid versions</strong> — Other authentic wordings exist and are equally valid</li>
+                <li><strong>Exhaustive</strong> — This focuses on commonly used authenticated supplications</li>
+                <li><strong>Free from error</strong> — As a human effort, mistakes may exist despite my best efforts</li>
+            </ul>
+            
+            <p><strong>What this IS:</strong> A sincere attempt by a lay Muslim to organize well-known, authenticated daily adhkar in an accessible format for personal benefit and sharing.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Independent Verification</h2>
+        
+        <div class="content-box">
+            <h3>Verify Everything</h3>
+            <p>We <strong>encourage users</strong> to verify any supplication by:</p>
+            <ul>
+                <li>Checking the hadith reference provided</li>
+                <li>Consulting recognized hadith collections online (such as sunnah.com)</li>
+                <li>Reading the authentication notes of scholars like al-Albānī</li>
+                <li>Asking qualified scholars if uncertain about any content</li>
+            </ul>
+            
+            <p>The Qur'an commands: <em>"O you who believe, if there comes to you a disobedient one with information, investigate, lest you harm a people out of ignorance..."</em> (49:6)</p>
+            
+            <p>This applies to all religious knowledge — even ours.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Contact & Corrections</h2>
+        
+        <div class="content-box">
+            <p>If you find any errors, have questions about sources, or wish to suggest improvements based on authentic scholarship, we welcome respectful scholarly feedback.</p>
+            
+            <p><strong>May Allah accept this effort and make it a source of benefit for Muslims seeking to remember Him in the manner taught by His Messenger ﷺ.</strong></p>
+        </div>
+    </div>
+
+    <div class="back-top"><a href="#top">↑ Back to top</a></div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="daily-adhkar.html">Daily Adhkar</a> | 
+        <a href="adhkar-methodology.html">Methodology</a> | 
+        <a href="index.html">Islamic Resources</a>
+    </div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="color-scheme" content="light only">
+    <meta name="description" content="Authenticated morning and evening adhkar from the Qur'an and Sunnah.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Morning & Evening Adhkār — Daily Adhkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+        :root {
+            --bg-primary: #f7f3eb; --bg-card: #efe9dd; --text-primary: #3d2e1f; --text-secondary: #6b5744;
+            --text-arabic: #2c1810; --accent-brown: #8b5a2b; --accent-brown-light: #a67c52;
+            --border-color: #d4c9b8; --shadow-color: rgba(61, 46, 31, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif; background: var(--bg-primary);
+            color: var(--text-primary); min-height: 100vh; line-height: 1.8; font-size: 18px;
+            display: flex; flex-direction: column;
+        }
+        .back-nav { padding: 14px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+        .back-link { font-size: 0.85rem; color: var(--accent-brown-light); text-decoration: none; transition: color 0.2s; }
+        .back-link:hover { color: var(--accent-brown); }
+        .header {
+            text-align: center; padding: 50px 20px 38px; border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+        }
+        .bismillah { font-family: 'Uthmanic', 'Amiri', serif; font-size: 2.2rem; color: var(--text-arabic); margin-bottom: 20px; line-height: 1.6; }
+        .header-arabic { font-family: 'Amiri', serif; font-size: 1.7rem; color: var(--text-arabic); direction: rtl; margin-bottom: 8px; }
+        .header h1 { font-size: 2rem; font-weight: 700; color: var(--accent-brown); margin-bottom: 8px; }
+        .header .subtitle { font-size: 1rem; color: var(--text-secondary); font-style: italic; max-width: 560px; margin: 0 auto; }
+        .main { flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 36px 20px 60px; }
+        .section-divider {
+            text-align: center; font-size: 0.75rem; color: var(--accent-brown-light); text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 600; margin: 32px 0 24px; display: flex; align-items: center; gap: 14px;
+        }
+        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
+        .dua-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px 28px 24px; margin-bottom: 20px; box-shadow: 0 2px 10px var(--shadow-color); }
+        .source-tag {
+            font-size: 0.68rem; font-weight: 700; color: #fff; background: var(--accent-brown);
+            padding: 3px 9px; border-radius: 3px; letter-spacing: 0.8px; margin-bottom: 14px; display: inline-block;
+        }
+        .dua-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; gap: 12px; }
+        .dua-num { font-size: 0.72rem; font-weight: 700; color: var(--accent-brown-light); text-transform: uppercase; letter-spacing: 1px; }
+        .freq-badge { font-size: 0.72rem; font-weight: 600; color: var(--accent-brown); background: var(--bg-primary); border: 1px solid var(--border-color); padding: 3px 10px; border-radius: 4px; }
+        .arabic { font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.55rem; color: var(--text-arabic); direction: rtl; text-align: right; line-height: 2.1; margin-bottom: 14px; }
+        .transliteration { font-style: italic; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.7; }
+        .translation { font-size: 0.97rem; color: var(--text-primary); line-height: 1.75; margin-bottom: 12px; }
+        .note {
+            font-size: 0.85rem; color: var(--accent-brown); background: var(--bg-primary);
+            border-left: 3px solid var(--accent-brown-light); padding: 8px 12px; border-radius: 0 6px 6px 0; margin-bottom: 12px; line-height: 1.65;
+        }
+        .reference { font-size: 0.79rem; color: var(--accent-brown-light); border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 4px; line-height: 1.6; }
+        .reference strong { color: var(--accent-brown); }
+        .methodology-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px 22px; margin-top: 38px; }
+        .methodology-box .info-title { font-weight: 700; color: var(--accent-brown); margin-bottom: 8px; font-size: 0.88rem; }
+        .methodology-box p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+        .back-top { text-align: center; margin-top: 40px; }
+        .back-top a { font-size: 0.82rem; color: var(--accent-brown-light); text-decoration: none; }
+        .back-top a:hover { color: var(--accent-brown); }
+        .footer { text-align: center; padding: 28px 20px; border-top: 1px solid var(--border-color); }
+        .footer-credit { font-size: 0.8rem; color: var(--accent-brown-light); }
+        .footer-credit strong { color: var(--accent-brown); }
+        @media (max-width: 600px) {
+            body { font-size: 16px; } .header { padding: 36px 16px 28px; } .header h1 { font-size: 1.6rem; }
+            .bismillah { font-size: 1.75rem; } .dua-card { padding: 20px 18px; } .arabic { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="back-nav">
+    <a href="daily-adhkar.html" class="back-link">‹ Daily Adhkar</a>
+    <a href="index.html" class="back-link">Islamic Resources</a>
+</nav>
+
+<header class="header" id="top">
+    <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+    <div class="header-arabic">أذكار الصباح والمساء</div>
+    <h1>Morning & Evening Adhkār</h1>
+    <p class="subtitle">Morning: After Fajr until sunrise · Evening: Late afternoon before sunset · If missed, they may be recited later</p>
+</header>
+
+<main class="main">
+
+    <div class="section-divider">Morning & Evening Adhkār</div>
+
+    <!-- #1 — Three Quls -->
+    <div class="dua-card">
+        <span class="source-tag">QUR'AN</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 1</span>
+            <span class="freq-badge">3× Morning & Evening</span>
+        </div>
+        <div class="arabic">قُلْ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ</div>
+        <div class="transliteration">Qul huwa Allāhu aḥad. Allāhu ṣ-ṣamad. Lam yalid wa lam yūlad. Wa lam yakun lahu kufuwan aḥad.</div>
+        <div class="translation">Say: He is Allah, [who is] One. Allah, the Eternal Refuge. He neither begets nor is born, nor is there to Him any equivalent.</div>
+        <div class="arabic">قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</div>
+        <div class="transliteration">Qul a'ūdhu birabbi-l-falaq. Min sharri mā khalaq. Wa min sharri ghāsiqin idhā waqab. Wa min sharri-n-naffāthāti fi-l-'uqad. Wa min sharri ḥāsidin idhā ḥasad.</div>
+        <div class="translation">Say: I seek refuge in the Lord of daybreak, from the evil of that which He created, from the evil of darkness when it settles, from the evil of the blowers in knots, and from the evil of an envier when he envies.</div>
+        <div class="arabic">قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝ مَلِكِ ٱلنَّاسِ ۝ إِلَـٰهِ ٱلنَّاسِ ۝ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ</div>
+        <div class="transliteration">Qul a'ūdhu birabbi-n-nās. Maliki-n-nās. Ilāhi-n-nās. Min sharri-l-waswāsi-l-khannās. Alladhī yuwaswisu fī ṣudūri-n-nās. Mina-l-jinnati wa-n-nās.</div>
+        <div class="translation">Say: I seek refuge in the Lord of mankind, the Sovereign of mankind, the God of mankind, from the evil of the retreating whisperer who whispers into the breasts of mankind — from among the jinn and mankind.</div>
+        <div class="reference"><strong>Qur'an:</strong> Sūrah al-Ikhlāṣ 112:1-4 · al-Falaq 113:1-5 · al-Nās 114:1-6<br><strong>Hadith:</strong> Abu Dawud 5082 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3575 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #2 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 2</span>
+            <span class="freq-badge">1× Morning & Evening</span>
+        </div>
+        <div class="arabic">أَصْبَحْنا وَأَصْبَحَ المُلْكُ للهِ ، وَالحَمْدُ للهِ ، لَا إِلَهَ إِلاَّ اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ ، لَهُ المُلْكُ وَلَهُ الحَمْدُ وَهُوَ عَلَى كُلِّ شَيءٍ قَدِيرٌ ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا اليَومِ وَخَيْرَ مَا بَعْدَهُ ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا اليَومِ وَشَرِّ مَا بَعْدَهُ ، رَبِّ أَعُوذُ بِكَ مِنَ الكَسَلِ وَسُوءِ الكِبَرِ ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي القَبْرِ</div>
+        <div class="transliteration">Aṣbaḥnā wa aṣbaḥa-l-mulku lillāh, wa-l-ḥamdu lillāh, lā ilāha illallāhu waḥdahu lā sharīka lah, lahu-l-mulku wa lahu-l-ḥamd, wa huwa 'alā kulli shay'in qadīr. Rabbi as'aluka khayra mā fī hādha-l-yawm wa khayra mā ba'dah, wa a'ūdhu bika min sharri mā fī hādha-l-yawm wa sharri mā ba'dah. Rabbi a'ūdhu bika mina-l-kasal wa sū'i-l-kibar. Rabbi a'ūdhu bika min 'adhābin fi-n-nār wa 'adhābin fi-l-qabr.</div>
+        <div class="translation">We have reached the morning and at this very time unto Allah belongs all sovereignty, and all praise is for Allah. None has the right to be worshipped except Allah, alone, without partner. To Him belongs all sovereignty and praise, and He is over all things omnipotent. My Lord, I ask You for the good of this day and the good of what follows it, and I take refuge in You from the evil of this day and the evil of what follows it. My Lord, I take refuge in You from laziness and senility. My Lord, I take refuge in You from torment in the Fire and punishment in the grave.</div>
+        <div class="note">In the evening: Replace "Aṣbaḥnā wa aṣbaḥa" with "Amsaynā wa amsa" and "hādha-l-yawm" with "hādhihi-l-laylah" (this night).</div>
+        <div class="reference"><strong>Source:</strong> Muslim 2723 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #3 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 3</span>
+            <span class="freq-badge">4× Morning & Evening</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ ، وَمَلَائِكَتَكَ ، وَجَمِيعَ خَلْقِكَ ، أَنَّكَ أَنْتَ اللهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ</div>
+        <div class="transliteration">Allāhumma innī aṣbaḥtu ushhiduk, wa ushhidu ḥamalata 'arshik, wa malā'ikatak, wa jamī'a khalqik, annaka anta Allāhu lā ilāha illā ant, waḥdaka lā sharīka lak, wa anna Muḥammadan 'abduka wa rasūluk.</div>
+        <div class="translation">O Allah, verily I have reached the morning and call on You, the bearers of Your Throne, Your angels, and all of Your creation to witness that You are Allah, none has the right to be worshipped except You, alone, without partner, and that Muḥammad is Your slave and Messenger.</div>
+        <div class="note">In the evening: Replace "aṣbaḥtu" with "amsaytu". Allah will spare whoever says this four times in the morning or evening from the Fire.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5069 — Ṣaḥīḥ (al-Albānī) · An-Nasa'i in ʿAmal al-Yawm 9 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #4 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 4</span>
+            <span class="freq-badge">1× Morning & Evening</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ ، فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ ، فَلَكَ الحَمْدُ وَلَكَ الشُّكْرُ</div>
+        <div class="transliteration">Allāhumma mā aṣbaḥa bī min ni'matin aw bi-aḥadin min khalqik, faminka waḥdaka lā sharīka lak, falakal-ḥamdu wa lakash-shukr.</div>
+        <div class="translation">O Allah, what blessing I or any of Your creation have risen upon is from You alone, without partner, so for You is all praise and unto You all thanks.</div>
+        <div class="note">In the evening: Replace "aṣbaḥa" with "amsā". Whoever says this in the morning completes his thanks for that day; whoever says it in the evening completes his thanks for that night.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5073 — Ṣaḥīḥ (al-Albānī) · An-Nasa'i in ʿAmal al-Yawm 7 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #5 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 5</span>
+            <span class="freq-badge">3× Morning & Evening</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ عَافِنِي فِي بَدَنِي ، اللَّهُمَّ عَافِنِي فِي سَمْعِي ، اللَّهُمَّ عَافِنِي فِي بَصَرِي ، لَا إِلَهَ إِلَّا أَنْتَ</div>
+        <div class="transliteration">Allāhumma 'āfinī fī badanī, Allāhumma 'āfinī fī sam'ī, Allāhumma 'āfinī fī baṣarī, lā ilāha illā ant.</div>
+        <div class="translation">O Allah, grant me health in my body. O Allah, grant me health in my hearing. O Allah, grant me health in my sight. None has the right to be worshipped except You.</div>
+        <div class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الكُفْرِ وَالفَقْرِ ، وَأَعُوذُ بِكَ مِنْ عَذَابِ القَبْرِ ، لَا إِلَهَ إِلَّا أَنْتَ</div>
+        <div class="transliteration">Allāhumma innī a'ūdhu bika mina-l-kufr, wa-l-faqr, wa a'ūdhu bika min 'adhābi-l-qabr, lā ilāha illā ant.</div>
+        <div class="translation">O Allah, I take refuge in You from disbelief and poverty, and I take refuge in You from the punishment of the grave. None has the right to be worshipped except You.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5090 — Ḥasan (al-Albānī)</div>
+    </div>
+
+    <!-- #6 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 6</span>
+            <span class="freq-badge">1× Morning & Evening</span>
+        </div>
+        <div class="arabic">اللَّهُمَّ عَالِمَ الغَيْبِ وَالشَّهَادَةِ ، فَاطِرَ السَّمَاوَاتِ وَالأَرْضِ ، رَبَّ كُلِّ شَيءٍ وَمَلِيكَهُ ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ</div>
+        <div class="transliteration">Allāhumma 'ālima-l-ghaybi wash-shahādah, fāṭira-s-samāwāti wal-arḍ, rabba kulli shay'in wa malīkah, ashhadu an lā ilāha illā ant, a'ūdhu bika min sharri nafsī, wa min sharri-sh-shayṭāni wa shirkihī, wa an aqtarifa 'alā nafsī sū'an aw ajurrahu ilā muslim.</div>
+        <div class="translation">O Allah, Knower of the unseen and the seen, Creator of the heavens and the earth, Lord and Sovereign of all things, I bear witness that none has the right to be worshipped except You. I take refuge in You from the evil of my soul, from the evil and shirk of Shayṭān, and from committing wrong against my soul or bringing such upon another Muslim.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5067 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3392 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #7 -->
+    <div class="dua-card">
+        <span class="source-tag">QUR'AN</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 7</span>
+            <span class="freq-badge">7× Morning & Evening</span>
+        </div>
+        <div class="arabic">حَسْبِيَ اللهُ لَا إِلَهَ إِلَّا هُوَ ، عَلَيْهِ تَوَكَّلْتُ ، وَهُوَ رَبُّ العَرْشِ العَظِيمِ</div>
+        <div class="transliteration">Ḥasbiyallāhu lā ilāha illā huwa, 'alayhi tawakkaltu, wa huwa rabbu-l-'arshi-l-'aẓīm.</div>
+        <div class="translation">Allah is sufficient for me, none has the right to be worshipped except Him. Upon Him I rely, and He is Lord of the Exalted Throne.</div>
+        <div class="note">Whoever says this seven times morning and evening, Allah will take care of whatever worries him of this world and the next.</div>
+        <div class="reference"><strong>Qur'an:</strong> At-Tawbah 9:129<br><strong>Hadith:</strong> Abu Dawud 5081 — Ḥasan (al-Albānī) · Ibn as-Sunni 71 — Ḥasan</div>
+    </div>
+
+    <!-- #8 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 8</span>
+            <span class="freq-badge">3× Morning & Evening</span>
+        </div>
+        <div class="arabic">يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ ، أَصْلِحْ لِي شَأْنِي كُلَّهُ ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ</div>
+        <div class="transliteration">Yā Ḥayyu yā Qayyūm, bi-raḥmatika astaghīth, aṣliḥ lī sha'nī kullahu, wa lā takilnī ilā nafsī ṭarfata 'ayn.</div>
+        <div class="translation">O Ever-Living, O Self-Subsisting Sustainer of all, by Your mercy I seek help. Rectify all my affairs and do not leave me to myself, even for the blink of an eye.</div>
+        <div class="reference"><strong>Source:</strong> An-Nasa'i in ʿAmal al-Yawm 558 — Ḥasan (al-Albānī) · Al-Ḥākim 1/545 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #9 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 9</span>
+            <span class="freq-badge">3× Morning & Evening</span>
+        </div>
+        <div class="arabic">رَضِيتُ بِاللهِ رَبًّا ، وَبِالإِسْلَامِ دِينًا ، وَبِمُحَمَّدٍ ﷺ نَبِيًّا</div>
+        <div class="transliteration">Raḍītu billāhi rabbā, wa bil-islāmi dīnā, wa bi-Muḥammadin ﷺ nabiyyā.</div>
+        <div class="translation">I am pleased with Allah as my Lord, with Islam as my religion, and with Muḥammad ﷺ as my Prophet.</div>
+        <div class="note">Whoever says this three times morning and evening, Allah will please him on the Day of Resurrection.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5072 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3389 — Ḥasan Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #10 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 10</span>
+            <span class="freq-badge">1× Morning Only</span>
+        </div>
+        <div class="arabic">أَصْبَحْنَا عَلَى فِطْرَةِ الإِسْلَامِ ، وَعَلَى كَلِمَةِ الإِخْلَاصِ ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ المُشْرِكِينَ</div>
+        <div class="transliteration">Aṣbaḥnā 'alā fiṭrati-l-islām, wa 'alā kalimati-l-ikhlāṣ, wa 'alā dīni nabiyyinā Muḥammadin ﷺ, wa 'alā millati abīnā Ibrāhīm, ḥanīfan musliman wa mā kāna mina-l-mushrikīn.</div>
+        <div class="translation">We rise upon the fitrah of Islam, and the word of pure faith, and upon the religion of our Prophet Muḥammad ﷺ, and the religion of our forefather Ibrāhīm who was a Muslim of true faith and was not of those who associate others with Allah.</div>
+        <div class="note">In the evening: Replace "Aṣbaḥnā" with "Amsaynā" (We have reached the evening).</div>
+        <div class="reference"><strong>Source:</strong> Ahmad 15360 — Ṣaḥīḥ (Shuʿayb al-Arna'uṭ) · An-Nasa'i in ʿAmal al-Yawm 34 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #11 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 11</span>
+            <span class="freq-badge">1× Morning & Evening</span>
+        </div>
+        <div class="arabic">سُبْحَانَ اللهِ وَبِحَمْدِهِ ، عَدَدَ خَلْقِهِ ، وَرِضَا نَفْسِهِ ، وَزِنَةَ عَرْشِهِ ، وَمِدَادَ كَلِمَاتِهِ</div>
+        <div class="transliteration">Subḥānallāhi wa biḥamdih, 'adada khalqih, wa riḍā nafsih, wa zinata 'arshih, wa midāda kalimātih.</div>
+        <div class="translation">How perfect Allah is and I praise Him by the number of His creation, His pleasure, the weight of His Throne, and the ink of His words.</div>
+        <div class="note">This is one of the authentic wordings reported. The Prophet ﷺ said this multiplies tasbīḥ immeasurably.</div>
+        <div class="reference"><strong>Source:</strong> Muslim 2726 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #12 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 12</span>
+            <span class="freq-badge">3× Morning & Evening</span>
+        </div>
+        <div class="arabic">بِسْمِ اللهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ العَلِيمُ</div>
+        <div class="transliteration">Bismillāhi-lladhī lā yaḍurru ma'a-smihi shay'un fi-l-arḍi wa lā fi-s-samā', wa huwa-s-samī'u-l-'alīm.</div>
+        <div class="translation">In the Name of Allah with Whose Name nothing is harmed on earth nor in the heavens, and He is the All-Hearing, the All-Knowing.</div>
+        <div class="note">Whoever says this three times in the morning will not be afflicted by calamity before evening; whoever says it three times in the evening will not be overtaken by calamity before morning.</div>
+        <div class="reference"><strong>Source:</strong> Abu Dawud 5088 — Ṣaḥīḥ (al-Albānī) · At-Tirmidhi 3388 — Ṣaḥīḥ · Ibn Majah 3869 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #13 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 13</span>
+            <span class="freq-badge">100× Daily</span>
+        </div>
+        <div class="arabic">سُبْحَانَ اللهِ وَبِحَمْدِهِ</div>
+        <div class="transliteration">Subḥānallāhi wa biḥamdih.</div>
+        <div class="translation">How perfect Allah is and I praise Him.</div>
+        <div class="note">Whoever says this one hundred times a day will be forgiven all his sins even if they were as much as the foam of the sea.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6405 — Ṣaḥīḥ · Muslim 2691 — Ṣaḥīḥ</div>
+    </div>
+
+    <!-- #14 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 14</span>
+            <span class="freq-badge">10× Morning · 100× Daily</span>
+        </div>
+        <div class="arabic">لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ ، لَهُ المُلْكُ وَلَهُ الحَمْدُ ، وَهُوَ عَلَى كُلِّ شَيءٍ قَدِيرٌ</div>
+        <div class="transliteration">Lā ilāha illallāhu waḥdahu lā sharīka lah, lahu-l-mulku wa lahu-l-ḥamd, wa huwa 'alā kulli shay'in qadīr.</div>
+        <div class="translation">None has the right to be worshipped except Allah, alone, without partner. To Him belongs all sovereignty and all praise, and He is over all things omnipotent.</div>
+        <div class="note"><strong>10× in the morning:</strong> Ten rewards, ten sins removed, raised ten degrees, protected from Shayṭān until evening. <strong>100× daily:</strong> Equivalent to freeing ten slaves, one hundred good deeds written, one hundred sins erased, shield from Shayṭān all day.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 3293 — Ṣaḥīḥ · Muslim 2691 — Ṣaḥīḥ · Ahmad 8770 — Ṣaḥīḥ · An-Nasa'i in ʿAmal al-Yawm 22 — Ṣaḥīḥ (al-Albānī)</div>
+    </div>
+
+    <!-- #15 -->
+    <div class="dua-card">
+        <span class="source-tag">PROPHETIC SUPPLICATION</span>
+        <div class="dua-header">
+            <span class="dua-num">Dhikr · 15</span>
+            <span class="freq-badge">100× Daily</span>
+        </div>
+        <div class="arabic">أَسْتَغْفِرُ اللهَ وَأَتُوبُ إِلَيْهِ</div>
+        <div class="transliteration">Astaghfirullāha wa atūbu ilayh.</div>
+        <div class="translation">I seek the forgiveness of Allah and repent to Him.</div>
+        <div class="note">The Prophet ﷺ said he sought forgiveness more than seventy times a day. Whoever says this one hundred times, his sins will be removed even if they are like the foam of the sea.</div>
+        <div class="reference"><strong>Source:</strong> Al-Bukhari 6307 — Ṣaḥīḥ · Muslim 2702 — Ṣaḥīḥ</div>
+    </div>
+
+    <div class="methodology-box">
+        <div class="info-title">About This Collection</div>
+        <p>
+            Variations exist in wording, frequency, and timing across authentic narrations. This collection presents widely accepted reports transmitted from the Prophet ﷺ and used by major scholars of hadith and Sunnah. Where multiple authentic wordings exist, we have chosen commonly cited versions.
+        </p>
+    </div>
+
+    <div class="back-top"><a href="#top">↑ Back to top</a></div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-links" style="font-size:0.8rem; margin-bottom:8px;"><a href="adhkar-methodology.html" style="color:var(--accent-brown-light); text-decoration:none; margin:0 8px;">Methodology</a></div>
+    <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+</footer>
+
+</body>
+</html>
