@@ -21,7 +21,7 @@
         { name: 'black',  label: 'Night \u2014 Near Black',   bg: '#0f0d0b' },
         { name: 'teal',   label: 'Night \u2014 Teal Slate',   bg: '#0d1418' },
         { name: 'indigo', label: 'Night \u2014 Deep Indigo',  bg: '#0e0c18' },
-        { name: 'bw',     label: 'Black \u2014 High Contrast', bg: '#ffffff' },
+        { name: 'bw',     label: 'Black \u2014 High Contrast', bg: '#ffffff', swatchGradient: 'linear-gradient(135deg, #000000 50%, #ffffff 50%)' },
     ];
 
     var metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -80,8 +80,9 @@
 
             var swatch = document.createElement('span');
             swatch.className = 'theme-swatch';
-            swatch.style.background = theme.bg;
+            swatch.style.background = theme.swatchGradient || theme.bg;
             if (theme.name === 'day') swatch.style.borderColor = '#d4c9b8';
+            if (theme.name === 'bw') swatch.style.borderColor = '#999999';
 
             var nameSpan = document.createElement('span');
             nameSpan.className = 'theme-option-name';
