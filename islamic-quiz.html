@@ -18,19 +18,8 @@
             font-display: swap;
         }
 
-        /* ── DAY (default parchment) ── */
+        /* ── Quiz-specific answer colours (extend themes.css) ── */
         :root {
-            --bg-primary:         #f7f3eb;
-            --bg-card:            #efe9dd;
-            --bg-card-hover:      #e8e1d3;
-            --text-primary:       #3d2e1f;
-            --text-secondary:     #6b5744;
-            --text-arabic:        #2c1810;
-            --accent-brown:       #8b5a2b;
-            --accent-brown-light: #a67c52;
-            --border-color:       #d4c9b8;
-            --shadow-color:       rgba(61,46,31,0.08);
-            --header-grad-start:  #efe9dd;
             --correct-bg:         #d4edda;
             --correct-text:       #1a5c2e;
             --correct-border:     #2e6b3e;
@@ -38,90 +27,26 @@
             --wrong-text:         #7a2020;
             --wrong-border:       #c0392b;
         }
-
-        /* ── A: Dark Warm Umber ── */
         [data-theme="umber"] {
-            --bg-primary:         #1a1208;
-            --bg-card:            #261b0a;
-            --bg-card-hover:      #311f08;
-            --text-primary:       #e8d5b0;
-            --text-secondary:     #b89870;
-            --text-arabic:        #f0e0c0;
-            --accent-brown:       #c4924a;
-            --accent-brown-light: #a87840;
-            --border-color:       #4a3010;
-            --shadow-color:       rgba(0,0,0,0.3);
-            --header-grad-start:  #211508;
-            --correct-bg:         #1a3020;
-            --correct-text:       #70c890;
-            --correct-border:     #2a5038;
-            --wrong-bg:           #301414;
-            --wrong-text:         #d08080;
-            --wrong-border:       #602020;
+            --correct-bg: #1a3020; --correct-text: #70c890; --correct-border: #2a5038;
+            --wrong-bg: #301414;   --wrong-text: #d08080;   --wrong-border: #602020;
         }
-
-        /* ── B: Near Black ── */
         [data-theme="black"] {
-            --bg-primary:         #0f0d0b;
-            --bg-card:            #1a1714;
-            --bg-card-hover:      #221e1a;
-            --text-primary:       #f0e8d8;
-            --text-secondary:     #b0a090;
-            --text-arabic:        #f8f0e0;
-            --accent-brown:       #d4a96a;
-            --accent-brown-light: #b08848;
-            --border-color:       #3a3020;
-            --shadow-color:       rgba(0,0,0,0.4);
-            --header-grad-start:  #161310;
-            --correct-bg:         #0f2018;
-            --correct-text:       #68c088;
-            --correct-border:     #1e4030;
-            --wrong-bg:           #200f0f;
-            --wrong-text:         #c87878;
-            --wrong-border:       #501818;
+            --correct-bg: #0f2018; --correct-text: #68c088; --correct-border: #1e4030;
+            --wrong-bg: #200f0f;   --wrong-text: #c87878;   --wrong-border: #501818;
         }
-
-        /* ── C: Dark Teal Slate ── */
         [data-theme="teal"] {
-            --bg-primary:         #0d1418;
-            --bg-card:            #131d23;
-            --bg-card-hover:      #182530;
-            --text-primary:       #e0eeee;
-            --text-secondary:     #90b8be;
-            --text-arabic:        #eef6f6;
-            --accent-brown:       #7ab8c4;
-            --accent-brown-light: #5a9aaa;
-            --border-color:       #243848;
-            --shadow-color:       rgba(0,0,0,0.35);
-            --header-grad-start:  #101a20;
-            --correct-bg:         #0a2018;
-            --correct-text:       #60c8a0;
-            --correct-border:     #184838;
-            --wrong-bg:           #200f14;
-            --wrong-text:         #d09090;
-            --wrong-border:       #502030;
+            --correct-bg: #0a2018; --correct-text: #60c8a0; --correct-border: #184838;
+            --wrong-bg: #200f14;   --wrong-text: #d09090;   --wrong-border: #502030;
+        }
+        [data-theme="indigo"] {
+            --correct-bg: #0f1a28; --correct-text: #80b8e0; --correct-border: #204060;
+            --wrong-bg: #200f20;   --wrong-text: #d090c8;   --wrong-border: #502050;
         }
 
-        /* ── D: Deep Indigo ── */
-        [data-theme="indigo"] {
-            --bg-primary:         #0e0c18;
-            --bg-card:            #16132a;
-            --bg-card-hover:      #1e1a38;
-            --text-primary:       #ede8f8;
-            --text-secondary:     #a898d8;
-            --text-arabic:        #f5f0ff;
-            --accent-brown:       #c4a8e8;
-            --accent-brown-light: #9880c0;
-            --border-color:       #302858;
-            --shadow-color:       rgba(0,0,0,0.4);
-            --header-grad-start:  #120f20;
-            --correct-bg:         #0f1a28;
-            --correct-text:       #80b8e0;
-            --correct-border:     #204060;
-            --wrong-bg:           #200f20;
-            --wrong-text:         #d090c8;
-            --wrong-border:       #502050;
-        }
+
+
+
 
         * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -496,86 +421,6 @@
         }
         .footer-credit strong { color: var(--accent-brown); }
 
-        /* ═══ THEME PICKER ═══ */
-        .theme-btn {
-            position: fixed;
-            top: 14px;
-            right: 14px;
-            z-index: 1000;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px var(--shadow-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .theme-btn:hover { box-shadow: 0 4px 16px var(--shadow-color); transform: scale(1.08); }
-
-        .theme-panel {
-            position: fixed;
-            top: 60px;
-            right: 14px;
-            z-index: 999;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 14px 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            min-width: 170px;
-        }
-        .theme-panel.open { display: flex; }
-
-        .theme-panel-label {
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            font-weight: 600;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .theme-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 5px 0;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            -webkit-tap-highlight-color: transparent;
-            border-radius: 6px;
-        }
-        .theme-option:hover .theme-swatch { transform: scale(1.15); }
-        .theme-swatch {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            transition: transform 0.15s;
-            flex-shrink: 0;
-        }
-        .theme-option.active .theme-swatch { border-color: var(--accent-brown); }
-        .theme-option-name {
-            font-size: 0.82rem;
-            color: var(--text-primary);
-            font-family: 'Cormorant Garamond', Georgia, serif;
-        }
-        .theme-option.active .theme-option-name {
-            color: var(--accent-brown);
-            font-weight: 600;
-        }
 
         /* ═══ RESPONSIVE ═══ */
         @media (max-width: 600px) {
@@ -593,31 +438,6 @@
 </head>
 <body>
 
-    <!-- Theme Button -->
-    <button class="theme-btn" id="themeBtn" title="Change theme">🎨</button>
-    <div class="theme-panel" id="themePanel">
-        <div class="theme-panel-label">Appearance</div>
-        <button class="theme-option" data-theme="">
-            <span class="theme-swatch" style="background:#f7f3eb;"></span>
-            <span class="theme-option-name">Parchment</span>
-        </button>
-        <button class="theme-option" data-theme="umber">
-            <span class="theme-swatch" style="background:#1a1208;"></span>
-            <span class="theme-option-name">Dark Umber</span>
-        </button>
-        <button class="theme-option" data-theme="black">
-            <span class="theme-swatch" style="background:#0f0d0b;"></span>
-            <span class="theme-option-name">Near Black</span>
-        </button>
-        <button class="theme-option" data-theme="teal">
-            <span class="theme-swatch" style="background:#0d1418;"></span>
-            <span class="theme-option-name">Teal Slate</span>
-        </button>
-        <button class="theme-option" data-theme="indigo">
-            <span class="theme-swatch" style="background:#0e0c18;"></span>
-            <span class="theme-option-name">Deep Indigo</span>
-        </button>
-    </div>
 
     <header class="header">
         <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
@@ -718,41 +538,10 @@
         <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
     </footer>
 
+<script src="themes.js"></script>
 <script>
 window.onload = function() {
 
-    /* ── Theme switcher ── */
-    var themeBtn   = document.getElementById('themeBtn');
-    var themePanel = document.getElementById('themePanel');
-    var themeOpts  = document.querySelectorAll('.theme-option');
-
-    function applyTheme(t) {
-        document.documentElement.setAttribute('data-theme', t);
-        themeOpts.forEach(function(o) {
-            o.classList.toggle('active', o.getAttribute('data-theme') === t);
-        });
-        try { localStorage.setItem('islamicTheme', t); } catch(e){}
-    }
-
-    var saved = '';
-    try { saved = localStorage.getItem('islamicTheme') || ''; } catch(e){}
-    applyTheme(saved);
-
-    themeBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        themePanel.classList.toggle('open');
-    });
-    document.addEventListener('click', function() {
-        themePanel.classList.remove('open');
-    });
-    themePanel.addEventListener('click', function(e) { e.stopPropagation(); });
-
-    themeOpts.forEach(function(o) {
-        o.addEventListener('click', function() {
-            applyTheme(o.getAttribute('data-theme'));
-            themePanel.classList.remove('open');
-        });
-    });
 
     /* ── Quiz data ── */
     var QB = [
