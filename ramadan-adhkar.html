@@ -887,24 +887,24 @@
 
     <header class="header">
         <div class="revision-stamp">
-            <span>Rev 1.3</span>
-            <span>15 Feb 2026</span>
+            <span>Rev 1.4</span>
+            <span>21 Feb 2026</span>
         </div>
         <h1 class="title-arabic" lang="ar">أَذْكَارُ رَمَضَان</h1>
         <p class="title-english">Ramadan Adhkar</p>
-        
+
         <div class="creator-section">
-            <p class="creator-name">Created by <strong>Farhan Shaikh</strong> — A simple reminder, with the help of AI</p>
-            
+            <p class="creator-name">Compiled by <strong>Mohammed Farhan Shaikh</strong> with the aid of AI — sourced from the Quran and authentic Sunnah (Ahl al-Sunnah wa'l-Jamāʿah)</p>
+
             <p class="disclaimer">
                 Every effort has been made to ensure accuracy and authenticity from the Quran and Sunnah. This guide reflects mainstream Sunni scholarship (Ahl al-Sunnah wa'l-Jamāʿah). If you find any errors, please forgive me and bring them to my attention so they can be corrected. May Allah reward you.
             </p>
-            
+
             <div class="star-divider">✧</div>
-            
+
             <p class="ummah-dua" lang="ar">اللَّهُمَّ فَرِّجْ هَمَّ الْمَهْمُومِينَ مِنَ الْمُسْلِمِينَ، وَنَفِّسْ كَرْبَ الْمَكْرُوبِينَ، وَاقْضِ الدَّيْنَ عَنِ الْمَدِينِينَ، وَاشْفِ مَرْضَانَا وَمَرْضَى الْمُسْلِمِينَ، وَارْحَمْ مَوْتَانَا وَمَوْتَى الْمُسْلِمِينَ، وَانْصُرْ إِخْوَانَنَا الْمُسْتَضْعَفِينَ فِي كُلِّ مَكَانٍ</p>
             <p class="ummah-dua-trans">"O Allah, relieve the distress of the distressed among the Muslims, remove the hardship of those in hardship, settle the debts of those in debt, heal our sick and the sick among the Muslims, have mercy on our deceased and the deceased among the Muslims, and grant victory to our oppressed brothers and sisters everywhere."</p>
-            
+
             <p class="barakah">May you stay blessed and may your efforts be accepted. آمين</p>
         </div>
     </header>
@@ -923,7 +923,7 @@
     </nav>
 
     <main class="container">
-        
+
         <!-- ========================================
              SUHOOR SECTION
              ======================================== -->
@@ -1704,7 +1704,7 @@
         function toggleSection(headerEl) {
             var body = headerEl.nextElementSibling;
             var isCollapsed = body.classList.contains('collapsed');
-            
+
             if (isCollapsed) {
                 // Expand
                 body.classList.remove('collapsed');
@@ -1745,11 +1745,11 @@
             var allSections = document.querySelectorAll('.section');
             var allBtns = document.querySelectorAll('.nav-btn');
             var geometrics = document.querySelectorAll('.geometric');
-            
+
             // Update active button
             allBtns.forEach(function(btn) { btn.classList.remove('active'); });
             btnEl.classList.add('active');
-            
+
             if (section === 'all') {
                 allSections.forEach(function(s) { s.style.display = 'block'; });
                 geometrics.forEach(function(g) { g.style.display = 'block'; });
@@ -1759,7 +1759,7 @@
                 });
                 geometrics.forEach(function(g) { g.style.display = 'block'; });
             }
-            
+
             // Expand the visible section(s) and scroll to content
             allSections.forEach(function(s) {
                 if (s.style.display !== 'none') {
@@ -1773,7 +1773,7 @@
                     }
                 }
             });
-            
+
             document.querySelector('.container').scrollIntoView({ block: 'start' });
         }
 
@@ -1812,7 +1812,7 @@
 
             var shareData = {
                 title: 'Ramadan Adhkar',
-                text: 'Authenticated duas and adhkar for Ramadan - Suhoor, Iftar, Salah, Laylatul Qadr, 99 Names of Allah, the Farewell Sermon and more. Created by Farhan Shaikh.',
+                text: 'Authenticated duas and adhkar for Ramadan - Suhoor, Iftar, Salah, Laylatul Qadr, 99 Names of Allah, the Farewell Sermon and more. Compiled by Mohammed Farhan Shaikh with the aid of AI.',
                 url: window.location.href
             };
 
