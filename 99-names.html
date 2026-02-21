@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#f7f3eb">
-    <meta name="color-scheme" content="light only">
+    <meta name="color-scheme" content="light dark">
     <meta name="description" content="The 99 Names of Allah (Asma ul Husna) with meanings and explanations from the Quran and Sunnah.">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -62,7 +62,7 @@
             text-align: center;
             padding: 50px 20px 38px;
             border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+            background: linear-gradient(180deg, var(--header-grad-start, #efe9dd) 0%, var(--bg-primary) 100%);
         }
 
         .bismillah {
@@ -362,7 +362,9 @@
             .header h1 { font-size: 1.6rem; }
             .bismillah { font-size: 1.75rem; }
         }
+
     </style>
+    <link rel="stylesheet" href="themes.css">
 </head>
 <body>
 
@@ -566,5 +568,6 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
+    <script src="themes.js"></script>
 </body>
 </html>

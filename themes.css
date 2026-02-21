@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════════════════════
+   themes.css — Islamic Resources Site
+   Centralised colour themes for all pages.
+   To add a new theme:
+     1. Add a new [data-theme="name"] block below
+     2. Add the matching option in themes.js
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── DAY: Original Parchment (defined per-page in :root, this file handles overrides) ── */
+
+/* ── A: Dark Warm Umber ── */
+[data-theme="umber"] {
+    --bg-primary: #1a1208;
+    --bg-card: #261b0a;
+    --bg-card-hover: #311f08;
+    --bg-card-alt: #2e2010;
+    --text-primary: #e8d5b0;
+    --text-secondary: #b89870;
+    --text-arabic: #f0e0c0;
+    --accent-brown: #c4924a;
+    --accent-brown-light: #a87840;
+    --accent-gold: #c8920a;
+    --gold: #c4924a;
+    --gold-light: #d4a860;
+    --gold-dim: #8a5a20;
+    --border-color: #4a3010;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --hadith-bg: #2a1e0a;
+    --warning-bg: #2e2210;
+    --ref-color: #a88050;
+    --transliteration: #c4924a;
+    --source-color: #a87840;
+    --header-grad-start: #211508;
+}
+
+/* ── B: Near Black ── */
+[data-theme="black"] {
+    --bg-primary: #0f0d0b;
+    --bg-card: #1a1714;
+    --bg-card-hover: #221e1a;
+    --bg-card-alt: #1e1a16;
+    --text-primary: #f0e8d8;
+    --text-secondary: #b0a090;
+    --text-arabic: #f8f0e0;
+    --accent-brown: #d4a96a;
+    --accent-brown-light: #b08848;
+    --accent-gold: #d4940a;
+    --gold: #d4a96a;
+    --gold-light: #e0bc80;
+    --gold-dim: #906030;
+    --border-color: #3a3020;
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --hadith-bg: #181512;
+    --warning-bg: #1c1a14;
+    --ref-color: #a89070;
+    --transliteration: #d4a96a;
+    --source-color: #b08848;
+    --header-grad-start: #161310;
+}
+
+/* ── C: Dark Teal Slate ── */
+[data-theme="teal"] {
+    --bg-primary: #0d1418;
+    --bg-card: #131d23;
+    --bg-card-hover: #182530;
+    --bg-card-alt: #152028;
+    --text-primary: #e0eeee;
+    --text-secondary: #90b8be;
+    --text-arabic: #eef6f6;
+    --accent-brown: #7ab8c4;
+    --accent-brown-light: #5a9aaa;
+    --accent-gold: #7ab8a0;
+    --gold: #7ab8c4;
+    --gold-light: #a0d0da;
+    --gold-dim: #3a7888;
+    --border-color: #243848;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --hadith-bg: #101c22;
+    --warning-bg: #131e26;
+    --ref-color: #709898;
+    --transliteration: #7ab8c4;
+    --source-color: #5a9aaa;
+    --header-grad-start: #101a20;
+}
+
+/* ── D: Deep Indigo ── */
+[data-theme="indigo"] {
+    --bg-primary: #0e0c18;
+    --bg-card: #16132a;
+    --bg-card-hover: #1e1a38;
+    --bg-card-alt: #191630;
+    --text-primary: #ede8f8;
+    --text-secondary: #a898d8;
+    --text-arabic: #f5f0ff;
+    --accent-brown: #c4a8e8;
+    --accent-brown-light: #9880c0;
+    --accent-gold: #b8a0e0;
+    --gold: #c4a8e8;
+    --gold-light: #d8c0f8;
+    --gold-dim: #6a5098;
+    --border-color: #302858;
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --hadith-bg: #131020;
+    --warning-bg: #161228;
+    --ref-color: #9888c0;
+    --transliteration: #c4a8e8;
+    --source-color: #9880c0;
+    --header-grad-start: #120f20;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME PICKER UI — floating 🎨 button + dropdown panel
+   ═══════════════════════════════════════════════════════════════ */
+
+.theme-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 1000;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.theme-btn:hover {
+    box-shadow: 0 4px 16px var(--shadow-color);
+    transform: scale(1.08);
+}
+
+.theme-panel {
+    position: fixed;
+    top: 60px;
+    right: 14px;
+    z-index: 999;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 170px;
+}
+.theme-panel.open { display: flex; }
+
+.theme-panel-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 0;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 6px;
+}
+.theme-option:hover .theme-swatch { transform: scale(1.15); }
+
+.theme-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: transform 0.15s;
+    flex-shrink: 0;
+}
+.theme-option.active .theme-swatch {
+    border-color: var(--accent-brown, var(--gold, #8b5a2b));
+}
+
+.theme-option-name {
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.theme-option.active .theme-option-name {
+    color: var(--accent-brown, var(--gold, #8b5a2b));
+    font-weight: 600;
+}

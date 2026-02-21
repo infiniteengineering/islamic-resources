@@ -6,8 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#f7f3eb">
-    <meta name="color-scheme" content="light only">
-    <meta name="supported-color-schemes" content="light only">
+    <meta name="color-scheme" content="light dark">
     <meta name="description" content="Daily Adhkar — authentic daily remembrances from the Qur'ān and Sunnah for every situation in life.">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -69,7 +68,7 @@
             text-align: center;
             padding: 55px 20px 42px;
             border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+            background: linear-gradient(180deg, var(--header-grad-start, #efe9dd) 0%, var(--bg-primary) 100%);
         }
         .bismillah {
             font-family: 'Uthmanic', 'Amiri', serif;
@@ -298,7 +297,9 @@
         .method-description { font-size:0.92rem; color:rgba(255,255,255,0.92); line-height:1.6; max-width:680px; }
         .method-arrow { position:absolute; right:24px; bottom:24px; font-size:2rem; color:rgba(255,255,255,0.7); transition:transform 0.2s; }
         .methodology-card:hover .method-arrow { transform:translateX(4px); color:rgba(255,255,255,0.95); }
+
     </style>
+    <link rel="stylesheet" href="themes.css">
 </head>
 <body>
 
@@ -536,5 +537,6 @@
     <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
     </footer>
 
+    <script src="themes.js"></script>
 </body>
 </html>

@@ -6,8 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#f7f3eb">
-    <meta name="color-scheme" content="light only">
-    <meta name="supported-color-schemes" content="light only">
+    <meta name="color-scheme" content="light dark">
     <title>Ramadan Adhkar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +21,7 @@
             font-display: swap;
         }
         :root {
-            color-scheme: light only;
-            --bg-primary: #f7f3eb;
+                        --bg-primary: #f7f3eb;
             --bg-card: #efe9dd;
             --bg-card-hover: #e8e0d0;
             --gold: #8b5a2b;
@@ -877,7 +875,9 @@
             margin-top: 0.8rem;
             line-height: 1.6;
         }
+
     </style>
+    <link rel="stylesheet" href="themes.css">
 </head>
 <body>
     <a href="index.html" class="back-btn">← Home</a>
@@ -1984,5 +1984,7 @@
             if (e.key === 'Escape') closeModal();
         });
     </script>
+
+    <script src="themes.js"></script>
 </body>
 </html>
