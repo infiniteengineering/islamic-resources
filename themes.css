@@ -108,6 +108,31 @@
     --header-grad-start: #120f20;
 }
 
+/* ── E: Black & White ── */
+[data-theme="bw"] {
+    --bg-primary: #ffffff;
+    --bg-card: #f2f2f2;
+    --bg-card-hover: #e8e8e8;
+    --bg-card-alt: #ebebeb;
+    --text-primary: #000000;
+    --text-secondary: #444444;
+    --text-arabic: #000000;
+    --accent-brown: #222222;
+    --accent-brown-light: #555555;
+    --accent-gold: #111111;
+    --gold: #222222;
+    --gold-light: #555555;
+    --gold-dim: #888888;
+    --border-color: #cccccc;
+    --shadow-color: rgba(0, 0, 0, 0.12);
+    --hadith-bg: #ebebeb;
+    --warning-bg: #e5e5e5;
+    --ref-color: #666666;
+    --transliteration: #333333;
+    --source-color: #555555;
+    --header-grad-start: #f2f2f2;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    THEME PICKER UI — floating 🎨 button + dropdown panel
    ═══════════════════════════════════════════════════════════════ */

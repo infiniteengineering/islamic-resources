@@ -21,6 +21,7 @@
         { name: 'black',  label: 'Night \u2014 Near Black',   bg: '#0f0d0b' },
         { name: 'teal',   label: 'Night \u2014 Teal Slate',   bg: '#0d1418' },
         { name: 'indigo', label: 'Night \u2014 Deep Indigo',  bg: '#0e0c18' },
+        { name: 'bw',     label: 'Black \u2014 High Contrast', bg: '#ffffff' },
     ];
 
     var metaTheme = document.querySelector('meta[name="theme-color"]');
