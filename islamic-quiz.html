@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <title>Islamic Knowledge Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        /* ── DAY (default parchment) ── */
+        :root {
+            --bg-primary:         #f7f3eb;
+            --bg-card:            #efe9dd;
+            --bg-card-hover:      #e8e1d3;
+            --text-primary:       #3d2e1f;
+            --text-secondary:     #6b5744;
+            --text-arabic:        #2c1810;
+            --accent-brown:       #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --border-color:       #d4c9b8;
+            --shadow-color:       rgba(61,46,31,0.08);
+            --header-grad-start:  #efe9dd;
+            --correct-bg:         #d4edda;
+            --correct-text:       #1a5c2e;
+            --correct-border:     #2e6b3e;
+            --wrong-bg:           #f8d7da;
+            --wrong-text:         #7a2020;
+            --wrong-border:       #c0392b;
+        }
+
+        /* ── A: Dark Warm Umber ── */
+        [data-theme="umber"] {
+            --bg-primary:         #1a1208;
+            --bg-card:            #261b0a;
+            --bg-card-hover:      #311f08;
+            --text-primary:       #e8d5b0;
+            --text-secondary:     #b89870;
+            --text-arabic:        #f0e0c0;
+            --accent-brown:       #c4924a;
+            --accent-brown-light: #a87840;
+            --border-color:       #4a3010;
+            --shadow-color:       rgba(0,0,0,0.3);
+            --header-grad-start:  #211508;
+            --correct-bg:         #1a3020;
+            --correct-text:       #70c890;
+            --correct-border:     #2a5038;
+            --wrong-bg:           #301414;
+            --wrong-text:         #d08080;
+            --wrong-border:       #602020;
+        }
+
+        /* ── B: Near Black ── */
+        [data-theme="black"] {
+            --bg-primary:         #0f0d0b;
+            --bg-card:            #1a1714;
+            --bg-card-hover:      #221e1a;
+            --text-primary:       #f0e8d8;
+            --text-secondary:     #b0a090;
+            --text-arabic:        #f8f0e0;
+            --accent-brown:       #d4a96a;
+            --accent-brown-light: #b08848;
+            --border-color:       #3a3020;
+            --shadow-color:       rgba(0,0,0,0.4);
+            --header-grad-start:  #161310;
+            --correct-bg:         #0f2018;
+            --correct-text:       #68c088;
+            --correct-border:     #1e4030;
+            --wrong-bg:           #200f0f;
+            --wrong-text:         #c87878;
+            --wrong-border:       #501818;
+        }
+
+        /* ── C: Dark Teal Slate ── */
+        [data-theme="teal"] {
+            --bg-primary:         #0d1418;
+            --bg-card:            #131d23;
+            --bg-card-hover:      #182530;
+            --text-primary:       #e0eeee;
+            --text-secondary:     #90b8be;
+            --text-arabic:        #eef6f6;
+            --accent-brown:       #7ab8c4;
+            --accent-brown-light: #5a9aaa;
+            --border-color:       #243848;
+            --shadow-color:       rgba(0,0,0,0.35);
+            --header-grad-start:  #101a20;
+            --correct-bg:         #0a2018;
+            --correct-text:       #60c8a0;
+            --correct-border:     #184838;
+            --wrong-bg:           #200f14;
+            --wrong-text:         #d09090;
+            --wrong-border:       #502030;
+        }
+
+        /* ── D: Deep Indigo ── */
+        [data-theme="indigo"] {
+            --bg-primary:         #0e0c18;
+            --bg-card:            #16132a;
+            --bg-card-hover:      #1e1a38;
+            --text-primary:       #ede8f8;
+            --text-secondary:     #a898d8;
+            --text-arabic:        #f5f0ff;
+            --accent-brown:       #c4a8e8;
+            --accent-brown-light: #9880c0;
+            --border-color:       #302858;
+            --shadow-color:       rgba(0,0,0,0.4);
+            --header-grad-start:  #120f20;
+            --correct-bg:         #0f1a28;
+            --correct-text:       #80b8e0;
+            --correct-border:     #204060;
+            --wrong-bg:           #200f20;
+            --wrong-text:         #d090c8;
+            --wrong-border:       #502050;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            line-height: 1.8;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            touch-action: manipulation;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* ═══ HEADER ═══ */
+        .header {
+            text-align: center;
+            padding: 60px 20px 45px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, var(--header-grad-start) 0%, var(--bg-primary) 100%);
+        }
+        .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2.2rem;
+            color: var(--text-arabic);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .header .back-link {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--accent-brown-light);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 4px 14px;
+            transition: all 0.2s ease;
+        }
+        .header .back-link:hover { color: var(--accent-brown); border-color: var(--accent-brown); }
+
+        /* ═══ MAIN ═══ */
+        .main {
+            flex: 1;
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 36px 20px 60px;
+        }
+
+        /* ═══ CARD ═══ */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px 26px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        /* ═══ SCREENS ═══ */
+        .screen { display: none; }
+
+        /* ═══ WELCOME ═══ */
+        .intro-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .chip {
+            font-size: 0.78rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 2px 4px 2px 0;
+        }
+        .chip-n { background: rgba(139,90,43,0.08); }
+        .chip-e { background: rgba(139,90,43,0.05); }
+        .chip-p { background: rgba(139,90,43,0.11); }
+
+        /* ═══ SETTINGS ═══ */
+        .settings-title {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 26px;
+        }
+        .setting-block {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px 12px;
+        }
+        .setting-block label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: '▾';
+            position: absolute;
+            right: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-brown);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+        .setting-block select {
+            display: block;
+            width: 100%;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: transparent;
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            touch-action: manipulation;
+            padding: 0 20px 0 0;
+            line-height: 1.4;
+            min-height: 32px;
+        }
+
+        /* ═══ BUTTONS ═══ */
+        .btn {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            -webkit-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            min-height: 44px;
+            transition: background 0.2s ease;
+        }
+        .btn-primary  { background: var(--accent-brown); color: var(--bg-primary); }
+        .btn-primary:active  { opacity: 0.85; }
+        .btn-secondary { background: var(--bg-primary); color: var(--accent-brown); border: 1px solid var(--border-color); }
+        .btn-secondary:active { background: var(--bg-card-hover); }
+
+        .btn-back {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 16px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            min-height: 36px;
+            line-height: 1.4;
+        }
+        .btn-back:active { background: var(--bg-card-hover); }
+
+        /* ═══ QUIZ TOP BAR ═══ */
+        .quiz-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .quiz-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .score-badge {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3px 14px;
+            font-size: 0.84rem;
+        }
+        .progress-track {
+            width: 100%;
+            height: 5px;
+            background: var(--border-color);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-brown);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .cat-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-style: italic;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--accent-brown);
+        }
+
+        .q-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.6rem;
+            text-align: center;
+            direction: rtl;
+            color: var(--text-arabic);
+            margin: 6px 0 14px;
+            line-height: 1.8;
+        }
+        .q-text {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        /* ═══ OPTIONS ═══ */
+        .opt {
+            display: block;
+            width: 100%;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 13px 16px;
+            margin-bottom: 11px;
+            text-align: left;
+            cursor: pointer;
+            line-height: 1.5;
+            -webkit-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            min-height: 44px;
+            transition: background 0.15s ease;
+        }
+        .opt:active   { background: var(--bg-card-hover); }
+        .opt-correct  { background: var(--correct-bg)  !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; font-weight: 700; }
+        .opt-wrong    { background: var(--wrong-bg)    !important; border-color: var(--wrong-border)   !important; color: var(--wrong-text)   !important; }
+
+        /* ═══ FEEDBACK ═══ */
+        .feedback-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-brown);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        .fb-correct { color: var(--correct-text); font-weight: 700; }
+        .fb-wrong   { color: var(--wrong-text);   font-weight: 700; }
+        .next-row   { text-align: right; }
+
+        /* ═══ RESULTS ═══ */
+        .result-top   { text-align: center; margin-bottom: 24px; }
+        .result-score { font-size: 3rem; font-weight: 700; color: var(--accent-brown); }
+        .result-msg   { font-size: 1rem; font-style: italic; color: var(--text-secondary); margin-top: 6px; }
+        .breakdown    { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-bottom: 22px; -webkit-mask-image: -webkit-radial-gradient(white, black); }
+        .brow         { display: flex; justify-content: space-between; padding: 10px 16px; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); }
+        .brow:last-child  { border-bottom: none; }
+        .brow:nth-child(even) { background: rgba(139,90,43,0.04); }
+        .brow .lbl    { color: var(--text-secondary); }
+        .brow .val    { font-weight: 700; }
+        .result-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+        .result-actions > * { margin: 0 8px 8px 0; }
+
+        .review-section { margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .rev-item  { margin-bottom: 14px; padding: 12px 16px; border-radius: 8px; border: 1px solid; font-size: 0.88rem; line-height: 1.6; }
+        .rev-ok    { background: var(--correct-bg);  border-color: var(--correct-border); }
+        .rev-bad   { background: var(--wrong-bg);    border-color: var(--wrong-border);   }
+        .rev-q     { font-weight: 700; margin-bottom: 4px; }
+        .rev-your  { color: var(--wrong-text); }
+        .rev-ans   { color: var(--correct-text); }
+        .rev-exp   { font-style: italic; color: var(--text-secondary); margin-top: 4px; font-size: 0.85rem; }
+
+        /* ═══ FOOTER ═══ */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-verse {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.15rem;
+            color: var(--text-arabic);
+            margin-bottom: 8px;
+        }
+        .footer-translation {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-credit {
+            font-size: 0.8rem;
+            color: var(--accent-brown-light);
+        }
+        .footer-credit strong { color: var(--accent-brown); }
+
+        /* ═══ THEME PICKER ═══ */
+        .theme-btn {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 1000;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .theme-btn:hover { box-shadow: 0 4px 16px var(--shadow-color); transform: scale(1.08); }
+
+        .theme-panel {
+            position: fixed;
+            top: 60px;
+            right: 14px;
+            z-index: 999;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 170px;
+        }
+        .theme-panel.open { display: flex; }
+
+        .theme-panel-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 0;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            -webkit-tap-highlight-color: transparent;
+            border-radius: 6px;
+        }
+        .theme-option:hover .theme-swatch { transform: scale(1.15); }
+        .theme-swatch {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: transform 0.15s;
+            flex-shrink: 0;
+        }
+        .theme-option.active .theme-swatch { border-color: var(--accent-brown); }
+        .theme-option-name {
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+        .theme-option.active .theme-option-name {
+            color: var(--accent-brown);
+            font-weight: 600;
+        }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header { padding: 36px 16px 26px; }
+            .header h1 { font-size: 1.6rem; }
+            .bismillah { font-size: 1.7rem; }
+            .main { padding: 24px 14px 48px; }
+            .card { padding: 20px 18px; }
+            .result-score { font-size: 2.4rem; }
+            .settings-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="themes.css">
+</head>
+<body>
+
+    <!-- Theme Button -->
+    <button class="theme-btn" id="themeBtn" title="Change theme">🎨</button>
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-label">Appearance</div>
+        <button class="theme-option" data-theme="">
+            <span class="theme-swatch" style="background:#f7f3eb;"></span>
+            <span class="theme-option-name">Parchment</span>
+        </button>
+        <button class="theme-option" data-theme="umber">
+            <span class="theme-swatch" style="background:#1a1208;"></span>
+            <span class="theme-option-name">Dark Umber</span>
+        </button>
+        <button class="theme-option" data-theme="black">
+            <span class="theme-swatch" style="background:#0f0d0b;"></span>
+            <span class="theme-option-name">Near Black</span>
+        </button>
+        <button class="theme-option" data-theme="teal">
+            <span class="theme-swatch" style="background:#0d1418;"></span>
+            <span class="theme-option-name">Teal Slate</span>
+        </button>
+        <button class="theme-option" data-theme="indigo">
+            <span class="theme-swatch" style="background:#0e0c18;"></span>
+            <span class="theme-option-name">Deep Indigo</span>
+        </button>
+    </div>
+
+    <header class="header">
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <h1>Islamic Knowledge Quiz</h1>
+        <p class="subtitle">Test your knowledge of the Names of Allah, the End Times &amp; the Prophet ﷺ</p>
+        <a href="index.html" class="back-link">← Back to Resources</a>
+    </header>
+
+    <main class="main">
+
+        <!-- ══════════════ WELCOME ══════════════ -->
+        <div id="pg-welcome" class="card">
+            <p class="intro-text">Assalamu Alaikum! This quiz covers three topic areas from our Islamic Resources pages:</p>
+            <div class="chips">
+                <span class="chip chip-n">99 Names of Allah</span>
+                <span class="chip chip-e">Signs of the End Times</span>
+                <span class="chip chip-p">Prophet Muhammad ﷺ</span>
+            </div>
+            <p class="intro-text">All questions are based on verified content from the Qur'ān and authentic hadith.</p>
+
+            <p class="settings-title">Quiz Settings</p>
+            <div class="settings-grid">
+                <div class="setting-block">
+                    <label for="qcount">Number of Questions</label>
+                    <div class="select-wrapper">
+                        <select id="qcount">
+                            <option value="10">10 Questions</option>
+                            <option value="20" selected>20 Questions</option>
+                            <option value="30">30 Questions</option>
+                            <option value="0">All Questions</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setting-block">
+                    <label for="qcat">Topic Category</label>
+                    <div class="select-wrapper">
+                        <select id="qcat">
+                            <option value="all">All Topics</option>
+                            <option value="names">99 Names of Allah</option>
+                            <option value="endtimes">End Times</option>
+                            <option value="prophet">Prophet Muhammad ﷺ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="startQuiz()">Begin Quiz &#9658;</button>
+        </div>
+
+        <!-- ══════════════ QUIZ ══════════════ -->
+        <div id="pg-quiz" class="card screen">
+            <div class="quiz-top">
+                <div class="quiz-meta">
+                    <span id="qprog">Question 1 of 20</span>
+                    <span class="score-badge" id="qscore">Score: 0</span>
+                </div>
+                <button type="button" class="btn-back" onclick="backToStart()">&#8592; Back to Start</button>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="qbar"></div>
+            </div>
+            <span class="cat-tag" id="qcattag"></span>
+            <div class="q-arabic" id="qarabic" style="display:none"></div>
+            <div class="q-text"   id="qtext"></div>
+            <div id="qopts"></div>
+            <div class="feedback-box" id="qfeed" style="display:none"></div>
+            <div class="next-row">
+                <button type="button" class="btn btn-primary" id="qnext" style="display:none" onclick="nextQ()">Next &#8594;</button>
+            </div>
+        </div>
+
+        <!-- ══════════════ RESULTS ══════════════ -->
+        <div id="pg-results" class="card screen">
+            <div class="result-top">
+                <div class="result-score" id="rscore">0 / 0</div>
+                <div class="result-msg"   id="rmsg"></div>
+            </div>
+            <div class="breakdown">
+                <div class="brow"><span class="lbl">Correct answers</span><span class="val" id="rcor">0</span></div>
+                <div class="brow"><span class="lbl">Wrong answers</span>  <span class="val" id="rwrong">0</span></div>
+                <div class="brow"><span class="lbl">99 Names</span>       <span class="val" id="rnames">N/A</span></div>
+                <div class="brow"><span class="lbl">End Times</span>      <span class="val" id="rendtimes">N/A</span></div>
+                <div class="brow"><span class="lbl">Prophet ﷺ</span>     <span class="val" id="rprophet">N/A</span></div>
+            </div>
+            <div class="result-actions">
+                <button type="button" class="btn btn-primary"   onclick="playAgain()">Play Again &#8634;</button>
+                <button type="button" class="btn btn-secondary" onclick="toggleReview()" id="btn-review">Review Answers</button>
+                <button type="button" class="btn-back"          onclick="backToStart()">&#8592; Back to Start</button>
+            </div>
+            <div class="review-section" id="revsec" style="display:none"></div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-verse">وَذَكِّرۡ فَإِنَّ ٱلذِّكۡرَىٰ تَنفَعُ ٱلۡمُؤۡمِنِينَ</div>
+        <p class="footer-translation">"And remind, for indeed the reminder benefits the believers." — al-Dhāriyāt (51:55)</p>
+        <p class="footer-credit">Created by <strong>Farhan Shaikh</strong></p>
+    </footer>
+
+<script>
+window.onload = function() {
+
+    /* ── Theme switcher ── */
+    var themeBtn   = document.getElementById('themeBtn');
+    var themePanel = document.getElementById('themePanel');
+    var themeOpts  = document.querySelectorAll('.theme-option');
+
+    function applyTheme(t) {
+        document.documentElement.setAttribute('data-theme', t);
+        themeOpts.forEach(function(o) {
+            o.classList.toggle('active', o.getAttribute('data-theme') === t);
+        });
+        try { localStorage.setItem('islamicTheme', t); } catch(e){}
+    }
+
+    var saved = '';
+    try { saved = localStorage.getItem('islamicTheme') || ''; } catch(e){}
+    applyTheme(saved);
+
+    themeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        themePanel.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+        themePanel.classList.remove('open');
+    });
+    themePanel.addEventListener('click', function(e) { e.stopPropagation(); });
+
+    themeOpts.forEach(function(o) {
+        o.addEventListener('click', function() {
+            applyTheme(o.getAttribute('data-theme'));
+            themePanel.classList.remove('open');
+        });
+    });
+
+    /* ── Quiz data ── */
+    var QB = [
+      {c:'names',a:'\u0627\u064e\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0640\u0670\u0646\u064f',q:'What does Ar-Rahmaan mean?',o:['The All-Knowing','The All-Merciful (to all creation)','The Ever-Forgiving','The Most High'],ans:1,ex:'Ar-Rahmaan \u2014 The All-Merciful. His mercy encompasses all of creation in this world.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u064f',q:'What does Ar-Raheem mean?',o:['The Mighty','The Eternally Besought','The Especially Merciful (to believers)','The Sustainer'],ans:2,ex:'Ar-Raheem \u2014 His special mercy is reserved for the believers in the Hereafter.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0645\u064e\u0644\u0650\u0643\u064f',q:'What does Al-Malik mean?',o:['The Creator','The King / The Sovereign','The All-Aware','The Subduer'],ans:1,ex:'Al-Malik \u2014 The King. Absolute dominion belongs to Allah alone.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0642\u064f\u062f\u064f\u0651\u0648\u0633\u064f',q:'What does Al-Quddus mean?',o:['The All-Powerful','The Most Holy / The Pure','The Provider','The Witness'],ans:1,ex:'Al-Quddus \u2014 The Most Holy. Free from all deficiency and impurity.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0633\u064e\u0651\u0644\u064e\u0627\u0645\u064f',q:'What does As-Salaam mean?',o:['The All-Knowing','The Forbearing','The Source of Peace','The Generous'],ans:2,ex:'As-Salaam \u2014 The Source of Peace. He is free from all defects.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f',q:"What does Al-Mu'min mean?",o:['The Guardian','The Bestower of Faith and Security','The Compeller','The Opener'],ans:1,ex:"Al-Mu'min \u2014 The Bestower of Faith. He gives safety and security to His servants."},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0639\u064e\u0632\u0650\u064a\u0632\u064f',q:'What does Al-Azeez mean?',o:['The Oft-Forgiving','The All-Mighty / The Incomparable','The All-Hearing','The Subtle'],ans:1,ex:'Al-Azeez \u2014 The All-Mighty. None can overcome Him.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u062e\u064e\u0627\u0644\u0650\u0642\u064f',q:'What does Al-Khaaliq mean?',o:['The All-Forgiving','The Sustainer','The Creator','The Expander'],ans:2,ex:'Al-Khaaliq \u2014 The Creator. He creates everything from nothing.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0631\u064e\u0651\u0632\u064e\u0651\u0627\u0642\u064f',q:'What does Ar-Razzaaq mean?',o:['The All-Forgiving','The Constrictor','The Ever-Providing Sustainer','The Resurrector'],ans:2,ex:'Ar-Razzaaq \u2014 The Ever-Providing Sustainer. He provides for all creatures without end.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u062d\u064e\u0643\u0650\u064a\u0645\u064f',q:'What does Al-Hakeem mean?',o:['The Ever-Living','The All-Wise','The Most Great','The Responsive'],ans:1,ex:'Al-Hakeem \u2014 The All-Wise. All His decrees are perfect in wisdom.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u0645\u064f',q:"What does Al-'Aleem mean?",o:['The All-Knowing','The Patient','The Praiseworthy','The Light'],ans:0,ex:"Al-'Aleem \u2014 The All-Knowing. His knowledge encompasses everything seen and unseen."},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u062d\u064e\u064a\u064f\u0651',q:'What does Al-Hayy mean?',o:['The Eternal','The Ever-Living','The Mighty','The Great'],ans:1,ex:'Al-Hayy \u2014 The Ever-Living. His life has no beginning and no end.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0642\u064e\u064a\u064f\u0651\u0648\u0645\u064f',q:'What does Al-Qayyoom mean?',o:['The Self-Subsisting Sustainer of all','The Most Near','The All-Aware','The Bestower'],ans:0,ex:'Al-Qayyoom \u2014 The Self-Subsisting. Everything depends on Him while He needs nothing.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u063a\u064e\u0641\u064f\u0648\u0631\u064f',q:'What does Al-Ghafoor mean?',o:['The Thankful','The All-Forgiving','The Expander','The First'],ans:1,ex:'Al-Ghafoor \u2014 The All-Forgiving. He repeatedly forgives the sins of His servants.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0634\u064e\u0651\u0643\u064f\u0648\u0631\u064f',q:'What does Ash-Shakoor mean?',o:['The Witness','The Appreciative / Rewarder of Gratitude','The Strong','The Everlasting'],ans:1,ex:'Ash-Shakoor \u2014 The Appreciative. He rewards even the smallest good deed abundantly.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0648\u064e\u062f\u064f\u0648\u062f\u064f',q:'What does Al-Wadood mean?',o:['The Most Loving','The All-Aware','The Protector','The Opener'],ans:0,ex:'Al-Wadood \u2014 The Most Loving. He loves His righteous servants and they love Him.'},
+      {c:'names',q:'How many Names are in the famous hadith of Asma ul Husna?',o:['33','66','99','100'],ans:2,ex:'"Allah has 99 Names, one hundred minus one, whoever learns them will enter Paradise." (Bukhari & Muslim)'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0623\u064e\u062d\u064e\u062f\u064f',q:'What does Al-Ahad mean?',o:['The Eternal Refuge','The One and Only / The Unique','The Most High','The First'],ans:1,ex:'Al-Ahad \u2014 The One and Only. Unique with no partner, equal, or comparable.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0635\u064e\u0651\u0645\u064e\u062f\u064f',q:'What does As-Samad mean?',o:['The All-Forgiving','The Giver of Life','The Eternal Refuge (upon whom all depend)','The Last'],ans:2,ex:'As-Samad \u2014 The Eternal Refuge. All creation is in need of Him while He has no need.'},
+      {c:'names',a:'\u0627\u064e\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u064f\u0651',q:'What does Al-Ali mean?',o:['The Vast','The Most High / The Exalted','The Giver of Honour','The Near'],ans:1,ex:'Al-Ali \u2014 The Most High. Exalted above all in His essence and attributes.'},
+      {c:'endtimes',q:'What is the name of the false messiah who will appear before the Day of Judgement?',o:['Gog (Yajuj)','Iblis','Ad-Dajjal','Nimrod'],ans:2,ex:'Ad-Dajjal \u2014 the False Messiah / Antichrist \u2014 is one of the greatest trials of the End Times.'},
+      {c:'endtimes',q:'Which physical feature marks Ad-Dajjal according to hadith?',o:['He has no shadow','Blind in his left eye','Blind in his right eye','He has three heads'],ans:2,ex:'The Prophet described Dajjal as blind in his right eye \u2014 like a floating grape. (Bukhari & Muslim)'},
+      {c:'endtimes',q:"Who will be able to read the word 'Kaafir' written on Dajjal's forehead?",o:['Only scholars','Every believing Muslim, literate or not','Only the angels','Only Prophet Isa'],ans:1,ex:"Every believer, even if illiterate, will read 'Kaafir' on Dajjal's forehead. (Muslim)"},
+      {c:'endtimes',q:'Which Surah protects against Dajjal when its first and last 10 verses are recited?',o:['Surah Al-Fatiha','Surah Al-Ikhlas','Surah Al-Kahf','Surah Yasin'],ans:2,ex:'The first and last 10 verses of Surah Al-Kahf provide protection from Dajjal. (Muslim)'},
+      {c:'endtimes',q:'Which cities will Dajjal be unable to enter?',o:['Cairo and Makkah','Makkah and Madinah','Damascus and Baghdad','Jerusalem and Basra'],ans:1,ex:'Dajjal cannot enter Makkah or Madinah \u2014 both are guarded by angels. (Bukhari & Muslim)'},
+      {c:'endtimes',q:'Who will descend near Damascus to kill Dajjal?',o:['The Mahdi','Prophet Musa','Prophet Isa (Jesus)','Jibreel'],ans:2,ex:'Prophet Isa will descend and kill Dajjal at the gate of Ludd in Palestine. (Muslim)'},
+      {c:'endtimes',q:'What physical trait describes Al-Mahdi in hadith?',o:['A mark on his right hand','A broad forehead and prominent nose','Red hair','Very tall stature'],ans:1,ex:'Al-Mahdi is described as having a broad forehead and a slightly aquiline nose.'},
+      {c:'endtimes',q:"What are the two massive tribes released near the End Times called?",o:["Aad and Thamud","Banu Qaynuqa and Banu Nadir","Ya'juj and Ma'juj (Gog and Magog)","Jinn and Ins"],ans:2,ex:"Ya'juj and Ma'juj are mentioned in Surah Al-Kahf (18:94) and Surah Al-Anbiya (21:96)."},
+      {c:'endtimes',q:'How long will Prophet Isa remain on earth after killing Dajjal, per one narration?',o:['7 years','40 years','100 years','Until Qiyamah'],ans:1,ex:'Prophet Isa will live for 40 years on earth after killing Dajjal. (Abu Dawud)'},
+      {c:'endtimes',q:'Which of these is a MAJOR sign of the Day of Judgement?',o:['Spread of ignorance','The sun rising from the West','Widespread lying','Drinking of wine'],ans:1,ex:'The sun rising from the West is a major sign \u2014 after which repentance is no longer accepted.'},
+      {c:'endtimes',q:'From which direction will Dajjal first emerge?',o:['From Yemen','From the East, between Sham and Iraq','From the West','From the sea near Rome'],ans:1,ex:'Dajjal will emerge from the East, from Khurasan, between Sham and Iraq. (Muslim)'},
+      {c:'endtimes',q:'What does the title Al-Mahdi mean?',o:['The Victorious','The Rightly Guided One','The Promised One','The Awaited Saviour'],ans:1,ex:'Al-Mahdi literally means The Rightly Guided One \u2014 he will lead the Ummah justly before the End.'},
+      {c:'endtimes',q:'What will Dajjal ultimately claim to be?',o:['A great king','A prophet, then God','An angel','The Mahdi'],ans:1,ex:'Dajjal will first claim prophethood, then claim to be God \u2014 among his greatest lies.'},
+      {c:'prophet',q:'In which city was Prophet Muhammad born?',o:['Madinah','Jerusalem','Makkah',"Ta'if"],ans:2,ex:'The Prophet was born in Makkah, in the Year of the Elephant (approx. 570 CE), in the tribe of Quraysh.'},
+      {c:'prophet',q:"What was the name of the Prophet's father?",o:['Abu Talib','Abd al-Muttalib','Abdullah','Umar'],ans:2,ex:"His father was Abdullah ibn Abd al-Muttalib, who passed away before his birth."},
+      {c:'prophet',q:"What was the name of the Prophet's mother?",o:['Khadijah','Aminah bint Wahb','Fatimah','Maryam'],ans:1,ex:'His mother was Aminah bint Wahb. She passed away when the Prophet was approximately 6 years old.'},
+      {c:'prophet',q:'How old was the Prophet when he received the first revelation?',o:['25','30','40','45'],ans:2,ex:'The first revelation came in the Cave of Hira when the Prophet was 40 years old. (Bukhari)'},
+      {c:'prophet',q:'What was the first word revealed to the Prophet?',o:['Bismillah','Qul','Iqra (Read)','Alif Lam Mim'],ans:2,ex:'"Iqra bismi rabbika alladhi khalaq" \u2014 Read in the name of your Lord who created. (Surah Al-Alaq 96:1)'},
+      {c:'prophet',q:'In which cave did the Prophet receive the first revelation?',o:['Cave of Thawr','Cave of Hira','Cave of Uhud','Cave of Madinah'],ans:1,ex:'The Cave of Hira on Jabal al-Nour (Mountain of Light) near Makkah.'},
+      {c:'prophet',q:"What was the name of the Prophet's first wife?",o:['Aisha','Hafsa','Khadijah bint Khuwaylid','Sawdah'],ans:2,ex:'Khadijah bint Khuwaylid \u2014 the first to accept Islam and his greatest supporter.'},
+      {c:'prophet',q:'By what title was the Prophet known among the Quraysh before prophethood?',o:['Al-Kareem','Al-Ameen (The Trustworthy)','Al-Hakim','As-Siddiq'],ans:1,ex:'Al-Ameen \u2014 The Trustworthy \u2014 due to his exemplary honesty and character.'},
+      {c:'prophet',q:'The Hijrah from Makkah to Madinah occurred in which year?',o:['610 CE','615 CE','622 CE','632 CE'],ans:2,ex:'The Hijrah took place in 622 CE, marking year one of the Islamic (Hijri) calendar.'},
+      {c:'prophet',q:'How many years did the Prophet live?',o:['56','60','63','70'],ans:2,ex:'The Prophet lived 63 years \u2014 40 before prophethood and 23 years conveying Islam.'},
+      {c:'prophet',q:'In which city did the Prophet pass away?',o:['Makkah',"Ta'if",'Jerusalem','Madinah'],ans:3,ex:"The Prophet passed away in Madinah on 12 Rabi' al-Awwal, 11 AH (632 CE)."},
+      {c:'prophet',q:"Who raised the Prophet after his mother passed away?",o:['Abu Talib','Umar ibn al-Khattab','Abd al-Muttalib','Waraqah ibn Nawfal'],ans:2,ex:'Abd al-Muttalib raised him until the Prophet was 8, then his uncle Abu Talib took over.'},
+      {c:'prophet',q:"The Prophet's Night Journey and Ascension is known as:",o:['Al-Hijrah',"Al-Isra wal-Mi'raj",'Al-Fath',"Al-Bid'ah"],ans:1,ex:"Al-Isra wal-Mi'raj \u2014 Night Journey from Masjid al-Haram to Masjid al-Aqsa, then through the heavens."},
+      {c:'prophet',q:'How many children did the Prophet have?',o:['3','5','7','9'],ans:2,ex:'7 children: Al-Qasim, Abdullah, Zainab, Ruqayyah, Umm Kulthum, Fatimah, and Ibrahim.'},
+      {c:'prophet',q:'Which companion earned the title As-Siddiq (The Truthful)?',o:['Umar ibn al-Khattab','Ali ibn Abi Talib','Abu Bakr al-Siddiq','Uthman ibn Affan'],ans:2,ex:"Abu Bakr earned As-Siddiq for immediately believing the Prophet's account of Al-Isra wal-Mi'raj."},
+      {c:'prophet',q:'The Farewell Sermon was delivered in which year?',o:['8 AH','10 AH','11 AH','12 AH'],ans:1,ex:'Delivered on Mount Arafah during the only Hajj of the Prophet, in 10 AH (632 CE).'},
+      {c:'prophet',q:"What was the name of the Prophet's foster mother?",o:['Asiya','Halimah al-Sadiyyah','Umm Ayman','Sumayyah'],ans:1,ex:"Halimah al-Sadiyyah nursed the Prophet in his early years in the Banu Sa'd tribe."}
+    ];
+
+    var pool=[], qIdx=0, score=0, locked=false, answers=[];
+    var cats={names:{c:0,t:0},endtimes:{c:0,t:0},prophet:{c:0,t:0}};
+    var CAT_LBL={names:'99 Names of Allah',endtimes:'End Times',prophet:'Prophet Muhammad \uFDFA'};
+    var MSGS=[
+      'Keep learning \u2014 every step of knowledge is rewarded.',
+      "A fair attempt. Insha'Allah, review and try again.",
+      'Good effort! Jazak Allahu Khairan.',
+      "Excellent! Masha'Allah, very strong knowledge.",
+      "Masha'Allah! A perfect score! \uD83C\uDF1F"
+    ];
+
+    function g(id){return document.getElementById(id);}
+
+    function showPage(id){
+        g('pg-welcome').style.display='none';
+        g('pg-quiz').style.display='none';
+        g('pg-results').style.display='none';
+        g(id).style.display='block';
+    }
+
+    function shuffle(arr){
+        var a=arr.slice(),i,j,t;
+        for(i=a.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=a[i];a[i]=a[j];a[j]=t;}
+        return a;
+    }
+
+    function startQuiz(){
+        var count=parseInt(g('qcount').value,10);
+        var cat=g('qcat').value;
+        pool=[];
+        for(var i=0;i<QB.length;i++){if(cat==='all'||QB[i].c===cat)pool.push(QB[i]);}
+        if(pool.length===0){alert('No questions found for this category.');return;}
+        pool=shuffle(pool);
+        if(count>0)pool=pool.slice(0,count);
+        qIdx=0;score=0;locked=false;answers=[];
+        cats={names:{c:0,t:0},endtimes:{c:0,t:0},prophet:{c:0,t:0}};
+        showPage('pg-quiz');
+        renderQ();
+    }
+
+    function renderQ(){
+        var q=pool[qIdx];var total=pool.length;locked=false;
+        g('qprog').innerHTML='Question '+(qIdx+1)+' of '+total;
+        g('qscore').innerHTML='Score: '+score;
+        g('qbar').style.width=(((qIdx+1)/total)*100)+'%';
+        var tag=g('qcattag');
+        tag.innerHTML=CAT_LBL[q.c];
+        var ar=g('qarabic');
+        if(q.a){ar.innerHTML=q.a;ar.style.display='block';}
+        else{ar.innerHTML='';ar.style.display='none';}
+        g('qtext').innerHTML=q.q;
+        var opts=g('qopts');
+        opts.innerHTML='';
+        for(var i=0;i<q.o.length;i++){
+            (function(idx){
+                var btn=document.createElement('button');
+                btn.type='button';
+                btn.className='opt';
+                btn.innerHTML=q.o[idx];
+                btn.onclick=function(){pickAnswer(idx);};
+                opts.appendChild(btn);
+            })(i);
+        }
+        g('qfeed').style.display='none';g('qfeed').innerHTML='';
+        g('qnext').style.display='none';
+    }
+
+    function pickAnswer(chosen){
+        if(locked)return;locked=true;
+        var q=pool[qIdx];var correct=q.ans;var ok=(chosen===correct);
+        var btns=g('qopts').getElementsByTagName('button');
+        for(var i=0;i<btns.length;i++){
+            btns[i].onclick=null;
+            if(i===correct)btns[i].className='opt opt-correct';
+            if(i===chosen&&!ok)btns[i].className='opt opt-wrong';
+        }
+        if(ok){score++;cats[q.c].c++;}cats[q.c].t++;
+        answers.push({q:q.q,your:q.o[chosen],ans:q.o[correct],ok:ok,ex:q.ex});
+        var fb=g('qfeed');
+        fb.innerHTML=ok
+            ?'<span class="fb-correct">&#10003; Correct!</span> '+q.ex
+            :'<span class="fb-wrong">&#10007; Incorrect.</span> Correct answer: <strong>'+q.o[correct]+'</strong>. '+q.ex;
+        fb.style.display='block';
+        g('qnext').innerHTML=(qIdx===pool.length-1)?'See Results &#10003;':'Next &#8594;';
+        g('qnext').style.display='inline-block';
+    }
+
+    function nextQ(){
+        qIdx++;
+        if(qIdx>=pool.length){showResults();}else{renderQ();}
+    }
+
+    function showResults(){
+        var total=pool.length;var pct=Math.round((score/total)*100);
+        var mi=pct===100?4:pct>=80?3:pct>=60?2:pct>=40?1:0;
+        g('rscore').innerHTML=score+' / '+total;
+        g('rmsg').innerHTML=MSGS[mi];
+        g('rcor').innerHTML=score;g('rwrong').innerHTML=total-score;
+        function fmt(k){var s=cats[k];return s.t===0?'N/A':s.c+' / '+s.t;}
+        g('rnames').innerHTML=fmt('names');
+        g('rendtimes').innerHTML=fmt('endtimes');
+        g('rprophet').innerHTML=fmt('prophet');
+        var html='<h3 style="margin-bottom:14px;color:var(--accent-brown);font-size:1rem;">Answer Review</h3>';
+        for(var i=0;i<answers.length;i++){
+            var h=answers[i];
+            html+='<div class="rev-item '+(h.ok?'rev-ok':'rev-bad')+'">';
+            html+='<div class="rev-q">Q'+(i+1)+'. '+h.q+'</div>';
+            if(h.ok){html+='<div class="rev-ans">&#10003; '+h.ans+'</div>';}
+            else{html+='<div class="rev-your">&#10007; Your answer: '+h.your+'</div>';html+='<div class="rev-ans">&#10003; Correct: '+h.ans+'</div>';}
+            html+='<div class="rev-exp">'+h.ex+'</div></div>';
+        }
+        g('revsec').innerHTML=html;g('revsec').style.display='none';
+        showPage('pg-results');
+    }
+
+    function toggleReview(){
+        var sec=g('revsec');var btn=g('btn-review');
+        if(sec.style.display==='none'){sec.style.display='block';btn.innerHTML='Hide Answers';}
+        else{sec.style.display='none';btn.innerHTML='Review Answers';}
+    }
+
+    function playAgain(){showPage('pg-welcome');}
+    function backToStart(){showPage('pg-welcome');}
+
+    window.startQuiz    = startQuiz;
+    window.nextQ        = nextQ;
+    window.toggleReview = toggleReview;
+    window.playAgain    = playAgain;
+    window.backToStart  = backToStart;
+
+}; // end window.onload
+</script>
+</body>
+</html>
