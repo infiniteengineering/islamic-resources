@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="description" content="The life of Prophet Idrīs (عليه السلام) — the truthful prophet raised to an honourable station — based on the Qurʾān, authentic Sunnah, and classical Sunni scholarship.">
+    <link rel="canonical" href="https://infiniteengineering.github.io/islamic-resources/prophets/idris.html">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+    <title>Idrīs (عليه السلام) — Lives of the Prophets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary:         #f7f3eb;
+            --bg-card:            #efe9dd;
+            --bg-card-alt:        #e8e1d3;
+            --text-primary:       #3d2e1f;
+            --text-secondary:     #6b5744;
+            --text-arabic:        #2c1810;
+            --accent-brown:       #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --accent-gold:        #b8860b;
+            --border-color:       #d4c9b8;
+            --shadow-color:       rgba(61, 46, 31, 0.08);
+            --hadith-bg:          #f0e8d8;
+            --warning-bg:         #e8dcc8;
+            --ref-color:          #7a6248;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Cormorant Garamond', Georgia, serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; line-height: 1.8; font-size: 18px; }
+
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent-brown-light); font-size: 0.85rem; font-weight: 600; padding: 8px 14px; position: absolute; top: 16px; left: 16px; border-radius: 6px; transition: all 0.2s; }
+        .back-btn:hover { color: var(--accent-brown); background: var(--bg-card); }
+
+        .header { text-align: center; padding: 50px 20px 40px; position: relative; border-bottom: 1px solid var(--border-color); background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%); }
+        .header .bismillah { font-family: 'Uthmanic', 'Amiri', serif; font-size: 2rem; color: var(--text-arabic); margin-bottom: 20px; line-height: 1.6; }
+        .prophet-number-badge { display: inline-block; background: var(--accent-brown); color: var(--bg-primary); font-size: 0.8rem; font-weight: 700; padding: 3px 14px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 14px; }
+        .header .prophet-name-arabic { font-family: 'Uthmanic', 'Amiri', serif; font-size: 2.4rem; color: var(--text-arabic); margin-bottom: 8px; line-height: 1.5; direction: rtl; }
+        .header h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.9rem; font-weight: 700; color: var(--accent-brown); margin-bottom: 6px; letter-spacing: 0.5px; }
+        .header .subtitle { font-size: 1rem; color: var(--text-secondary); font-style: italic; max-width: 580px; margin: 0 auto 20px; }
+        .header .methodology { display: inline-block; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 20px; font-size: 0.85rem; color: var(--accent-brown); font-weight: 600; letter-spacing: 0.3px; }
+
+        .nav-container { position: sticky; top: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); }
+        .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.8rem; font-weight: 600; }
+        .nav-top a { text-decoration: none; color: var(--accent-brown-light); transition: color 0.2s; }
+        .nav-top a:hover { color: var(--accent-brown); }
+        .nav-top a.disabled { opacity: 0.3; pointer-events: none; }
+        .nav-top .nav-center-label { font-size: 0.78rem; color: var(--text-secondary); font-style: italic; }
+        .nav-sections { display: flex; gap: 4px; justify-content: center; flex-wrap: nowrap; min-width: max-content; padding: 10px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 auto; }
+        .nav-sections::-webkit-scrollbar { display: none; }
+        .nav-sections a { text-decoration: none; color: var(--text-secondary); font-size: 0.82rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; border: 1px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .nav-sections a:hover, .nav-sections a:active { background: var(--bg-card); border-color: var(--border-color); color: var(--accent-brown); }
+
+        .content { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+        .section { margin-top: 50px; }
+        .section-number { font-size: 0.75rem; color: var(--accent-brown-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 6px; }
+        .section h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: var(--accent-brown); margin-bottom: 6px; line-height: 1.3; }
+        .section-intro { font-style: italic; color: var(--text-secondary); margin-bottom: 25px; font-size: 1rem; border-left: 3px solid var(--accent-brown-light); padding-left: 15px; }
+        .section h3 { font-size: 1.15rem; font-weight: 600; color: var(--accent-brown); margin: 30px 0 12px; padding-bottom: 4px; border-bottom: 1px solid var(--border-color); }
+        .section p { margin-bottom: 16px; text-align: justify; }
+
+        .quran-card { background: var(--bg-card-alt); border: 1px solid var(--accent-brown-light); border-left: 4px solid var(--accent-gold); border-radius: 10px; padding: 22px; margin: 20px 0; }
+        .quran-arabic { font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.5rem; color: var(--text-arabic); direction: rtl; text-align: right; line-height: 2.4; margin-bottom: 14px; }
+        .quran-translation { font-size: 0.95rem; color: var(--text-primary); font-style: italic; line-height: 1.7; margin-bottom: 8px; }
+        .quran-ref { font-size: 0.82rem; color: var(--accent-gold); font-weight: 600; }
+
+        .hadith-card { background: var(--hadith-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 22px 22px 16px; margin: 20px 0; box-shadow: 0 2px 8px var(--shadow-color); }
+        .hadith-english { font-size: 0.95rem; color: var(--text-primary); line-height: 1.75; margin-bottom: 14px; font-style: italic; }
+        .hadith-narrator { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 4px; font-weight: 600; }
+        .hadith-ref { font-size: 0.78rem; color: var(--ref-color); font-weight: 600; display: inline-block; background: var(--bg-card); padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border-color); }
+        .hadith-ref a { color: var(--accent-brown); text-decoration: none; }
+        .hadith-ref a:hover { text-decoration: underline; }
+
+        .lessons-panel { background: var(--warning-bg); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-brown); border-radius: 10px; padding: 22px 24px; margin: 30px 0; }
+        .lessons-panel .lessons-title { font-weight: 700; color: var(--accent-brown); font-size: 1.05rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .lessons-panel ol { padding-left: 20px; }
+        .lessons-panel ol li { padding: 6px 0; line-height: 1.7; color: var(--text-primary); font-size: 0.97rem; }
+        .lessons-panel ol li strong { color: var(--accent-brown); }
+
+        .info-box { background: var(--warning-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px 18px; margin: 20px 0; font-size: 0.9rem; }
+        .info-box .info-title { font-weight: 700; color: var(--accent-brown); margin-bottom: 6px; font-size: 0.92rem; }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box ul li { padding: 4px 0 4px 18px; position: relative; line-height: 1.6; }
+        .info-box ul li::before { content: '◆'; position: absolute; left: 0; color: var(--accent-brown-light); font-size: 0.6rem; top: 8px; }
+
+        .collapsible-header { cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; }
+        .collapsible-header .toggle-icon { font-size: 1.2rem; color: var(--accent-brown-light); transition: transform 0.3s; }
+        .collapsible-header .toggle-icon.open { transform: rotate(180deg); }
+        .collapsible-body { overflow: hidden; transition: max-height 0.4s ease; }
+        .collapsible-body.collapsed { max-height: 0 !important; }
+
+        .prophet-nav { display: flex; justify-content: space-between; align-items: center; margin: 50px 0 10px; gap: 10px; }
+        .prophet-nav a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent-brown-light); font-size: 0.88rem; font-weight: 600; padding: 10px 18px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-card); transition: all 0.2s; }
+        .prophet-nav a:hover { border-color: var(--accent-brown-light); color: var(--accent-brown); background: var(--bg-card-alt); }
+        .prophet-nav .nav-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); display: block; font-weight: 400; }
+        .prophet-nav .nav-name { display: block; font-weight: 700; color: var(--accent-brown); }
+        .prophet-nav a.disabled { opacity: 0.3; pointer-events: none; }
+
+        .footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 50px; }
+        .footer p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; }
+        .revision-stamp { display: flex; justify-content: center; gap: 20px; font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 12px; }
+        .share-btn { display: inline-block; margin-top: 16px; padding: 10px 28px; background: var(--accent-brown); color: var(--bg-primary); border: none; border-radius: 25px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .share-btn:hover { background: var(--accent-brown-light); }
+        .back-to-top { position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px; background: var(--accent-brown); color: var(--bg-primary); border: none; border-radius: 50%; font-size: 1.3rem; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(0,0,0,0.15); z-index: 50; }
+        .back-to-top.visible { display: flex; }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .header .bismillah { font-size: 1.6rem; }
+            .header .prophet-name-arabic { font-size: 1.9rem; }
+            .quran-arabic { font-size: 1.2rem; }
+            .section h2 { font-size: 1.35rem; }
+            .hadith-card { padding: 16px; }
+            .prophet-nav { flex-direction: column; }
+            .prophet-nav a { width: 100%; justify-content: center; text-align: center; }
+        }
+    </style>
+    <link rel="stylesheet" href="../themes.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="../lives-of-the-prophets.html" class="back-btn">← All Prophets</a>
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <div class="prophet-number-badge">Prophet 2 of 25</div>
+        <div class="prophet-name-arabic">إِدْرِيسُ</div>
+        <h1>Idrīs (عليه السلام)</h1>
+        <p class="subtitle">The Truthful Prophet — raised by Allāh to an honourable station</p>
+        <div class="methodology">
+            <span>📖</span>
+            The Clear Qurʾān · Ibn Kathīr · Ṣaḥīḥ Aḥādīth Only
+        </div>
+    </header>
+
+    <nav class="nav-container">
+        <div class="nav-top">
+            <a href="adam.html">‹ Ādam (عليه السلام)</a>
+            <span class="nav-center-label">Lives of the Prophets</span>
+            <a href="nuh.html">Nūḥ (عليه السلام) ›</a>
+        </div>
+        <div class="nav-sections">
+            <a href="#quran">Qurʾānic Mentions</a>
+            <a href="#narrative">Life &amp; Story</a>
+            <a href="#hadith">Aḥādīth</a>
+            <a href="#lessons">Lessons</a>
+            <a href="#supplications">Duʿāʾ</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <main class="content">
+
+        <!-- ═══════════ SECTION 1: QURANIC MENTIONS ═══════════ -->
+        <section class="section" id="quran">
+            <div class="section-number">Section One</div>
+            <h2>Qurʾānic Mentions</h2>
+            <p class="section-intro">
+                Idrīs (عليه السلام) is mentioned by name twice in the Noble Qurʾān, across two surahs: Sūrah Maryam (19:56–57) and Sūrah al-Anbiyāʾ (21:85–86). Though brief, both passages carry significant theological weight — establishing his rank as a prophet, his quality of truthfulness, his patience, and the divine honour of his elevation.
+            </p>
+
+            <h3>His Rank and the Honourable Station</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَٱذْكُرْ فِى ٱلْكِتَابِ إِدْرِيسَ ۚ إِنَّهُۥ كَانَ صِدِّيقًا نَّبِيًّا ۝ وَرَفَعْنَاهُ مَكَانًا عَلِيًّا
+                </div>
+                <div class="quran-translation">
+                    "And mention in the Book ˹the story of˺ Idrīs. He was truly a man of truth and a prophet. And We raised him to an honourable position."
+                </div>
+                <div class="quran-ref">Sūrah Maryam (19:56–57) — The Clear Qurʾān</div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                Allāh describes Idrīs with two titles: <em>ṣiddīq</em> (a man of truth — one whose inner conviction and outward conduct are in complete alignment) and <em>nabī</em> (prophet). The word <em>ṣiddīq</em> is among the highest descriptions Allāh gives to a human being in the Qurʾān, also used for Ibrāhīm (عليه السلام) and Maryam. The phrase <em>makānan ʿaliyyan</em> (an honourable position) is discussed below under Scholarly Differences.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">Scholarly Difference — The Meaning of "Raised to an Honourable Position"</div>
+                <ul>
+                    <li>Scholars of tafsīr differed on the meaning of <em>rafaʿnāhu makānan ʿaliyyan</em> (We raised him to an honourable position). Ibn Kathīr reports several positions: the majority understood it as a reference to a high rank and station with Allāh — meaning spiritual and prophetic elevation. Others, drawing on the Isrāʾ wal-Miʿrāj hadith in which the Prophet ﷺ encountered Idrīs in the fourth heaven, understood it as a reference to a physical elevation to the heavens. A third position holds it refers to his being placed in Paradise during his lifetime. Ibn Kathīr himself notes that the hadith of the Night Journey supports the view of a bodily elevation. Allāh knows best.</li>
+                </ul>
+            </div>
+
+            <h3>Among the Patient and the Righteous</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَإِسْمَاعِيلَ وَإِدْرِيسَ وَذَا ٱلْكِفْلِ ۖ كُلٌّ مِّنَ ٱلصَّابِرِينَ ۝ وَأَدْخَلْنَاهُمْ فِى رَحْمَتِنَآ ۖ إِنَّهُم مِّنَ ٱلصَّالِحِينَ
+                </div>
+                <div class="quran-translation">
+                    "And ˹remember˺ Ishmael, Idrīs, and Dul-Kifl. They were all steadfast. And We admitted them into Our mercy. They were truly of the righteous."
+                </div>
+                <div class="quran-ref">Sūrah al-Anbiyāʾ (21:85–86) — The Clear Qurʾān</div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                Here Idrīs is grouped with Ismāʿīl and Dhul-Kifl among those praised for <em>ṣabr</em> (steadfast patience). The Qurʾān confirms three things about him in this passage: he was patient in his trial, he was admitted into Allāh's mercy, and he was among the righteous (<em>ṣāliḥīn</em>). Scholars note that <em>ṣabr</em> here encompasses perseverance in obedience, patience in trial, and restraint from what is prohibited.
+            </p>
+
+        </section>
+
+        <!-- ═══════════ SECTION 2: NARRATIVE ═══════════ -->
+        <section class="section" id="narrative">
+            <div class="section-number">Section Two</div>
+            <h2 class="collapsible-header" onclick="toggleSection(this)">
+                Life &amp; Story
+                <span class="toggle-icon open">⌄</span>
+            </h2>
+            <div class="collapsible-body">
+
+                <p class="section-intro">
+                    The Qurʾān speaks of Idrīs (عليه السلام) briefly but with great honour. What is established through the Qurʾān and authentic hadith is his prophethood, his truthfulness, his patience, his admission into divine mercy, and his elevation to a high station. The details of his life and mission beyond this are drawn from early Islamic historical reports, which are presented clearly labelled below.
+                </p>
+
+                <h3>Identity and Lineage</h3>
+
+                <p>Idrīs (عليه السلام) is a prophet of Allāh whose name appears in the Qurʾān. Many early scholars of Islamic history held that he was a descendant of Shīth (Seth), son of Ādam (عليه السلام), and that he lived before Nūḥ (عليه السلام) — making him among the earliest prophets in the chain of prophethood that began with Ādam. This position is widely transmitted in early historical literature, though the precise lineage details are not established through revelation. His name in Arabic, Idrīs, is understood by some scholars to be derived from the Arabic root meaning to study or to teach, though this is a linguistic observation rather than an established fact.</p>
+
+                <div class="info-box">
+                    <div class="info-title">Scholarly Difference — Lineage and Historical Placement</div>
+                    <ul>
+                        <li>Scholars differed on the precise lineage of Idrīs (عليه السلام). The most widely transmitted position in early Islamic history literature places him as: Idrīs ibn Yard ibn Mahlāʾīl ibn Qaynān ibn Ānūsh ibn Shīth ibn Ādam. However, some classical scholars noted uncertainty in the intermediate links of this chain. His placement before Nūḥ (عليه السلام) is widely transmitted in early Islamic historical literature and adopted by many classical scholars of history and tafsīr, though some placed him after Nūḥ. Allāh knows best.</li>
+                    </ul>
+                </div>
+
+                <h3>Mission and Message</h3>
+
+                <p>Like all prophets, the foundational message of Idrīs (عليه السلام) was tawḥīd — the worship of Allāh alone, without partner or intermediary. The Qurʾān's description of him as a <em>ṣiddīq</em> and <em>nabī</em> establishes that he received divine revelation and conveyed it faithfully. Classical scholars understood his mission to be directed at the descendants of Ādam in the generations following Shīth, at a time when human societies were still in their early formation and the message of tawḥīd needed to be renewed and carried forward.</p>
+
+                <p>The Qurʾān's praise of his <em>ṣabr</em> (patience) in Sūrah al-Anbiyāʾ indicates that his mission was not without difficulty. Patience in the Qurʾānic sense — as scholars explain — encompasses perseverance in calling to Allāh despite opposition, steadfastness in personal obedience, and restraint in the face of hardship. That Allāh specifically commends him for this quality suggests his prophetic work involved sustained effort and endurance.</p>
+
+                <h3>The Elevation to a High Station</h3>
+
+                <p>The most theologically significant element of Idrīs's story is the Qurʾānic statement: <em>"We raised him to an honourable position"</em> (19:57). The hadith of the Night Journey and Ascension (Isrāʾ wal-Miʿrāj) establishes that the Prophet ﷺ encountered Idrīs (عليه السلام) in the fourth heaven. Many scholars understood this as supporting the Qurʾānic statement that Allāh raised him to an honourable position — the hadith providing a concrete context for what the verse describes.</p>
+
+                <p>Ibn Kathīr (رحمه الله) notes that the elevation of Idrīs is described by scholars as a sign of Allāh's favour upon him: he was singled out by name in the Qurʾān, described as truthful and a prophet, praised for his patience, admitted into Allāh's mercy, and elevated to a station that the Prophet ﷺ himself witnessed. These verses combine multiple forms of divine commendation — truthfulness, prophethood, patience, righteousness, mercy, and elevation — within a brief Qurʾānic mention.</p>
+
+                <div class="info-box">
+                    <div class="info-title">Scholarly Difference — Did Idrīs Die or Was He Raised Alive?</div>
+                    <ul>
+                        <li>Some early scholars held that Idrīs (عليه السلام) was raised to the heavens alive, analogous to ʿĪsā (عليه السلام), and that he remains alive. Others, including Ibn Kathīr, held that he died — either before his elevation or as part of it — citing the Qurʾānic principle that every soul shall taste death. The authentic hadith of the Isrāʾ does not resolve this question definitively, as the Prophet ﷺ encountered other deceased prophets during the same journey. This remains a matter of scholarly difference. Allāh knows best.</li>
+                    </ul>
+                </div>
+
+                <h3>Early Historical Reports — Skills and Knowledge</h3>
+
+                <div class="info-box">
+                    <div class="info-title">⚠ Early Historical Reports — Not Established Revelation</div>
+                    <ul>
+                        <li>The following details about Idrīs (عليه السلام) are drawn from early Islamic historical literature — transmitted by scholars such as Ibn Kathīr and al-Ṭabarī — and are not established by the Qurʾān or ṣaḥīḥ ḥadīth. They should be understood as reported information from early sources, not confirmed religious facts.</li>
+                    </ul>
+                </div>
+
+                <p>Early Islamic historical reports — transmitted in Ibn Kathīr's <em>Qiṣaṣ al-Anbiyāʾ</em> and al-Ṭabarī's <em>Tārīkh</em> — attribute to Idrīs (عليه السلام) several distinctions: that he was among the first to write with a pen, among the first to sew and wear sewn garments, and among the first to study the movements of the stars and the science of arithmetic. These reports are transmitted in early Islamic historical literature and are not established through the Qurʾān or authentic Sunnah. They present him as a figure through whom Allāh conveyed knowledge and practical wisdom to early humanity — continuing the pattern of divine guidance that began with Ādam (عليه السلام).</p>
+
+                <h3>Identification with Enoch — Isrāʾīliyyāt</h3>
+
+                <div class="info-box">
+                    <div class="info-title">⚠ Isrāʾīliyyāt — Reported from Earlier Traditions</div>
+                    <ul>
+                        <li>Some classical Muslim scholars — including Ibn Kathīr — noted that Idrīs (عليه السلام) has been identified by earlier traditions with the biblical figure of Enoch (mentioned in Genesis as a man who "walked with God" and was "taken by God"). Others noted parallels with Hermes Trismegistus in Hellenistic tradition. These identifications are drawn from Judeo-Christian and other external sources and do not have a Qurʾānic or ṣaḥīḥ ḥadīth basis. These identifications arise from external historical traditions and are not part of the Islamic transmitted knowledge regarding Idrīs. They are mentioned here only as transmitted historical comparisons. They do not form any part of the Islamic theological understanding of Idrīs (عليه السلام), and no doctrinal conclusions may be drawn from them. Allāh knows best.</li>
+                    </ul>
+                </div>
+
+                <h3>Death and Legacy</h3>
+
+                <p>The manner and timing of the death of Idrīs (عليه السلام) is among the points of scholarly difference noted above. What is established is that he was among the earliest prophets, that he carried the message of tawḥīd to his generation, that he was praised by Allāh in the Qurʾān as truthful, patient, and righteous, and that he was elevated to a station that the Prophet ﷺ himself witnessed during the Night Journey. His legacy in the chain of prophethood is that of a link between Ādam and Nūḥ (عليهما السلام) — one who renewed the call to Allāh in a generation that needed it.</p>
+
+                <div class="info-box">
+                    <div class="info-title">📋 Summary — Established Knowledge vs Early Historical Reports</div>
+                    <ul>
+                        <li><strong>Established by the Qurʾān or authentic Sunnah:</strong></li>
+                        <li>He was a prophet of Allāh (nabī) — Maryam 19:56</li>
+                        <li>He was a man of complete truthfulness (ṣiddīq) — Maryam 19:56</li>
+                        <li>He was patient and steadfast (ṣābir) — al-Anbiyāʾ 21:85</li>
+                        <li>He was among the righteous (ṣāliḥīn) — al-Anbiyāʾ 21:86</li>
+                        <li>Allāh admitted him into His mercy — al-Anbiyāʾ 21:86</li>
+                        <li>Allāh raised him to an honourable position — Maryam 19:57</li>
+                        <li>The Prophet ﷺ encountered him in the fourth heaven during the Isrāʾ — Ṣaḥīḥ al-Bukhārī 3207 / Ṣaḥīḥ Muslim 164a</li>
+                    </ul>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Reported in early Islamic historical literature only:</strong></li>
+                        <li>Descendant of Shīth ibn Ādam — widely transmitted but not revealed</li>
+                        <li>Lived before Nūḥ (عليه السلام) — majority historical position, not from revelation</li>
+                        <li>Among the first to write with a pen — early historical report</li>
+                        <li>Among the first to sew garments — early historical report</li>
+                        <li>Knowledge of astronomy and arithmetic — early historical report</li>
+                        <li>Specific lineage chain — transmitted with uncertainty in intermediate links</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════ SECTION 3: HADITH ═══════════ -->
+        <section class="section" id="hadith">
+            <div class="section-number">Section Three</div>
+            <h2>Authenticated Aḥādīth</h2>
+            <p class="section-intro">
+                Direct narrations specifically concerning Idrīs (عليه السلام) are limited in the hadith corpus. The most significant is the account of the Night Journey and Ascension (Isrāʾ wal-Miʿrāj), which is established in Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim. All ḥadīth numbers are linked to sunnah.com for independent verification.
+            </p>
+
+            <h3>The Encounter with Idrīs During the Night Journey</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    Mālik ibn Saʿsaʿah (رضي الله عنه) narrated that the Prophet ﷺ described his Night Journey, saying: <strong>"…Then we ascended to the fourth heaven. Gabriel sought permission to enter. It was asked, 'Who is it?' He replied, 'Gabriel.' It was asked, 'And who is with you?' He said, 'Muḥammad.' It was asked, 'Has he been sent for?' He replied, 'Yes.' The gate was then opened and I came upon Idrīs. He welcomed me and invoked Allāh's blessings upon me. Allāh says of him: 'And We raised him to an honourable position.'"</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Mālik ibn Saʿsaʿah (رضي الله عنه), as reported by Anas ibn Mālik (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/bukhari:3207" target="_blank">Ṣaḥīḥ al-Bukhārī 3207</a> · <a href="https://sunnah.com/muslim:164a" target="_blank">Ṣaḥīḥ Muslim 164a</a>
+                </span>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Scholarly Note — Idrīs in the Fourth Heaven</div>
+                <ul>
+                    <li>The placement of Idrīs (عليه السلام) in the fourth heaven is understood by scholars to be consistent with the Qurʾānic statement that Allāh raised him to a high station. Ibn Kathīr notes that the Prophet ﷺ encountering him there — rather than in the lower heavens where other prophets were placed — is itself a marker of his elevated rank. The hadith quotes the Qurʾānic verse directly (19:57) as the explanation for why Idrīs was there, making it one of the most direct connections between Qurʾānic description and prophetic narration concerning Idrīs.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 4: LESSONS ═══════════ -->
+        <section class="section" id="lessons">
+            <div class="section-number">Section Four</div>
+            <h2>Lessons &amp; Reflections</h2>
+            <p class="section-intro">
+                Key lessons drawn from the life of Idrīs (عليه السلام), in accordance with the understanding of Ahl al-Sunnah wa'l-Jamāʿah.
+            </p>
+
+            <div class="lessons-panel">
+                <div class="lessons-title">
+                    <span>🌿</span> Key Lessons from Idrīs (عليه السلام)
+                </div>
+                <ol>
+                    <li><strong>Truthfulness (<em>ṣidq</em>) is among the highest human qualities.</strong> Allāh describes Idrīs (عليه السلام) as a <em>ṣiddīq</em> before describing him as a prophet — placing truthfulness as the character foundation from which prophethood flows. The scholars explain that <em>ṣidq</em> encompasses truthfulness in speech, truthfulness in intention, and truthfulness between the inner state and the outer conduct. It is a quality Allāh specifically commends, and one the Prophet ﷺ identified as the path to righteousness and Paradise.</li>
+
+                    <li><strong>Allāh elevates those who are patient and righteous.</strong> The Qurʾānic account of Idrīs teaches that <em>ṣabr</em> and <em>ṣalāḥ</em> (righteousness) are not without reward. Allāh specifically records His elevation of Idrīs as an act of divine honour — a response to a life of truthfulness, patience, and prophetic faithfulness. The believer should understand that no act of sincere obedience is ever lost or forgotten by Allāh.</li>
+
+                    <li><strong>The chain of prophethood demonstrates the continuity of divine guidance.</strong> Idrīs stands as a link between Ādam and Nūḥ (عليهما السلام) — evidence that Allāh did not leave humanity without guidance after the descent from Paradise. In every era and generation, Allāh sent a messenger to renew the message of tawḥīd. This continuity is itself a mercy — and a proof that human beings have never been abandoned by their Creator.</li>
+
+                    <li><strong>Divine commendation is not measured by length of account.</strong> Idrīs receives only two Qurʾānic passages — yet within them, Allāh calls him truthful, a prophet, patient, righteous, admitted into mercy, and elevated to an honourable station. The brevity of the Qurʾānic account does not diminish his rank. This teaches that Allāh's recognition of a person's deeds is not proportional to their public prominence or the volume of their story.</li>
+
+                    <li><strong>Patience in the call to Allāh is a mark of the prophets.</strong> That Idrīs is grouped in Sūrah al-Anbiyāʾ with Ismāʿīl and Dhul-Kifl specifically for their <em>ṣabr</em> teaches that prophetic work inherently involves difficulty and resistance. The sincere believer who encounters hardship in calling to good or maintaining obedience finds in Idrīs (and all the prophets) a model of perseverance that Allāh Himself has preserved in His Book.</li>
+
+                    <li><strong>Epistemic humility is required where revelation is silent.</strong> The details of Idrīs's life — his lineage, the nature of his elevation, whether he died — involve genuine scholarly disagreement precisely because the Qurʾān and authentic hadith do not specify them. The correct response to such uncertainty is not speculation but restraint: to affirm what Allāh has established, acknowledge what is disputed, and close with "Allāh knows best." This is the methodology of classical Sunni scholarship and the only approach consistent with intellectual honesty.</li>
+                </ol>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 5: SUPPLICATIONS ═══════════ -->
+        <section class="section" id="supplications">
+            <div class="section-number">Section Five</div>
+            <h2>Supplications (Duʿāʾ)</h2>
+            <p class="section-intro">
+                No specific supplication is authentically attributed to Idrīs (عليه السلام) in the Qurʾān or ṣaḥīḥ ḥadīth beyond the universal prophetic supplications for guidance and forgiveness. The Qurʾān does not record a personal duʿāʾ from him in the manner it does for Ādam, Ibrāhīm, Mūsā, and others.
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                What the Qurʾān does record is Allāh's description of Idrīs as a <em>ṣiddīq</em> — one of complete truthfulness. Scholars note that the foundation of all supplication is the alignment of the heart with what the tongue says — precisely the quality of <em>ṣidq</em>. The story of Idrīs therefore calls the believer toward sincerity in their own duʿāʾ, even without a specific text attributed to him.
+            </p>
+
+        </section>
+
+        <!-- ═══════════ SECTION 6: SOURCES ═══════════ -->
+        <section class="section" id="sources">
+            <div class="section-number">Section Six</div>
+            <h2>Sources &amp; References</h2>
+            <p class="section-intro">
+                All content on this page is drawn from the following authenticated sources. Ḥadīth numbers are linked to sunnah.com for independent verification.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">Qurʾānic References</div>
+                <ul>
+                    <li>Sūrah Maryam (19:56–57)</li>
+                    <li>Sūrah al-Anbiyāʾ (21:85–86)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Primary Ḥadīth Sources (Muttafaq ʿAlayh)</div>
+                <ul>
+                    <li><strong>Ṣaḥīḥ al-Bukhārī</strong> — Ḥadīth 3207 (Isrāʾ wal-Miʿrāj)</li>
+                    <li><strong>Ṣaḥīḥ Muslim</strong> — Ḥadīth 164a (Isrāʾ wal-Miʿrāj)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Classical Commentary</div>
+                <ul>
+                    <li>Ibn Kathīr — <em>Qiṣaṣ al-Anbiyāʾ</em>, Chapter on Idrīs (عليه السلام)</li>
+                    <li>Ibn Kathīr — <em>Tafsīr al-Qurʾān al-ʿAẓīm</em>, Commentary on Sūrah Maryam (19:56–57)</li>
+                    <li>Al-Ṭabarī — <em>Tārīkh al-Rusul wal-Mulūk</em> — Early historical reports on Idrīs</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary);">
+                Qurʾānic translations throughout this page are from <strong>The Clear Qurʾān</strong> by Dr. Muṣṭafā Khaṭṭāb. Narrative content is drawn from Ibn Kathīr's <em>Qiṣaṣ al-Anbiyāʾ</em> and cross-referenced with Qurʾānic text and authenticated aḥādīth. Isrāʾīliyyāt (reports from earlier traditions without Qurʾānic or ṣaḥīḥ ḥadīth basis) have been excluded from theological content and clearly labelled where mentioned for historical context.
+            </p>
+
+        </section>
+
+        <!-- PREV / NEXT -->
+        <div class="prophet-nav">
+            <a href="adam.html">
+                <span>
+                    <span class="nav-label">‹ Previous</span>
+                    <span class="nav-name">Ādam (عليه السلام)</span>
+                </span>
+            </a>
+            <a href="nuh.html">
+                <span>
+                    <span class="nav-label">Next ›</span>
+                    <span class="nav-name">Nūḥ (عليه السلام)</span>
+                </span>
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 12px;">
+            لَقَدْ كَانَ فِى قَصَصِهِمْ عِبْرَةٌ لِّأُو۟لِى ٱلْأَلْبَـٰبِ
+        </p>
+        <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
+            "There was certainly in their stories a lesson for those of understanding." — Yūsuf (12:111)
+        </p>
+        <p style="margin-top: 20px;">May Allāh grant us benefit from the story of Idrīs (عليه السلام) and make us among the truthful and the patient.</p>
+        <button class="share-btn" onclick="shareResource()">📤 Share This Page</button>
+        <div class="revision-stamp">
+            <span>Rev 1.0</span>
+            <span>February 2026</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 8px;">
+            Compiled by Mohammed Farhan Shaikh with the aid of AI — sourced from Ibn Kathīr's Qiṣaṣ al-Anbiyāʾ, Ṣaḥīḥ al-Bukhārī, Ṣaḥīḥ Muslim, and the Noble Qurʾān (The Clear Qurʾān — Dr. Muṣṭafā Khaṭṭāb)
+        </p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        function toggleSection(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            if (body.classList.contains('collapsed')) {
+                body.classList.remove('collapsed');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                icon.classList.add('open');
+                setTimeout(() => { body.style.maxHeight = 'none'; }, 400);
+            } else {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.offsetHeight;
+                body.classList.add('collapsed');
+                icon.classList.remove('open');
+            }
+        }
+
+        function shareResource() {
+            const shareData = {
+                title: 'Idrīs (عليه السلام) — Lives of the Prophets',
+                text: 'The life and story of Prophet Idrīs (عليه السلام) — based on Ibn Kathīr, Ṣaḥīḥ Bukhārī, Ṣaḥīḥ Muslim and The Clear Qurʾān.',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => copyToClipboard());
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+
+    <script src="../themes.js"></script>
+</body>
+</html>
