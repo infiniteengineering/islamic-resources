@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="description" content="The life of Prophet Ādam (عليه السلام) — first human and first prophet — based on the Qurʾān, authentic Sunnah, and classical Sunni scholarship.">
+    <link rel="canonical" href="https://infiniteengineering.github.io/islamic-resources/prophets/adam.html">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+    <title>Ādam (عليه السلام) — Lives of the Prophets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary:         #f7f3eb;
+            --bg-card:            #efe9dd;
+            --bg-card-alt:        #e8e1d3;
+            --text-primary:       #3d2e1f;
+            --text-secondary:     #6b5744;
+            --text-arabic:        #2c1810;
+            --accent-brown:       #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --accent-gold:        #b8860b;
+            --border-color:       #d4c9b8;
+            --shadow-color:       rgba(61, 46, 31, 0.08);
+            --hadith-bg:          #f0e8d8;
+            --warning-bg:         #e8dcc8;
+            --ref-color:          #7a6248;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { color: var(--accent-brown); background: var(--bg-card); }
+
+        .header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+        }
+
+        .header .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--text-arabic);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .prophet-number-badge {
+            display: inline-block;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .header .prophet-name-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2.4rem;
+            color: var(--text-arabic);
+            margin-bottom: 8px;
+            line-height: 1.5;
+            direction: rtl;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 580px;
+            margin: 0 auto 20px;
+        }
+
+        .header .methodology {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--accent-brown);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .nav-top a {
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            transition: color 0.2s;
+        }
+        .nav-top a:hover { color: var(--accent-brown); }
+        .nav-top a.disabled { opacity: 0.3; pointer-events: none; }
+
+        .nav-top .nav-center-label {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .nav-sections {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            min-width: max-content;
+            padding: 10px 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 auto;
+        }
+        .nav-sections::-webkit-scrollbar { display: none; }
+
+        .nav-sections a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .nav-sections a:hover, .nav-sections a:active {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--accent-brown);
+        }
+
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section { margin-top: 50px; }
+
+        .section-number {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .section h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .section-intro {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            border-left: 3px solid var(--accent-brown-light);
+            padding-left: 15px;
+        }
+
+        .section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent-brown);
+            margin: 30px 0 12px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section p { margin-bottom: 16px; text-align: justify; }
+
+        .quran-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--accent-brown-light);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .quran-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.5rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 2.4;
+            margin-bottom: 14px;
+        }
+
+        .quran-translation {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .quran-ref {
+            font-size: 0.82rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .transliteration {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            text-align: center;
+            margin: 4px 0 12px;
+            letter-spacing: 0.3px;
+            line-height: 1.7;
+        }
+
+        .hadith-card {
+            background: var(--hadith-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 22px 22px 16px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .hadith-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.35rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 2.2;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .hadith-english {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .hadith-narrator {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .hadith-ref {
+            font-size: 0.78rem;
+            color: var(--ref-color);
+            font-weight: 600;
+            display: inline-block;
+            background: var(--bg-card);
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        .hadith-ref a { color: var(--accent-brown); text-decoration: none; }
+        .hadith-ref a:hover { text-decoration: underline; }
+
+        .lessons-panel {
+            background: var(--warning-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-brown);
+            border-radius: 10px;
+            padding: 22px 24px;
+            margin: 30px 0;
+        }
+
+        .lessons-panel .lessons-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lessons-panel ol { padding-left: 20px; }
+
+        .lessons-panel ol li {
+            padding: 6px 0;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-size: 0.97rem;
+        }
+
+        .lessons-panel ol li strong { color: var(--accent-brown); }
+
+        .info-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .info-box .info-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+        }
+
+        .info-box ul { list-style: none; padding-left: 0; }
+
+        .info-box ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .info-box ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent-brown-light);
+            font-size: 0.6rem;
+            top: 8px;
+        }
+
+        .collapsible-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--accent-brown-light);
+            transition: transform 0.3s;
+        }
+
+        .collapsible-header .toggle-icon.open { transform: rotate(180deg); }
+
+        .collapsible-body {
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .collapsible-body.collapsed { max-height: 0 !important; }
+
+        .prophet-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0 10px;
+            gap: 10px;
+        }
+
+        .prophet-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+
+        .prophet-nav a:hover {
+            border-color: var(--accent-brown-light);
+            color: var(--accent-brown);
+            background: var(--bg-card-alt);
+        }
+
+        .prophet-nav .nav-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            display: block;
+            font-weight: 400;
+        }
+
+        .prophet-nav .nav-name {
+            display: block;
+            font-weight: 700;
+            color: var(--accent-brown);
+        }
+
+        .prophet-nav a.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .revision-stamp {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+            color: var(--accent-brown-light);
+            margin-top: 12px;
+        }
+
+        .share-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 28px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .share-btn:hover { background: var(--accent-brown-light); }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            z-index: 50;
+            transition: opacity 0.3s;
+        }
+        .back-to-top.visible { display: flex; }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .header .bismillah { font-size: 1.6rem; }
+            .header .prophet-name-arabic { font-size: 1.9rem; }
+            .hadith-arabic, .quran-arabic { font-size: 1.2rem; }
+            .section h2 { font-size: 1.35rem; }
+            .hadith-card { padding: 16px; }
+            .prophet-nav { flex-direction: column; }
+            .prophet-nav a { width: 100%; justify-content: center; text-align: center; }
+        }
+    </style>
+    <link rel="stylesheet" href="../themes.css">
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <a href="../lives-of-the-prophets.html" class="back-btn">← All Prophets</a>
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <div class="transliteration">Bismi llāhi r-raḥmāni r-raḥīm</div>
+        <div class="prophet-number-badge">Prophet 1 of 25</div>
+        <div class="prophet-name-arabic">آدَمُ</div>
+        <div class="transliteration">Ādam</div>
+        <h1>Ādam (عليه السلام)</h1>
+        <p class="subtitle">The Father of Humanity — the first human being and the first Prophet sent to mankind</p>
+        <div class="methodology">
+            <span>📖</span>
+            The Clear Qurʾān · Ibn Kathīr · Ṣaḥīḥ Aḥādīth Only
+        </div>
+    </header>
+
+    <!-- ═══════════════ NAV ═══════════════ -->
+    <nav class="nav-container">
+        <div class="nav-top">
+            <a href="#" class="disabled">‹ Previous</a>
+            <span class="nav-center-label">Lives of the Prophets</span>
+            <a href="idris.html">Idrīs (عليه السلام) ›</a>
+        </div>
+        <div class="nav-sections">
+            <a href="#quran">Qurʾānic Mentions</a>
+            <a href="#narrative">Life &amp; Story</a>
+            <a href="#hadith">Aḥādīth</a>
+            <a href="#lessons">Lessons</a>
+            <a href="#supplications">Duʿāʾ</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ CONTENT ═══════════════ -->
+    <main class="content">
+
+        <!-- ═══════════ SECTION 1: QURANIC MENTIONS ═══════════ -->
+        <section class="section" id="quran">
+            <div class="section-number">Section One</div>
+            <h2>Qurʾānic Mentions</h2>
+            <p class="section-intro">
+                Ādam (عليه السلام) is mentioned by name twenty-five times in the Noble Qurʾān across nine surahs. His story is told most fully in Sūrah al-Baqarah, Sūrah al-Aʿrāf, and Sūrah Ṭā-Hā. The key verses are presented below.
+            </p>
+
+            <!-- Creation and the Khalifah -->
+            <h3>The Announcement of Creation</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَإِذْ قَالَ رَبُّكَ لِلْمَلَـٰٓئِكَةِ إِنِّى جَاعِلٌ فِى ٱلْأَرْضِ خَلِيفَةً ۖ قَالُوٓا۟ أَتَجْعَلُ فِيهَا مَن يُفْسِدُ فِيهَا وَيَسْفِكُ ٱلدِّمَآءَ وَنَحْنُ نُسَبِّحُ بِحَمْدِكَ وَنُقَدِّسُ لَكَ ۖ قَالَ إِنِّىٓ أَعْلَمُ مَا لَا تَعْلَمُونَ
+                </div>
+                <div class="transliteration">Wa-idh qāla rabbuka lil-malāʾikati innī jāʿilun fī l-arḍi khalīfah · qālū a-tajʿalu fīhā man yufsidu fīhā wa-yasfiku d-dimāʾa wa-naḥnu nusabbiḥu bi-ḥamdika wa-nuqaddisu lak · qāla innī aʿlamu mā lā taʿlamūn</div>
+                <div class="quran-translation">
+                    "Remember˺ when your Lord said to the angels, 'I am going to place a successive ˹human˺ authority on earth.' They asked ˹Allah˺, 'Will You place in it someone who will spread corruption there and shed blood while we glorify Your praises and proclaim Your holiness?' Allah responded, 'I know what you do not know.'"
+                </div>
+                <div class="quran-ref">Sūrah al-Baqarah (2:30) — The Clear Qurʾān</div>
+            </div>
+
+            <!-- Teaching of Names -->
+            <h3>The Teaching of Names and the Prostration</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَعَلَّمَ ءَادَمَ ٱلْأَسْمَآءَ كُلَّهَا ثُمَّ عَرَضَهُمْ عَلَى ٱلْمَلَـٰٓئِكَةِ فَقَالَ أَنۢبِـُٔونِى بِأَسْمَآءِ هَـٰٓؤُلَآءِ إِن كُنتُمْ صَـٰدِقِينَ
+                </div>
+                <div class="transliteration">Wa-ʿallama Ādama l-asmāʾa kullahā · thumma ʿaraḍahum ʿalā l-malāʾikati fa-qāla anbiʾūnī bi-asmāʾi hāʾulāʾi in kuntum ṣādiqīn</div>
+                <div class="quran-translation">
+                    "He taught Adam the names of all things, then He presented them to the angels and said, 'Tell Me the names of these, if what you say is true?'"
+                </div>
+                <div class="quran-ref">Sūrah al-Baqarah (2:31) — The Clear Qurʾān</div>
+            </div>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَإِذْ قُلْنَا لِلْمَلَـٰٓئِكَةِ ٱسْجُدُوا۟ لِـَٔادَمَ فَسَجَدُوٓا۟ إِلَّآ إِبْلِيسَ أَبَىٰ وَٱسْتَكْبَرَ وَكَانَ مِنَ ٱلْكَـٰفِرِينَ
+                </div>
+                <div class="transliteration">Wa-idh qulnā lil-malāʾikati usjudū li-Ādama fa-sajadū illā Iblīsa abā wa-stakbara wa-kāna mina l-kāfirīn</div>
+                <div class="quran-translation">
+                    "And ˹remember˺ when We said to the angels, 'Prostrate before Adam,' so they all did — but not Iblīs, who refused and was arrogant, becoming one of the disbelievers."
+                </div>
+                <div class="quran-ref">Sūrah al-Baqarah (2:34) — The Clear Qurʾān</div>
+            </div>
+
+            <!-- The Forbidden Tree and Repentance -->
+            <h3>The Forbidden Tree and Repentance</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَقُلْنَا يَـٰٓـَٔادَمُ ٱسْكُنْ أَنتَ وَزَوْجُكَ ٱلْجَنَّةَ وَكُلَا مِنْهَا رَغَدًا حَيْثُ شِئْتُمَا وَلَا تَقْرَبَا هَـٰذِهِ ٱلشَّجَرَةَ فَتَكُونَا مِنَ ٱلظَّـٰلِمِينَ
+                </div>
+                <div class="transliteration">Wa-qulnā yā-Ādamu uskun anta wa-zawjuka l-jannata wa-kulā minhā raghadan ḥaythu shiʾtumā wa-lā taqrabā hādhihi sh-shajarata fa-takūnā mina ẓ-ẓālimīn</div>
+                <div class="quran-translation">
+                    "We said, 'O Adam! Live with your wife in Paradise and eat freely whatever you please, but do not approach this tree, or else you will be wrongdoers.'"
+                </div>
+                <div class="quran-ref">Sūrah al-Baqarah (2:35) — The Clear Qurʾān</div>
+            </div>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    فَتَلَقَّىٰٓ ءَادَمُ مِن رَّبِّهِۦ كَلِمَـٰتٍ فَتَابَ عَلَيْهِ ۚ إِنَّهُۥ هُوَ ٱلتَّوَّابُ ٱلرَّحِيمُ
+                </div>
+                <div class="transliteration">Fa-talaqqā Ādamu min rabbihi kalimātin fa-tāba ʿalayh · innahu huwa t-tawwābu r-raḥīm</div>
+                <div class="quran-translation">
+                    "Then Adam received some words of guidance from his Lord, so Allah accepted his repentance. Surely He is the Accepter of Repentance, Most Merciful."
+                </div>
+                <div class="quran-ref">Sūrah al-Baqarah (2:37) — The Clear Qurʾān</div>
+            </div>
+
+            <!-- Iblis's refusal from Al-A'raf -->
+            <h3>Iblīs's Refusal and Enmity</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    قَالَ مَا مَنَعَكَ أَلَّا تَسْجُدَ إِذْ أَمَرْتُكَ ۖ قَالَ أَنَا۠ خَيْرٌ مِّنْهُ خَلَقْتَنِى مِن نَّارٍ وَخَلَقْتَهُۥ مِن طِينٍ
+                </div>
+                <div class="transliteration">Qāla mā manaʿaka allā tasjuda idh amartuk · qāla anā khayrun minhu khalaqtanī min nārin wa-khalaqtahu min ṭīn</div>
+                <div class="quran-translation">
+                    "Allah asked, 'What prevented you from prostrating when I commanded you?' He replied, 'I am better than he is: You created me from fire and him from clay.'"
+                </div>
+                <div class="quran-ref">Sūrah al-Aʿrāf (7:12) — The Clear Qurʾān</div>
+            </div>
+
+            <!-- The covenant - Ta-Ha -->
+            <h3>The Covenant and the Reminder</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَلَقَدْ عَهِدْنَآ إِلَىٰٓ ءَادَمَ مِن قَبْلُ فَنَسِىَ وَلَمْ نَجِدْ لَهُۥ عَزْمًا
+                </div>
+                <div class="transliteration">Wa-laqad ʿahidnā ilā Ādama min qablu fa-nasiya wa-lam najid lahu ʿazmā</div>
+                <div class="quran-translation">
+                    "We had already taken a covenant from Adam before, but he forgot, and We found him lacking in determination."
+                </div>
+                <div class="quran-ref">Sūrah Ṭā-Hā (20:115) — The Clear Qurʾān</div>
+            </div>
+
+            <!-- The Repentance Dua - Al-A'raf 7:23 -->
+            <h3>The Duʿāʾ of Repentance</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَـٰسِرِينَ
+                </div>
+                <div class="transliteration">Qālā rabbanā ẓalamnā anfusanā wa-in lam taghfir lanā wa-tarḥamnā la-nakūnanna mina l-khāsirīn</div>
+                <div class="quran-translation">
+                    "They replied, 'Our Lord! We have wronged ourselves. If You do not forgive us and have mercy on us, we will certainly be among the losers.'"
+                </div>
+                <div class="quran-ref">Sūrah al-Aʿrāf (7:23) — The Clear Qurʾān</div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                This duʿāʾ is the model of sincere repentance in Islam: full acknowledgement of wrongdoing, complete absence of excuse-making, and unconditional dependence on Allāh's forgiveness and mercy. Scholars of tafsīr note that Allāh Himself taught Ādam these words — meaning they represent the most perfect form in which a servant can turn back to his Lord.
+            </p>
+
+            <!-- The Primordial Covenant - Al-A'raf 7:172 -->
+            <h3>The Primordial Covenant (Mīthāq)</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    وَإِذْ أَخَذَ رَبُّكَ مِنۢ بَنِىٓ ءَادَمَ مِن ظُهُورِهِمْ ذُرِّيَّتَهُمْ وَأَشْهَدَهُمْ عَلَىٰٓ أَنفُسِهِمْ أَلَسْتُ بِرَبِّكُمْ ۖ قَالُوا۟ بَلَىٰ ۛ شَهِدْنَآ ۛ أَن تَقُولُوا۟ يَوْمَ ٱلْقِيَـٰمَةِ إِنَّا كُنَّا عَنْ هَـٰذَا غَـٰفِلِينَ
+                </div>
+                <div class="transliteration">Wa-idh akhadha rabbuka min banī Ādama min ẓuhūrihim dhurriyyatahum wa-ashhadahum ʿalā anfusihim · a-lastu bi-rabbikum · qālū balā shahidnā · an taqūlū yawma l-qiyāmati innā kunnā ʿan hādhā ghāfilīn</div>
+                <div class="quran-translation">
+                    "And ˹remember˺ when your Lord brought forth from the loins of the children of Adam their descendants and had them bear witness over themselves. ˹Allah asked,˺ 'Am I not your Lord?' They replied, 'Yes, You are! We bear witness.' ˹He cautioned,˺ 'Now you have no excuse to say on Judgment Day, "We were unaware of this."'"
+                </div>
+                <div class="quran-ref">Sūrah al-Aʿrāf (7:172) — The Clear Qurʾān</div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                This verse establishes the doctrine of the primordial covenant (al-mīthāq): before their entry into the world, all the descendants of Ādam bore witness to the Lordship of Allāh. This covenant is the basis of the <em>fiṭrah</em> — the innate disposition towards tawḥīd with which every human being is born — and establishes that no person can claim complete unawareness of Allāh on the Day of Judgement. It also affirms that human accountability is grounded in a testimony given before this worldly life. The sending of prophets throughout history serves to remind humanity of this primordial covenant and to restore the fiṭrah when it becomes obscured.
+            </p>
+
+            <!-- Allah chose Adam after repentance - Ta-Ha 20:122 -->
+            <h3>Allāh Chose Ādam After Repentance</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    ثُمَّ ٱجْتَبَـٰهُ رَبُّهُۥ فَتَابَ عَلَيْهِ وَهَدَىٰ
+                </div>
+                <div class="transliteration">Thumma ijtabāhu rabbuhu fa-tāba ʿalayhi wa-hadā</div>
+                <div class="quran-translation">
+                    "Then his Lord chose him, turned to him in forgiveness, and guided him."
+                </div>
+                <div class="quran-ref">Sūrah Ṭā-Hā (20:122) — The Clear Qurʾān</div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--text-secondary); font-style: italic; border-left: 3px solid var(--accent-brown-light); padding-left: 14px; margin: 0 0 20px;">
+                This verse is among the most important in Ādam's story. It affirms that his repentance was not only accepted but that Allāh chose him, honoured him, and guided him after it — demonstrating that the repentant servant is not diminished in Allāh's sight but elevated. Scholars of tafsīr note the sequence: <em>ijtabāhu</em> (chose him), <em>tāba ʿalayh</em> (turned to him in forgiveness), <em>hadā</em> (guided him) — each word a mark of divine favour restored.
+            </p>
+
+            <!-- The likeness of Isa to Adam -->
+            <h3>The Likeness of ʿĪsā to Ādam</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    إِنَّ مَثَلَ عِيسَىٰ عِندَ ٱللَّهِ كَمَثَلِ ءَادَمَ ۖ خَلَقَهُۥ مِن تُرَابٍ ثُمَّ قَالَ لَهُۥ كُن فَيَكُونُ
+                </div>
+                <div class="transliteration">Inna mathala ʿĪsā ʿinda llāhi ka-mathali Ādam · khalaqahu min turābin thumma qāla lahu kun fa-yakūn</div>
+                <div class="quran-translation">
+                    "Indeed, the likeness of Jesus in the sight of Allah is like that of Adam. He created him from dust, then said to him, 'Be!' And he was!"
+                </div>
+                <div class="quran-ref">Sūrah Āl-ʿImrān (3:59) — The Clear Qurʾān</div>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 2: NARRATIVE ═══════════ -->
+        <section class="section" id="narrative">
+            <div class="section-number">Section Two</div>
+            <h2 class="collapsible-header" onclick="toggleSection(this)">
+                Life &amp; Story
+                <span class="toggle-icon open">⌄</span>
+            </h2>
+            <div class="collapsible-body">
+
+                <p class="section-intro">
+                    The story of Ādam (عليه السلام) is the story of the beginning of humanity itself — his creation from clay, his elevation above the angels through divine knowledge, his trial in Paradise, his repentance, and his descent to the earth as both the father of mankind and the first prophet of Allāh.
+                </p>
+
+                <h3>The Creation of Ādam</h3>
+
+                <p>Before the creation of Ādam (عليه السلام), Allāh (سُبْحَانَهُ وَتَعَالَى) announced to the angels His intention to place a khalīfah — a successive steward — upon the earth. The term <em>khalīfah</em> in this context refers to successive generations inhabiting and stewarding the earth — not political rulership in the later historical sense of the word. The angels, aware of the capacity for corruption and bloodshed that such a creation might carry, asked Allāh about this. His response was decisive: <em>"I know what you do not know."</em> This declaration established from the very outset that the wisdom of Allāh surpasses all created understanding.</p>
+
+                <p>Allāh created Ādam from clay — specifically from the soil of the earth. Some scholars of tafsīr mention that the soil from which Ādam was formed was taken from different parts of the earth, which they relate to the diversity found among his descendants. This is reported in early scholarly explanations. Allāh moulded Ādam's form and left him as clay for a period, then breathed into him the created spirit (<em>rūḥ</em>) which He honoured by attributing it to Himself, and Ādam became a living human being. The Prophet ﷺ informed us that Ādam was created in a form sixty cubits tall — a height that has since diminished with each generation of his descendants.</p>
+
+                <h3>The Teaching of Names and the Superiority of Ādam</h3>
+
+                <p>Allāh honoured Ādam (عليه السلام) with a gift that distinguished him above all the angels: the knowledge of names. Allāh taught Ādam the names of all things — knowledge of creation whose full scope is known only to Allāh. This was not merely linguistic knowledge but a comprehensive understanding of the nature of creation, bestowed directly by the Creator. When Allāh presented these things to the angels and asked them to name them, they could not. They replied with complete humility: <em>"Glory be to You! We have no knowledge except what You have taught us."</em></p>
+
+                <p>Allāh then asked Ādam to inform the angels of the names, and when he did, Allāh declared to the angels: <em>"Did I not tell you that I know the secrets of the heavens and the earth, and I know what you reveal and what you conceal?"</em> This exchange established the dignity of Ādam and, by extension, of all human beings — honoured above other creation by the gift of knowledge and the capacity for reason and language.</p>
+
+                <h3>The Prostration of the Angels and the Refusal of Iblīs</h3>
+
+                <p>Allāh commanded the angels to prostrate before Ādam. The scholars of Ahl al-Sunnah are unanimous that this prostration was one of honour and obedience to Allāh's command — not an act of worship directed at Ādam. Worship (<em>ʿibādah</em>) belongs exclusively to Allāh alone, and no angel would direct worship to any created being. The prostration was Allāh's way of honouring Ādam and demonstrating his elevated station to the angels. All of the angels obeyed without hesitation. All, that is, except Iblīs.</p>
+
+                <p>It is important to note that the Qurʾān clarifies Iblīs was not an angel but from the jinn (al-Kahf 18:50), though he had been among the angels in worship and obedience before his refusal. Unlike the angels, who do not disobey Allāh, human beings were created with the capacity for choice — and therefore the capacity for both error and repentance. It was precisely this free will that made Iblīs's refusal possible, and his pride that made it catastrophic.</p>
+
+                <p>Iblīs refused. His reason was one of arrogance and false reasoning: <em>"I am better than him. You created me from fire and him from clay."</em> He compared the raw materials of his creation to those of Ādam's, judging fire to be superior to clay, and on this basis declared himself exempt from the divine command. This was the first act of disobedience among creation after the command concerning Ādam — born not of ignorance but of pride. Allāh expelled Iblīs from His mercy and granted him respite until the Day of Judgement, during which time Iblīs vowed to lead the children of Ādam astray as revenge for his own disgrace.</p>
+
+                <p>Ibn Kathīr (رحمه الله) notes the profound lesson in this event: Iblīs was among the most devoted of worshippers before his fall, yet a single act of arrogance — a refusal to submit — stripped him of everything. Pride is among the most destructive of spiritual diseases, for it places the self above the command of Allāh.</p>
+
+                <h3>Life in Paradise and the Forbidden Tree</h3>
+
+                <p>Allāh placed Ādam (عليه السلام) in Paradise (al-Jannah) and created from him his wife, Ḥawwāʾ. Allāh permitted them to eat freely of all the fruits of Paradise with a single exception: one specific tree, which they were commanded not to approach. This was a test — a divine boundary placed to demonstrate whether Ādam and Ḥawwāʾ would submit to Allāh's command even without knowing the full reason behind it.</p>
+
+                <div class="info-box">
+                    <div class="info-title">Scholarly Difference — The Nature of Ādam's Paradise</div>
+                    <ul>
+                        <li>Scholars differed regarding the nature of the Paradise in which Ādam lived. The majority of early scholars held that it was the eternal Paradise of the Hereafter, while others suggested it was a special garden created specifically for the purpose of this test. All scholars agree that it was a place of divine honour and that Ādam's time there constituted a trial from Allāh. Allāh knows best.</li>
+                    </ul>
+                </div>
+
+                <p>Iblīs, true to his vow, approached them with whispered deception. He swore to them by Allāh that the tree was forbidden only because eating from it would make them angels or grant them eternal life. He framed the prohibition as something being withheld from them rather than something protecting them. Ultimately, both Ādam and Ḥawwāʾ ate from the tree. The Qurʾān makes clear that Ādam forgot the covenant he had made — it was an act of forgetfulness and vulnerability to temptation rather than deliberate defiance. <em>"We found him lacking in determination"</em> (Ṭā-Hā 20:115) — a human frailty, not a wilful rebellion against Allāh. This forgetfulness does not negate prophethood, for the prophets are protected from persisting in sin and are guided immediately to repentance.</p>
+
+                <h3>Repentance and Descent to Earth</h3>
+
+                <p>The consequence of eating from the tree was immediate: their coverings were removed, and they became aware of their nakedness. They began covering themselves with the leaves of Paradise. Allāh addressed them — <em>"Did I not forbid you from that tree and tell you that Satan is truly your sworn enemy?"</em> — and decreed their descent from Paradise to the earth, where they and their descendants would live for an appointed time.</p>
+
+                <p>Yet this is where the story of Ādam reveals one of its greatest lessons. Rather than persisting in error, Ādam (عليه السلام) turned immediately to repentance. Allāh (سُبْحَانَهُ وَتَعَالَى) taught him words of repentance — words of profound humility and acknowledgement of wrongdoing — and Ādam said: <em>"Our Lord! We have wronged ourselves. If You do not forgive us and have mercy on us, we will certainly be among the losers."</em> (al-Aʿrāf 7:23). Allāh accepted his repentance. He is al-Tawwāb — the Ever-Accepting of repentance — and al-Raḥīm — the Most Merciful.</p>
+
+                <p>This stands in direct contrast to Iblīs, who upon his expulsion did not repent but instead doubled down in arrogance and spite. The difference between Ādam and Iblīs is not that one sinned and the other did not — it is that Ādam returned to Allāh and Iblīs did not.</p>
+
+                <p>Scholars of tafsīr emphasise that the descent of Ādam to the earth was not merely a consequence of error but part of divine wisdom. Through it, the realities of human life unfolded: responsibility, moral choice, repentance, guidance, and the sending of prophets. Earth became the arena in which humanity would live out the trust (<em>amānah</em>) entrusted to it by Allāh — a trust so great that the heavens, the earth, and the mountains declined to bear it (al-Aḥzāb 33:72). Ibn al-Qayyim (رحمه الله) noted that had Ādam not descended, there would have been no prophets, no messengers, no martyrs, no scholars, and no striving in the way of Allāh — all of which are among the highest manifestations of divine wisdom in creation.</p>
+
+                <h3>Ādam as the First Prophet</h3>
+
+                <p>Ādam (عليه السلام) is the first human being and the first prophet of Allāh. Prophethood began with him and continued through an unbroken chain of messengers, each confirming the message of his predecessor, until it was sealed with Muḥammad ﷺ. The Prophet ﷺ confirmed Ādam's prophetic status when asked about the first of the prophets — he identified Ādam as a prophet to whom Allāh spoke directly. Every human being alive today is a descendant of Ādam (عليه السلام), which is why he is called Abū al-Bashar — the Father of Humanity.</p>
+
+                <h3>Life on Earth — Prophethood and Progeny</h3>
+
+                <p>Ādam (عليه السلام) descended to earth as both the first human being and the first prophet of Allāh. He was taught how to till the land, cultivate crops, and build shelter. He received divine guidance for himself and his descendants — the foundational message that all subsequent prophets would carry: worship Allāh alone, avoid shirk, and live righteously.</p>
+
+                <p>Ādam and Ḥawwāʾ had many children, and from them came the entirety of the human race. Among his sons were Hābīl (Abel) and Qābīl (Cain). Qābīl killed his brother Hābīl — the first murder committed on earth — out of envy when Allāh accepted Hābīl's sacrifice but not his. This tragedy was a sorrow that Ādam (عليه السلام) bore as the father of all humanity, witnessing within his own family the very corruption that the angels had feared when Allāh announced the creation of a khalīfah on earth.</p>
+
+                <p>According to early Islamic historical reports mentioned by the scholars of tafsīr, Ādam lived close to a thousand years, with some narrations specifying nine hundred and sixty. These reports are transmitted in early Islamic history literature. He spent this time teaching his children the way of Allāh and serving as the first link in the chain of prophethood that would culminate with Muḥammad ﷺ. He was buried by his sons, and some early reports state that the day of his death was a Friday.</p>
+
+                <h3>Location of Descent — Early Historical Reports</h3>
+
+                <div class="info-box">
+                    <div class="info-title">⚠ Early Historical Reports — Not Established Revelation</div>
+                    <ul>
+                        <li>The following details about the location of Ādam and Ḥawwāʾ's descent are drawn from early Islamic historical reports (<em>riwāyāt</em>) transmitted by scholars of tafsīr and Islamic history. They are not established by the Qurʾān or ṣaḥīḥ ḥadīth, and should be understood as reported information — not as confirmed religious facts.</li>
+                    </ul>
+                </div>
+
+                <p>Early Islamic historical reports, transmitted through scholars such as Ibn Kathīr and al-Ṭabarī, mention that Ādam (عليه السلام) descended to the earth in a region associated with the Indian subcontinent — some reports naming a mountain in what is today Sri Lanka or the Arabian Peninsula. Ḥawwāʾ is reported in some of these accounts to have descended separately, with the two eventually being reunited in the plain of ʿArafāt near Makkah — which some scholars suggest as a possible reason for the name ʿArafāt (from <em>taʿārafū</em>, meaning "they recognised one another"). However, it must be emphasised that these are early historical reports of uncertain transmission, not established revelation. The Qurʾān is silent on the specific location of descent, and no authentic ḥadīth establishes this definitively. They are recorded here solely as transmitted historical reports.</p>
+
+            </div>
+        </section>
+
+        <!-- ═══════════ SECTION 3: HADITH ═══════════ -->
+        <section class="section" id="hadith">
+            <div class="section-number">Section Three</div>
+            <h2>Authenticated Aḥādīth</h2>
+            <p class="section-intro">
+                The following narrations concerning Ādam (عليه السلام) are drawn primarily from Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim, with additional authenticated narrations from Jāmiʿ al-Tirmidhī and Musnad Aḥmad. All ḥadīth numbers are linked to sunnah.com for independent verification.
+            </p>
+
+            <!-- Hadith 1: Height of Adam -->
+            <h3>The Creation and Stature of Ādam</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"Allāh created Ādam in His image, sixty cubits tall. When He created him, He said, 'Go and greet those angels — a group sitting there — and listen to how they greet you, for that will be your greeting and the greeting of your descendants.' So he went and said: 'al-Salāmu ʿAlaykum,' and they replied: 'al-Salāmu ʿAlayka wa Raḥmatullāh,' adding 'wa Raḥmatullāh.' So everyone who enters Paradise will be in the form of Ādam. Mankind has continued to decrease in height since Ādam's time to the present."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/bukhari:3326" target="_blank">Ṣaḥīḥ al-Bukhārī 3326</a>
+                </span>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Theological Note — "Created in His Image"</div>
+                <ul>
+                    <li>The phrase "Allāh created Ādam in His image" is affirmed as authentic without interpretation that would liken Allāh to His creation. Scholars of Ahl al-Sunnah explain that the pronoun refers to the form Allāh honoured Ādam with — complete and upright — and is not a statement of resemblance between the Creator and the created. Allāh is far above any likeness to His creation. This is the position of Ibn Khuzaymah, al-Nawawī, Ibn Ḥajar, and the mainstream Sunni tradition.</li>
+                </ul>
+            </div>
+
+            <!-- Hadith 2: Adam and Musa -->
+            <h3>The Debate Between Ādam and Mūsā</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"Ādam and Mūsā argued with each other. Mūsā said to Ādam: 'You are the one whose sin caused you to be expelled from Paradise.' Ādam replied: 'You are Mūsā, whom Allāh selected to be His messenger and to whom He spoke directly. Do you blame me for a matter which Allāh had decreed for me forty years before He created me?'"</strong> The Prophet ﷺ said: <strong>"So Ādam won the argument over Mūsā."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/bukhari:6614" target="_blank">Ṣaḥīḥ al-Bukhārī 6614</a> · <a href="https://sunnah.com/muslim:2652" target="_blank">Ṣaḥīḥ Muslim 2652</a>
+                </span>
+            </div>
+
+            <!-- Hadith 3: Allah wiped Adam's back -->
+            <h3>The Descendants of Ādam</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"When Allāh created Ādam, He wiped his back and every person that He would create among his descendants until the Day of Resurrection fell out from his back. He placed a gleam of light between the eyes of every person. Then He showed them to Ādam and he asked: 'O Lord, who are these people?' Allāh said: 'These are your descendants.' Ādam saw one person among them whose gleam of light amazed him, so he asked: 'O Lord, who is this?' Allāh said: 'This is a man from the later generations of your descendants called Dāwūd.' Ādam asked: 'O Lord, how long did You make his lifespan?' Allāh said: 'Sixty years.' Ādam said: 'O Lord, add forty years from my life to his.' So Ādam's lifespan was completed at nine hundred and sixty years, and Dāwūd lived for a hundred years."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/tirmidhi:3076" target="_blank">Jāmiʿ al-Tirmidhī 3076</a> — Graded Ḥasan Ṣaḥīḥ by al-Tirmidhī
+                </span>
+            </div>
+
+            <!-- Hadith 4: Adam's sneeze -->
+            <h3>The First Act of Gratitude</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"When Allāh created Ādam and breathed the spirit into him, Ādam sneezed and said: 'Al-ḥamdulillāh.' So he praised Allāh by Allāh's permission, and his Lord said to him: 'May Allāh have mercy on you, O Ādam. Go to those angels — a group sitting there — and say salām to them.' He went and said: 'Al-salāmu ʿalaykum,' and they replied: 'Al-salāmu ʿalayka wa raḥmatullāh.' Then he returned to his Lord, who said: 'This is your greeting and the greeting of your descendants among one another.'"</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/urn/680790" target="_blank">Jāmiʿ al-Tirmidhī 3367</a> — Graded Ḥasan (Darussalam)
+                </span>
+            </div>
+
+            <!-- Hadith 5: Best day Friday -->
+            <h3>The Day of Ādam's Creation</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"The best day on which the sun rises is Friday. On that day Ādam was created, on that day he was admitted to Paradise, and on that day he was expelled from it. The Hour will not be established except on Friday."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Abū Hurayrah (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/muslim:854" target="_blank">Ṣaḥīḥ Muslim 854</a>
+                </span>
+            </div>
+
+            <!-- Hadith 6: Mankind from Adam, Adam from dust -->
+            <h3>The Origin of Mankind</h3>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"O people! Your Lord is one and your father is one. There is no superiority for an Arab over a non-Arab, nor for a non-Arab over an Arab, nor for a white person over a black person, nor a black person over a white person — except through taqwā. Verily, the most noble of you in the sight of Allāh is the most righteous. Indeed, Allāh is All-Knowing, All-Acquainted."</strong>
+                </div>
+                <div class="hadith-narrator">From the Farewell Sermon of the Prophet ﷺ</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/ahmad:23489" target="_blank">Musnad Aḥmad 23489</a> — Graded Ṣaḥīḥ by Shuʿayb al-Arnaʾūṭ
+                </span>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 4: LESSONS ═══════════ -->
+        <section class="section" id="lessons">
+            <div class="section-number">Section Four</div>
+            <h2>Lessons &amp; Reflections</h2>
+            <p class="section-intro">
+                Key lessons drawn from the life of Ādam (عليه السلام), in accordance with the understanding of Ahl al-Sunnah wa'l-Jamāʿah.
+            </p>
+
+            <div class="lessons-panel">
+                <div class="lessons-title">
+                    <span>🌿</span> Key Lessons from Ādam (عليه السلام)
+                </div>
+                <ol>
+                    <li><strong>Allāh's wisdom surpasses all created understanding.</strong> When the angels questioned the creation of a khalīfah who might spread corruption, Allāh responded simply: "I know what you do not know." There is wisdom in every decree of Allāh, even when it is not apparent to us. Faith requires trusting in Allāh's knowledge over our own limited perception.</li>
+
+                    <li><strong>Knowledge is the greatest honour Allāh can grant a human being.</strong> The teaching of names — knowledge of the reality of things — was what elevated Ādam above the angels. The pursuit of beneficial knowledge is therefore among the highest acts a human being can engage in, and it is why the Prophet ﷺ placed seeking knowledge among the greatest of obligations.</li>
+
+                    <li><strong>Pride is the most dangerous of spiritual diseases.</strong> Iblīs was not ignorant — he knew Allāh's command perfectly well. His refusal was born of arrogance: a belief that his own assessment of himself was superior to Allāh's decree. A single act of pride stripped him of his rank, his mercy, and his place. The believer must guard against kibr (arrogance) with vigilance.</li>
+
+                    <li><strong>Repentance is always available, and the door of tawbah is never closed.</strong> Ādam and Ḥawwāʾ fell into error, but they turned immediately to Allāh with honesty: "Our Lord! We have wronged ourselves." Allāh accepted their repentance completely. The contrast with Iblīs — who refused to repent — shows that the difference between loss and salvation lies not in whether one has sinned, but in how one responds to sin.</li>
+
+                    <li><strong>Shayṭān uses deception, not force.</strong> Iblīs could not compel Ādam and Ḥawwāʾ to eat from the tree — he whispered and suggested. His weapon is waswasah (whispering doubt). He makes wrong appear attractive, frames prohibitions as deprivations, and swears oaths falsely. Recognising his method is the first step in resisting him.</li>
+
+                    <li><strong>All of humanity is one family, and no one has superiority over another except through taqwā.</strong> The Prophet ﷺ made clear in his Farewell Sermon that all humans descend from Ādam, and Ādam was created from dust. Racial, ethnic, and tribal pride are therefore entirely without basis in Islam. True nobility lies in God-consciousness alone.</li>
+
+                    <li><strong>Trials are built into the human condition — and so is divine guidance.</strong> Allāh knew before creating Ādam that his descendants would sin. Yet He created them, honoured them, and sent prophets to guide them. The descent from Paradise was not abandonment — it was accompanied by the promise: <em>"Whoever follows My guidance will have nothing to fear, nor will they grieve."</em> (al-Baqarah 2:38)</li>
+
+                    <li><strong>Ādam establishes the pattern of human nature itself.</strong> Dignity through knowledge, vulnerability to forgetfulness, and honour through repentance — this is the cycle the Qurʾān presents as intrinsic to the human being. Human beings are not defined by their sins but by their capacity to return to Allāh. This is why the scholars say: the children of Ādam carry both his honour and his need for tawbah.</li>
+                </ol>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 5: SUPPLICATIONS ═══════════ -->
+        <section class="section" id="supplications">
+            <div class="section-number">Section Five</div>
+            <h2>Supplications (Duʿāʾ)</h2>
+            <p class="section-intro">
+                The following supplication is reported in the Qurʾān in connection with Ādam and Ḥawwāʾ (عليهما السلام). It is the model of sincere repentance and remains among the most widely recited duʿāʾ of the believers.
+            </p>
+
+            <h3>The Duʿāʾ of Ādam and Ḥawwāʾ — The Model of Tawbah</h3>
+
+            <div class="quran-card">
+                <div class="quran-arabic">
+                    رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَـٰسِرِينَ
+                </div>
+                <div class="transliteration">Rabbanā ẓalamnā anfusanā wa-in lam taghfir lanā wa-tarḥamnā la-nakūnanna mina l-khāsirīn</div>
+                <div class="quran-translation">
+                    "Our Lord! We have wronged ourselves. If You do not forgive us and have mercy on us, we will certainly be among the losers."
+                </div>
+                <div class="quran-ref">Sūrah al-Aʿrāf (7:23) — The Clear Qurʾān</div>
+            </div>
+
+            <div class="lessons-panel">
+                <div class="lessons-title">
+                    <span>🤲</span> Why This Duʿāʾ is the Model of Repentance
+                </div>
+                <ol>
+                    <li><strong>Full acknowledgement of wrongdoing.</strong> "We have wronged ourselves" — there is no deflection, no blame placed on Iblīs alone, no minimisation. Ādam and Ḥawwāʾ owned their error completely.</li>
+                    <li><strong>No sense of entitlement to forgiveness.</strong> The duʿāʾ does not say "forgive us because we deserve it" — it says "if You do not forgive us." It places the servant in a position of complete dependence on Allāh's mercy.</li>
+                    <li><strong>Pairing of forgiveness with mercy.</strong> The duʿāʾ asks for both <em>maghfirah</em> (forgiveness — covering the sin) and <em>raḥmah</em> (mercy — receiving good in return). This reflects the Sunni understanding that tawbah is not merely erasure of sin but a return to Allāh's favour.</li>
+                    <li><strong>Allāh Himself taught these words.</strong> The Qurʾān states: <em>"Then Adam received some words of guidance from his Lord"</em> (2:37). This means the duʿāʾ represents the most perfect form of repentance — one authored by Allāh and taught to His servant. It is therefore among the most beloved of supplications to Allāh.</li>
+                </ol>
+            </div>
+
+        </section>
+
+        <!-- ═══════════ SECTION 6: SOURCES ═══════════ -->
+        <section class="section" id="sources">
+            <div class="section-number">Section Six</div>
+            <h2>Sources &amp; References</h2>
+            <p class="section-intro">
+                All content on this page is drawn from the following authenticated sources. Ḥadīth numbers are linked to sunnah.com for independent verification.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">Qurʾānic References</div>
+                <ul>
+                    <li>Sūrah al-Baqarah (2:30–39)</li>
+                    <li>Sūrah Āl-ʿImrān (3:59)</li>
+                    <li>Sūrah al-Aʿrāf (7:11–25, 7:172)</li>
+                    <li>Sūrah al-Kahf (18:50)</li>
+                    <li>Sūrah al-Ḥijr (15:26–42)</li>
+                    <li>Sūrah Ṭā-Hā (20:115–123)</li>
+                    <li>Sūrah Ṣād (38:71–85)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Primary Ḥadīth Sources (Muttafaq ʿAlayh)</div>
+                <ul>
+                    <li><strong>Ṣaḥīḥ al-Bukhārī</strong> — Ḥadīth 3326, 6614</li>
+                    <li><strong>Ṣaḥīḥ Muslim</strong> — Ḥadīth 854, 2652</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Supplementary Sources (Graded Ṣaḥīḥ or Ḥasan)</div>
+                <ul>
+                    <li><strong>Jāmiʿ al-Tirmidhī</strong> — Ḥadīth 3076 — Graded Ḥasan Ṣaḥīḥ by al-Tirmidhī</li>
+                    <li><strong>Jāmiʿ al-Tirmidhī</strong> — Ḥadīth 3367 — Graded Ḥasan (Darussalam)</li>
+                    <li><strong>Musnad Aḥmad</strong> — Ḥadīth 23489 — Graded Ṣaḥīḥ by Shuʿayb al-Arnaʾūṭ</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Classical Commentary</div>
+                <ul>
+                    <li>Ibn Kathīr — <em>Qiṣaṣ al-Anbiyāʾ</em>, Chapter on Ādam (عليه السلام)</li>
+                    <li>Ibn Kathīr — <em>Tafsīr al-Qurʾān al-ʿAẓīm</em>, Commentary on Sūrah al-Baqarah (2:30–39)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary);">
+                Qurʾānic translations throughout this page are from <strong>The Clear Qurʾān</strong> by Dr. Muṣṭafā Khaṭṭāb. Narrative content is drawn from Ibn Kathīr's <em>Qiṣaṣ al-Anbiyāʾ</em> and cross-referenced with Qurʾānic text and authenticated aḥādīth. Isrāʾīliyyāt (Judeo-Christian narrations without Qurʾānic or ṣaḥīḥ hadith support) have been excluded.
+            </p>
+
+        </section>
+
+        <!-- ═══════════ PREV / NEXT ═══════════ -->
+        <div class="prophet-nav">
+            <a href="#" class="disabled">
+                <span>
+                    <span class="nav-label">‹ Previous</span>
+                    <span class="nav-name">—</span>
+                </span>
+            </a>
+            <a href="idris.html">
+                <span>
+                    <span class="nav-label">Next ›</span>
+                    <span class="nav-name">Idrīs (عليه السلام)</span>
+                </span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 4px;">
+            لَقَدْ كَانَ فِى قَصَصِهِمْ عِبْرَةٌ لِّأُو۟لِى ٱلْأَلْبَـٰبِ
+        </p>
+        <p class="transliteration" style="margin-bottom: 8px;">La-qad kāna fī qaṣaṣihim ʿibratun li-ulī l-albāb</p>
+        <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
+            "There was certainly in their stories a lesson for those of understanding." — Yūsuf (12:111)
+        </p>
+
+        <p style="margin-top: 20px;">May Allāh grant us benefit from the story of our father Ādam (عليه السلام) and make us among those who turn to Allāh in repentance as he did.</p>
+
+        <button class="share-btn" onclick="shareResource()">📤 Share This Page</button>
+
+        <div class="revision-stamp">
+            <span>Rev 1.0</span>
+            <span>February 2026</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 8px;">
+            Compiled by Mohammed Farhan Shaikh with the aid of AI — sourced from Ibn Kathīr's Qiṣaṣ al-Anbiyāʾ, Ṣaḥīḥ al-Bukhārī, Ṣaḥīḥ Muslim, and the Noble Qurʾān (The Clear Qurʾān — Dr. Muṣṭafā Khaṭṭāb)
+        </p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        function toggleSection(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            if (body.classList.contains('collapsed')) {
+                body.classList.remove('collapsed');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                icon.classList.add('open');
+                setTimeout(() => { body.style.maxHeight = 'none'; }, 400);
+            } else {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.offsetHeight;
+                body.classList.add('collapsed');
+                icon.classList.remove('open');
+            }
+        }
+
+        function shareResource() {
+            const shareData = {
+                title: 'Ādam (عليه السلام) — Lives of the Prophets',
+                text: 'The life and story of Prophet Ādam (عليه السلام) — the first human and first prophet, based on Ibn Kathīr, Ṣaḥīḥ Bukhārī, Ṣaḥīḥ Muslim and The Clear Qurʾān.',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => copyToClipboard());
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+
+    <script src="../themes.js"></script>
+</body>
+</html>
