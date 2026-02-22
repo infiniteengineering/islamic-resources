@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Lives of the Prophets — Qiṣaṣ al-Anbiyāʾ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* KFGQPC Uthmanic Script - Same as Quran.com */
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary: #f7f3eb;
+            --bg-card: #efe9dd;
+            --bg-card-alt: #e8e1d3;
+            --text-primary: #3d2e1f;
+            --text-secondary: #6b5744;
+            --text-arabic: #2c1810;
+            --accent-brown: #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --accent-gold: #b8860b;
+            --border-color: #d4c9b8;
+            --shadow-color: rgba(61, 46, 31, 0.08);
+            --hadith-bg: #f0e8d8;
+            --warning-bg: #e8dcc8;
+            --ref-color: #7a6248;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* ═══════════════ BACK BUTTON ═══════════════ */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-brown);
+            background: var(--bg-card);
+        }
+
+        /* ═══════════════ HEADER ═══════════════ */
+        .header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #efe9dd 0%, var(--bg-primary) 100%);
+        }
+
+        .header .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--text-arabic);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .arabic-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--text-arabic);
+            margin-bottom: 10px;
+            direction: rtl;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .header .methodology {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--accent-brown);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* ═══════════════ NAV ═══════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-container::-webkit-scrollbar { display: none; }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            min-width: max-content;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:active {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--accent-brown);
+        }
+
+        /* ═══════════════ CONTENT ═══════════════ */
+        .content {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* ═══════════════ INTRO BOX ═══════════════ */
+        .intro-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 22px 24px;
+            margin-bottom: 40px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .intro-box .intro-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+
+        .intro-box p {
+            margin-bottom: 10px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ═══════════════ SECTION HEADING ═══════════════ */
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* ═══════════════ PROPHET GRID ═══════════════ */
+        .prophets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .prophet-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px 16px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prophet-card:hover {
+            background: var(--bg-card-alt);
+            border-color: var(--accent-brown-light);
+            box-shadow: 0 4px 14px rgba(61, 46, 31, 0.14);
+            transform: translateY(-2px);
+        }
+
+        .prophet-card:active {
+            transform: translateY(0);
+        }
+
+        .prophet-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .prophet-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .prophet-name-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.05rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.4;
+            margin-bottom: 2px;
+        }
+
+        .prophet-name-english {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            line-height: 1.3;
+        }
+
+        .prophet-name-equiv {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .prophet-card-arrow {
+            flex-shrink: 0;
+            color: var(--accent-brown-light);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .prophet-card:hover .prophet-card-arrow {
+            opacity: 1;
+        }
+
+        .prophet-card.coming-soon {
+            pointer-events: none;
+            opacity: 0.55;
+            cursor: default;
+        }
+
+        .prophet-card.coming-soon:hover {
+            transform: none;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            border-color: var(--border-color);
+            background: var(--bg-card);
+        }
+
+        .coming-soon-badge {
+            flex-shrink: 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 3px 7px;
+        }
+
+        /* ═══════════════ SOURCES BOX ═══════════════ */
+        .sources-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        .sources-box .sources-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .sources-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sources-box ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .sources-box ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent-brown-light);
+            font-size: 0.6rem;
+            top: 8px;
+        }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .revision-stamp {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+            color: var(--accent-brown-light);
+            margin-top: 12px;
+        }
+
+        .share-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 28px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-brown-light);
+        }
+
+        /* ═══════════════ BACK TO TOP ═══════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            z-index: 50;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .header .bismillah { font-size: 1.6rem; }
+            .prophets-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .prophet-card { padding: 14px 12px; gap: 10px; }
+            .prophet-name-arabic { font-size: 0.95rem; }
+            .prophet-name-english { font-size: 0.88rem; }
+            .prophet-card-arrow { display: none; }
+        }
+
+        @media (max-width: 380px) {
+            .prophets-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+    <link rel="stylesheet" href="themes.css">
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <a href="index.html" class="back-btn">← Home</a>
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <h1>Lives of the Prophets</h1>
+        <div class="arabic-title">قِصَصُ ٱلْأَنْبِيَاءِ</div>
+        <p class="subtitle">The stories of the twenty-five prophets named in the Noble Qurʾān — from Ādam (عليه السلام) to Muḥammad (ﷺ)</p>
+        <div class="methodology">
+            <span>📖</span>
+            Based on Ibn Kathīr's Qiṣaṣ al-Anbiyāʾ · Ṣaḥīḥ al-Bukhārī · Ṣaḥīḥ Muslim · The Clear Qurʾān
+        </div>
+    </header>
+
+    <!-- ═══════════════ NAV ═══════════════ */
+    <nav class="nav-container">
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#prophets">All Prophets</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ CONTENT ═══════════════ -->
+    <main class="content">
+
+        <!-- ─── About ─── -->
+        <section id="about">
+            <div class="intro-box">
+                <div class="intro-title">About This Section</div>
+                <p>
+                    The Qurʾān mentions twenty-five prophets by name. Each was sent by Allāh (سُبْحَانَهُ وَتَعَالَى) to guide a particular people — delivering the same core message: worship Allāh alone, avoid shirk, and live righteously. Their stories are a source of guidance, patience, and certainty for the believers.
+                </p>
+                <p>
+                    Each prophet's page contains a full narrative drawn from Ibn Kathīr's <em>Qiṣaṣ al-Anbiyāʾ</em>, the relevant Qurʾānic mentions with Arabic text and translation, authenticated aḥādīth with full grading references, and a lessons panel summarising the key takeaways — all in accordance with Ahl al-Sunnah wa'l-Jamāʿah.
+                </p>
+                <p>
+                    <strong>Only ṣaḥīḥ and ḥasan narrations are used.</strong> All ḥadīth are linked to sunnah.com for independent verification. Weak or fabricated narrations are excluded entirely.
+                </p>
+            </div>
+        </section>
+
+        <!-- ─── Prophets Grid ─── -->
+        <section id="prophets">
+            <div class="section-label">The Twenty-Five Prophets</div>
+            <div class="section-title">Select a Prophet to Read Their Story</div>
+
+            <div class="intro-box" style="border-left-color: var(--accent-brown); margin-bottom: 30px;">
+                <div class="intro-title">📖 Prophets &amp; Messengers — An Important Distinction</div>
+                <p>
+                    In Islamic theology, Allāh sent two categories of chosen men to guide humanity: the <strong>nabī</strong> (نبي — prophet) and the <strong>rasūl</strong> (رسول — messenger). Understanding the difference between them is part of the correct Sunni ʿaqīdah.
+                </p>
+                <p>
+                    A <strong>nabī</strong> is a man whom Allāh selected and granted revelation — guiding his people in accordance with divine instruction. Many scholars explain that the nabī continues and upholds an existing revealed law among his people.
+                </p>
+                <p>
+                    A <strong>rasūl</strong> is also a prophet, but scholars explain that he is sent with a distinct mission — such as delivering a new divine law, calling a people who have rejected guidance, or conveying revelation publicly to a community. Every rasūl is a nabī — but not every nabī is a rasūl.
+                </p>
+                <p>
+                    The Qurʾān distinguishes between prophets and messengers, and scholars of ʿaqīdah — including Ibn Kathīr and Ibn al-Qayyim — discussed the differences between their roles.
+                </p>
+                <p>
+                    The twenty-five prophets named in the Qurʾān include both categories. Among them, scholars identify confirmed messengers — including Nūḥ, Ibrāhīm, Mūsā, ʿĪsā, and Muḥammad (ﷺ) — each of whom came with a distinct sharīʿah. The remaining named prophets carried the message forward within an existing law. <strong>Allāh knows best regarding those whose precise designation is not explicitly specified.</strong>
+                </p>
+            </div>
+
+            <div class="prophets-grid">
+
+                <a href="prophets/adam.html" class="prophet-card">
+                    <div class="prophet-number">1</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">آدَم</div>
+                        <div class="prophet-name-english">Ādam (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Adam</div>
+                    </div>
+                    <div class="prophet-card-arrow">›</div>
+                </a>
+
+                <a href="prophets/idris.html" class="prophet-card">
+                    <div class="prophet-number">2</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">إِدْرِيس</div>
+                        <div class="prophet-name-english">Idrīs (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Enoch</div>
+                    </div>
+                    <div class="prophet-card-arrow">›</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">3</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">نُوح</div>
+                        <div class="prophet-name-english">Nūḥ (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Noah</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">4</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">هُود</div>
+                        <div class="prophet-name-english">Hūd (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Heber</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">5</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">صَالِح</div>
+                        <div class="prophet-name-english">Ṣāliḥ (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Methusaleh</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">6</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">إِبْرَاهِيم</div>
+                        <div class="prophet-name-english">Ibrāhīm (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Abraham</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">7</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">لُوط</div>
+                        <div class="prophet-name-english">Lūṭ (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Lot</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">8</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">إِسْمَاعِيل</div>
+                        <div class="prophet-name-english">Ismāʿīl (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Ishmael</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">9</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">إِسْحَاق</div>
+                        <div class="prophet-name-english">Isḥāq (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Isaac</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">10</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">يَعْقُوب</div>
+                        <div class="prophet-name-english">Yaʿqūb (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Jacob</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">11</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">يُوسُف</div>
+                        <div class="prophet-name-english">Yūsuf (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Joseph</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">12</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">أَيُّوب</div>
+                        <div class="prophet-name-english">Ayyūb (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Job</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">13</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">شُعَيْب</div>
+                        <div class="prophet-name-english">Shuʿayb (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Jethro</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">14</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">مُوسَى</div>
+                        <div class="prophet-name-english">Mūsā (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Moses</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">15</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">هَارُون</div>
+                        <div class="prophet-name-english">Hārūn (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Aaron</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">16</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">ذُو الْكِفْل</div>
+                        <div class="prophet-name-english">Dhū al-Kifl (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Ezekiel</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">17</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">دَاوُود</div>
+                        <div class="prophet-name-english">Dāwūd (عليه السلام)</div>
+                        <div class="prophet-name-equiv">David</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">18</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">سُلَيْمَان</div>
+                        <div class="prophet-name-english">Sulaymān (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Solomon</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">19</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">إِلْيَاس</div>
+                        <div class="prophet-name-english">Ilyās (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Elias / Elijah</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">20</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">الْيَسَع</div>
+                        <div class="prophet-name-english">al-Yasaʿ (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Elisha</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">21</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">يُونُس</div>
+                        <div class="prophet-name-english">Yūnus (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Jonah</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">22</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">زَكَرِيَّا</div>
+                        <div class="prophet-name-english">Zakariyyā (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Zechariah</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">23</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">يَحْيَى</div>
+                        <div class="prophet-name-english">Yaḥyā (عليه السلام)</div>
+                        <div class="prophet-name-equiv">John the Baptist</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon">
+                    <div class="prophet-number">24</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">عِيسَى</div>
+                        <div class="prophet-name-english">ʿĪsā (عليه السلام)</div>
+                        <div class="prophet-name-equiv">Jesus</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+                <a href="#" class="prophet-card coming-soon" style="border-color: var(--accent-gold); background: linear-gradient(135deg, var(--bg-card) 0%, #f5edda 100%);">
+                    <div class="prophet-number" style="background: var(--accent-gold);">25</div>
+                    <div class="prophet-info">
+                        <div class="prophet-name-arabic">مُحَمَّد</div>
+                        <div class="prophet-name-english" style="color: var(--accent-gold);">Muḥammad (ﷺ)</div>
+                        <div class="prophet-name-equiv">Seal of the Prophets</div>
+                    </div>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ─── Sources ─── -->
+        <section id="sources">
+            <div class="sources-box">
+                <div class="sources-title">📚 Primary Sources Used Throughout</div>
+                <ul>
+                    <li><strong>Ibn Kathīr</strong> — <em>Qiṣaṣ al-Anbiyāʾ</em> (Stories of the Prophets)</li>
+                    <li><strong>Ṣaḥīḥ al-Bukhārī</strong> — Fully authenticated, mutually agreed upon (Muttafaq ʿAlayh)</li>
+                    <li><strong>Ṣaḥīḥ Muslim</strong> — Fully authenticated, mutually agreed upon (Muttafaq ʿAlayh)</li>
+                    <li><strong>The Noble Qurʾān</strong> — <em>The Clear Qurʾān</em> translation by Dr. Muṣṭafā Khaṭṭāb, with Arabic (Uthmanic script)</li>
+                    <li>Supplementary narrations from Sunan Abī Dāwūd, Jāmiʿ al-Tirmidhī, and Sunan Ibn Mājah — included only where graded Ṣaḥīḥ or Ḥasan by recognised hadith scholars</li>
+                    <li>No weak (Ḍaʿīf) or fabricated (Mawḍūʿ) narrations are included on any page</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 12px;">
+            لَقَدْ كَانَ فِى قَصَصِهِمْ عِبْرَةٌ لِّأُو۟لِى ٱلْأَلْبَـٰبِ
+        </p>
+        <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
+            "There was certainly in their stories a lesson for those of understanding." — Yūsuf (12:111)
+        </p>
+
+        <p style="margin-top: 20px;">May Allāh grant us the ability to learn from the lives of His prophets and follow their example.</p>
+
+        <button class="share-btn" onclick="shareResource()">📤 Share This Resource</button>
+
+        <div class="revision-stamp">
+            <span>Rev 1.0</span>
+            <span>February 2026</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 8px;">
+            Compiled by Mohammed Farhan Shaikh with the aid of AI — sourced from Ibn Kathīr's Qiṣaṣ al-Anbiyāʾ, Ṣaḥīḥ al-Bukhārī, Ṣaḥīḥ Muslim, and the Noble Qurʾān (The Clear Qurʾān — Dr. Muṣṭafā Khaṭṭāb)
+        </p>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // ─── Back to Top ───
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            btn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // ─── Share ───
+        function shareResource() {
+            const shareData = {
+                title: 'Lives of the Prophets — Qiṣaṣ al-Anbiyāʾ',
+                text: 'The stories of all 25 Quranic prophets, based on Ibn Kathir, Sahih Bukhari, Sahih Muslim and the Noble Quran.',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => copyToClipboard());
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+
+    <script src="themes.js"></script>
+</body>
+</html>
