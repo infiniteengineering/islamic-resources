@@ -178,6 +178,51 @@
             padding: 40px 20px 60px;
         }
 
+        /* ═══════════════ NAV ═══════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            min-width: max-content;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:active {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--accent-brown);
+        }
+
+        /* ═══════════════ SECTION LABEL ═══════════════ */
         .section-label {
             font-size: 0.75rem;
             color: var(--accent-brown-light);
@@ -431,6 +476,7 @@
             .card-arrow { display: none; }
             .quiz-card { padding: 22px 20px; }
             .quiz-card-arrow { display: none; }
+            .nav-links { justify-content: flex-start; }
         }
 
         /* ═══════════════ THEME PICKER ═══════════════ */
@@ -556,12 +602,26 @@
         <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
         <h1>Islamic Resources</h1>
         <p class="subtitle">Authenticated content from the Qur'ān and Sunnah — from authentic sources with full references</p>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); font-style: italic; margin-top: 8px;">Where revelation is silent, we remain silent.</p>
     </header>
+
+    <!-- ═══════════════ NAV ═══════════════ -->
+    <nav class="nav-container">
+        <div class="nav-links">
+            <a href="ramadan-adhkar.html">Ramadan Adhkār</a>
+            <a href="the-prophet.html">The Prophet ﷺ</a>
+            <a href="daily-adhkar.html">Daily Adhkār</a>
+            <a href="99-names.html">99 Names</a>
+            <a href="end-times.html">Major Signs</a>
+            <a href="lives-of-the-prophets.html">Lives of the Prophets</a>
+            <a href="islamic-quiz.html">Quiz</a>
+        </div>
+    </nav>
 
     <!-- ═══════════════ MAIN ═══════════════ -->
     <main class="main">
 
-        <div class="section-label">Available Resources</div>
+        <div class="section-label" id="resources">Available Resources</div>
 
         <!-- ─── Ramadan Adhkar ─── -->
         <a href="ramadan-adhkar.html" class="resource-card">
@@ -629,6 +689,20 @@
             <div class="card-meta">
                 <span class="card-badge">7 Sections · Timeline · Scholarly Verified</span>
                 <span class="card-rev">Rev 1.0 · 15 Feb 2026</span>
+            </div>
+            <span class="card-arrow">›</span>
+        </a>
+
+        <!-- ─── Lives of the Prophets ─── -->
+        <a href="lives-of-the-prophets.html" class="resource-card">
+            <div class="card-arabic">قِصَصُ الْأَنْبِيَاء</div>
+            <div class="card-title">Lives of the Prophets</div>
+            <div class="card-description">
+                Biographies of the twenty-five prophets named in the Qurʾān — from Ādam to Muḥammad ﷺ. Each page includes Qurʾānic passages, authenticated aḥādīth with full grading, and lessons for believers. Based on the Qurʾān and authentic Sunnah, with classical tafsīr — especially Ibn Kathīr's Qiṣaṣ al-Anbiyāʾ.
+            </div>
+            <div class="card-meta">
+                <span class="card-badge">25 Prophets · Ṣaḥīḥ Sources · Scholarly Verified</span>
+                <span class="card-rev">Rev 1.0 · Feb 2026</span>
             </div>
             <span class="card-arrow">›</span>
         </a>
