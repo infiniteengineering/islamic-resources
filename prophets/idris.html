@@ -56,7 +56,7 @@
         .header .subtitle { font-size: 1rem; color: var(--text-secondary); font-style: italic; max-width: 580px; margin: 0 auto 20px; }
         .header .methodology { display: inline-block; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 20px; font-size: 0.85rem; color: var(--accent-brown); font-weight: 600; letter-spacing: 0.3px; }
 
-        .nav-container { position: sticky; top: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .nav-container { position: sticky; top: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); }
         .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.8rem; font-weight: 600; }
         .nav-top a { text-decoration: none; color: var(--accent-brown-light); transition: color 0.2s; }
         .nav-top a:hover { color: var(--accent-brown); }
@@ -79,17 +79,6 @@
         .quran-arabic { font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.5rem; color: var(--text-arabic); direction: rtl; text-align: right; line-height: 2.4; margin-bottom: 14px; }
         .quran-translation { font-size: 0.95rem; color: var(--text-primary); font-style: italic; line-height: 1.7; margin-bottom: 8px; }
         .quran-ref { font-size: 0.82rem; color: var(--accent-gold); font-weight: 600; }
-
-        .transliteration {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            text-align: center;
-            margin: 4px 0 12px;
-            letter-spacing: 0.3px;
-            line-height: 1.7;
-        }
 
         .hadith-card { background: var(--hadith-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 22px 22px 16px; margin: 20px 0; box-shadow: 0 2px 8px var(--shadow-color); }
         .hadith-english { font-size: 0.95rem; color: var(--text-primary); line-height: 1.75; margin-bottom: 14px; font-style: italic; }
@@ -144,16 +133,22 @@
         }
     </style>
     <link rel="stylesheet" href="../themes.css">
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL9F3RR0TZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YL9F3RR0TZ');
+    </script>
 </head>
 <body>
 
     <header class="header">
         <a href="../lives-of-the-prophets.html" class="back-btn">← All Prophets</a>
         <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
-        <div class="transliteration">Bismi llāhi r-raḥmāni r-raḥīm</div>
         <div class="prophet-number-badge">Prophet 2 of 25</div>
         <div class="prophet-name-arabic">إِدْرِيسُ</div>
-        <div class="transliteration">Idrīs</div>
         <h1>Idrīs (عليه السلام)</h1>
         <p class="subtitle">The Truthful Prophet — raised by Allāh to an honourable station</p>
         <div class="methodology">
@@ -194,7 +189,6 @@
                 <div class="quran-arabic">
                     وَٱذْكُرْ فِى ٱلْكِتَابِ إِدْرِيسَ ۚ إِنَّهُۥ كَانَ صِدِّيقًا نَّبِيًّا ۝ وَرَفَعْنَاهُ مَكَانًا عَلِيًّا
                 </div>
-                <div class="transliteration">Wa-dhkur fī l-kitābi Idrīsa · innahu kāna ṣiddīqan nabiyyā · wa-rafaʿnāhu makānan ʿaliyyā</div>
                 <div class="quran-translation">
                     "And mention in the Book ˹the story of˺ Idrīs. He was truly a man of truth and a prophet. And We raised him to an honourable position."
                 </div>
@@ -218,7 +212,6 @@
                 <div class="quran-arabic">
                     وَإِسْمَاعِيلَ وَإِدْرِيسَ وَذَا ٱلْكِفْلِ ۖ كُلٌّ مِّنَ ٱلصَّابِرِينَ ۝ وَأَدْخَلْنَاهُمْ فِى رَحْمَتِنَآ ۖ إِنَّهُم مِّنَ ٱلصَّالِحِينَ
                 </div>
-                <div class="transliteration">Wa-Ismāʿīla wa-Idrīsa wa-dhā l-Kifl · kullun mina ṣ-ṣābirīn · wa-adkhalnāhum fī raḥmatinā · innahum mina ṣ-ṣāliḥīn</div>
                 <div class="quran-translation">
                     "And ˹remember˺ Ishmael, Idrīs, and Dul-Kifl. They were all steadfast. And We admitted them into Our mercy. They were truly of the righteous."
                 </div>
@@ -454,10 +447,9 @@
     </main>
 
     <footer class="footer">
-        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 4px;">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 12px;">
             لَقَدْ كَانَ فِى قَصَصِهِمْ عِبْرَةٌ لِّأُو۟لِى ٱلْأَلْبَـٰبِ
         </p>
-        <p class="transliteration" style="margin-bottom: 8px;">La-qad kāna fī qaṣaṣihim ʿibratun li-ulī l-albāb</p>
         <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
             "There was certainly in their stories a lesson for those of understanding." — Yūsuf (12:111)
         </p>
