@@ -56,13 +56,13 @@
         .header .subtitle { font-size: 1rem; color: var(--text-secondary); font-style: italic; max-width: 580px; margin: 0 auto 20px; }
         .header .methodology { display: inline-block; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 20px; font-size: 0.85rem; color: var(--accent-brown); font-weight: 600; letter-spacing: 0.3px; }
 
-        .nav-container { position: sticky; top: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .nav-container { position: sticky; top: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); }
         .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.8rem; font-weight: 600; }
         .nav-top a { text-decoration: none; color: var(--accent-brown-light); transition: color 0.2s; }
         .nav-top a:hover { color: var(--accent-brown); }
         .nav-top a.disabled { opacity: 0.3; pointer-events: none; }
         .nav-top .nav-center-label { font-size: 0.78rem; color: var(--text-secondary); font-style: italic; }
-        .nav-sections { display: flex; gap: 4px; justify-content: center; flex-wrap: nowrap; min-width: max-content; padding: 10px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 auto; }
+        .nav-sections { display: flex; gap: 4px; justify-content: center; flex-wrap: nowrap; min-width: 0; width: 100%; padding: 10px 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; }
         .nav-sections::-webkit-scrollbar { display: none; }
         .nav-sections a { text-decoration: none; color: var(--text-secondary); font-size: 0.82rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; border: 1px solid transparent; transition: all 0.2s; white-space: nowrap; }
         .nav-sections a:hover, .nav-sections a:active { background: var(--bg-card); border-color: var(--border-color); color: var(--accent-brown); }
