@@ -542,7 +542,6 @@
             .prophet-nav { flex-direction: column; }
             .prophet-nav a { width: 100%; justify-content: center; text-align: center; }
         }
-
         /* ═══════════════ BOOKMARK ═══════════════ */
         .bookmark-btn {
             position: fixed;
@@ -576,11 +575,8 @@
         .resume-banner {
             position: fixed;
             bottom: 80px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            max-width: 480px;
-            width: calc(100% - 40px);
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--bg-card);
             border: 1px solid var(--accent-brown-light);
             border-radius: 12px;
@@ -592,6 +588,7 @@
             gap: 14px;
             font-size: 0.88rem;
             color: var(--text-primary);
+            max-width: calc(100vw - 40px);
         }
         .resume-banner.show { display: flex; }
         .resume-banner-text { flex: 1; line-height: 1.5; }
@@ -618,6 +615,8 @@
             line-height: 1;
             flex-shrink: 0;
         }
+
+
     </style>
     <link rel="stylesheet" href="../themes.css">
     <!-- Google Analytics GA4 -->
@@ -1178,11 +1177,13 @@
     </footer>
 
     <button class="bookmark-btn" id="bookmarkBtn" title="Save your place">🔖</button>
+
     <div class="resume-banner" id="resumeBanner">
         <span class="resume-banner-text">📖 You have a saved place on this page.</span>
         <button class="resume-btn" id="resumeBtn">Return to it</button>
         <button class="dismiss-btn" id="dismissBtn" title="Dismiss">×</button>
     </div>
+
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
     <script>
@@ -1247,8 +1248,10 @@
         }
 
         bookmarkBtn.addEventListener('click', function() {
-            localStorage.setItem(PAGE_KEY, window.scrollY);
+            const pos = window.scrollY;
+            localStorage.setItem(PAGE_KEY, pos);
             updateBookmarkBtn();
+            // Brief confirmation flash
             bookmarkBtn.innerHTML = '✔';
             setTimeout(() => { bookmarkBtn.innerHTML = '🔖'; }, 1000);
         });
@@ -1263,6 +1266,7 @@
             resumeBanner.classList.remove('show');
         });
 
+        // On page load — show resume banner if a saved position exists
         window.addEventListener('load', function() {
             const saved = localStorage.getItem(PAGE_KEY);
             if (saved && parseInt(saved, 10) > 300) {
