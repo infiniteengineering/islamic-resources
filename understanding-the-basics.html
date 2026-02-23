@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f7f3eb">
+    <meta name="description" content="Understanding the Basics of Islām — key vocabulary, the Five Pillars, the Six Articles of Faith, the Unseen World, and common Islamic phrases explained clearly from the Qurʾān and Sunnah.">
+    <link rel="canonical" href="https://infiniteengineering.github.io/islamic-resources/understanding-the-basics.html">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <title>Understanding the Basics — Islamic Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Uthmanic';
+            src: url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary:         #f7f3eb;
+            --bg-card:            #efe9dd;
+            --bg-card-alt:        #e8e1d3;
+            --text-primary:       #3d2e1f;
+            --text-secondary:     #6b5744;
+            --text-arabic:        #2c1810;
+            --accent-brown:       #8b5a2b;
+            --accent-brown-light: #a67c52;
+            --accent-gold:        #b8860b;
+            --border-color:       #d4c9b8;
+            --shadow-color:       rgba(61, 46, 31, 0.08);
+            --hadith-bg:          #f0e8d8;
+            --warning-bg:         #e8dcc8;
+            --ref-color:          #7a6248;
+            --header-grad-start:  #efe9dd;
+        }
+
+        [data-theme="umber"] {
+            --bg-primary: #1a1208; --bg-card: #261b0a; --bg-card-alt: #311f08;
+            --text-primary: #e8d5b0; --text-secondary: #b89870; --text-arabic: #f0e0c0;
+            --accent-brown: #c4924a; --accent-brown-light: #a87840; --accent-gold: #d4a830;
+            --border-color: #4a3010; --shadow-color: rgba(0,0,0,0.3);
+            --hadith-bg: #201508; --warning-bg: #2a1c08; --header-grad-start: #211508;
+        }
+        [data-theme="black"] {
+            --bg-primary: #0f0d0b; --bg-card: #1a1714; --bg-card-alt: #221e1a;
+            --text-primary: #f0e8d8; --text-secondary: #b0a090; --text-arabic: #f8f0e0;
+            --accent-brown: #d4a96a; --accent-brown-light: #b08848; --accent-gold: #d4a830;
+            --border-color: #3a3020; --shadow-color: rgba(0,0,0,0.4);
+            --hadith-bg: #181510; --warning-bg: #201c14; --header-grad-start: #161310;
+        }
+        [data-theme="teal"] {
+            --bg-primary: #0d1418; --bg-card: #131d23; --bg-card-alt: #182530;
+            --text-primary: #e0eeee; --text-secondary: #90b8be; --text-arabic: #eef6f6;
+            --accent-brown: #7ab8c4; --accent-brown-light: #5a9aaa; --accent-gold: #7ab8c4;
+            --border-color: #243848; --shadow-color: rgba(0,0,0,0.35);
+            --hadith-bg: #101c22; --warning-bg: #0e1a20; --header-grad-start: #101a20;
+        }
+        [data-theme="indigo"] {
+            --bg-primary: #0e0c18; --bg-card: #16132a; --bg-card-alt: #1e1a38;
+            --text-primary: #ede8f8; --text-secondary: #a898d8; --text-arabic: #f5f0ff;
+            --accent-brown: #c4a8e8; --accent-brown-light: #9880c0; --accent-gold: #c4a8e8;
+            --border-color: #302858; --shadow-color: rgba(0,0,0,0.4);
+            --hadith-bg: #130f24; --warning-bg: #110d20; --header-grad-start: #120f20;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* ═══════════════ BACK BUTTON ═══════════════ */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--accent-brown-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { color: var(--accent-brown); background: var(--bg-card); }
+
+        /* ═══════════════ HEADER ═══════════════ */
+        .header {
+            text-align: center;
+            padding: 55px 20px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, var(--header-grad-start) 0%, var(--bg-primary) 100%);
+        }
+
+        .header .bismillah {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--text-arabic);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .arabic-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--text-arabic);
+            margin-bottom: 12px;
+            direction: rtl;
+        }
+
+        .header .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 580px;
+            margin: 0 auto 20px;
+        }
+
+        .header .methodology {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            color: var(--accent-brown);
+            font-weight: 600;
+        }
+
+        /* ═══════════════ NAV ═══════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-container::-webkit-scrollbar { display: none; }
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            min-width: max-content;
+            margin: 0 auto;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a:active {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--accent-brown);
+        }
+
+        /* ═══════════════ CONTENT ═══════════════ */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* ═══════════════ SECTIONS ═══════════════ */
+        .section { margin-top: 50px; }
+
+        .section-number {
+            font-size: 0.75rem;
+            color: var(--accent-brown-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .section h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .section-intro {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            border-left: 3px solid var(--accent-brown-light);
+            padding-left: 15px;
+        }
+
+        .section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent-brown);
+            margin: 30px 0 12px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section p { margin-bottom: 14px; }
+
+        /* ═══════════════ TERM CARDS ═══════════════ */
+        .term-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin: 14px 0;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .term-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.8;
+            margin-bottom: 6px;
+        }
+
+        .term-transliteration {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .term-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 6px;
+        }
+
+        .term-meaning {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            margin-bottom: 8px;
+        }
+
+        .term-context {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
+        /* ═══════════════ PILLAR CARDS ═══════════════ */
+        .pillar-card {
+            background: var(--hadith-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-brown);
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin: 16px 0;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .pillar-number {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-brown-light);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .pillar-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 4px;
+        }
+
+        .pillar-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+
+        .pillar-transliteration {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .pillar-desc {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+        }
+
+        /* ═══════════════ ARTICLE CARDS ═══════════════ */
+        .article-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--accent-brown-light);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin: 16px 0;
+        }
+
+        .article-number {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .article-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 4px;
+        }
+
+        .article-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+
+        .article-desc {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+        }
+
+        /* ═══════════════ QURAN CARD ═══════════════ */
+        .quran-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--accent-brown-light);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+        .quran-arabic {
+            font-family: 'Uthmanic', 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            text-align: right;
+            line-height: 2.4;
+            margin-bottom: 12px;
+        }
+        .quran-translation {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        .quran-ref {
+            font-size: 0.82rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* ═══════════════ HADITH CARD ═══════════════ */
+        .hadith-card {
+            background: var(--hadith-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px 22px 16px;
+            margin: 18px 0;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+        .hadith-english {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        .hadith-narrator {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .hadith-ref {
+            font-size: 0.78rem;
+            color: var(--ref-color);
+            font-weight: 600;
+            display: inline-block;
+            background: var(--bg-card);
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        .hadith-ref a { color: var(--accent-brown); text-decoration: none; }
+        .hadith-ref a:hover { text-decoration: underline; }
+
+        /* ═══════════════ INFO BOX ═══════════════ */
+        .info-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        .info-box .info-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+        }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .info-box ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent-brown-light);
+            font-size: 0.6rem;
+            top: 8px;
+        }
+
+        /* ═══════════════ PHRASE CARD ═══════════════ */
+        .phrase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin: 12px 0;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .phrase-arabic-block {
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 80px;
+        }
+        .phrase-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--text-arabic);
+            direction: rtl;
+            line-height: 1.6;
+            display: block;
+        }
+        .phrase-translit {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            display: block;
+            margin-top: 4px;
+        }
+        .phrase-body { flex: 1; }
+        .phrase-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 4px;
+        }
+        .phrase-meaning {
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+        .phrase-when {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* ═══════════════ COLLAPSIBLE ═══════════════ */
+        .collapsible-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--accent-brown-light);
+            transition: transform 0.3s;
+        }
+        .collapsible-header .toggle-icon.open { transform: rotate(180deg); }
+        .collapsible-body {
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .collapsible-body.collapsed { max-height: 0 !important; }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+        .footer p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; }
+        .revision-stamp {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.78rem;
+            color: var(--accent-brown-light);
+            margin-top: 12px;
+        }
+        .share-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 28px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .share-btn:hover { background: var(--accent-brown-light); }
+
+        /* ═══════════════ BACK TO TOP ═══════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-brown);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            z-index: 50;
+            transition: opacity 0.3s;
+        }
+        .back-to-top.visible { display: flex; }
+
+        /* ═══════════════ THEME BUTTON ═══════════════ */
+        .theme-btn {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 1000;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: all 0.2s;
+        }
+        .theme-btn:hover { background: var(--bg-card-alt); }
+        .theme-panel {
+            position: fixed;
+            top: 60px;
+            right: 14px;
+            z-index: 999;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 160px;
+        }
+        .theme-panel.open { display: flex; }
+        .theme-panel-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2px;
+        }
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: none;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .theme-option:hover { background: var(--bg-card-alt); border-color: var(--border-color); }
+        .theme-option.active { border-color: var(--accent-brown-light); }
+        .theme-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        .theme-option-name { font-weight: 600; color: var(--text-secondary); }
+        .theme-option.active .theme-option-name { color: var(--accent-brown); font-weight: 600; }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .header .bismillah { font-size: 1.6rem; }
+            .nav-links { justify-content: flex-start; }
+            .phrase-card { flex-direction: column; gap: 10px; }
+            .phrase-arabic-block { text-align: right; min-width: unset; }
+        }
+    </style>
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL9F3RR0TZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YL9F3RR0TZ');
+    </script>
+    <link rel="stylesheet" href="themes.css">
+</head>
+<body>
+
+    <button class="theme-btn" id="themeBtn" title="Change theme">🎨</button>
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-label">Appearance</div>
+        <button class="theme-option active" data-theme="">
+            <span class="theme-swatch" style="background:#f7f3eb;"></span>
+            <span class="theme-option-name">Parchment</span>
+        </button>
+        <button class="theme-option" data-theme="umber">
+            <span class="theme-swatch" style="background:#261b0a;"></span>
+            <span class="theme-option-name">Dark Umber</span>
+        </button>
+        <button class="theme-option" data-theme="black">
+            <span class="theme-swatch" style="background:#1a1714;"></span>
+            <span class="theme-option-name">Near Black</span>
+        </button>
+        <button class="theme-option" data-theme="teal">
+            <span class="theme-swatch" style="background:#131d23;"></span>
+            <span class="theme-option-name">Dark Teal</span>
+        </button>
+        <button class="theme-option" data-theme="indigo">
+            <span class="theme-swatch" style="background:#16132a;"></span>
+            <span class="theme-option-name">Deep Indigo</span>
+        </button>
+    </div>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <a href="index.html" class="back-btn">← Home</a>
+        <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+        <h1>Understanding the Basics</h1>
+        <div class="arabic-title">أُسُسُ الدِّين</div>
+        <p class="subtitle">The words, concepts, and foundations of Islām — explained clearly for every Muslim</p>
+        <div class="methodology">
+            <span>📖</span>
+            Based on the Qurʾān and authenticated Sunnah — Ahl al-Sunnah wa'l-Jamāʿah
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); font-style: italic; margin-top: 10px;">
+            In matters of creed (ʿaqīdah), we affirm what Allāh affirmed for Himself and what His Messenger ﷺ affirmed — without addition or alteration.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 6px; max-width: 580px; margin-left: auto; margin-right: auto;">
+            This page summarises foundational beliefs agreed upon by orthodox Sunni scholars across the centuries. It does not engage in theological debate, reinterpretation, or speculative philosophy.
+        </p>
+    <!-- ═══════════════ CREED METHODOLOGY BOX ═══════════════ -->
+    <div style="max-width: 720px; margin: 24px auto 0; padding: 0 20px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-gold); border-radius: 10px; padding: 18px 20px;">
+            <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">📖 Methodological Note — Creed (ʿAqīdah)</div>
+            <p style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.75; margin-bottom: 0;">
+                In matters of belief, this page follows the understanding of the early generations (al-Salaf al-Ṣāliḥ) — the Companions, their students, and the leading orthodox scholars of Ahl al-Sunnah wa'l-Jamāʿah. We affirm what is affirmed in the Qurʾān and authentic Sunnah, without philosophical reinterpretation, speculative theology, or sectarian argumentation.
+            </p>
+        </div>
+    </div>
+
+    </header>
+
+    <!-- ═══════════════ NAV ═══════════════ -->
+    <nav class="nav-container">
+        <div class="nav-links">
+            <a href="#vocabulary">Key Vocabulary</a>
+            <a href="#pillars">Five Pillars</a>
+            <a href="#articles">Articles of Faith</a>
+            <a href="#unseen">The Unseen</a>
+            <a href="#phrases">Common Phrases</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ CONTENT ═══════════════ -->
+    <main class="content">
+
+        <!-- ═══════════════ SECTION ONE — KEY VOCABULARY ═══════════════ -->
+        <section class="section" id="vocabulary">
+            <div class="section-number">Section One</div>
+            <h2>Key Vocabulary</h2>
+            <p class="section-intro">
+                These are words you will hear repeatedly in khutbahs, lectures, and Islamic conversation. Understanding them unlocks a deeper connection with everything you hear and read.
+            </p>
+
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Deen &amp; Faith
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+
+                <div class="term-card">
+                    <div class="term-arabic">الدِّين</div>
+                    <div class="term-transliteration">Ad-Dīn</div>
+                    <div class="term-title">The Deen — The Way of Life</div>
+                    <div class="term-meaning">Dīn is often translated as "religion" but it means far more — it is the complete way of life ordained by Allāh, encompassing belief, worship, character, law, and conduct. Islām is the Dīn.</div>
+                    <div class="term-context">You will hear: "This is the Deen of Allāh" — meaning the complete way Allāh has prescribed for us to live.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الإِسْلَام</div>
+                    <div class="term-transliteration">Al-Islām</div>
+                    <div class="term-title">Islām — Submission and Peace</div>
+                    <div class="term-meaning">Islām comes from the Arabic root s-l-m, meaning both peace (salām) and submission (istislām). Islām is the complete submission of one's will to Allāh. Allāh says in the Qurʾān: <em>"Indeed, the religion in the sight of Allāh is Islām."</em> (Āl ʿImrān 3:19)</div>
+                    <div class="term-context">You will hear: "Islām is a complete way of life" — referring to its comprehensive nature covering every aspect of existence.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الإِيمَان</div>
+                    <div class="term-transliteration">Al-Īmān</div>
+                    <div class="term-title">Īmān — Faith and Belief</div>
+                    <div class="term-meaning">Īmān means faith — but in Islamic theology it is not merely belief in the heart. Scholars of Ahl al-Sunnah explain that Īmān consists of belief in the heart, declaration with the tongue, and action with the limbs. It increases with obedience and decreases with disobedience.</div>
+                    <div class="term-context">You will hear: "Increase your Īmān" — a call to strengthen your faith through worship, knowledge, and good deeds.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الإِحْسَان</div>
+                    <div class="term-transliteration">Al-Iḥsān</div>
+                    <div class="term-title">Iḥsān — Excellence in Worship</div>
+                    <div class="term-meaning">Iḥsān is the highest level of the Deen — excellence and perfection in worship. The Prophet ﷺ defined it in a famous authentic narration: <em>"Worship Allāh as if you see Him, for even though you do not see Him, He sees you."</em> (Ṣaḥīḥ Muslim 8)</div>
+                    <div class="term-context">You will hear: "Allāh loves those who have Iḥsān" — referring to excellence and sincerity in everything we do.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">التَّقْوَى</div>
+                    <div class="term-transliteration">At-Taqwā</div>
+                    <div class="term-title">Taqwā — God-Consciousness</div>
+                    <div class="term-meaning">Taqwā is one of the most important concepts in the Qurʾān — often translated as "fear of Allāh" but more precisely it means God-consciousness: being always aware that Allāh sees you, and allowing that awareness to guide every action. The Qurʾān commands it repeatedly: <em>"O you who believe, have taqwā of Allāh."</em></div>
+                    <div class="term-context">You will hear this word in almost every khutbah — imams frequently open with "I counsel you to have taqwā of Allāh."</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">التَّوَكُّل</div>
+                    <div class="term-transliteration">At-Tawakkul</div>
+                    <div class="term-title">Tawakkul — Reliance on Allāh</div>
+                    <div class="term-meaning">Tawakkul means complete reliance and trust in Allāh — not passivity, but taking the necessary means whilst placing full trust in Allāh for the outcome. Allāh says: <em>"And whoever relies upon Allāh — then He is sufficient for him."</em> (al-Ṭalāq 65:3)</div>
+                    <div class="term-context">You will hear: "Have tawakkul in Allāh" when facing difficulties — a reminder that outcomes are in Allāh's hands.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الشِّرْك</div>
+                    <div class="term-transliteration">Ash-Shirk</div>
+                    <div class="term-title">Shirk — Associating Partners with Allāh</div>
+                    <div class="term-meaning">Shirk is the gravest sin in Islām — associating partners with Allāh in His divinity, worship, or attributes. Allāh says: <em>"Indeed, Allāh does not forgive association with Him, but He forgives what is less than that for whom He wills."</em> (al-Nisāʾ 4:48). Shirk is the one sin Allāh will not forgive if a person dies upon it.</div>
+                    <div class="term-context">You will hear: "Islām came to remove shirk" — referring to the core mission of every prophet.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">السُّنَّة</div>
+                    <div class="term-transliteration">As-Sunnah</div>
+                    <div class="term-title">Sunnah — The Way of the Prophet ﷺ</div>
+                    <div class="term-meaning">The Sunnah refers to everything established from the Prophet Muḥammad ﷺ — his words, actions, approvals, and character. It is the second source of Islāmic law after the Qurʾān. Following the Sunnah is commanded in the Qurʾān: <em>"Whatever the Messenger gives you, take it; and whatever he forbids you, abstain from it."</em> (al-Ḥashr 59:7) The Sunnah is understood according to the understanding of the Companions (Ṣaḥābah) — they witnessed its application directly from the Prophet ﷺ.</div>
+                    <div class="term-context">You will hear: "This is the Sunnah of the Prophet ﷺ" — meaning this practice was established by him.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الرِّزْق</div>
+                    <div class="term-transliteration">Ar-Rizq</div>
+                    <div class="term-title">Rizq — Provision from Allāh</div>
+                    <div class="term-meaning">Rizq means provision — everything Allāh provides: wealth, health, family, knowledge, time. It is a comprehensive concept. Allāh says: <em>"And there is no creature on earth but that upon Allāh is its provision."</em> (Hūd 11:6). Every person's rizq is decreed by Allāh.</div>
+                    <div class="term-context">You will hear: "Allāh will provide your rizq" — a reminder that provision comes ultimately from Allāh, not solely from our own efforts.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الفِتْنَة</div>
+                    <div class="term-transliteration">Al-Fitnah</div>
+                    <div class="term-title">Fitnah — Trial, Tribulation, or Temptation</div>
+                    <div class="term-meaning">Fitnah has several related meanings: a test or trial from Allāh, civil strife or discord, or a temptation that leads one away from the truth. The Qurʾān uses it in all these senses. Allāh says: <em>"And know that your wealth and your children are a fitnah, and that Allāh has with Him a great reward."</em> (al-Anfāl 8:28)</div>
+                    <div class="term-context">You will hear: "Beware of the fitnah of this time" — referring to the trials and temptations of the modern age.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">البَرَكَة</div>
+                    <div class="term-transliteration">Al-Barakah</div>
+                    <div class="term-title">Barakah — Divine Blessing</div>
+                    <div class="term-meaning">Barakah means divine blessing — an increase and goodness placed by Allāh in something. It is not merely abundance but a blessed quality that causes things to grow and benefit. Barakah is asked for from Allāh alone and comes through acts of worship, gratitude, and following the Sunnah.</div>
+                    <div class="term-context">You will hear: "May Allāh put barakah in your time/wealth/family" — a duʿāʾ for divine blessing.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الأُمَّة</div>
+                    <div class="term-transliteration">Al-Ummah</div>
+                    <div class="term-title">Ummah — The Muslim Community</div>
+                    <div class="term-meaning">Ummah refers to the global community of Muslims — all those who follow the Prophet Muḥammad ﷺ, regardless of race, nationality, or language. Allāh describes this community: <em>"You are the best nation produced for mankind."</em> (Āl ʿImrān 3:110)</div>
+                    <div class="term-context">You will hear: "The Ummah is going through difficulty" — referring to the global Muslim community.</div>
+                </div>
+
+            </div>
+
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                Worship &amp; Practice
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+
+                <div class="term-card">
+                    <div class="term-arabic">العِبَادَة</div>
+                    <div class="term-transliteration">Al-ʿIbādah</div>
+                    <div class="term-title">ʿIbādah — Worship</div>
+                    <div class="term-meaning">ʿIbādah means worship — but in Islām, worship is not limited to prayer. It encompasses every action done sincerely for Allāh's sake, including work, raising children, and even smiling at your brother. Ibn Taymiyyah defined ʿibādah as "a comprehensive term covering everything Allāh loves and is pleased with, of words and actions, outward and inward."</div>
+                    <div class="term-context">You will hear: "The purpose of life is ʿibādah" — referring to the Qurʾānic verse: "I did not create jinn and humans except to worship Me." (al-Dhāriyāt 51:56)</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الدُّعَاء</div>
+                    <div class="term-transliteration">Ad-Duʿāʾ</div>
+                    <div class="term-title">Duʿāʾ — Supplication</div>
+                    <div class="term-meaning">Duʿāʾ is calling upon Allāh directly — asking Him for anything. The Prophet ﷺ said: <em>"Duʿāʾ is worship."</em> (Jāmiʿ al-Tirmidhī 3372 — Ḥasan Ṣaḥīḥ) Allāh says: <em>"Call upon Me; I will respond to you."</em> (Ghāfir 40:60). Duʿāʾ can be made at any time, in any language.</div>
+                    <div class="term-context">You will hear: "Make duʿāʾ for the Ummah" — a call to ask Allāh for the wellbeing of the Muslim community.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الذِّكْر</div>
+                    <div class="term-transliteration">Adh-Dhikr</div>
+                    <div class="term-title">Dhikr — Remembrance of Allāh</div>
+                    <div class="term-meaning">Dhikr means the remembrance of Allāh through specific phrases, prayers, and recitation of Qurʾān. Allāh says: <em>"Verily, in the remembrance of Allāh do hearts find rest."</em> (al-Raʿd 13:28). Regular dhikr is one of the greatest acts of worship.</div>
+                    <div class="term-context">You will hear: "Occupy your tongue with dhikr" — meaning keep remembering Allāh throughout the day.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الحَلَال وَالحَرَام</div>
+                    <div class="term-transliteration">Al-Ḥalāl wa'l-Ḥarām</div>
+                    <div class="term-title">Ḥalāl and Ḥarām — Permitted and Forbidden</div>
+                    <div class="term-meaning">Ḥalāl means that which Allāh has permitted. Ḥarām means that which Allāh has forbidden. These are established by the Qurʾān and authentic Sunnah. Everything not explicitly forbidden is considered permissible by default in Islamic law.</div>
+                    <div class="term-context">You will hear: "Is this ḥalāl or ḥarām?" — asking whether something is permitted or forbidden in Islām.</div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-arabic">الشَّرِيعَة</div>
+                    <div class="term-transliteration">Ash-Sharīʿah</div>
+                    <div class="term-title">Sharīʿah — Divine Law</div>
+                    <div class="term-meaning">Sharīʿah literally means "the path to water" — the path to life. In Islamic usage it refers to the divine law revealed by Allāh, encompassing worship, ethics, family law, commerce, and all aspects of life. It is derived from the Qurʾān and Sunnah.</div>
+                    <div class="term-context">You will hear: "The Sharīʿah of Islām" — referring to the complete system of divine guidance.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════ SECTION TWO — FIVE PILLARS ═══════════════ -->
+        <section class="section" id="pillars">
+            <div class="section-number">Section Two</div>
+            <h2>The Five Pillars of Islām</h2>
+            <p class="section-intro">
+                The five pillars are the foundational acts of worship that every Muslim is required to observe. They are established in the famous ḥadīth of Jibrīl and elsewhere in the Qurʾān and Sunnah.
+            </p>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    The Prophet ﷺ said: <strong>"Islām is built upon five: testifying that there is no god worthy of worship except Allāh and that Muḥammad is the Messenger of Allāh, establishing the prayer, paying the zakāh, fasting Ramaḍān, and performing Ḥajj to the House for whoever is able."</strong>
+                </div>
+                <div class="hadith-narrator">Narrated by Ibn ʿUmar (رضي الله عنهما)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/bukhari:8" target="_blank">Ṣaḥīḥ al-Bukhārī 8</a> · <a href="https://sunnah.com/muslim:16" target="_blank">Ṣaḥīḥ Muslim 16</a>
+                </span>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-number">First Pillar</div>
+                <div class="pillar-title">Shahādah — The Declaration of Faith</div>
+                <div class="pillar-arabic">أَشْهَدُ أَن لَّا إِلَٰهَ إِلَّا ٱللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَّسُولُ ٱللَّهِ</div>
+                <div class="pillar-transliteration">Ashhadu an lā ilāha illā llāh, wa-ashhadu anna Muḥammadan rasūlu llāh</div>
+                <div class="pillar-desc">The testimony that there is no god worthy of worship except Allāh alone, and that Muḥammad ﷺ is His final messenger. This is the foundation of the entire Deen — the first thing a person says when entering Islām and the last words a Muslim hopes to say before death.</div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-number">Second Pillar</div>
+                <div class="pillar-title">Ṣalāh — The Five Daily Prayers</div>
+                <div class="pillar-arabic">الصَّلَاة</div>
+                <div class="pillar-transliteration">Aṣ-Ṣalāh</div>
+                <div class="pillar-desc">The five daily prayers — Fajr (dawn), Ẓuhr (midday), ʿAṣr (afternoon), Maghrib (sunset), ʿIshāʾ (night) — are the most important regular act of worship in Islām. The Prophet ﷺ said it is "the first thing a person will be held accountable for on the Day of Judgement." Ṣalāh was prescribed during the Night Journey (Isrāʾ wal-Miʿrāj).</div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-number">Third Pillar</div>
+                <div class="pillar-title">Zakāh — The Obligatory Almsgiving</div>
+                <div class="pillar-arabic">الزَّكَاة</div>
+                <div class="pillar-transliteration">Az-Zakāh</div>
+                <div class="pillar-desc">Zakāh is the obligatory annual payment of 2.5% of accumulated wealth above a minimum threshold (niṣāb), distributed to eight categories of recipients specified in the Qurʾān (al-Tawbah 9:60). It purifies wealth and fulfils the rights of the poor. Zakāh is not charity — it is an obligation, one of the pillars of the Deen.</div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-number">Fourth Pillar</div>
+                <div class="pillar-title">Ṣawm — Fasting in Ramaḍān</div>
+                <div class="pillar-arabic">صَوْم رَمَضَان</div>
+                <div class="pillar-transliteration">Ṣawm Ramaḍān</div>
+                <div class="pillar-desc">Fasting the entire month of Ramaḍān — abstaining from food, drink, and intercourse from dawn to sunset. Allāh says: <em>"O you who believe, fasting has been prescribed upon you as it was prescribed upon those before you, so that you may attain taqwā."</em> (al-Baqarah 2:183). Ramaḍān is also the month the Qurʾān was revealed.</div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-number">Fifth Pillar</div>
+                <div class="pillar-title">Ḥajj — The Pilgrimage to Makkah</div>
+                <div class="pillar-arabic">الحَجّ</div>
+                <div class="pillar-transliteration">Al-Ḥajj</div>
+                <div class="pillar-desc">The pilgrimage to the Sacred House in Makkah — obligatory once in a lifetime for every Muslim who is physically and financially able. It takes place in the month of Dhū al-Ḥijjah and is the largest annual gathering of humanity. Allāh says: <em>"And Ḥajj to the House is a duty that mankind owes to Allāh — for those who can find a way."</em> (Āl ʿImrān 3:97)</div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ SECTION THREE — ARTICLES OF FAITH ═══════════════ -->
+        <section class="section" id="articles">
+            <div class="section-number">Section Three</div>
+            <h2>The Six Articles of Faith</h2>
+            <p class="section-intro">
+                The six articles of faith (Arkān al-Īmān) are what every Muslim must believe. They are established in the ḥadīth of Jibrīl in which the Prophet ﷺ defined Īmān.
+            </p>
+
+            <div class="hadith-card">
+                <div class="hadith-english">
+                    Jibrīl (عليه السلام) asked: "What is Īmān?" The Prophet ﷺ replied: <strong>"Īmān is to believe in Allāh, His Angels, His Books, His Messengers, the Last Day, and to believe in divine decree — both its good and its evil."</strong>
+                </div>
+                <div class="hadith-narrator">From the famous ḥadīth of Jibrīl, narrated by ʿUmar ibn al-Khaṭṭāb (رضي الله عنه)</div>
+                <span class="hadith-ref">
+                    <a href="https://sunnah.com/muslim:8a" target="_blank">Ṣaḥīḥ Muslim 8a</a>
+                </span>
+            </div>
+
+            <div class="info-box" style="border-left: 4px solid var(--accent-gold); margin-bottom: 20px;">
+                <div class="info-title">📖 Note — Prophet (Nabī) and Messenger (Rasūl)</div>
+                <p style="font-size: 0.9rem; line-height: 1.7; margin-bottom: 0;">
+                    All Messengers are Prophets, but not all Prophets are Messengers. A Messenger (Rasūl) is sent, scholars explain, with a specific mission to convey revelation to a people, while a Prophet (Nabī) may affirm and teach existing revelation. The precise distinction is discussed in classical scholarship, and Allāh knows best. Both are honoured servants of Allāh. The Qurʾān names twenty-five prophets, among whom scholars identify confirmed messengers. <strong>Allāh knows best regarding those whose precise designation is not explicitly specified.</strong>
+                </p>
+            </div>
+
+            
+
+            <div class="article-card">
+                <div class="article-number">First Article</div>
+                <div class="article-title">Belief in Allāh</div>
+                <div class="article-arabic">الإِيمَان بِاللَّه</div>
+                <div class="article-desc">Belief that Allāh alone is the Creator, Sustainer, and Lord of all that exists — that He alone deserves worship, and that He possesses perfect attributes free from any deficiency or resemblance to creation. This encompasses Tawḥīd — the oneness of Allāh — which is the central message of every prophet. This includes belief in His Names and Attributes as affirmed in the Qurʾān and authentic Sunnah — without distortion (taḥrīf), denial (taʿṭīl), asking how (takyīf), or likening Him to creation (tamthīl).</div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">Second Article</div>
+                <div class="article-title">Belief in the Angels</div>
+                <div class="article-arabic">الإِيمَان بِالمَلَائِكَة</div>
+                <div class="article-desc">Belief that Allāh created angels from light — they are noble beings who worship Allāh constantly, never disobeying Him, and carry out His commands. Among them are Jibrīl (who brought revelation), Mīkāʾīl, Isrāfīl, and the Angel of Death. Two angels — Raqīb and ʿAtīd — record every person's deeds.</div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">Third Article</div>
+                <div class="article-title">Belief in the Revealed Books</div>
+                <div class="article-arabic">الإِيمَان بِالكُتُب</div>
+                <div class="article-desc">Belief that Allāh revealed scriptures to His prophets as guidance for humanity. These include the Ṣuḥuf (scriptures of Ibrāhīm), the Tawrāh (Torah, given to Mūsā), the Zabūr (Psalms, given to Dāwūd), the Injīl (Gospel, given to ʿĪsā), and the Qurʾān — the final, preserved revelation given to Muḥammad ﷺ. Only the Qurʾān remains in its original, unaltered form.</div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">Fourth Article</div>
+                <div class="article-title">Belief in the Prophets and Messengers</div>
+                <div class="article-arabic">الإِيمَان بِالأَنْبِيَاء وَالرُّسُل</div>
+                <div class="article-desc">Belief that Allāh sent prophets to every nation to guide them to worship Him alone. The Qurʾān mentions twenty-five prophets by name. The first was Ādam (عليه السلام) and the last and final prophet is Muḥammad ﷺ. A Muslim must believe in all of them — denying any one of them invalidates faith. Muḥammad ﷺ is the seal of the prophets; there is no prophet after him. This is a definitive matter of creed — denying it removes a person from Islām.</div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">Fifth Article</div>
+                <div class="article-title">Belief in the Last Day</div>
+                <div class="article-arabic">الإِيمَان بِاليَوْم الآخِر</div>
+                <div class="article-desc">Belief in the Day of Resurrection — when all of humanity will be raised from the dead and held accountable before Allāh for every deed. This includes belief in the Hereafter (al-Ākhirah), Paradise (al-Jannah), and Hellfire (al-Nār). Belief in the Last Day gives every action its ultimate weight and purpose.</div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-number">Sixth Article</div>
+                <div class="article-title">Belief in Divine Decree — Al-Qadar</div>
+                <div class="article-arabic">الإِيمَان بِالقَدَر</div>
+                <div class="article-desc">Belief that Allāh has knowledge of all things before they occur, has written everything in al-Lawḥ al-Maḥfūẓ (the Preserved Tablet), that everything happens by His will, and that He is the Creator of all things — including the actions of His creation — while they act with real choice and responsibility, without compulsion or injustice. Nothing occurs outside of Allāh's knowledge and will. Belief in al-Qadar brings tranquillity to the believer: whatever happens was decreed, and Allāh says: <em>"And Allāh is the best of planners."</em> (Āl ʿImrān 3:54)</div>
+                <div class="info-box" style="margin-top: 12px;">
+                    <div class="info-title">The Four Levels of Qadar — Sunni Creed</div>
+                    <ul>
+                        <li><strong>ʿIlm</strong> — Allāh's eternal knowledge of all things before they occur</li>
+                        <li><strong>Kitābah</strong> — Allāh wrote everything in al-Lawḥ al-Maḥfūẓ (the Preserved Tablet)</li>
+                        <li><strong>Mashīʾah</strong> — everything occurs by Allāh's will</li>
+                        <li><strong>Khalq</strong> — Allāh is the Creator of all things, including the actions of His creation — while they act with real choice and responsibility, without compulsion or injustice</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ═══════════════ SECTION FOUR — THE UNSEEN WORLD ═══════════════ -->
+        <section class="section" id="unseen">
+            <div class="section-number">Section Four</div>
+            <h2>The Unseen World</h2>
+            <p class="section-intro">
+                Islām teaches that there is a world beyond what our senses perceive — al-Ghayb (the Unseen). Belief in it is part of Īmān. Allāh says: <em>"This is the Book about which there is no doubt, a guidance for those conscious of Allāh — who believe in the unseen."</em> (al-Baqarah 2:2–3)
+            </p>
+
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Angels — Al-Malāʾikah
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>Angels are real beings created from light who carry out Allāh's commands throughout creation. They are not male or female, do not eat or drink, and do not disobey Allāh. The Qurʾān describes them as honoured servants: <em>"They do not disobey Allāh in what He commands them but do what they are commanded."</em> (al-Taḥrīm 66:6)</p>
+                <div class="info-box">
+                    <div class="info-title">Key Angels Mentioned in the Qurʾān and Sunnah</div>
+                    <ul>
+                        <li><strong>Jibrīl (عليه السلام)</strong> — the Angel of Revelation, who brought the Qurʾān to the Prophet ﷺ</li>
+                        <li><strong>Mīkāʾīl (عليه السلام)</strong> — responsible for rain and sustenance by Allāh's command</li>
+                        <li><strong>Isrāfīl (عليه السلام)</strong> — will blow the trumpet to signal the Day of Resurrection</li>
+                        <li><strong>Malak al-Mawt — The Angel of Death</strong>, who takes souls by Allāh's command (al-Sajdah 32:11). Referred to in classical scholarship as ʿIzrāʾīl — this name is not explicitly mentioned in the Qurʾān or authenticated Sunnah.</li>
+                        <li><strong>Two recording angels</strong> assigned to every person — described in the Qurʾān as <em>raqīb</em> (ever-watchful) and <em>ʿatīd</em> (ready). Scholars differ whether these are proper names or descriptive terms. (Qāf 50:17–18)</li>
+                        <li><strong>Munkar and Nakīr</strong> — the angels who question the deceased in the grave</li>
+                        <li><strong>Mālik</strong> — the guardian of Hellfire, mentioned in the Qurʾān (al-Zukhruf 43:77)</li>
+                        <li><strong>Riḍwān</strong> — mentioned in classical scholarship as the guardian of Paradise. The name Riḍwān is widely cited in classical works; however, its explicit naming is not established in a rigorously authenticated ḥadīth.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                The Jinn
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>The jinn are a creation of Allāh distinct from both humans and angels. Allāh says: <em>"And I did not create jinn and humans except to worship Me."</em> (al-Dhāriyāt 51:56) — confirming that jinn, like humans, are accountable beings with free will.</p>
+
+                <div class="info-box">
+                    <div class="info-title">What the Qurʾān and Sunnah establish about Jinn</div>
+                    <ul>
+                        <li>Created from smokeless fire — <em>"And He created the jinn from a smokeless flame of fire."</em> (al-Raḥmān 55:15)</li>
+                        <li>They are accountable — they will be judged on the Day of Resurrection</li>
+                        <li>Among them are Muslims and disbelievers — Sūrah al-Jinn (72) describes jinn who heard the Qurʾān and accepted Islām</li>
+                        <li>They cannot be seen by humans in their natural form</li>
+                        <li>Seeking help from jinn or consulting fortune-tellers is forbidden in Islām</li>
+                        <li>Protection from harm by jinn is sought through the Qurʾān, especially Āyat al-Kursī and the last two sūrahs (al-Muʿawwidhatān)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="collapsible-header" onclick="toggleSection(this)">
+                Iblīs and Shayṭān
+                <span class="toggle-icon">▼</span>
+            </h3>
+            <div class="collapsible-body">
+                <p>Iblīs was from the jinn who was among the angels in worship, then refused Allāh's command to prostrate to Ādam (عليه السلام) out of arrogance. He became the enemy of humanity. <em>"Indeed, Shayṭān is an enemy to you, so take him as an enemy."</em> (Fāṭir 35:6)</p>
+
+                <div class="info-box">
+                    <div class="info-title">Key points established from the Qurʾān</div>
+                    <ul>
+                        <li>Iblīs is from the jinn — not a fallen angel (angels cannot disobey Allāh)</li>
+                        <li>He was given respite until the Day of Resurrection and declared his mission: to misguide humanity</li>
+                        <li>He has no power to force anyone — he only whispers and suggests</li>
+                        <li>He has no power over sincere believers who seek Allāh's refuge</li>
+                        <li>Protection: say <em>Aʿūdhu billāhi min al-Shayṭān al-rajīm</em> — "I seek refuge in Allāh from the accursed Shayṭān"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+            <div class="info-box" style="margin-top: 24px; border-left: 4px solid var(--accent-brown);">
+                <div class="info-title">⚠️ Methodological Note — The Unseen</div>
+                <p style="font-size: 0.88rem; margin-bottom: 0; line-height: 1.7;">Matters of the unseen (al-Ghayb) are only affirmed as established in the Qurʾān and authentic Sunnah — without speculation, exaggeration, or addition. Where names or details appear only in classical scholarship rather than explicit revelation, this is clearly noted above. Where revelation is silent, we remain silent.</p>
+            </div>
+
+        <!-- ═══════════════ SECTION FIVE — COMMON PHRASES ═══════════════ -->
+        <section class="section" id="phrases">
+            <div class="section-number">Section Five</div>
+            <h2>Common Islamic Phrases</h2>
+            <p class="section-intro">
+                These phrases are heard constantly in Islamic life. Each carries a meaning rooted in the Qurʾān and Sunnah — understanding them transforms them from words into living acts of worship.
+            </p>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">بِسْمِ اللَّه</span>
+                    <span class="phrase-translit">Bismillāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">In the Name of Allāh</div>
+                    <div class="phrase-meaning">Said before beginning any action — eating, drinking, writing, travelling. It places the action under Allāh's blessing and acknowledges that everything begins with His name.</div>
+                    <div class="phrase-when">When to say it: Before eating, drinking, entering the home, beginning any task.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">الحَمْدُ لِلَّه</span>
+                    <span class="phrase-translit">Alḥamdulillāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">All Praise is Due to Allāh</div>
+                    <div class="phrase-meaning">An expression of gratitude and praise to Allāh — in good times and in difficulty. The Prophet ﷺ said it is the best of duʿāʾ. It opens Sūrah al-Fātiḥah, which is recited in every rakʿah of prayer. The Prophet ﷺ taught us to say it after sneezing.</div>
+                    <div class="phrase-when">When to say it: After sneezing, after completing a meal, when asked how you are, upon waking, constantly as an act of gratitude.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">اللَّهُ أَكْبَر</span>
+                    <span class="phrase-translit">Allāhu Akbar</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">Allāh is the Greatest</div>
+                    <div class="phrase-meaning">A declaration that Allāh is greater than everything — greater than our worries, our failures, our circumstances. It is the opening of every prayer (Takbīrat al-Iḥrām) and is called out in the adhān five times a day. It is said in moments of awe, gratitude, and praise.</div>
+                    <div class="phrase-when">When to say it: At the start of every prayer, during dhikr, upon seeing something that inspires awe, as part of the takbīr after prayers in Ramaḍān and Eid.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">سُبْحَانَ اللَّه</span>
+                    <span class="phrase-translit">SubḥānAllāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">Glory be to Allāh</div>
+                    <div class="phrase-meaning">An expression of Allāh's perfection and transcendence — declaring Him free from all imperfection, deficiency, or resemblance to creation. It is one of the most beloved phrases to Allāh. The Prophet ﷺ said: "Two phrases are light on the tongue, heavy on the scales, beloved to the Most Merciful: SubḥānAllāhi wa-biḥamdih, SubḥānAllāhi l-ʿAẓīm." (Ṣaḥīḥ al-Bukhārī and Ṣaḥīḥ Muslim)</div>
+                    <div class="phrase-when">When to say it: Upon seeing something that inspires wonder, as part of daily dhikr (33 times after each prayer), and when something surprising or unpleasant occurs.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">إِن شَاءَ اللَّه</span>
+                    <span class="phrase-translit">InshāʾAllāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">If Allāh Wills</div>
+                    <div class="phrase-meaning">Said when speaking about the future — acknowledging that all future events are in Allāh's hands. It is not a way of saying "maybe" — it is a genuine declaration of dependence on Allāh's will. Allāh commands it in the Qurʾān: <em>"And never say of anything, 'I will do that tomorrow,' except with 'If Allāh wills.'"</em> (al-Kahf 18:23–24)</div>
+                    <div class="phrase-when">When to say it: Any time you speak about a future intention or plan.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">مَا شَاءَ اللَّه</span>
+                    <span class="phrase-translit">MāshāʾAllāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">What Allāh Has Willed</div>
+                    <div class="phrase-meaning">An expression of appreciation and acknowledgement that something good exists by Allāh's will. It is also said to ward off the evil eye (al-ʿayn) when admiring something or someone. It appears in the Qurʾān (al-Kahf 18:39) where a man is advised to say it when entering his garden.</div>
+                    <div class="phrase-when">When to say it: When admiring something or someone, when acknowledging a blessing, to express joy at good news.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">جَزَاكَ اللَّهُ خَيْرًا</span>
+                    <span class="phrase-translit">JazākaAllāhu Khayran</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">May Allāh Reward You with Good</div>
+                    <div class="phrase-meaning">A duʿāʾ of thanks — asking Allāh to give goodness to someone who has done something beneficial. The Prophet ﷺ said: "Whoever has a favour done for him and says JazākaAllāhu Khayran has indeed given the best praise." (Jāmiʿ al-Tirmidhī 2035 — Ḥasan)</div>
+                    <div class="phrase-when">When to say it: In place of or alongside "thank you" when someone helps you or does something kind.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">أَسْتَغْفِرُ اللَّه</span>
+                    <span class="phrase-translit">Astaghfirullāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">I Seek Allāh's Forgiveness</div>
+                    <div class="phrase-meaning">A request for Allāh's forgiveness. The Prophet ﷺ said he sought forgiveness more than seventy times a day despite being forgiven of all sin. It is said after prayer, after making a mistake, or as regular dhikr. Allāh promises: <em>"And whoever does evil or wrongs himself but then seeks forgiveness of Allāh will find Allāh forgiving and merciful."</em> (al-Nisāʾ 4:110)</div>
+                    <div class="phrase-when">When to say it: After prayer, after sin or error, as regular dhikr, and whenever conscious of shortcomings.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُون</span>
+                    <span class="phrase-translit">Innā lillāhi wa-innā ilayhi rājiʿūn</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">Indeed We Belong to Allāh and to Him We Shall Return</div>
+                    <div class="phrase-meaning">A Qurʾānic verse (al-Baqarah 2:156) said upon hearing of a death, a loss, or any calamity. It is a statement of profound faith — acknowledging that we and everything we have belongs to Allāh, and that return to Him is certain. The Prophet ﷺ said those who say it with true conviction will receive mercy and guidance from Allāh.</div>
+                    <div class="phrase-when">When to say it: Upon hearing of a death, loss, accident, or any difficulty.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">السَّلَامُ عَلَيْكُم</span>
+                    <span class="phrase-translit">As-salāmu ʿalaykum</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">Peace be Upon You</div>
+                    <div class="phrase-meaning">The Islamic greeting — a duʿāʾ of peace upon whoever you meet. The full greeting is <em>As-salāmu ʿalaykum wa-raḥmatullāhi wa-barakātuh</em> — "Peace, mercy, and blessings of Allāh be upon you." The Prophet ﷺ called it one of the best acts: spreading salām among Muslims. It is a right of one Muslim upon another.</div>
+                    <div class="phrase-when">When to say it: When meeting another Muslim, entering a gathering, arriving home, and when leaving.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">بَارَكَ اللَّهُ فِيكَ</span>
+                    <span class="phrase-translit">BārakAllāhu fīk</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">May Allāh Bless You</div>
+                    <div class="phrase-meaning">A duʿāʾ of blessing directed at a specific person — asking Allāh to place barakah in them. It is one of the most beloved expressions of gratitude and warmth in Islamic culture. The Prophet ﷺ said that when someone does you a favour, saying <em>JazākaAllāhu Khayran</em> is the best thanks — and BārakAllāhu fīk carries a similar spirit of supplicating for the one who has shown you goodness. The feminine form is <em>BārakAllāhu fīki</em>, and the plural is <em>BārakAllāhu fīkum</em>.</div>
+                    <div class="phrase-when">When to say it: When thanking someone, expressing appreciation, or responding to good news or a kind gesture.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">اللَّهُمَّ بَارِكْ</span>
+                    <span class="phrase-translit">Allāhumma bārik</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">O Allāh, Bless</div>
+                    <div class="phrase-meaning">A short duʿāʾ asking Allāh directly to place barakah — in a person, a thing, or a situation. It is often said alongside or instead of MāshāʾAllāh when admiring something, as protection from the evil eye (al-ʿayn). The Prophet ﷺ instructed us that when we see something we admire, we should make duʿāʾ for barakah in it. Saying <em>Allāhumma bārik lahu/lahā</em> (O Allāh, bless him/her) is a Sunnah response to admiration.</div>
+                    <div class="phrase-when">When to say it: When admiring a person, child, or blessing — as a protection and a prayer. Often said alongside MāshāʾAllāh.</div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <div class="phrase-arabic-block">
+                    <span class="phrase-arabic">حَيَّاكُمُ اللَّه</span>
+                    <span class="phrase-translit">Ḥayyākumullāh</span>
+                </div>
+                <div class="phrase-body">
+                    <div class="phrase-title">May Allāh Give You Life</div>
+                    <div class="phrase-meaning">A warm greeting meaning "May Allāh preserve your life" or "May Allāh grant you a good life" — used when welcoming someone or bidding them farewell. It carries a meaning of honouring and expressing happiness at someone's presence. It is rooted in the Arabic concept of ḥayāh (life), and is an expression of genuine warmth and duʿāʾ for the one being greeted. The singular is <em>Ḥayyāka llāh</em> and the plural is <em>Ḥayyākumullāh</em>.</div>
+                    <div class="phrase-when">When to say it: When welcoming guests, greeting someone warmly, or expressing joy at seeing someone.</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ═══════════════ SECTION SIX — SOURCES ═══════════════ -->
+        <section class="section" id="sources">
+            <div class="section-number">Section Six</div>
+            <h2>Sources &amp; References</h2>
+            <p class="section-intro">
+                All content on this page is derived from the Qurʾān and authenticated Sunnah in accordance with Ahl al-Sunnah wa'l-Jamāʿah methodology.
+            </p>
+
+            <div class="info-box">
+                <div class="info-title">Qurʾānic References</div>
+                <ul>
+                    <li>Āl ʿImrān 3:19, 3:97, 3:110 · al-Nisāʾ 4:48, 4:110</li>
+                    <li>al-Aʿrāf 7:12 · al-Anfāl 8:28 · al-Tawbah 9:60</li>
+                    <li>Hūd 11:6 · Ibrāhīm 14:4 · al-Kahf 18:23–24, 18:39</li>
+                    <li>al-Raʿd 13:28 · al-Dhāriyāt 51:56 · al-Raḥmān 55:15</li>
+                    <li>al-Ḥashr 59:7 · al-Taḥrīm 66:6 · al-Ṭalāq 65:3</li>
+                    <li>Fāṭir 35:6 · Ghāfir 40:60 · al-Baqarah 2:2–3, 2:156, 2:183</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Ḥadīth References</div>
+                <ul>
+                    <li><strong>Ṣaḥīḥ al-Bukhārī</strong> — 8 (Five Pillars), 6682 (SubḥānAllāh wa-biḥamdih)</li>
+                    <li><strong>Ṣaḥīḥ Muslim</strong> — 8a (Ḥadīth of Jibrīl), 16 (Five Pillars), 2694 (SubḥānAllāh wa-biḥamdih)</li>
+                    
+                    <li><strong>Jāmiʿ al-Tirmidhī</strong> — 2035 (JazākaAllāhu Khayran) — Graded Ḥasan</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Scholarly Sources</div>
+                <ul>
+                    <li>Ibn Taymiyyah — definition of ʿibādah</li>
+                    <li>Ibn al-Qayyim — on the nature of Īmān</li>
+                    <li>Qurʾānic translations: <strong>The Clear Qurʾān</strong> by Dr. Muṣṭafā Khaṭṭāb</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary); font-style: italic;">
+                Where revelation is silent, we remain silent.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <p style="font-family: 'Uthmanic', 'Amiri', serif; font-size: 1.2rem; color: var(--text-arabic); margin-bottom: 12px;">
+            رَبَّنَا لَا تُزِغۡ قُلُوبَنَا بَعۡدَ إِذۡ هَدَيۡتَنَا وَهَبۡ لَنَا مِن لَّدُنكَ رَحۡمَةً
+        </p>
+        <p style="font-style: italic; font-size: 0.88rem; color: var(--text-secondary);">
+            "Our Lord, do not let our hearts deviate after You have guided us, and grant us mercy from Yourself." — Āl ʿImrān (3:8)
+        </p>
+        <p style="margin-top: 20px;">May Allāh grant us understanding of our Deen and keep us steadfast upon it.</p>
+        <button class="share-btn" onclick="shareResource()">📤 Share This Page</button>
+        <div class="revision-stamp">
+            <span>Rev 1.0</span>
+            <span>Feb 2026</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--accent-brown-light); margin-top: 8px;">
+            Compiled by Mohammed Farhan Shaikh — based upon the Qurʾān, authentic Sunnah, and the explanations of orthodox Sunni scholars (Ahl al-Sunnah wa'l-Jamāʿah)
+        </p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        function toggleSection(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            if (body.classList.contains('collapsed')) {
+                body.classList.remove('collapsed');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                icon.classList.add('open');
+                setTimeout(() => { body.style.maxHeight = 'none'; }, 400);
+            } else {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.offsetHeight;
+                body.classList.add('collapsed');
+                icon.classList.remove('open');
+            }
+        }
+
+        function shareResource() {
+            const shareData = {
+                title: 'Understanding the Basics of Islām',
+                text: 'Key vocabulary, the Five Pillars, Articles of Faith, the Unseen World, and common Islamic phrases — explained clearly from the Qurʾān and Sunnah.',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => copyToClipboard());
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // ─── Theme System ───
+        const themeBtn = document.getElementById('themeBtn');
+        const themePanel = document.getElementById('themePanel');
+        themeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themePanel.classList.toggle('open');
+        });
+        document.addEventListener('click', () => themePanel.classList.remove('open'));
+        themePanel.addEventListener('click', e => e.stopPropagation());
+        document.querySelectorAll('.theme-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('islamic-theme', theme);
+                document.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                themePanel.classList.remove('open');
+            });
+        });
+        const saved = localStorage.getItem('islamic-theme');
+        if (saved) {
+            document.documentElement.setAttribute('data-theme', saved);
+            document.querySelectorAll('.theme-option').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === saved);
+            });
+        }
+    </script>
+
+    <script src="themes.js"></script>
+</body>
+</html>
