@@ -42,8 +42,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
         body { font-family: 'Cormorant Garamond', Georgia, serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; line-height: 1.8; font-size: 18px; }
 
         .back-btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent-brown-light); font-size: 0.85rem; font-weight: 600; padding: 8px 14px; position: absolute; top: 16px; left: 16px; border-radius: 6px; transition: all 0.2s; }
@@ -166,8 +165,11 @@
         .resume-banner {
             position: fixed;
             bottom: 80px;
-            left: 20px;
-            right: 20px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            max-width: 480px;
+            width: calc(100% - 40px);
             background: var(--bg-card);
             border: 1px solid var(--accent-brown-light);
             border-radius: 12px;
@@ -179,8 +181,6 @@
             gap: 14px;
             font-size: 0.88rem;
             color: var(--text-primary);
-            max-width: 480px;
-            margin: 0 auto;
         }
         .resume-banner.show { display: flex; }
         .resume-banner-text { flex: 1; line-height: 1.5; }
@@ -540,9 +540,7 @@
         </p>
     </footer>
 
-
     <button class="bookmark-btn" id="bookmarkBtn" title="Save your place">🔖</button>
-
     <div class="resume-banner" id="resumeBanner">
         <span class="resume-banner-text">📖 You have a saved place on this page.</span>
         <button class="resume-btn" id="resumeBtn">Return to it</button>
@@ -635,6 +633,7 @@
             }
             updateBookmarkBtn();
         });
+
     </script>
 
     <script src="../themes.js"></script>
