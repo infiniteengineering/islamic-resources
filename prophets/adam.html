@@ -42,7 +42,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
@@ -542,83 +542,6 @@
             .prophet-nav { flex-direction: column; }
             .prophet-nav a { width: 100%; justify-content: center; text-align: center; }
         }
-        /* ═══════════════ BOOKMARK ═══════════════ */
-        .bookmark-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 76px;
-            width: 44px;
-            height: 44px;
-            background: var(--bg-card);
-            color: var(--accent-brown);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 12px var(--shadow-color);
-            z-index: 50;
-            transition: all 0.2s;
-            opacity: 0;
-            pointer-events: none;
-        }
-        .bookmark-btn.visible { opacity: 1; pointer-events: all; }
-        .bookmark-btn.saved {
-            background: var(--accent-brown);
-            color: var(--bg-primary);
-            border-color: var(--accent-brown);
-        }
-        .bookmark-btn:hover { transform: scale(1.08); }
-
-        .resume-banner {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            right: 20px;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-brown-light);
-            border-radius: 12px;
-            padding: 14px 20px;
-            box-shadow: 0 4px 20px var(--shadow-color);
-            z-index: 200;
-            display: none;
-            align-items: center;
-            gap: 14px;
-            font-size: 0.88rem;
-            color: var(--text-primary);
-        }
-        .resume-banner.show { display: flex; }
-        .resume-banner-text { flex: 1; line-height: 1.5; }
-        .resume-btn {
-            background: var(--accent-brown);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 8px;
-            padding: 7px 16px;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .dismiss-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 4px;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-
     </style>
     <link rel="stylesheet" href="../themes.css">
     <!-- Google Analytics GA4 -->
@@ -1178,20 +1101,11 @@
         </p>
     </footer>
 
-    <button class="bookmark-btn" id="bookmarkBtn" title="Save your place">🔖</button>
-
-    <div class="resume-banner" id="resumeBanner">
-        <span class="resume-banner-text">📖 You have a saved place on this page.</span>
-        <button class="resume-btn" id="resumeBtn">Return to it</button>
-        <button class="dismiss-btn" id="dismissBtn" title="Dismiss">×</button>
-    </div>
-
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
     <script>
         window.addEventListener('scroll', function() {
             document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
-            document.getElementById('bookmarkBtn').classList.toggle('visible', window.scrollY > 400);
         });
 
         function toggleSection(header) {
@@ -1237,46 +1151,6 @@
                 alert('Link copied to clipboard!');
             }
         }
-
-        // ─── Bookmark System ───
-        const PAGE_KEY = 'bookmark_prophet-adam';
-        const bookmarkBtn = document.getElementById('bookmarkBtn');
-        const resumeBanner = document.getElementById('resumeBanner');
-
-        function updateBookmarkBtn() {
-            const saved = localStorage.getItem(PAGE_KEY);
-            bookmarkBtn.classList.toggle('saved', !!saved);
-            bookmarkBtn.title = saved ? 'Place saved — tap to update' : 'Save your place';
-        }
-
-        bookmarkBtn.addEventListener('click', function() {
-            const pos = window.scrollY;
-            localStorage.setItem(PAGE_KEY, pos);
-            updateBookmarkBtn();
-            // Brief confirmation flash
-            bookmarkBtn.innerHTML = '✔';
-            setTimeout(() => { bookmarkBtn.innerHTML = '🔖'; }, 1000);
-        });
-
-        document.getElementById('resumeBtn').addEventListener('click', function() {
-            const pos = parseInt(localStorage.getItem(PAGE_KEY), 10);
-            if (!isNaN(pos)) window.scrollTo({ top: pos, behavior: 'smooth' });
-            resumeBanner.classList.remove('show');
-        });
-
-        document.getElementById('dismissBtn').addEventListener('click', function() {
-            resumeBanner.classList.remove('show');
-        });
-
-        // On page load — show resume banner if a saved position exists
-        window.addEventListener('load', function() {
-            const saved = localStorage.getItem(PAGE_KEY);
-            if (saved && parseInt(saved, 10) > 300) {
-                setTimeout(() => resumeBanner.classList.add('show'), 800);
-            }
-            updateBookmarkBtn();
-        });
-
     </script>
 
     <script src="../themes.js"></script>
