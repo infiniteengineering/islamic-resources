@@ -879,7 +879,94 @@
             line-height: 1.6;
         }
 
-    </style>
+    
+        /* ── Site Nav Dropdown ── */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .site-nav-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav-label:hover { opacity: 0.75; }
+        .nav-menu-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 7px 13px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: background 0.2s, border-color 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .nav-menu-btn:hover { background: var(--bg-card-hover); border-color: var(--accent-brown); }
+        .nav-menu-btn .hamburger { display: flex; flex-direction: column; gap: 4px; }
+        .nav-menu-btn .hamburger span {
+            display: block; width: 15px; height: 2px;
+            background: var(--text-primary); border-radius: 2px; transition: all 0.25s;
+        }
+        .nav-menu-btn.open .hamburger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nav-menu-btn.open .hamburger span:nth-child(2) { opacity: 0; }
+        .nav-menu-btn.open .hamburger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .nav-dropdown {
+            position: fixed;
+            top: 47px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            width: min(320px, calc(100vw - 40px));
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+            display: none;
+            z-index: 300;
+            animation: siteNavDropIn 0.2s ease;
+        }
+        .nav-dropdown.open { display: block; }
+        @keyframes siteNavDropIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .nav-group { margin-bottom: 14px; }
+        .nav-group:last-child { margin-bottom: 0; }
+        .nav-group-label {
+            font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--accent-brown-light);
+            margin-bottom: 6px; padding: 0 4px;
+        }
+        .nav-group-links { display: flex; flex-direction: column; gap: 2px; }
+        .nav-group-links a {
+            text-decoration: none; color: var(--text-primary);
+            font-size: 0.88rem; font-weight: 500; padding: 9px 12px;
+            border-radius: 10px; display: flex; align-items: center;
+            gap: 10px; transition: background 0.15s, color 0.15s;
+            border: 1px solid transparent;
+        }
+        .nav-group-links a:hover {
+            background: var(--bg-card-hover); color: var(--accent-brown);
+            border-color: var(--border-color);
+        }
+        .nav-group-links a .nav-icon { font-size: 1rem; width: 22px; text-align: center; flex-shrink: 0; }
+        .nav-divider { height: 1px; background: var(--border-color); margin: 10px 0; }
+</style>
     <link rel="stylesheet" href="themes.css">
 </head>
 <body>
@@ -909,6 +996,45 @@
         </div>
     </header>
 
+        <nav class="site-nav">
+        <a href="index.html" class="site-nav-label">‹ Islamic Resources</a>
+        <button class="nav-menu-btn" id="siteNavBtn" aria-label="Open menu" aria-expanded="false">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+            Browse Resources
+        </button>
+    <div class="nav-dropdown" id="siteNavDropdown" role="menu">
+        <div class="nav-group">
+            <div class="nav-group-label">Adhkār &amp; Prayer</div>
+            <div class="nav-group-links">
+                <a href="ramadan-adhkar.html"><span class="nav-icon">🌙</span> Ramadan Adhkār</a>
+                <a href="daily-adhkar.html"><span class="nav-icon">☀️</span> Daily Adhkār</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group">
+            <div class="nav-group-label">The Prophets</div>
+            <div class="nav-group-links">
+                <a href="the-prophet.html"><span class="nav-icon">✦</span> The Prophet Muhammad ﷺ</a>
+                <a href="lives-of-the-prophets.html"><span class="nav-icon">📖</span> Lives of the Prophets</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group">
+            <div class="nav-group-label">Reference</div>
+            <div class="nav-group-links">
+                <a href="understanding-the-basics.html"><span class="nav-icon">🕌</span> Understanding the Basics</a>
+                <a href="99-names.html"><span class="nav-icon">99</span> 99 Names of Allāh</a>
+                <a href="end-times.html"><span class="nav-icon">⏳</span> Major Signs</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group">
+            <div class="nav-group-links">
+                <a href="islamic-quiz.html"><span class="nav-icon">✏️</span> Take the Quiz</a>
+            </div>
+        </div>
+    </div>
+    </nav>
     <nav class="nav">
         <button type="button" class="nav-btn active" onclick="showSection('all', this)">All</button>
         <button type="button" class="nav-btn" onclick="showSection('suhoor', this)">Suhoor</button>
@@ -1991,5 +2117,38 @@
     </script>
 
     <script src="themes.js"></script>
+
+    <script>
+        // ── Site Nav Dropdown ──
+        (function() {
+            const btn  = document.getElementById('siteNavBtn');
+            const drop = document.getElementById('siteNavDropdown');
+            if (!btn || !drop) return;
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const open = drop.classList.toggle('open');
+                btn.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open);
+            });
+            document.addEventListener('click', function() {
+                drop.classList.remove('open');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', false);
+            });
+            drop.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    drop.classList.remove('open');
+                    btn.classList.remove('open');
+                });
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    drop.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', false);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
