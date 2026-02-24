@@ -185,41 +185,129 @@
             z-index: 100;
             background: var(--bg-primary);
             border-bottom: 1px solid var(--border-color);
-            padding: 12px 20px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .nav-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-links {
+            padding: 10px 20px;
             display: flex;
-            gap: 6px;
-            justify-content: center;
-            flex-wrap: nowrap;
-            min-width: max-content;
-            margin: 0 auto;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid transparent;
-            transition: all 0.2s;
+        .nav-site-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+            letter-spacing: 0.5px;
             white-space: nowrap;
         }
 
-        .nav-links a:hover,
-        .nav-links a:active {
+        /* ── Hamburger button ── */
+        .nav-menu-btn {
             background: var(--bg-card);
-            border-color: var(--border-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, border-color 0.2s;
+            font-family: inherit;
+        }
+        .nav-menu-btn:hover { background: var(--bg-card-hover); border-color: var(--accent-brown); }
+        .nav-menu-btn .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .nav-menu-btn .hamburger span {
+            display: block;
+            width: 16px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.25s;
+        }
+        .nav-menu-btn.open .hamburger span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+        .nav-menu-btn.open .hamburger span:nth-child(2) { opacity: 0; }
+        .nav-menu-btn.open .hamburger span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* ── Dropdown panel ── */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            width: min(320px, calc(100vw - 40px));
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+            display: none;
+            z-index: 200;
+            animation: dropIn 0.2s ease;
+        }
+        .nav-dropdown.open { display: block; }
+
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-group {
+            margin-bottom: 14px;
+        }
+        .nav-group:last-child { margin-bottom: 0; }
+
+        .nav-group-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-brown-light);
+            margin-bottom: 6px;
+            padding: 0 4px;
+        }
+
+        .nav-group-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .nav-group-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 9px 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.15s, color 0.15s;
+            border: 1px solid transparent;
+        }
+        .nav-group-links a:hover {
+            background: var(--bg-card-hover);
             color: var(--accent-brown);
+            border-color: var(--border-color);
+        }
+        .nav-group-links a .nav-icon {
+            font-size: 1rem;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .nav-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 12px 0;
         }
 
         /* ═══════════════ SECTION LABEL ═══════════════ */
@@ -476,7 +564,7 @@
             .card-arrow { display: none; }
             .quiz-card { padding: 22px 20px; }
             .quiz-card-arrow { display: none; }
-            .nav-links { justify-content: flex-start; }
+            .nav-dropdown { right: 10px; }
         }
 
         /* ═══════════════ THEME PICKER ═══════════════ */
@@ -615,15 +703,53 @@
 
     <!-- ═══════════════ NAV ═══════════════ -->
     <nav class="nav-container">
-        <div class="nav-links">
-            <a href="understanding-the-basics.html">Basics</a>
-            <a href="ramadan-adhkar.html">Ramadan Adhkār</a>
-            <a href="the-prophet.html">The Prophet ﷺ</a>
-            <a href="daily-adhkar.html">Daily Adhkār</a>
-            <a href="99-names.html">99 Names</a>
-            <a href="end-times.html">Major Signs</a>
-            <a href="lives-of-the-prophets.html">Lives of the Prophets</a>
-            <a href="islamic-quiz.html">Quiz</a>
+        <span class="nav-site-label">Islamic Knowledge Hub</span>
+        <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open menu" aria-expanded="false">
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            Browse Resources
+        </button>
+
+        <div class="nav-dropdown" id="navDropdown" role="menu">
+
+            <div class="nav-group">
+                <div class="nav-group-label">Adhkār &amp; Prayer</div>
+                <div class="nav-group-links">
+                    <a href="ramadan-adhkar.html"><span class="nav-icon">🌙</span> Ramadan Adhkār</a>
+                    <a href="daily-adhkar.html"><span class="nav-icon">☀️</span> Daily Adhkār</a>
+                </div>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-group">
+                <div class="nav-group-label">The Prophets</div>
+                <div class="nav-group-links">
+                    <a href="the-prophet.html"><span class="nav-icon">✦</span> The Prophet Muhammad ﷺ</a>
+                    <a href="lives-of-the-prophets.html"><span class="nav-icon">📖</span> Lives of the Prophets</a>
+                </div>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-group">
+                <div class="nav-group-label">Reference</div>
+                <div class="nav-group-links">
+                    <a href="understanding-the-basics.html"><span class="nav-icon">🕌</span> Understanding the Basics</a>
+                    <a href="99-names.html"><span class="nav-icon">99</span> 99 Names of Allāh</a>
+                    <a href="end-times.html"><span class="nav-icon">⏳</span> Major Signs</a>
+                </div>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-group">
+                <div class="nav-group-links">
+                    <a href="islamic-quiz.html"><span class="nav-icon">✏️</span> Take the Quiz</a>
+                </div>
+            </div>
+
         </div>
     </nav>
 
@@ -772,5 +898,42 @@
     </footer>
 
     <script src="themes.js"></script>
+
+    <script>
+        // ── Nav Dropdown ──
+        const menuBtn      = document.getElementById('navMenuBtn');
+        const dropdown     = document.getElementById('navDropdown');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.toggle('open');
+            menuBtn.classList.toggle('open', isOpen);
+            menuBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('open');
+            menuBtn.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', false);
+        });
+
+        // Close when a link is clicked
+        dropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdown.classList.remove('open');
+                menuBtn.classList.remove('open');
+            });
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                dropdown.classList.remove('open');
+                menuBtn.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', false);
+            }
+        });
+    </script>
 </body>
 </html>
